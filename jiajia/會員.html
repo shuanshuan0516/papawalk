@@ -1,0 +1,351 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>#台北景點</title>
+<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+<script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script>
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script>
+$(document).ready(function(){
+ // Initialize Firebase
+ var config = {
+    apiKey: "AIzaSyAUnA_8r0-qHb6bCTMi0SCzHcUlc07Qbdk",
+    authDomain: "jia618-d8042.firebaseapp.com",
+    databaseURL: "https://jia618-d8042.firebaseio.com",
+    projectId: "jia618-d8042",
+    storageBucket: "jia618-d8042.appspot.com",
+    messagingSenderId: "157048895266"
+  };
+ firebase.initializeApp(config);
+  
+
+var pre = document.getElementById('object');
+  var a = 0;
+  var b = 0;
+  for(var i = 0;i<20;i++){
+    var db = firebase.database().ref("ig/-LIayCM_AArx7OC-meUa/景點/1/1/"+i+"/1/0");
+  db.on('value',function(snapshot){
+    var test = snapshot.val();
+    a++;
+    var image = document.getElementById("p"+a);
+    image.style.backgroundImage = "url("+test+")";
+});
+  }
+
+ for(var i = 0; i<20; i++){
+    var db2 = firebase.database().ref("ig/-LIayCM_AArx7OC-meUa/景點/1/1/"+i+"/0");
+    db2.on('value',function(snapshot2){
+    var test2 = snapshot2.val();  
+	b++;
+	var icon = document.getElementById("m"+b);
+	gotomap = "https://www.google.com/maps/dir//"+test2+"/@"+test2+",13z?hl=zh-TW";
+	icon.href = gotomap;  
+
+	})
+
+}
+  
+  ;})
+  
+  
+</script>
+
+
+
+
+<style type="text/css">
+
+#p1,#p2,#p3,#p4,#p5,#p6,#p7,#p8,#p9,#p10,#p11,#p12,#p13,#p14,#p15,#p16,#p17,#p18,#p19,#p20{
+  background-size: 300px 300px;
+}
+
+#apDiv1 {
+	position: absolute;
+	left: 14px;
+	top: 212px;
+	width: 200px;
+	height: 200px;
+	z-index: 1;
+	font-size: 60px;
+}
+#apDiv2 {
+	position: absolute;
+	left: 632px;
+	top: 188px;
+	width: 274px;
+	height: 65px;
+	z-index: 2;
+}
+#apDiv3 {
+	position: absolute;
+	left: 384px;
+	top: 28px;
+	width: 300px;
+	height: 100px;
+	z-index: 2;
+	font-size: 60px;
+}
+#apDiv4 {
+	position: absolute;
+	left: 254px;
+	top: 210px;
+	width: 200px;
+	height: 200px;
+	z-index: 3;
+}
+#apDiv5 {	position: absolute;
+	left: 369px;
+	top: 182px;
+	width: 200px;
+	height: 200px;
+	z-index: 3;
+}
+#apDiv6 {
+	position: absolute;
+	left: 502px;
+	top: 211px;
+	width: 200px;
+	height: 195px;
+	z-index: 4;
+}
+#apDiv7 {
+	position: absolute;
+	left: 282px;
+	top: 262px;
+	width: 200px;
+	height: 200px;
+	z-index: 5;
+}
+#apDiv8 {
+	position: absolute;
+	left: 12px;
+	top: 470px;
+	width: 200px;
+	height: 200px;
+	z-index: 6;
+}
+#apDiv9 {
+	position: absolute;
+	left: 258px;
+	top: 470px;
+	width: 200px;
+	height: 200px;
+	z-index: 7;
+}
+#apDiv10 {
+	position: absolute;
+	left: 500px;
+	top: 473px;
+	width: 200px;
+	height: 200px;
+	z-index: 8;
+}
+#apDiv11 {
+	position: absolute;
+	left: 746px;
+	top: 476px;
+	width: 200px;
+	height: 200px;
+	z-index: 9;
+}
+#apDiv12 {
+	position: absolute;
+	left: 14px;
+	top: 166px;
+	width: 206px;
+	height: 960px;
+	z-index: 3;
+}
+#apDiv13 {
+	position: absolute;
+	left: 35px;
+	top: 208px;
+	width: 300px;
+	height: 744px;
+	z-index: 3;
+}
+#apDiv14 {
+	position: absolute;
+	left: 373px;
+	top: 214px;
+	width: 300px;
+	height: 767px;
+	z-index: 4;
+}
+#apDiv15 {
+	position: absolute;
+	left: 774px;
+	top: 215px;
+	width: 300px;
+	height: 733px;
+	z-index: 5;
+}
+#apDiv16 {
+	position: absolute;
+	left: 1177px;
+	top: 212px;
+	width: 300px;
+	height: 685px;
+	z-index: 6;
+}
+body {
+	background-color:#B6DADA;
+}
+</style>
+<body>
+<div id="apDiv3">#台北景點</div>
+<div id="apDiv13">
+  <table width="300" border="1">
+    <tr>
+	<a id="m1" href=" "  target="_blank"><img src="C:\Users\kelly1\Downloads\map.png" >
+      <th height="300" scope="row" id="p1"></th> 
+  </a>
+  </tr>
+  </table>
+
+  <table width="300" border="1">
+    <tr>
+	<a id="m2" href=" "  target="_blank"><img src="C:\Users\kelly1\Downloads\map.png">
+      <th height="300" scope="row" id="p2"></th>
+    </tr>
+  </table>
+
+  <table width="300" border="1">
+    <tr>
+	<a id="m3" href=" "  target="_blank"><img src="C:\Users\kelly1\Downloads\map.png">
+      <th height="300" scope="row" id="p3"></th>
+    </tr>
+  </table>
+
+  <table width="300" border="1">
+    <tr>
+	<a id="m4" href=" "  target="_blank"><img src="C:\Users\kelly1\Downloads\map.png">
+      <th height="300" scope="row" id="p4"></th>
+    </tr>
+  </table>
+
+<table width="300" border="1">
+    <tr>
+	<a id="m5" href=" "  target="_blank"><img src="C:\Users\kelly1\Downloads\map.png">
+      <th height="300" scope="row" id="p5"></th>
+    </tr>
+  </table>
+
+ </div>
+<div id="apDiv14">
+  <table width="300" border="1">
+    <tr>
+	<a id="m6" href=" "  target="_blank"><img src="C:\Users\kelly1\Downloads\map.png">
+      <th height="300" scope="row" id="p6"></th>
+    </tr>
+  </table>
+
+  <table width="300" border="1">
+    <tr>
+	<a id="m7" href=" "  target="_blank"><img src="C:\Users\kelly1\Downloads\map.png">
+      <th height="300" scope="row" id="p7"></th>
+    </tr>
+  </table>
+
+  <table width="300" border="1">
+    <tr>
+	<a id="m8" href=" "  target="_blank"><img src="C:\Users\kelly1\Downloads\map.png">
+      <th height="300" scope="row" id="p8"></th>
+    </tr>
+  </table>
+
+  <table width="300" border="1">
+    <tr>
+	<a id="m9" href=" "  target="_blank"><img src="C:\Users\kelly1\Downloads\map.png">
+      <th height="300" scope="row" id="p9"></th>
+    </tr>
+  </table>
+
+  <table width="300" border="1">
+    <tr>
+	<a id="m10" href=" "  target="_blank"><img src="C:\Users\kelly1\Downloads\map.png">
+      <th height="300" scope="row" id="p10"></th>
+    </tr>
+  </table>
+
+</div>
+<div id="apDiv15"> 
+  <table width="300" border="1">
+    <tr>
+	<a id="m11" href=" "  target="_blank"><img src="C:\Users\kelly1\Downloads\map.png">
+      <th height="300" scope="row" id="p11"></th>
+    </tr>
+  </table>
+
+  <table width="300" border="1">
+    <tr>
+	<a id="m12" href=" "  target="_blank"><img src="C:\Users\kelly1\Downloads\map.png">
+      <th height="300" scope="row" id="p12"></th>
+    </tr>
+  </table>
+ 
+  <table width="300" border="1">
+    <tr>
+	<a id="m13" href=" "  target="_blank"><img src="C:\Users\kelly1\Downloads\map.png">
+      <th height="300" scope="row" id="p13"></th>
+    </tr>
+  </table>
+ 
+  <table width="300" border="1">
+    <tr>
+	<a id="m14" href=" "  target="_blank"><img src="C:\Users\kelly1\Downloads\map.png">
+      <th height="300" scope="row" id="p14"></th>
+    </tr>
+  </table>
+
+  <table width="300" border="1">
+    <tr>
+	<a id="m15" href=" "  target="_blank"><img src="C:\Users\kelly1\Downloads\map.png">
+      <th height="300" scope="row" id="p15"></th>
+    </tr>
+  </table>
+
+</div>
+<div id="apDiv16">
+  <table width="300" height="300" border="1">
+    <a id="m16" href=" "  target="_blank"><tr>
+	<img src="C:\Users\kelly1\Downloads\map.png">
+      <th height="300" scope="row" id = "p16"></th>
+    </tr>
+  </table>
+
+  <table width="300
+  " border="1">
+    <tr>
+	<a id="m17" href=" "  target="_blank"><img src="C:\Users\kelly1\Downloads\map.png">
+      <th width="300" height="300" id="p17" scope="row"></th>
+    </tr>
+  </table>
+
+  <table width="300" border="1">
+    <tr>
+	<a id="m18" href=" "  target="_blank"><img src="C:\Users\kelly1\Downloads\map.png">
+      <th width="300" height="300" id="p18" scope="row"></th>
+    </tr>
+  </table>
+
+  <table width="300" border="1">
+    <tr>
+	<a id="m19" href=" "  target="_blank"><img src="C:\Users\kelly1\Downloads\map.png">
+      <th width="300" height="300" id="p19" scope="row"></th>
+    </tr>
+  </table>
+
+  <table width="300" border="1">
+    <tr>
+	<a id="m20" href=" "  target="_blank"><img src="C:\Users\kelly1\Downloads\map.png">
+      <th width="300" height="300" id="p20" scope="row"></th>
+    </tr>
+  </table>
+
+</div>
+
+</body>
+</html>
