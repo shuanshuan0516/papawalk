@@ -1,0 +1,41 @@
+
+.container
+{
+    margin: 0;
+    max-width: 100%;
+    width: 1300px;
+
+}
+body
+{
+    font-family: SentyZHAO;
+
+}
+.container-fluid
+{
+    font-size:3vmin;
+}
+.title{
+    color: #FA8072;
+    font-weight: bold;
+    margin-bottom:20px;
+}
+
+.item p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#p1,#p2,#p3,#p4,#p5,#p6{
+    background-size: cover;
+    height:250px;
+    width:250px;
+
+}
+#content{
+    margin-top: 0px;
+
+}
+#wrapper{
+    font-size:6vmin;
+}
