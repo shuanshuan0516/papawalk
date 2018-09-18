@@ -15,29 +15,29 @@
 <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
 <script>
-var config = {
-    apiKey: "AIzaSyCcM_Sun9mawCz1sEa6FR2LEl1KCqNwdf4",
-    authDomain: "shuan-8fa3b.firebaseapp.com",
-    databaseURL: "https://shuan-8fa3b.firebaseio.com",
-    projectId: "shuan-8fa3b",
-    storageBucket: "shuan-8fa3b.appspot.com",
-    messagingSenderId: "1008513084935"
+  var config = {
+    apiKey: "AIzaSyAUnA_8r0-qHb6bCTMi0SCzHcUlc07Qbdk",
+    authDomain: "jia618-d8042.firebaseapp.com",
+    databaseURL: "https://jia618-d8042.firebaseio.com",
+    projectId: "jia618-d8042",
+    storageBucket: "jia618-d8042.appspot.com",
+    messagingSenderId: "157048895266"
   };
   firebase.initializeApp(config);
   var get = location.search.split("&");
-var dbname = firebase.database().ref("ig/-LJp73c4QGkmiu_i86Bu/景點/"+get[1]+"/1/"+get[2]+"/0");
+var dbname = firebase.database().ref("ig/-LMAeXCNtY-h3JZDbRhN/美食/"+get[1]+"/1/"+get[2]+"/0");
   dbname.on('value',function(snapshot){
     var content = snapshot.val();
     var text = document.getElementById("a");
     text.innerText = text.innerText+content;
  });
-var dbimage = firebase.database().ref("ig/-LJp73c4QGkmiu_i86Bu/景點/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/0");
+var dbimage = firebase.database().ref("ig/-LMAeXCNtY-h3JZDbRhN/美食/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/0");
   dbimage.on('value',function(snapshot){
     var content = snapshot.val();
     var image = document.getElementById("p1");
     image.style.backgroundImage = "url("+content+")";
  });
-var dbcontent = firebase.database().ref("ig/-LJp73c4QGkmiu_i86Bu/景點/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/1");
+var dbcontent = firebase.database().ref("ig/-LMAeXCNtY-h3JZDbRhN/美食/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/1");
   dbcontent.on('value',function(snapshot){
     var content = snapshot.val();
     var text = document.getElementById("p2");
@@ -52,8 +52,8 @@ var dbcontent = firebase.database().ref("ig/-LJp73c4QGkmiu_i86Bu/景點/"+get[1]
 #p1{
 	left:35%;
 	background-size: cover; 
-    height:50%; 
-    width:50%;
+    height:300px; 
+    width:300px;
 }
 #p2{
 	max-width: 40%;
