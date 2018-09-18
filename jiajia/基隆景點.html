@@ -41,7 +41,7 @@ var pre = document.getElementById('object');
   var a = 0;
   var b=0;
   var c=0;
-  for(var i = 0;i<20;i++){
+  for(var i = 0;i<40;i++){
     var db = firebase.database().ref("ig/-LJp73c4QGkmiu_i86Bu/景點/0/1/"+i+"/1/0");
   db.on('value',function(snapshot){
     var test = snapshot.val();
@@ -52,7 +52,7 @@ var pre = document.getElementById('object');
   }
 
 
-    for(var j = 0; j<20; j++){
+    for(var j = 0; j<40; j++){
    var db2 = firebase.database().ref("ig/-LJp73c4QGkmiu_i86Bu/景點/0/1/"+j+"/0");
     db2.on('value',function(snapshot){
     var test2 = snapshot.val();  
@@ -63,7 +63,7 @@ var pre = document.getElementById('object');
 
     })}
 
-    for(var q = 0; q<20; q++){
+    for(var q = 0; q<40; q++){
     var db3 = firebase.database().ref("ig/-LJp73c4QGkmiu_i86Bu/景點/0/1/"+q+"/0");
     db3.on('value',function(snapshot){
     var test3 = snapshot.val();  
@@ -112,7 +112,7 @@ body
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-#p1,#p2,#p3,#p4,#p5,#p6,#p7,#p8,#p9,#p10,#p11,#p12,#p13,#p14,#p15,#p16,#p17,#p18,#p19,#p20{
+#p1,#p2,#p3,#p4,#p5,#p6,#p7,#p8,#p9,#p10,#p11,#p12,#p13,#p14,#p15,#p16,#p17,#p18,#p19,#p20,#p21,#p22,#p23,#p24,#p25,#p26,#p27,#p28,#p29,#p30,#p31,#p32,#p33,#p34,#p35,#p36,#p37,#p38,#p39,#p40{
      background-size: cover;
      height:250px;
      width:250px;
@@ -123,12 +123,12 @@ body
     
 }
 
-#n1,#n2,#n3,#n4,#n5,#n6,#n7,#n8,#n9,#n10,#n11,#n12,#n13,#n14,#n15,#n16,#n17,#n18,#n19,#n20
+#n1,#n2,#n3,#n4,#n5,#n6,#n7,#n8,#n9,#n10,#n11,#n12,#n13,#n14,#n15,#n16,#n17,#n18,#n19,#n20,#n21,#n22,#n23,#n24,#n25,#n26,#n27,#n28,#n29,#n30,#n31,#n32,#n33,#n34,#n35,#n36,#n37,#n38,#n39,#n40
 {
    padding-top:20px;
 }
 
-#b1,#b2,#b3,#b4,#b5,#b6,#b7,#b8,#b9,#b10,#b11,#b12,#b13,#b14,#b15,#b16,#b17,#b18,#b19,#b20
+#b1,#b2,#b3,#b4,#b5,#b6,#b7,#b8,#b9,#b10,#b11,#b12,#b13,#b14,#b15,#b16,#b17,#b18,#b19,#b20,#b21,#b22,#b23,#b24,#b25,#b26,#b27,#b28,#b29,#b30,#b31,#b32,#b33,#b34,#b35,#b36,#b37,#b38,#b39,#b40
 {
   padding-bottom: 50px;
 }
@@ -148,7 +148,7 @@ body
 <section id="header">
         <div class="container" style="padding: 0;">
             <div class="container-fluid" style="background:#ED9292; max-width: 100%; padding: 0">
-            <table width="100%" border="1">
+            <table width="100%" >
                 <tr>
                     <th width="35%" style="padding: 2;"><center><a href="index.html" target="_self"><img src="images/趴.png" style="max-width:85%;height:auto"/></a></center></th>
                     <th width="30%"> 
