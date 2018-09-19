@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>    
+    <meta charset="UTF-8">
+</head>
+
+<body background="C:\Users\99\background.jpg">
+<style type="text/css">
+
+    #background {
+        background-color: rgba(255, 255, 255, 0.2);
+        border: 2px solid rgba(105, 105, 105, 0.6);
+
+        width: 50%;
+        height: 550px;
+        border-radius: 30px;
+
+        font-size: 30px;
+
+    }
+
+    #line {
+
+        background-color: rgba(255, 255, 255, 0.2);
+        border:: 100px solid rgba(105, 105, 105, 0.6);
+        height: 0px;
+        width: 70%;
+    }
+
+    body {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+
+    body, html {
+        height: 100%;
+        width: 100%;
+    }
+
+    .textarea {
+    width: 200px;
+    height: 200px;
+    resize: none;
+    }
+
+
+</style>
+
+
+<div id="background">
+    <div style="margin-top: 30px;  font-family:Arial, Helvetica, sans-serif;">
+        <center><label>留言區:</label>
+            <br>
+            <br>
+            <textarea id="comment" type="text" class="textarea">
+            </textarea>
+        </center>
+    </div>
+
+    <div class="button" style="margin-top: 30px;">
+        <center>
+            <button id="sure" type="button" onclick="confirm()"
+                    style="font-size: 20px; background-color: transparent; border-radius: 8px; border: 2px solid rgba(105,105,105,0.6);">
+                確認
+            </button>
+        </center>
+    </div>
+</div>
+
+<script>
+
+      var config = {
+        apiKey: "AIzaSyCcM_Sun9mawCz1sEa6FR2LEl1KCqNwdf4",
+        authDomain: "shuan-8fa3b.firebaseapp.com",
+        databaseURL: "https://shuan-8fa3b.firebaseio.com",
+        projectId: "shuan-8fa3b",
+        storageBucket: "shuan-8fa3b.appspot.com",
+        messagingSenderId: "1008513084935"
+      };
+      firebase.initializeApp(config);
+
+      function confirm(){  
+      var comment = $('#comment').val();
+      var ref = firebase.database().ref("ig/-LJp73c4QGkmiu_i86Bu/景點/");
+
+               if (comment !=="") {
+                ref.once("value", (function (snapshot) {                    
+                    let updates = {};
+                    updates["ig/" + "comment/"] = comment;
+                    alert("謝謝您的留言");
+                    firebase.database().ref().update(updates);
+                }))
+                }       
+                else {
+                    alert("請輸入文字");
+                }
+            }
+
+</script>
+</body>
+</html>
+

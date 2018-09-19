@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+</head>
+<body background="C:\Users\99\background.jpg">
+
+<style type="text/css">
+	
+#background
+{ 
+background-color:rgba(255,255,255,0.2);
+border: 2px solid rgba(105,105,105,0.6); 
+
+
+width: 50%;
+height: 500px;
+border-radius: 30px; 
+
+font-size: 30px;
+
+}
+
+#line{
+
+	background-color:rgba(255,255,255,0.2);
+	border: :100px solid rgba(105,105,105,0.6);
+	height: 0px;
+	width: 70%;
+}
+
+body{
+	justify-content: center;
+	align-items: center;
+	display: flex;
+}
+
+body,html{
+	height: 100%;
+	width: 100%;
+}
+
+
+
+</style>
+
+
+  <div id="background" >
+  	<div  style="margin-top: 80px; font-family:Arial, Helvetica, sans-serif; font-size: 35px;">
+
+   <center><b>Log In</b></center>
+   <hr id="line"></hr>
+
+  </div> 
+   
+
+   <div  style="margin-top: 30px; font-family:Arial, Helvetica, sans-serif;">
+<center>
+   	<label>帳號:</label>
+   <input id="userid" type="text" style="height: 28px ;width:200px; font-size: 15px; background-color: transparent; border-radius: 8px; border: 2px solid rgba(105,105,105,0.6);">
+   </center>
+</div>
+  
+   <div  style="margin-top: 30px; font-family:Arial, Helvetica, sans-serif;">
+   
+   <center>	<label>密碼:</label>
+   <input id="password" type="password" style="height: 28px ;width:200px; font-size: 15px; background-color: transparent; border-radius: 8px; border: 2px solid rgba(105,105,105,0.6);">
+   </center>
+   </div>
+
+   <div class="button"style="margin-top: 30px;">
+   	<center>
+   <button id="login" type="button" onclick="going();" style="font-size: 20px; background-color: transparent; border-radius: 8px; border: 2px solid rgba(105,105,105,0.6);">登入</button>
+   </center>
+   </div>
+
+</div>
+<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+<script>	
+   var config = {
+    apiKey: "AIzaSyAU8YeIiWcADYyZUuiUPkHsSEn0C8o7VzI",
+    authDomain: "yunhsin-1753e.firebaseapp.com",
+    databaseURL: "https://yunhsin-1753e.firebaseio.com",
+    projectId: "yunhsin-1753e",
+    storageBucket: "yunhsin-1753e.appspot.com",
+    messagingSenderId: "266910483049"
+  };
+  firebase.initializeApp(config);   
+
+  function going(){  
+  var userid = $('#userid').val();
+  var password = $('#password').val();
+
+  var db = firebase.database().ref("member/"+userid+"/password");
+  db.on('value',function(snapshot){
+  var test = snapshot.val();
+
+  var db2 = firebase.database().ref("member/"+userid+"/username");
+  db2.on('value',function(snapshot){
+  var test2 = snapshot.val();
+
+	if(password==test){
+		//document.getElementById("demo").innerHTML = test2+",您好!" ;
+		alert(test2+",您好!");
+	}else if (userid==""||password=="") {
+		alert("請輸入帳號密碼");
+	}
+	else{
+		alert("帳號密碼錯誤") ;
+	}
+
+
+          
+})})};
+
+
+    
+</script>
+
+<p id="demo"></p>
+
+</body>
+
+</html>
