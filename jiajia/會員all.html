@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>基隆景點</title>
+<title>就i趴趴走·景點</title>
 
 
 <link href="SpryAssets/stylesheet.css"rel="stylesheet" type="text/css"/>
@@ -26,47 +26,82 @@
 
     <script>
 $(document).ready(function(){
+<<<<<<< HEAD:jiajia/基隆景點.html
+=======
+// Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCcM_Sun9mawCz1sEa6FR2LEl1KCqNwdf4",
+    authDomain: "shuan-8fa3b.firebaseapp.com",
+    databaseURL: "https://shuan-8fa3b.firebaseio.com",
+    projectId: "shuan-8fa3b",
+    storageBucket: "shuan-8fa3b.appspot.com",
+    messagingSenderId: "1008513084935"
+  };
+  firebase.initializeApp(config);
+  
+>>>>>>> jia:jiajia/會員all.html
 
-var pre = document.getElementById('object');
-  var a = 0;
-  var b=0;
-  for(var i = 0;i<20;i++){
-    var db = firebase.database().ref("ig/-LIayCM_AArx7OC-meUa/景點/0/1/"+i+"/1/0");
-  db.on('value',function(snapshot){
-    var test = snapshot.val();
-    a++;
-    var image = document.getElementById("p"+a);
-    image.style.backgroundImage = "url("+test+")";
- });
-  }
 
+</script>
+</head>
+<<<<<<< HEAD:jiajia/基隆景點.html
+=======
+<style type="text/css">
 
-for(var j = 0; j<20; j++){
-    var db2 = firebase.database().ref("ig/-LIayCM_AArx7OC-meUa/景點/1/1/"+j+"/0");
-    db2.on('value',function(snapshot2){
-    var test2 = snapshot2.val();  
-    b++;
-    var icon = document.getElementById("m"+b);
-    gotomap = "https://www.google.com/maps/dir//"+test2+"/@"+test2+",13z?hl=zh-TW";
-    icon.href = gotomap;  
+.container
+{
+    margin: 0;
+    max-width: 100%;
+    width: 1300px;
+   
+}
+body
+{
+    font-family: SentyZHAO;
 
-    })
+    
+}
+.container-fluid
+{
+    font-size:3vmin;
+}
+.title{
+    color: #FA8072;
+    font-weight: bold;
+    margin-bottom:20px;
+}
+.row{
+  color: black;
+   font-size:4vmin;
 
 }
 
-  ;})
-</script>
-</head>
+.item p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+#wrapper{
+    font-size:6vmin;
+}
+</style>
+
+
+>>>>>>> jia:jiajia/會員all.html
 <body>
 <section id="header">
         <div class="container" style="padding: 0;">
             <div class="container-fluid" style="background:#ED9292; max-width: 100%; padding: 0">
-            <table width="100%" border="1" >
+            <table width="100%">
                 <tr>
                     <th width="35%" style="padding: 2;"><center><a href="index.html" target="_self"><img src="images/趴.png" style="max-width:85%;height:auto"/></a></center></th>
                     <th width="30%"> 
-                        
-
+                    </th>
+                    <th width="5%"></th>
+                    <th width="35%" style="padding: 2;"><center><a href="index.html" target="_self"><img src="images/趴.png" style="max-width:85%;height:auto"/></a></center></th>
+                    <th width="25%"> 
                     </th>
                     <th width="10%"><img src="images/景點.png" style="max-width:100%;height:auto"/></a></th>
                     <th width="10%"><img src="images/美食.png" style="max-width:100%;height:auto"/></a></th>
@@ -94,25 +129,59 @@ for(var j = 0; j<20; j++){
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> 北部 <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                     <li class="dropdown-header">Dropdown heading</li>
-                    <li><a href="#">基隆</a></li>
+                    <li><a href="基隆景點.html">基隆</a></li>
                     <li><a href="#">台北</a></li>
                     <li><a href="#">新北</a></li>
                     <li><a href="#">桃園</a></li>
                     <li><a href="#">新竹</a></li>
+                    <li><a href="#">宜蘭</a></li>
                   </ul>
                 </li>
 
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> 北部 <span class="caret"></span></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> 中部 <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                     <li class="dropdown-header">Dropdown heading</li>
-                    <li><a href="#">基隆</a></li>
-                    <li><a href="#">台北</a></li>
-                    <li><a href="#">新北</a></li>
-                    <li><a href="#">桃園</a></li>
-                    <li><a href="#">新竹</a></li>
+                    <li><a href="#">苗栗</a></li>
+                    <li><a href="#">台中</a></li>
+                    <li><a href="#">彰化</a></li>
+                    <li><a href="#">南投</a></li>
+                    <li><a href="#">雲林</a></li>
                   </ul>
                 </li>
+
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> 南部 <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-header">Dropdown heading</li>
+                    <li><a href="#">嘉義</a></li>
+                    <li><a href="#">台南</a></li>
+                    <li><a href="#">高雄</a></li>
+                    <li><a href="#">屏東</a></li>
+                    <li><a href="#">澎湖</a></li>
+                  </ul>
+                </li>
+
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> 東部 <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-header">Dropdown heading</li>
+                    <li><a href="#">花蓮</a></li>
+                    <li><a href="#">台東</a></li>
+                  </ul>
+                </li>
+
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> 離島 <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-header">Dropdown heading</li>
+                    <li><a href="#">金門</a></li>
+                    <li><a href="#">綠島</a></li>
+                  </ul>
+                </li>
+
+
+
 
 
                 
@@ -132,67 +201,7 @@ for(var j = 0; j<20; j++){
         <!-- /#page-content-wrapper -->
 
     </div>
-<div id="content" class="container">
-    <h3 class ="title">| #基隆景點</h3>
-    <div class="row">
 
-        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-            <div id="p1" ></div>
-                 <a id="m1" href=" "  target="_blank"><img src="images/map.png" style="max-width: 10%;"></a>
-                 <p>mcmcmvmvmv</p>
-            
-        </div>
-
-
-        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-            <div id="p2" ></div>
-                 <a id="m2" href=" "  target="_blank"><img src="images/map.png" style="max-width: 10%;"></a>
-                 <p>mcmcmvmvmv</p>
-            
-        </div>
-
-        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-            <div id="p3" ></div>
-                 <a id="m3" href=" "  target="_blank"><img src="images/map.png" style="max-width: 10%;"></a>
-                 <p>mcmcmvmvmv</p>
-            
-        </div>
-
-        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-            <div id="p4" ></div>
-                 <a id="m4" href=" "  target="_blank"><img src="images/map.png" style="max-width: 10%;"></a>
-                 <p>mcmcmvmvmv</p>
-            
-        </div>
-
-        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-            <div id="p5" ></div>
-                 <a id="m5" href=" "  target="_blank"><img src="images/map.png" style="max-width: 10%;"></a>
-                 <p>mcmcmvmvmv</p>
-            
-        </div>
-
-        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-            <div id="p6" ></div>
-                 <a id="m6" href=" "  target="_blank"><img src="images/map.png" style="max-width: 10%;">
-                 <p>mcmcmvmvmv</p>
-            
-        </div>
-
-
-
-            
-        
-        
-    </div>
-    
-</div>
-
-        
-        
-    </section>
-    </div>
-    <!-- /#wrapper -->
     
     <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
     <!--<script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"></script>-->

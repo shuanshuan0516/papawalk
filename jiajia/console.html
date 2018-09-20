@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title></title>
+<link href="SpryAssets/stylesheet.css rel="stylesheet" type="text/css"/>
+<script src="SpryAssets/SpryMenuBar.js" type="text/javascript"> </script>
+<link href="SpryAssets/SpryMenuBarVertical.css" rel="stylesheet" type="text/css" />
+
+<script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+    <link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
+    <link rel="stylesheet" href="css/style.css">
+<script>
+var config = {
+    apiKey: "AIzaSyCcM_Sun9mawCz1sEa6FR2LEl1KCqNwdf4",
+    authDomain: "shuan-8fa3b.firebaseapp.com",
+    databaseURL: "https://shuan-8fa3b.firebaseio.com",
+    projectId: "shuan-8fa3b",
+    storageBucket: "shuan-8fa3b.appspot.com",
+    messagingSenderId: "1008513084935"
+  };
+  firebase.initializeApp(config);
+  var get = location.search.split("&");
+var dbname = firebase.database().ref("ig/-LJp73c4QGkmiu_i86Bu/景點/"+get[1]+"/1/"+get[2]+"/0");
+  dbname.on('value',function(snapshot){
+    var content = snapshot.val();
+    var text = document.getElementById("a");
+    text.innerText = text.innerText+content;
+ });
+var dbimage = firebase.database().ref("ig/-LJp73c4QGkmiu_i86Bu/景點/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/0");
+  dbimage.on('value',function(snapshot){
+    var content = snapshot.val();
+    var image = document.getElementById("p1");
+    image.style.backgroundImage = "url("+content+")";
+ });
+var dbcontent = firebase.database().ref("ig/-LJp73c4QGkmiu_i86Bu/景點/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/1");
+  dbcontent.on('value',function(snapshot){
+    var content = snapshot.val();
+    var text = document.getElementById("p2");
+    text.innerText = content;
+ });
+</script>  
+<style type="text/css">
+body {
+  font-family: SentyZHAO;
+}
+
+.container
+{
+    margin: 0;
+    max-width: 100%;
+    width: 1300px;
+   
+}
+#a{
+  text-align:center;
+  font-size:10vmin;
+}
+#p1{
+  display: block;
+  left:25%;
+  background-size: cover; 
+  height:300px; 
+  width:300px;
+}
+#p2{
+  top:50%;
+  left:30%;
+  max-width: 40%;
+  height:50%; 
+}
+.pic{
+  padding:0px;
+}
+
+</style>
+<body>
+
+   <div class="container" style="padding: 0;">
+            <div class="container-fluid" style="background:#ED9292; max-width: 100%; padding: 0">
+            <table width="100%" >
+                <tr>
+                    <th width="5%"></th>
+                    <th width="35%" style="padding: 2;"><center><a href="index.html" target="_self"><img src="images/趴.png" style="max-width:85%;height:auto"/></a></center></th>
+                    <th width="25%"> 
+                    </th>
+                    <th width="10%"><img src="images/景點.png" style="max-width:100%;height:auto"/></a></th>
+                    <th width="10%"><img src="images/美食.png" style="max-width:100%;height:auto"/></a></th>
+                    <th width="10%"><center><img src="images/about.png" style="max-width:60%;height:auto"/></center></th>
+                    <th width="5%"><img src="images/4.png" style="max-width:80%;height:auto"/></th>
+
+                </tr>
+                
+            </table>
+            </div>
+
+      <div id="wrapper">
+        <div class="overlay"></div>
+    
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        地區
+                    </a>
+                </li>
+               
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> 北部 <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="景點.html?&0">基隆</a></li>
+                    <li><a href="景點.html?&1">台北</a></li>
+                    <li><a href="景點.html?&2">新北</a></li>
+                    <li><a href="景點.html?&3">桃園</a></li>
+                    <li><a href="景點.html?&4">新竹</a></li>
+                    <li><a href="景點.html?&16">宜蘭</a></li>
+                  </ul>
+                </li>
+
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> 中部 <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="景點.html?&5">苗栗</a></li>
+                    <li><a href="景點.html?&6">台中</a></li>
+                    <li><a href="景點.html?&7">彰化</a></li>
+                    <li><a href="景點.html?&8">南投</a></li>
+                    <li><a href="景點.html?&9">雲林</a></li>
+                  </ul>
+                </li>
+
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> 南部 <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="景點.html?&10">嘉義</a></li>
+                    <li><a href="景點.html?&11">台南</a></li>
+                    <li><a href="景點.html?&12">高雄</a></li>
+                    <li><a href="景點.html?&13">屏東</a></li>
+                    <li><a href="景點.html?&15">澎湖</a></li>
+                  </ul>
+                </li>
+
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> 東部 <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="景點.html?&20">花蓮</a></li>
+                    <li><a href="景點.html?&14">台東</a></li>
+                  </ul>
+                </li>
+
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> 離島 <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="景點.html?&18">金門</a></li>
+                    <li><a href="景點.html?&17">綠島</a></li>
+                    <li><a href="景點.html?&19">蘭嶼</a></li>
+                  </ul>
+                </li>
+      
+            </ul>
+        </nav>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+          <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
+            <span class="hamb-top"></span>
+            <span class="hamb-middle"></span>
+            <span class="hamb-bottom"></span>
+          </button>
+           
+        </div>
+<div id="a" class="col-md-6text row justify-content-center">#</div>
+<div id="p1" class="row justify-content-center col-md-6 col-sm-12 pic"></div>
+<div id="p2" class="col-md-6 col-sm-12 text"></div>
+
+
+</div>
+
+
+ <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"></script>
+    <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+          var trigger = $('.hamburger'),
+              overlay = $('.overlay'),
+             isClosed = false;
+
+            trigger.click(function () {
+              hamburger_cross();      
+            });
+
+            function hamburger_cross() {
+
+              if (isClosed == true) {          
+                overlay.hide();
+                trigger.removeClass('is-open');
+                trigger.addClass('is-closed');
+                isClosed = false;
+              } else {   
+                overlay.show();
+                trigger.removeClass('is-closed');
+                trigger.addClass('is-open');
+                isClosed = true;
+              }
+          }
+          
+          $('[data-toggle="offcanvas"]').click(function () {
+                $('#wrapper').toggleClass('toggled');
+          });  
+        });
+    </script>
+</body>
+</html>
