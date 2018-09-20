@@ -8,11 +8,18 @@
 <title>就i趴趴走</title>
 
 <link rel="stylesheet" href="css/bootstrap.min.css"> 
-<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
+
+<link href="SpryAssets/stylesheet.css rel="stylesheet" type="text/css"/>
+<script src="SpryAssets/SpryMenuBar.js" type="text/javascript"> </script>
+<link href="SpryAssets/SpryMenuBarVertical.css" rel="stylesheet" type="text/css" />
 </head>
 <style>
+body{
+  font-family: SentyZHAO;
+}
 .container
 {
 	margin: 0;
@@ -217,8 +224,8 @@
       height: auto;
       background:#ED9292;
       } //最大寬度為100%,取消高度改自動
-
       }
+
 
 .Logo {
   float: left;
@@ -245,20 +252,14 @@
 @media (max-width: 768px) {
     .Logo a{
         margin: 0 auto;//logo置中
+        
     }
 }
-
 
 
 .Menu {
     float: right;
     line-height: 51px;
-}
-@media (max-width: 768px) {
-    .Menu {
-            float: none;
-
-    }
 }
 
 .Menu li {
@@ -270,12 +271,27 @@
 
 @media (max-width: 768px) {
     .Menu li {
-        float: inline;
-        border-bottom: 1px dashed #66FFDC;//新增底線
-        width: 100%;
+        display: none;
     }
 }
 
+.hide li{
+  display: none;
+}
+@media (max-width: 768px) {
+    .hide li {
+      border-left:3px #FFD382 solid;
+      
+      padding-right: 5px;
+      font-color: #7C9885;
+      display: inline;
+      margin: 0 5px;
+      font-size:4vmin; 
+      border-width:3px;
+      padding:2px;
+
+    }
+}
 
 
 .Menu li a {
@@ -285,9 +301,19 @@
       margin: 0 1px; 
       }
 @media (max-width: 768px) {
-    .Menu li a:hover{
-        color: black;//滑過文字變黑色
+    .hide li a:hover{
+    color: white;//滑過文字變黑色
 
+    }
+}
+body,ul,li{
+        margin: 0;
+        padding: 0;
+}
+
+@media (max-width: 768px) {
+    .rocket img,.a img,.a1 img,.a2 img,.a3 img,.a4 img {
+        display: none;
     }
 }
 </style>
@@ -300,9 +326,18 @@
    </div>
 
    <ul class="Menu">
-      <li><a href="#"><img src="images/a4.png"  style="max-width:100px;height:auto"/></a></li>
+      <li><a href="#"><img src="images/a4.png" style="max-width:100px;height:auto" /></a></li>
       <li><a href="#"><img src="images/a6.png" style="max-width:100px;height:auto" /></a></li>
       <li><a href="#"><img src="images/4.png" style="max-width:100px;height:auto" /></a></li>
+   </ul>
+   <ul class="hide" style="padding-top: 20px ;padding-bottom:10px"><center>
+      <li><a href="#">景點</a></li>
+      <li><a href="#">美食</a></li>
+      <li><a href="#">會員專區</a></li>
+      <li><a href="#">關於我</a></li>
+      <li><a href="#">登入</a></li>
+      <li><a href="#">註冊</a></li>
+      </center>
    </ul>
 </div>
 
@@ -315,7 +350,7 @@
 
 <div id="outerspace">
   <picture>
-  <source srcset="images/phone.jpg" media="(max-width: 500px)">
+  <source srcset="images/phone1.jpg" media="(max-width: 500px)">
   <source srcset="images/主.jpg" >
   <img src="images/主.jpg"  style="max-width:100%;height:auto">
   </picture>
