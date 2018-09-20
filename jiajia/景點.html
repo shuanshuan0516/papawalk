@@ -37,12 +37,12 @@
             firebase.initializeApp(config);
 
 
-            let get = location.search.split("&");
+            let get = location.search.split("&");// split分割&
 
-            var db = firebase.database().ref("ig/-LJp73c4QGkmiu_i86Bu/景點/"+get[1]);
+            var db = firebase.database().ref("ig/-LJp73c4QGkmiu_i86Bu/景點/"+get[1]);//get1 是get"&"之後第一個
             db.once('value', function (snapshot) {
-                let t2_title = snapshot.child("0").val();
-                document.getElementById("all_title").innerText = "#"+t2_title;
+                let t2_title = snapshot.child("0").val();//t2_title是縣市名稱
+                document.getElementById("all_title").innerText = "#"+t2_title;   
                 for (let i = 0; i < 40; i++) {
                     //圖片
                     let url = snapshot.child("1/" + i + "/1/0").val();
