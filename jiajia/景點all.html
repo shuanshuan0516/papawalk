@@ -91,10 +91,138 @@ body
 
     
 }
-.container-fluid
-{
-    font-size:3vmin;
+
+.Header {
+    height: 148px;
+    background:#ED9292;
 }
+@media (max-width: 768px) {
+    .Header {
+      max-width: 100%; 
+      height: auto;
+      background:#ED9292;
+      } //最大寬度為100%,取消高度改自動
+      }
+
+
+.Logo {
+  float: left;
+  margin: 10px 0 0 10px;
+  
+  }
+  
+@media (max-width: 768px) {
+    .Logo {
+            float: none;//取消浮動
+            margin: 0;
+    }
+}
+
+.Logo a {
+    display: block;
+    background: url(images/趴.png);
+    text-indent: -999999px;
+    width: 338px;
+    height:100px;
+    text-decoration: none; 
+    background-size: auto 100%;
+    }
+@media (max-width: 768px) {
+    .Logo a{
+        margin: 0 auto;//logo置中
+        
+    }
+}
+
+
+.Menu {
+    float: right;
+    line-height: 35px;
+}
+
+.Menu li {
+    float: left;
+    width: 140px;
+    text-align: center;
+    list-style: none;
+    margin: 0px auto;
+    }
+
+@media (max-width: 768px) {
+    .Menu li {
+        display: none;
+    }
+}
+
+table{
+  display: none;
+}
+
+
+
+.Menu li a {
+      text-decoration: none;
+      color: #00a67d;
+      display: block;
+      margin: 0 1px; 
+
+      }
+
+
+@media (max-width: 768px) {
+    table {
+      display: inline;
+    }
+}
+@media (max-width: 768px) { 
+    table a:hover{
+    color: white;//滑過文字變黑色
+
+    }
+}
+
+
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #7C9885;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 25px;
+  padding: 2px;
+  width: 80px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
 .title{
     color: #FA8072;
     font-weight: bold;
@@ -115,7 +243,9 @@ body
 
 #wrapper{
     font-size:6vmin;
+    
 }
+
 
 * {
       box-sizing: border-box;
@@ -152,18 +282,50 @@ body
 .slick-current {
       opacity: 1;
     }
+
+
+
 </style>
 
 
         
 <body>
+<div class="container" style="padding: 0;">
 
-        <div class="container" style="padding: 0;">
-            <div class="container-fluid" style="background:#ED9292; max-width: 100%; padding: 0">
-            <table width="100%" >
-                <tr>
-                    <th width="5%">
-          <div id="wrapper">
+<div class="Header">
+   <div class="Logo">
+     <a href="#">就I趴趴走</a>
+   </div>
+
+   <ul class="Menu">
+      <li><a href="景點all.html"><img src="images/a4.png" style="max-width:120px;height:auto" /></a></li>
+      <li><a href="#"><img src="images/a6.png" style="max-width:120px;height:auto" /></a></li>
+      <li><a href="#"><img src="images/about.png" style="max-width:120px;height:auto" /></a></li>
+      <li>
+        <a href="#"><button class="button" style="vertical-align:middle"><span>登入</span></button></a>
+        <a href="#"><button class="button" style="vertical-align:middle"><span>註冊</span></button></a>
+      </li>
+
+   </ul>
+
+<table width="100%" style="font-size: 4vmin;">
+<tr>
+<th style="padding-top: 20px ;padding-bottom:10px;">
+
+    <a href="" style="margin-left: 10px;border-left:3px #FFD382 solid;padding-right: 5px;margin: 0 5px;border-width:3px">景點</a>
+    <a href="" style="border-left:3px #FFD382 solid;padding-right: 5px;margin: 0 5px;border-width:3px">美食</a>
+    <a href="" style="border-left:3px #FFD382 solid;padding-right: 5px;margin: 0 5px;border-width:3px">會員專區</a>
+    <a href="" style="border-left:3px #FFD382 solid;padding-right: 5px;margin: 0 5px;border-width:3px">關於我</a>
+    <a href="" style="border-left:3px #FFD382 solid;padding-right: 5px;margin: 0 5px;border-width:3px">登入</a>
+    <a href="" style="border-left:3px #FFD382 solid;padding-right: 5px;margin: 0 5px;border-width:3px">註冊</a>
+
+</th>
+</tr>
+</table>
+            
+</div>
+
+<div id="wrapper">
         <div class="overlay"></div>
     
         <!-- Sidebar -->
@@ -241,23 +403,6 @@ body
            
         </div>
 
-                    </th>
-                    <th width="35%" style="padding: 2;"><center><a href="index.html" target="_self"><img src="images/趴.png" style="max-width:85%;height:auto"/></a></center></th>
-                    <th width="25%"> 
-                    </th>
-                    <th width="10%"><img src="images/景點.png" style="max-width:100%;height:auto"/></a></th>
-                    <th width="10%"><img src="images/美食.png" style="max-width:100%;height:auto"/></a></th>
-                    <th width="10%"><center><img src="images/about.png" style="max-width:60%;height:auto"/></center></th>
-                    <th width="5%"><img src="images/4.png" style="max-width:80%;height:auto"/></th>
-
-                </tr>
-                
-            </table>
-            </div>
-
-
-
-
  <section class="regular slider">
   
        <div id="p1"></div>
@@ -277,8 +422,6 @@ body
 
 
 
-
-    </div>
   </div>
 
 
@@ -325,9 +468,6 @@ body
   <script type="text/javascript">
     $(document).on('ready', function() {
 
-    
-      
-    
 
     $('.regular').slick({
   centerMode: true,
