@@ -47,9 +47,7 @@ $(document).ready(function(){
 
   var pre = document.getElementById('object');
   var a = 0;
-  var b=0;
-  var c=0;
-  for(var i = 0;i<40;i++){
+  for(var i = 0;i<10;i++){
     var db = firebase.database().ref("ig/-LJp73c4QGkmiu_i86Bu/景點/0/1/"+i+"/1/0");
   db.on('value',function(snapshot){
     var test = snapshot.val();
@@ -62,14 +60,12 @@ $(document).ready(function(){
 
   ;})
 
-  
-
-
 </script>
 </head>
 <style type="text/css">
 
-#p1,#p2,#p3,#p4,#p5,#p6,#p7,#p8,#p9,#p10,#p11,#p12,#p13,#p14,#p15,#p16,#p17,#p18,#p19,#p20,#p21,#p22,#p23,#p24,#p25,#p26,#p27,#p28,#p29,#p30,#p31,#p32,#p33,#p34,#p35,#p36,#p37,#p38,#p39,#p40{
+
+#p1,#p2,#p3,#p4,#p5,#p6,#p7,#p8,#p9,#p10{
      background-size: cover;
      height:220px;
      width:250px;
@@ -88,9 +84,8 @@ $(document).ready(function(){
 body
 {
     font-family: SentyZHAO;
-
-    
 }
+
 #pp{
   display:block;
   margin:auto;
@@ -98,12 +93,14 @@ body
   border:2px #ccc solid;
   border-radius:10px;
   width:90%;
-  height:5%;
+  height:auto;
+  margin-bottom: 50px;
 }
 
 .Header {
-    height: 148px;
+    height: 135px;
     background:#ED9292;
+
 }
 @media (max-width: 768px) {
     .Header {
@@ -135,6 +132,7 @@ body
     height:100px;
     text-decoration: none; 
     background-size: auto 100%;
+    margin-left:50px; 
     }
 @media (max-width: 768px) {
     .Logo a{
@@ -146,12 +144,11 @@ body
 
 .Menu {
     float: right;
-    line-height: 35px;
 }
 
 .Menu li {
     float: left;
-    width: 140px;
+    width: 130px;
     text-align: center;
     list-style: none;
     margin: 0px auto;
@@ -235,7 +232,7 @@ table{
 .title{
     color: #FA8072;
     font-weight: bold;
-    margin-bottom:20px;
+    margin-bottom:10px;
 }
 .row{
   color: black;
@@ -261,16 +258,17 @@ table{
     }
 
 .slider {
-        width: 75%;
-        margin: 40px auto;
+        width: 80%;
+        margin: 10px auto 30px auto;
     }
 
 .slick-slide {
-      margin: 0px 10px;
+      margin: 0px 5px;
     }
 
 .slick-slide img {
       width: 100%;
+      height: auto;
     }
 
 .slick-prev:before,
@@ -293,6 +291,54 @@ table{
     }
 
 
+#fixed_header {
+    position:fixed;
+    z-index:1;
+    top:0;
+    width:100%;
+    background-color:#ED9292;
+
+  }
+  
+  #navi {
+    margin:0 auto;
+    text-align:right;
+list-style-type:none;
+  }
+  #phone-navi{
+    display: none;
+  }
+  @media (max-width: 768px) {
+    #navi {
+      display: none;
+    }
+}
+@media (max-width: 768px) {
+    #phone-navi {
+    display: inline;
+     margin:0px auto 0px auto;
+    text-align:center;
+
+    }
+    li{
+      margin: 0px 12px 0px 12px;
+      font-size:5vmin;
+      border-width:3px
+    }
+}
+  li {
+    list-style-type:none;
+    display:inline;
+  }
+
+  #real_header {
+    position:absolute;
+    width:100%;
+    z-index:2;
+    background-color:#ED9292;
+    
+  }
+  
 
 </style>
 
@@ -301,32 +347,66 @@ table{
 <body>
 <div class="container" style="padding: 0;">
 
+
+<!--往下滑的標題><!-->
+<div id="fixed_header">
+    <div id="navi">
+      <ul>
+         <li><a href="index.html"><img src="images/趴.png" style="max-height:65px;width:auto;padding-right: 265px"/></li>
+         <li><a href="景點all.html"><img src="images/景點.png" style="max-width:120px;height:auto" /></a></li>
+         <li><a href="美食all.html"><img src="images/美食.png" style="max-width:120px;height:auto" /></a></li>
+         <li><a href="景點all.html"><img src="images/景點.png" style="max-width:120px;height:auto" /></a></li>
+         <li><a href="美食all.html"><img src="images/美食.png" style="max-width:120px;height:auto" /></a></li>
+         <li><button class="button" style="vertical-align:middle;margin-top:14px;margin-left: 10px"><span>登入</span></button></li>
+         <li><button class="button" style="vertical-align:middle;margin-top:14px;margin-right: 15px"><span>註冊</span></button></li>
+      </ul>
+    </div>
+    <div id="phone-navi">
+      <ul>
+    <li><a href="" style="border-left:3px #FFD382 solid;margin: 0px 5px 0px 5px;">首頁</a></li>
+    <li><a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">景點</a></li>
+    <li><a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">美食</a></li>
+    <li><a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a></li>
+    <li><a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">關於我</a></li>
+    <li><a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">登入</a></li>
+    <li><a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">註冊</a></li>
+      </ul>
+    </div>
+</div>
+<!--真的標題><!-->
+<div id="real_header">
+    <div id="entry">
 <div class="Header">
    <div class="Logo">
-     <a href="#">就I趴趴走</a>
+     <a href="index.html">就I趴趴走</a>
    </div>
 
    <ul class="Menu">
-      <li><a href="景點all.html"><img src="images/a4.png" style="max-width:120px;height:auto" /></a></li>
-      <li><a href="#"><img src="images/a6.png" style="max-width:120px;height:auto" /></a></li>
-      <li><a href="#"><img src="images/about.png" style="max-width:120px;height:auto" /></a></li>
+      <li><a href="景點all.html"><img src="images/景點.png" style="max-width:120px;height:auto" /></a></li>
+      <li><a href="美食all.html"><img src="images/美食.png" style="max-width:120px;height:auto" /></a></li>
+      <li><a href="會員all.html"><img src="images/會員.png" style="max-width:90px;height:auto" /></a></li>
+      <li><a href="#"><img src="images/about.png" style="max-width:90px;height:auto" /></a></li>
       <li>
         <a href="#"><button class="button" style="vertical-align:middle"><span>登入</span></button></a>
         <a href="#"><button class="button" style="vertical-align:middle"><span>註冊</span></button></a>
       </li>
-
    </ul>
+ </div>
+</div>
 
-<table width="100%" style="font-size: 4vmin;">
+   
+    
+<!--手機板的標題><!-->
+<table width="100%" style="font-size: 4vmin;border-width: 3px;">
 <tr>
 <th style="padding-top: 20px ;padding-bottom:10px;">
 
-    <a href="" style="margin-left: 10px;border-left:3px #FFD382 solid;padding-right: 5px;margin: 0 5px;border-width:3px">景點</a>
-    <a href="" style="border-left:3px #FFD382 solid;padding-right: 5px;margin: 0 5px;border-width:3px">美食</a>
-    <a href="" style="border-left:3px #FFD382 solid;padding-right: 5px;margin: 0 5px;border-width:3px">會員專區</a>
-    <a href="" style="border-left:3px #FFD382 solid;padding-right: 5px;margin: 0 5px;border-width:3px">關於我</a>
-    <a href="" style="border-left:3px #FFD382 solid;padding-right: 5px;margin: 0 5px;border-width:3px">登入</a>
-    <a href="" style="border-left:3px #FFD382 solid;padding-right: 5px;margin: 0 5px;border-width:3px">註冊</a>
+    <a href="" style="border-left:3px #FFD382 solid;margin: 0px 5px 0px 40px;">景點</a>
+    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">美食</a>
+    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a>
+    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">關於我</a>
+    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">登入</a>
+    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">註冊</a>
 
 </th>
 </tr>
@@ -334,6 +414,7 @@ table{
             
 </div>
 
+<!--地區選單><!-->
 <div id="wrapper">
         <div class="overlay"></div>
     
@@ -412,9 +493,28 @@ table{
            
         </div>
 
-<div class="pp">北部
+
+<!--相簿><!-->
+<div>
+<div id="pp" style="margin-top: 150px;">北部
  <section class="regular slider">
-  
+       <div id="p1"></div>
+       <div id="p2"></div>
+       <div id="p3"></div>
+       <div id="p4"></div>
+       <div id="p5"></div>
+       <div id="p6"></div>
+       <div id="p7"></div>
+       <div id="p8"></div>
+       <div id="p9"></div>
+       <div id="p10"></div>
+       <div id="p11"></div> 
+  </section>
+</div>
+
+<div>
+<div id="pp">中部
+ <section class="regular slider">
        <div id="p1"></div>
        <div id="p2"></div>
        <div id="p3"></div>
@@ -426,10 +526,61 @@ table{
        <div id="p9"></div>
        <div id="p10"></div>
        <div id="p11"></div>
-    
-   
   </section>
-</div>
+  </div>
+  
+<div> 
+<div id="pp">南部
+ <section class="regular slider">
+       <div id="p1"></div>
+       <div id="p2"></div>
+       <div id="p3"></div>
+       <div id="p4"></div>
+       <div id="p5"></div>
+       <div id="p6"></div>
+       <div id="p7"></div>
+       <div id="p8"></div>
+       <div id="p9"></div>
+       <div id="p10"></div>
+       <div id="p11"></div>
+  </section>
+  </div>
+
+<div>
+<div id="pp">東部
+ <section class="regular slider">
+       <div id="p1"></div>
+       <div id="p2"></div>
+       <div id="p3"></div>
+       <div id="p4"></div>
+       <div id="p5"></div>
+       <div id="p6"></div>
+       <div id="p7"></div>
+       <div id="p8"></div>
+       <div id="p9"></div>
+       <div id="p10"></div>
+       <div id="p11"></div>
+  </section>
+  </div>
+
+<div>
+<div id="pp">離島
+ <section class="regular slider">
+       <div id="p1"></div>
+       <div id="p2"></div>
+       <div id="p3"></div>
+       <div id="p4"></div>
+       <div id="p5"></div>
+       <div id="p6"></div>
+       <div id="p7"></div>
+       <div id="p8"></div>
+       <div id="p9"></div>
+       <div id="p10"></div>
+       <div id="p11"></div>
+  </section>
+  </div>
+
+
 
 
   </div>
