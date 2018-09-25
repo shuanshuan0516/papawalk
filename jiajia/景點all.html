@@ -9,6 +9,9 @@
 <title>就i趴趴走·景點</title>
 
 
+
+
+
 <link href="SpryAssets/stylesheet.css rel="stylesheet" type="text/css"/>
 <script src="SpryAssets/SpryMenuBar.js" type="text/javascript"> </script>
 <link href="SpryAssets/SpryMenuBarVertical.css" rel="stylesheet" type="text/css" />
@@ -72,6 +75,7 @@ $(document).ready(function(){
      display:block;
      margin:auto;
      padding-top: 20px;
+
 }
 
 .container
@@ -95,6 +99,18 @@ body
   width:90%;
   height:auto;
   margin-bottom: 50px;
+  font-size: 6vmin;
+}
+#pp1{
+  display:block;
+  margin:auto;
+  text-align: center;
+  border:2px #ccc solid;
+  border-radius:10px;
+  width:90%;
+  height:auto;
+  margin-bottom: 50px;
+  font-size: 6vmin;
 }
 
 .Header {
@@ -249,6 +265,7 @@ table{
 
 #wrapper{
     font-size:6vmin;
+
     
 }
 
@@ -320,13 +337,18 @@ list-style-type:none;
     text-align:center;
 
     }
+    #phone-navi li {
+    list-style-type:none;
+    display:inline;
+  }
     li{
       margin: 0px 12px 0px 12px;
       font-size:5vmin;
       border-width:3px
     }
 }
-  li {
+
+  #navi li {
     list-style-type:none;
     display:inline;
   }
@@ -340,6 +362,26 @@ list-style-type:none;
   }
   
 
+  #try {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    width: 8em;
+    margin: -2.5em 0 0 0;
+    z-index: 5;
+    background: hsla(80, 90%, 40%, 0.7);
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    text-align: left;
+    border: solid hsla(80, 90%, 40%, 0.5);
+    border-right: none;
+    padding: 0.5em 0.5em 0.5em 2.5em;
+    box-shadow: 0 1px 3px black;
+    border-radius: 3em 0.5em 0.5em 3em;
+  }
+  #try li { margin: 0 }
+  #try a { color: inherit }
 </style>
 
 
@@ -355,8 +397,8 @@ list-style-type:none;
          <li><a href="index.html"><img src="images/趴.png" style="max-height:65px;width:auto;padding-right: 265px"/></li>
          <li><a href="景點all.html"><img src="images/景點.png" style="max-width:120px;height:auto" /></a></li>
          <li><a href="美食all.html"><img src="images/美食.png" style="max-width:120px;height:auto" /></a></li>
-         <li><a href="景點all.html"><img src="images/景點.png" style="max-width:120px;height:auto" /></a></li>
-         <li><a href="美食all.html"><img src="images/美食.png" style="max-width:120px;height:auto" /></a></li>
+         <li><a href="景點all.html"><img src="images/會員1.png" style="max-width:110px;height:auto" /></a></li>
+         <li><a href="美食all.html"><img src="images/about1.png" style="max-width:120px;height:auto" /></a></li>
          <li><button class="button" style="vertical-align:middle;margin-top:14px;margin-left: 10px"><span>登入</span></button></li>
          <li><button class="button" style="vertical-align:middle;margin-top:14px;margin-right: 15px"><span>註冊</span></button></li>
       </ul>
@@ -384,8 +426,8 @@ list-style-type:none;
    <ul class="Menu">
       <li><a href="景點all.html"><img src="images/景點.png" style="max-width:120px;height:auto" /></a></li>
       <li><a href="美食all.html"><img src="images/美食.png" style="max-width:120px;height:auto" /></a></li>
-      <li><a href="會員all.html"><img src="images/會員.png" style="max-width:90px;height:auto" /></a></li>
-      <li><a href="#"><img src="images/about.png" style="max-width:90px;height:auto" /></a></li>
+      <li><a href="會員all.html"><img src="images/會員1.png" style="max-width:120px;height:auto" /></a></li>
+      <li><a href="#"><img src="images/about1.png" style="max-width:90px;height:auto" /></a></li>
       <li>
         <a href="#"><button class="button" style="vertical-align:middle"><span>登入</span></button></a>
         <a href="#"><button class="button" style="vertical-align:middle"><span>註冊</span></button></a>
@@ -399,7 +441,8 @@ list-style-type:none;
 <!--手機板的標題><!-->
 <table width="100%" style="font-size: 4vmin;border-width: 3px;">
 <tr>
-<th style="padding-top: 20px ;padding-bottom:10px;">
+<th style="padding-top: 20px ;padding-bottom:10px;list-style-type:none;
+    display:inline;">
 
     <a href="" style="border-left:3px #FFD382 solid;margin: 0px 5px 0px 40px;">景點</a>
     <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">美食</a>
@@ -414,85 +457,13 @@ list-style-type:none;
             
 </div>
 
-<!--地區選單><!-->
-<div id="wrapper">
-        <div class="overlay"></div>
-    
-        <!-- Sidebar -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
-            <ul class="nav sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#">
-                        地區
-                    </a>
-                </li>
-               
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> 北部 <span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="景點.html?&0">基隆</a></li>
-                    <li><a href="景點.html?&1">台北</a></li>
-                    <li><a href="景點.html?&2">新北</a></li>
-                    <li><a href="景點.html?&3">桃園</a></li>
-                    <li><a href="景點.html?&4">新竹</a></li>
-                    <li><a href="景點.html?&16">宜蘭</a></li>
-                  </ul>
-                </li>
+ 
 
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> 中部 <span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="景點.html?&5">苗栗</a></li>
-                    <li><a href="景點.html?&6">台中</a></li>
-                    <li><a href="景點.html?&7">彰化</a></li>
-                    <li><a href="景點.html?&8">南投</a></li>
-                    <li><a href="景點.html?&9">雲林</a></li>
-                  </ul>
-                </li>
-
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> 南部 <span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="景點.html?&10">嘉義</a></li>
-                    <li><a href="景點.html?&11">台南</a></li>
-                    <li><a href="景點.html?&12">高雄</a></li>
-                    <li><a href="景點.html?&13">屏東</a></li>
-                    <li><a href="景點.html?&15">澎湖</a></li>
-                  </ul>
-                </li>
-
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> 東部 <span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="景點.html?&20">花蓮</a></li>
-                    <li><a href="景點.html?&14">台東</a></li>
-                  </ul>
-                </li>
-
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> 離島 <span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="景點.html?&18">金門</a></li>
-                    <li><a href="景點.html?&17">綠島</a></li>
-                    <li><a href="景點.html?&19">蘭嶼</a></li>
-                  </ul>
-                </li>
-      
-            </ul>
-        </nav>
-
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-          <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
-            <span class="hamb-top"></span>
-            <span class="hamb-middle"></span>
-            <span class="hamb-bottom"></span>
-          </button>
-           
-        </div>
-
+ <ul id=try>
+<li><a href="#L384">Section 1</a>
+<li><a href="#details">Section 2</a>
+<li><a href="#FAQ">Section 3</a>
+</ul>
 
 <!--相簿><!-->
 <div>
@@ -513,7 +484,7 @@ list-style-type:none;
 </div>
 
 <div>
-<div id="pp">中部
+<div id="pp1">中部
  <section class="regular slider">
        <div id="p1"></div>
        <div id="p2"></div>
@@ -625,7 +596,7 @@ list-style-type:none;
  
 <!-- 相簿 -->
 <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
-  <script src="./slick/slick.js" type="text/javascript" charset="utf-8"></script>
+  <script src="slick/slick.js" type="text/javascript" charset="utf-8"></script>
   <script type="text/javascript">
     $(document).on('ready', function() {
 
@@ -659,7 +630,6 @@ list-style-type:none;
 });
 </script>
 
-    
 
 
 </body>
