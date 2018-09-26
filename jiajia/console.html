@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -18,29 +18,31 @@
     <link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
     <link rel="stylesheet" href="css/style.css">
 <script>
-var config = {
-    apiKey: "AIzaSyCcM_Sun9mawCz1sEa6FR2LEl1KCqNwdf4",
-    authDomain: "shuan-8fa3b.firebaseapp.com",
-    databaseURL: "https://shuan-8fa3b.firebaseio.com",
-    projectId: "shuan-8fa3b",
-    storageBucket: "shuan-8fa3b.appspot.com",
-    messagingSenderId: "1008513084935"
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAUnA_8r0-qHb6bCTMi0SCzHcUlc07Qbdk",
+    authDomain: "jia618-d8042.firebaseapp.com",
+    databaseURL: "https://jia618-d8042.firebaseio.com",
+    projectId: "jia618-d8042",
+    storageBucket: "jia618-d8042.appspot.com",
+    messagingSenderId: "157048895266"
   };
   firebase.initializeApp(config);
+
   var get = location.search.split("&");
-var dbname = firebase.database().ref("ig/-LJp73c4QGkmiu_i86Bu/景點/"+get[1]+"/1/"+get[2]+"/0");
+  var dbname = firebase.database().ref("ig/-LMgrtd3Ga0A5MnCVRxF/景點/"+get[1]+"/1/"+get[2]+"/0");
   dbname.on('value',function(snapshot){
     var content = snapshot.val();
     var text = document.getElementById("a");
     text.innerText = text.innerText+content;
  });
-var dbimage = firebase.database().ref("ig/-LJp73c4QGkmiu_i86Bu/景點/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/0");
+var dbimage = firebase.database().ref("ig/-LMgrtd3Ga0A5MnCVRxF/景點/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/0");
   dbimage.on('value',function(snapshot){
     var content = snapshot.val();
     var image = document.getElementById("p1");
     image.style.backgroundImage = "url("+content+")";
  });
-var dbcontent = firebase.database().ref("ig/-LJp73c4QGkmiu_i86Bu/景點/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/1");
+var dbcontent = firebase.database().ref("ig/-LMgrtd3Ga0A5MnCVRxF/景點/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/1");
   dbcontent.on('value',function(snapshot){
     var content = snapshot.val();
     var text = document.getElementById("p2");
@@ -62,6 +64,9 @@ body {
 #a{
   text-align:center;
   font-size:10vmin;
+}
+#a li {
+  display:inline;
 }
 #p1{
   display: block;
@@ -174,12 +179,13 @@ body {
             <span class="hamb-top"></span>
             <span class="hamb-middle"></span>
             <span class="hamb-bottom"></span>
-          </button>
-           
+          </button>  
         </div>
-<div id="a" class="col-md-6text row justify-content-center">#</div>
-<div id="p1" class="row justify-content-center col-md-6 col-sm-12 pic"></div>
-<div id="p2" class="col-md-6 col-sm-12 text"></div>
+ 
+
+<div><div id="a"><span class="col-md-6text col-sm-12">#</span></div><span><img id='img' src="images/off.jpg" style="vertical-align:middle;" onclick="change();" width="5%" height="5%"></span></div>
+<div id="p1" class="row justify-content-center col-md-6 col-sm-12pic"></div>
+<div id="p2" class="col-md-6 col-sm-12text"></div>
 </div>
 
 
@@ -210,11 +216,44 @@ body {
                 isClosed = true;
               }
           }
+
           
           $('[data-toggle="offcanvas"]').click(function () {
                 $('#wrapper').toggleClass('toggled');
-          });  
-        });
-    </script>
+          }); 
+
+           });
+         function change(){
+            var img = document.getElementById('img');
+            var src = img.src;
+            if(src.indexOf('off') >=0 ){
+                img.src = 'images/on.jpg';
+            }else{
+                img.src = 'images/off.jpg';
+            }
+        }
+
+         function going(){  
+      var userid = $('#userid').val();
+      var password = $('#password').val();
+
+      var db = firebase.database().ref("member/"+userid+"/password");
+      db.on('value',function(snapshot){
+      var test = snapshot.val();
+
+      var db2 = firebase.database().ref("member/"+userid+"/username");
+      db2.on('value',function(snapshot){
+      var test2 = snapshot.val();
+
+      if(password==test){
+        //document.getElementById("demo").innerHTML = test2+",您好!" ;
+       let updates = {};
+       updates["member/" + userid + "/spot"] = "ig/-LMgrtd3Ga0A5MnCVRxF/景點/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/0";
+      }else if (userid==""||password=="") {
+        alert("請輸入帳號密碼");
+      }
+              
+    })})};
+</script>
 </body>
 </html>

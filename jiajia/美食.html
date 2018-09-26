@@ -38,7 +38,7 @@
 
             let get = location.search.split("&");
 
-            var db = firebase.database().ref("ig/-LMAeXCNtY-h3JZDbRhN/美食/"+get[1]);
+            var db = firebase.database().ref("ig/-LMzDW-tksmwMEzbo2P1/美食/"+get[1]);
             db.once('value', function (snapshot) {
                 let t2_title = snapshot.child("0").val();
                 document.getElementById("all_title").innerText = "#"+t2_title;
