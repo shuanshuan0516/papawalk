@@ -285,16 +285,18 @@ display:block;
 
 
 </div>
+<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
 <script>
-    var config = {
-        apiKey: "AIzaSyAU8YeIiWcADYyZUuiUPkHsSEn0C8o7VzI",
-        authDomain: "yunhsin-1753e.firebaseapp.com",
-        databaseURL: "https://yunhsin-1753e.firebaseio.com",
-        projectId: "yunhsin-1753e",
-        storageBucket: "yunhsin-1753e.appspot.com",
-        messagingSenderId: "266910483049"
-    };
-    firebase.initializeApp(config);
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAUnA_8r0-qHb6bCTMi0SCzHcUlc07Qbdk",
+    authDomain: "jia618-d8042.firebaseapp.com",
+    databaseURL: "https://jia618-d8042.firebaseio.com",
+    projectId: "jia618-d8042",
+    storageBucket: "jia618-d8042.appspot.com",
+    messagingSenderId: "157048895266"
+  };
+  firebase.initializeApp(config);
 
     function putdata() {
         var username = $('#username').val();

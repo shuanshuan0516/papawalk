@@ -357,6 +357,15 @@ body{
 </style>
 <body>
 <div class="container" >
+<script type="text/javascript">
+    let name = document.cookie.split("user=");
+    let login= document.cookie.split("login=");
+    if(login=1)
+       {
+         document.getElementById("container").innerText = name[1]+"您好!!";
+       }
+</script>
+
 
 <div class="Header">
    <div class="Logo">
@@ -369,7 +378,7 @@ body{
       <li><a href="#"><img src="images/about.png" style="max-width:120px;height:auto" /></a></li>
       <li>
         <a href="會員登入.html"><button class="button" style="vertical-align:middle"><span>登入</span></button></a>
-        <a href="#"><button class="button" style="vertical-align:middle"><span>註冊</span></button></a>
+        <a href="會員註冊.html"><button class="button" style="vertical-align:middle"><span>註冊</span></button></a>
       </li>
 
    </ul>
@@ -380,7 +389,7 @@ body{
       <li><a href="#">會員專區</a></li>
       <li><a href="#">關於我</a></li>
       <li><a href="會員登入.html">登入</a></li>
-      <li><a href="#">註冊</a></li>
+      <li><a href="會員註冊.html">註冊</a></li>
       </center>
    </ul> 
 </div>
@@ -440,10 +449,7 @@ body{
 </div>
 
 
-<script type="text/javascript">
-  let name=document.cookie.split("user=");
-  let login=document.cookie.split("login=");
-</script>
+
 </body>
 </html>
 </html>
