@@ -7,10 +7,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>就i趴趴走·景點</title>
+
 <link rel="stylesheet" href="css/bootstrap.min.css"> 
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
+
 
 <link href="SpryAssets/stylesheet.css rel="stylesheet" type="text/css"/>
 <script src="SpryAssets/SpryMenuBar.js" type="text/javascript"> </script>
@@ -19,16 +21,10 @@
 <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
-    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-    <link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
-    <link rel="stylesheet" href="css/style.css">
-
-<!--下拉式選單><!-->
-<link href='http://fonts.useso.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="css/demo.css" />
-    <link rel="stylesheet" type="text/css" href="css/cs-select.css" />
-    <link rel="stylesheet" type="text/css" href="css/cs-skin-underline.css" />
+<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+<link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
+    
+<link rel="stylesheet" href="css/選單.css">
 
 <!--相簿><!-->
 <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
@@ -155,11 +151,11 @@ body
 }
 
 
-.Menu {
+.good {
     float: right;
 }
 
-.Menu li {
+.good li {
     float: left;
     width: 130px;
     text-align: center;
@@ -168,7 +164,7 @@ body
     }
 
 @media (max-width: 768px) {
-    .Menu li {
+    .good li {
         display: none;
     }
 }
@@ -179,7 +175,7 @@ table{
 
 
 
-.Menu li a {
+.good li a {
       text-decoration: none;
       color: #00a67d;
       display: block;
@@ -351,7 +347,7 @@ list-style-type:none;
   }
 
   #real_header {
-    top:-25%;
+    top:0%;
     position:absolute;
     width:100%;
     z-index:2;
@@ -360,28 +356,39 @@ list-style-type:none;
   }
   
 
-  #try {
-    display: block;
-    position: fixed;
-    right:50%;
-    top: 23.5%;
-    height:15vmin;
-    width: auto;
-    margin: -2.5em 0 0 0;
-    z-index: 5;
-    background: hsla(80, 90%, 40%, 0.7);
-    color: white;
-    font-weight: bold;
-    text-align: center;
-    border: solid hsla(80, 90%, 40%, 0.5);
-    border-right: none;
-    padding: 0.5em 0.5em 0.5em 2.5em;
-    box-shadow: 0 1px 3px black;
-    border-radius: 0.5em 0.5em 3em 3em  ;
-
+#menu{
+  border: 1px solid #a3a3a3;
+  border-radius:10px;
+}
+.menu_list {  
+  width: 120px;
+  border: 1px solid #a3a3a3;
+  border-radius:10px;
+}
+.menu_head {
+  font-size:5vmin;
+  padding: 5px 10px;
+  cursor: pointer;
+  position: relative;
+  margin:1px;
+  font-weight:bold;
+  background:#fff;
+}
+.menu_body {
+  display:none;
+}
+.menu_body a{
+  display:block;
+  color:#006699;
+  background-color:#EFEFEF;
+  padding-left:10px;
+  font-weight:bold;
+  text-decoration:none;
+}
+.menu_body a:hover{
+  color: #000000;
+  text-decoration:underline;
   }
-  #try li { margin: 0 }
-  #try a { color: inherit }
 
 </style>
 
@@ -423,7 +430,7 @@ list-style-type:none;
      <a href="index.html">就I趴趴走</a>
    </div>
 
-   <ul class="Menu">
+   <ul class="good">
       <li><a href="景點all.html"><img src="images/景點.png" style="max-width:120px;height:auto" /></a></li>
       <li><a href="美食all.html"><img src="images/美食.png" style="max-width:120px;height:auto" /></a></li>
       <li><a href="會員all.html"><img src="images/會員1.png" style="max-width:120px;height:auto;padding-top:7px;margin-left:7px;" /></a></li>
@@ -458,58 +465,68 @@ list-style-type:none;
 </div>
 
  
+<div id="menu">
+<div class="hamburger">
+<div class="line"></div>
+<div class="line"></div>
+<div class="line"></div>
+</div>
+<div class="menu-inner">
+<ul>
 
-   <ul id=try style="font-size:4vmin;">
-<section>
-  <nav class="codrops-demos">
-          <select class="cs-select cs-skin-underline">
-          <option value="" disabled selected>北部</option>
-          <option value="1">基隆</option>
-          <option value="2">台北</option>
-          <option value="3">新北</option>
-          <option value="4">桃園</option>
-          <option value="5">新竹</option>
-          <option value="6">宜蘭</option>
-        </select>
-        <select class="cs-select cs-skin-underline">
-          <option value="" disabled selected>中部</option>
-          <option value="1">基隆</option>
-          <option value="2">台北</option>
-          <option value="3">新北</option>
-          <option value="4">桃園</option>
-          <option value="5">新竹</option>
-          <option value="6">宜蘭</option>
-        </select>
-        <select class="cs-select cs-skin-underline">
-          <option value="" disabled selected>南部</option>
-          <option value="1">基隆</option>
-          <option value="2">台北</option>
-          <option value="3">新北</option>
-          <option value="4">桃園</option>
-          <option value="5">新竹</option>
-          <option value="6">宜蘭</option>
-        </select>
-        <select class="cs-select cs-skin-underline">
-          <option value="" disabled selected>東部</option>
-          <option value="1">基隆</option>
-          <option value="2">台北</option>
-          <option value="3">新北</option>
-          <option value="4">桃園</option>
-          <option value="5">新竹</option>
-          <option value="6">宜蘭</option>
-        </select>
-        <select class="cs-select cs-skin-underline">
-          <option value="" disabled selected>離島</option>
-          <option value="1">基隆</option>
-          <option value="2">台北</option>
-          <option value="3">新北</option>
-          <option value="4">桃園</option>
-          <option value="5">新竹</option>
-          <option value="6">宜蘭</option>
-        </select>
-        </nav>
-  </section>
+<div style="float:left; margin-left:0px;"> <!--This is the second division of right-->
+  <p><strong>地區選單 </strong></p>
+  <div class="menu_list" id="secondpane"> <!--Code for menu starts here-->
+    <p class="menu_head">北部</p>
+    <div class="menu_body">
+    <a href="#">台北</a>
+    <a href="#">新北</a>
+    <a href="#">桃園</a> 
+    <a href="#">新竹</a>
+    <a href="#">基隆</a> 
+    <a href="#">宜蘭</a>  
+    </div>
+    <p class="menu_head">中部</p>
+    <div class="menu_body">
+    <a href="#">苗栗</a>
+    <a href="#">台中</a>
+    <a href="#">彰化</a> 
+    <a href="#">南投</a>
+    <a href="#">雲林</a>  
+    </div>
+    <p class="menu_head">南部</p>
+    <div class="menu_body">
+    <a href="#">嘉義</a>
+    <a href="#">台南</a>
+    <a href="#">高雄</a>  
+    <a href="#">屏東</a>  
+    <a href="#">澎湖</a>   
+    </div>
+     <p class="menu_head">東部</p>
+    <div class="menu_body">
+    <a href="#">花蓮</a>
+    <a href="#">台東</a>  
+    </div>
+     <p class="menu_head">離島</p>
+    <div class="menu_body">
+    <a href="#">金門</a>
+    <a href="#">綠島</a>
+    <a href="#">蘭嶼</a>    
+    </div>
+  </div>      <!--Code for menu ends here-->
+</div>
+
 </ul>
+</div>
+<svg version="1.1" id="blob" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<path id="blob-path" d="M60,500H0V0h60c0,0,20,172,20,250S60,900,60,500z" />
+</svg>
+</div>
+<h2>地區選單</h2>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="js/選單.js"></script>
+
+
 
 
 <!--相簿><!-->
@@ -603,42 +620,7 @@ list-style-type:none;
 
   </div>
 
-
   
-    
-    <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"></script>
-    <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-          var trigger = $('.hamburger'),
-              overlay = $('.overlay'),
-             isClosed = false;
-
-            trigger.click(function () {
-              hamburger_cross();      
-            });
-
-            function hamburger_cross() {
-
-              if (isClosed == true) {          
-                overlay.hide();
-                trigger.removeClass('is-open');
-                trigger.addClass('is-closed');
-                isClosed = false;
-              } else {   
-                overlay.show();
-                trigger.removeClass('is-closed');
-                trigger.addClass('is-open');
-                isClosed = true;
-              }
-          }
-          
-          $('[data-toggle="offcanvas"]').click(function () {
-                $('#wrapper').toggleClass('toggled');
-          });  
-        });
-    </script>
 
  
 <!-- 相簿 -->
@@ -677,15 +659,22 @@ list-style-type:none;
 });
 </script>
 
-<!-- 下拉式選單 -->
-<script src="js/classie.js"></script>
-<script src="js/selectFx.js"></script>
-<script>
-      (function() {
-        [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {  
-          new SelectFx(el);
-        } );
-      })();
-    </script>
+<script type="text/javascript">
+$(document).ready(function()
+{
+  //slides the element with class "menu_body" when paragraph with class "menu_head" is clicked 
+  $("#firstpane p.menu_head").click(function()
+    {
+    $(this).css({backgroundImage:"url(down.png)"}).next("div.menu_body").slideToggle(300).siblings("div.menu_body").slideUp("slow");
+        $(this).siblings().css({backgroundImage:"url(left.png)"});
+  });
+  //slides the element with class "menu_body" when mouse is over the paragraph
+  $("#secondpane p.menu_head").mouseover(function()
+    {
+       $(this).css({backgroundImage:"url(down.png)"}).next("div.menu_body").slideDown(500).siblings("div.menu_body").slideUp("slow");
+         $(this).siblings().css({backgroundImage:"url(left.png)"});
+  });
+});
+</script>
 </body>
 </html>
