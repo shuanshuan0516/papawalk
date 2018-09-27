@@ -27,18 +27,18 @@
     <script>
         // Initialize Firebase
         var config = {
-            apiKey: "AIzaSyCcM_Sun9mawCz1sEa6FR2LEl1KCqNwdf4",
-            authDomain: "shuan-8fa3b.firebaseapp.com",
-            databaseURL: "https://shuan-8fa3b.firebaseio.com",
-            projectId: "shuan-8fa3b",
-            storageBucket: "shuan-8fa3b.appspot.com",
-            messagingSenderId: "1008513084935"
-        };
-        firebase.initializeApp(config);
+    apiKey: "AIzaSyAUnA_8r0-qHb6bCTMi0SCzHcUlc07Qbdk",
+    authDomain: "jia618-d8042.firebaseapp.com",
+    databaseURL: "https://jia618-d8042.firebaseio.com",
+    projectId: "jia618-d8042",
+    storageBucket: "jia618-d8042.appspot.com",
+    messagingSenderId: "157048895266"
+  };
+  firebase.initializeApp(config);
 
         let get = location.search.split("&");
 
-        var db = firebase.database().ref("ig/-LJp73c4QGkmiu_i86Bu/景點/" + get[1] + "/1/" + get[2]);
+        var db = firebase.database().ref("ig/-LMgrtd3Ga0A5MnCVRxF/景點/" + get[1] + "/1/" + get[2]);
         db.once('value', function (snapshot) {
             let t2_title = snapshot.child("0").val();
             document.getElementById("all_title").innerText = "#" + t2_title;

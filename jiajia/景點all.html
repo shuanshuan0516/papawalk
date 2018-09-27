@@ -35,13 +35,13 @@
     <script>
 $(document).ready(function(){
 // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCcM_Sun9mawCz1sEa6FR2LEl1KCqNwdf4",
-    authDomain: "shuan-8fa3b.firebaseapp.com",
-    databaseURL: "https://shuan-8fa3b.firebaseio.com",
-    projectId: "shuan-8fa3b",
-    storageBucket: "shuan-8fa3b.appspot.com",
-    messagingSenderId: "1008513084935"
+ var config = {
+    apiKey: "AIzaSyAUnA_8r0-qHb6bCTMi0SCzHcUlc07Qbdk",
+    authDomain: "jia618-d8042.firebaseapp.com",
+    databaseURL: "https://jia618-d8042.firebaseio.com",
+    projectId: "jia618-d8042",
+    storageBucket: "jia618-d8042.appspot.com",
+    messagingSenderId: "157048895266"
   };
   firebase.initializeApp(config);
 
@@ -50,7 +50,7 @@ $(document).ready(function(){
   var b=0;
   var c=0;
   for(var i = 0;i<40;i++){
-    var db = firebase.database().ref("ig/-LJp73c4QGkmiu_i86Bu/景點/0/1/"+i+"/1/0");
+    var db = firebase.database().ref("ig/-LMgrtd3Ga0A5MnCVRxF/景點/0/1/"+i+"/1/0");
   db.on('value',function(snapshot){
     var test = snapshot.val();
     a++;
