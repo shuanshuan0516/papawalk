@@ -109,7 +109,7 @@
         var userid = $('#userid').val();
         var password = $('#password').val();
 
-        var ref = firebase.database().ref("member);
+        var ref = firebase.database().ref("member");
 
         if (username !== "" && email !== "" && userid !== "" && password !== "") {
             ref.once("value", (function (snapshot) {
