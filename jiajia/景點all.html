@@ -382,7 +382,7 @@ body
   text-decoration:underline;
   }
 
-#phoemenu{
+#phonemenu{
   display: none;
 }
 #nav,#nav-toggle{
@@ -391,6 +391,9 @@ body
 @media (max-width: 768px) {
     #netmenu {
       display: none;
+    }
+    #phonemenu{
+      display: block;
     }
 }
 
@@ -537,11 +540,45 @@ body
 <div id="phonemenu">
 <nav class="nav">
 <ul>
-<li><a href="#">搜　索</a></li>
-<li><a href="#">主　页</a></li>
-<li><a href="#">HTML5学习</a></li>
-<li><a href="#">CSS3学习</a></li>
-<li><a href="#">联系我们</a></li>
+<div class="menu_list" id="secondpane"> <!--Code for menu starts here-->
+    <p class="menu_head">北部</p>
+    <div class="menu_body">
+    <a href="景點.html?&0">基隆</a> 
+    <a href="景點.html?&1">台北</a>
+    <a href="景點.html?&2">新北</a>
+    <a href="景點.html?&3">桃園</a> 
+    <a href="景點.html?&4">新竹</a>
+    <a href="景點.html?&16">宜蘭</a>  
+    </div>
+    <p class="menu_head">中部</p>
+    <div class="menu_body">
+    <a href="景點.html?&5">苗栗</a>
+    <a href="景點.html?&6">台中</a>
+    <a href="景點.html?&7">彰化</a> 
+    <a href="景點.html?&8">南投</a>
+    <a href="景點.html?&9">雲林</a>  
+    </div>
+    <p class="menu_head">南部</p>
+    <div class="menu_body">
+    <a href="景點.html?&10">嘉義</a>
+    <a href="景點.html?&11">台南</a>
+    <a href="景點.html?&12">高雄</a>  
+    <a href="景點.html?&13">屏東</a>  
+    <a href="景點.html?&15">澎湖</a>   
+    </div>
+     <p class="menu_head">東部</p>
+    <div class="menu_body">
+    <a href="景點.html?&20">花蓮</a>
+    <a href="景點.html?&14">台東</a>  
+    </div>
+     <p class="menu_head">離島</p>
+    <div class="menu_body">
+    <a href="景點.html?&18">金門</a>
+    <a href="景點.html?&17">綠島</a>
+    <a href="景點.html?&19">蘭嶼</a>    
+    </div>
+
+  </div>      <!--Code for menu ends here-->
 </ul>
 </nav>
 <div class="nav-toggle">
