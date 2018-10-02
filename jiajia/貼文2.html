@@ -608,6 +608,29 @@ list-style-type:none;
 
 
             </div>
+            <div style="margin-top: 30px;">
+        <center><label>留言區</label>
+            <br>
+            <br>
+            <input type="text" id="comment" class="bb">
+            
+        </center>
+    </div>
+
+    <div class="but" style="margin-top: 30px;">
+        <center>
+            <button id="sure" type="button" onclick="confirm()"
+                    style="font-size: 20px; background-color: transparent; border-radius: 8px; border: 2px solid rgba(105,105,105,0.6);">
+                確認
+            </button>
+        </center>
+    </div>
+
+<center>
+    <div id="a" style="margin: 60px 0;">
+   <input type="text" id="comment" class="bb">
+</div>
+</center>
 
         </div>
 
@@ -631,6 +654,36 @@ $(document).ready(function()
          $(this).siblings().css({backgroundImage:"url(left.png)"});
   });
 });
+</script>
+
+<script type="text/javascript">
+function confirm(){  
+      var comment = $('#comment').val();
+      var ref = firebase.database().ref("comment");
+
+
+               if (comment !=="") {
+                ref.once("value", (function (snapshot) {
+
+                    let updates = {};
+                    updates["comment/"] = comment;
+                    alert("謝謝您的留言");
+                    firebase.database().ref().update(updates);
+                }))
+                }       
+                else {
+                    alert("請輸入文字");
+                }
+            }
+            var dbcontent = firebase.database().ref("comment/");
+            dbcontent.on('value',function(snapshot){
+            var content = snapshot.val();
+            var text = document.getElementById("a");
+            text.innerText = content;
+     });
+
+
+
 </script>
 
 </body>

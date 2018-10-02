@@ -24,6 +24,7 @@
 <link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
     
 <link rel="stylesheet" href="css/選單.css">
+<link rel="stylesheet" type="text/css" href="header.css">
 
 <!--相簿><!-->
 <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
@@ -69,44 +70,6 @@
 </script>
 </head>
 <style type="text/css">
-
-
-#p1,#p2,#p3,#p4,#p5,#p6,#p7,#p8,#p9,#p10{
-     background-size: cover;
-     height:220px;
-     width:250px;
-     display:block;
-     margin:auto;
-     padding-top: 20px;
-     position: relative;
-     z-index: -1;
-}
-
-.container
-{
-    margin: 0;
-    max-width: 100%;
-    width: 1300px;
-   
-}
-body
-{
-    font-family: SentyZHAO;
-}
-
-#pp{
-  display:block;
-  margin:auto;
-  text-align: center;
-  border:2px #ccc solid;
-  border-radius:10px;
-  width:90%;
-  height:auto;
-  margin-bottom: 50px;
-  font-size: 6vmin;
-
-}
-
 
 .Header {
     height: 135px;
@@ -240,67 +203,6 @@ table{
   right: 0;
 }
 
-.title{
-    color: #FA8072;
-    font-weight: bold;
-    margin-bottom:10px;
-}
-.row{
-  color: black;
-   font-size:4vmin;
-
-}
-
-.item p{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-
-#wrapper{
-    font-size:6vmin;
-
-    
-}
-
-
-* {
-      box-sizing: border-box;
-    }
-
-.slider {
-        width: 80%;
-        margin: 10px auto 30px auto;
-    }
-
-.slick-slide {
-      margin: 0px 5px;
-    }
-
-.slick-slide img {
-      width: 100%;
-      height: auto;
-    }
-
-.slick-prev:before,
-.slick-next:before {
-      color: black;
-    }
-
-
-.slick-slide {
-      transition: all ease-in-out .3s;
-      opacity: .2;
-    }
-    
-.slick-active {
-      opacity: .5;
-    }
-
-.slick-current {
-      opacity: 1;
-    }
 
 
 #fixed_header {
@@ -311,7 +213,6 @@ table{
     background-color:#ED9292;
 
   }
-  
   #navi {
     margin:0 auto;
     text-align:right;
@@ -356,6 +257,102 @@ list-style-type:none;
     background-color:#ED9292;
     
   }
+
+#p1,#p2,#p3,#p4,#p5,#p6,#p7,#p8,#p9,#p10{
+     background-size: cover;
+     height:220px;
+     width:250px;
+     display:block;
+     margin:auto;
+     padding-top: 20px;
+     position: relative;
+     z-index: -1;
+}
+
+.container
+{
+    margin: 0;
+    max-width: 100%;
+    width: 1300px;
+   
+}
+body
+{
+    font-family: SentyZHAO;
+}
+
+#pp{
+  display:block;
+  margin:auto;
+  text-align: center;
+  border:2px #ccc solid;
+  border-radius:10px;
+  width:90%;
+  height:auto;
+  margin-bottom: 50px;
+  font-size: 6vmin;
+
+}
+
+
+
+
+.title{
+    color: #FA8072;
+    font-weight: bold;
+    margin-bottom:10px;
+}
+.row{
+  color: black;
+   font-size:4vmin;
+
+}
+
+.item p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+
+
+* {
+      box-sizing: border-box;
+    }
+
+.slider {
+        width: 80%;
+        margin: 10px auto 30px auto;
+    }
+
+.slick-slide {
+      margin: 0px 5px;
+    }
+
+.slick-slide img {
+      width: 100%;
+      height: auto;
+    }
+
+.slick-prev:before,
+.slick-next:before {
+      color: black;
+    }
+
+
+.slick-slide {
+      transition: all ease-in-out .3s;
+      opacity: .2;
+    }
+    
+.slick-active {
+      opacity: .5;
+    }
+
+.slick-current {
+      opacity: 1;
+    }
 
 .menu_list {  
   width: 120px;
@@ -530,68 +527,22 @@ list-style-type:none;
 <svg version="1.1" id="blob" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <path id="blob-path" d="M60,500H0V0h60c0,0,20,172,20,250S60,900,60,500z" />
 </svg>
-</div>
+</div> 
 <h2>地區選單</h2>
 </div>
 <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 <script src="js/選單.js"></script>
 
 
-
+<div id="phonemenu">
 <nav class="nav">
-
-<div class="menu-inner">
 <ul>
-
-<div style="float:left; margin-left:0px;"> <!--This is the second division of right-->
-  <div class="menu_list" id="secondpane"> <!--Code for menu starts here-->
-    <p class="menu_head">北部</p>
-    <div class="menu_body">
-    <a href="景點.html?&0">基隆</a> 
-    <a href="景點.html?&1">台北</a>
-    <a href="景點.html?&2">新北</a>
-    <a href="景點.html?&3">桃園</a> 
-    <a href="景點.html?&4">新竹</a>
-    <a href="景點.html?&16">宜蘭</a>  
-    </div>
-    <p class="menu_head">中部</p>
-    <div class="menu_body">
-    <a href="景點.html?&5">苗栗</a>
-    <a href="景點.html?&6">台中</a>
-    <a href="景點.html?&7">彰化</a> 
-    <a href="景點.html?&8">南投</a>
-    <a href="景點.html?&9">雲林</a>  
-    </div>
-    <p class="menu_head">南部</p>
-    <div class="menu_body">
-    <a href="景點.html?&10">嘉義</a>
-    <a href="景點.html?&11">台南</a>
-    <a href="景點.html?&12">高雄</a>  
-    <a href="景點.html?&13">屏東</a>  
-    <a href="景點.html?&15">澎湖</a>   
-    </div>
-     <p class="menu_head">東部</p>
-    <div class="menu_body">
-    <a href="景點.html?&20">花蓮</a>
-    <a href="景點.html?&14">台東</a>  
-    </div>
-     <p class="menu_head">離島</p>
-    <div class="menu_body">
-    <a href="景點.html?&18">金門</a>
-    <a href="景點.html?&17">綠島</a>
-    <a href="景點.html?&19">蘭嶼</a>    
-    </div>
-
-  </div>      <!--Code for menu ends here-->
-</div>
-
+<li><a href="#">搜　索</a></li>
+<li><a href="#">主　页</a></li>
+<li><a href="#">HTML5学习</a></li>
+<li><a href="#">CSS3学习</a></li>
+<li><a href="#">联系我们</a></li>
 </ul>
-</div>
-
-
-</div>
-
-
 </nav>
 <div class="nav-toggle">
 <div class="icon"></div>
