@@ -69,70 +69,11 @@
 
 
 
-  var firebase;
-$(function(){
-  var $who = $('who'),
-      $message = $('#message'),
-      $btn = $('#btn'),
-      $show = $('#show'),
-      ms = new Date().getTime();
-  
-  var database = firebase.database().ref();
-  
   $btn.on('click',write);
   $message.on('keydown', function(e){
     if(e.keyCode == 13){
       write();
-    }
-  });
-  
-  function write(){
-    var date = new Date();
-    var h = date.getHours();
-    var m = date.getMinutes();
-    var s = date.getSeconds();
-    if(h<10){
-      h = '0'+h;
-    }
-    if(m<10){
-      m = '0' + m;
-    }
-    if(s<10){
-      s = '0' + s;
-    }
-    var now = h+1+  ':'+m+':'+s;
-    var postData = {
-      who:$('#who').val(),
-      message:$('#message').val(),
-      time:now,
-      id:'id'+ms
-    };
-    database.push(postData);
-    $message.val('');
-  }
-  
-  database.once('value', function(snapshot) {
-    $show.html('');
-    for(var i in snapshot.val()){
-       $show.prepend('<div><div>時間：'+snapshot.val()[i].time+'</div>'+snapshot.val()[i].who+'：'+snapshot.val()[i].message+'</div>');
-    }
-  });
-
-  database.limitToLast(1).on('value', function(snapshot) {
-    for(var i in snapshot.val()){
-       $show.prepend('<div class="'+snapshot.val()[i].id+'"><div>'+snapshot.val()[i].time+'</div>'+snapshot.val()[i].who+'：'+snapshot.val()[i].message+'</div>');
-    }
-    $show.find('.id'+ms).css({
-      color:'#f00'
-    });
-    $show.find('.id'+ms+' div').css({
-      color:'#f00'
-    });
-  });
-  
-  
-});
-
+ 
 
 
 
@@ -159,6 +100,7 @@ $(function(){
         //     })
         // }
     </script>
+
 </head>
 <style type="text/css">
 
@@ -447,7 +389,14 @@ list-style-type:none;
         z-index: -1;
     }
 
-
+.row .item{   
+  border:4px black dashed;   
+  margin: 10px;   
+  padding: 10px;
+  height: auto;   
+  max-width: 300px;   
+  border-radius:10px; 
+} 
 </style>
 
 
@@ -765,16 +714,7 @@ list-style-type:none;
             </div>
 
 
-<div style="text-align: center;">
-  姓名：<input id="who"><br/>
-  留言：<input id="message"><br/>
-  <button id="btn">送出</button>
-  <br/>
 
-<center>
-  <div id="show" style="background-color: white; border-radius: 8px; border: 2px solid rgba(105,105,105,0.6); margin-bottom:50px;width:300px;height:auto;"></div>
-</center>
-</div>
    
 
 </div>
@@ -798,6 +738,7 @@ $(document).ready(function()
   });
 });
 </script>
+
 
 
 </body>

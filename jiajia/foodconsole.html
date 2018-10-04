@@ -43,19 +43,19 @@
 var dbname = firebase.database().ref("ig/-LMzDW-tksmwMEzbo2P1/美食/"+get[1]+"/1/"+get[2]+"/0");
   dbname.on('value',function(snapshot){
     var content = snapshot.val();
-    var text = document.getElementById("a");
+    var text = document.getElementById("consolea");
     text.innerText = text.innerText+content;
  });
 var dbimage = firebase.database().ref("ig/-LMzDW-tksmwMEzbo2P1/美食/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/0");
   dbimage.on('value',function(snapshot){
     var content = snapshot.val();
-    var image = document.getElementById("p1");
+    var image = document.getElementById("consolep1");
     image.style.backgroundImage = "url("+content+")";
  });
 var dbcontent = firebase.database().ref("ig/-LMzDW-tksmwMEzbo2P1/美食/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/1");
   dbcontent.on('value',function(snapshot){
     var content = snapshot.val();
-    var text = document.getElementById("p2");
+    var text = document.getElementById("consolep2");
     text.innerText = content;
  });
 </script>  
@@ -72,15 +72,18 @@ body {
    
 }
 #consolea{
-  text-align:center;
-  font-size:10vmin;
-  margin-top: 150px;
-  position:absolute;
-  z-index: -1;
-}
-#consolep1{
   display: block;
-  left:25%;
+  text-align:center;
+  font-size:8vmin;
+  margin-top: 15%;
+  position: absolute;
+  z-index: -1;
+  font-style: white;
+
+}
+#consolep1 {
+  display: block;
+  margin-top: 25%;
   background-size: cover; 
   height:300px; 
   width:300px;
@@ -88,14 +91,14 @@ body {
   z-index: -1;
 }
 #consolep2{
-  top:50%;
-  left:30%;
+  display: block;
+  margin-top:50%;
   max-width: 40%;
   height:50%; 
   position:absolute;
   z-index: -1;
 }
-.pic{
+.pic1{
   padding:0px;
 }
 
@@ -237,11 +240,7 @@ table{
     font-weight: bold;
     margin-bottom:10px;
 }
-.row{
-  color: black;
-   font-size:4vmin;
-
-}
+ 
 
 .item p{
     overflow: hidden;
@@ -431,39 +430,39 @@ list-style-type:none;
   <div class="menu_list" id="secondpane"> <!--Code for menu starts here-->
     <p class="menu_head">北部</p>
     <div class="menu_body">
-    <a href="景點.html?&0">基隆</a> 
-    <a href="景點.html?&1">台北</a>
-    <a href="景點.html?&2">新北</a>
-    <a href="景點.html?&3">桃園</a> 
-    <a href="景點.html?&4">新竹</a>
-    <a href="景點.html?&16">宜蘭</a>  
+    <a href="美食.html?&0">基隆</a> 
+    <a href="美食.html?&1">台北</a>
+    <a href="美食.html?&2">新北</a>
+    <a href="美食.html?&3">桃園</a> 
+    <a href="美食.html?&4">新竹</a>
+    <a href="美食.html?&16">宜蘭</a>  
     </div>
     <p class="menu_head">中部</p>
     <div class="menu_body">
-    <a href="景點.html?&5">苗栗</a>
-    <a href="景點.html?&6">台中</a>
-    <a href="景點.html?&7">彰化</a> 
-    <a href="景點.html?&8">南投</a>
-    <a href="景點.html?&9">雲林</a>  
+    <a href="美食.html?&5">苗栗</a>
+    <a href="美食.html?&6">台中</a>
+    <a href="美食.html?&7">彰化</a> 
+    <a href="美食.html?&8">南投</a>
+    <a href="美食.html?&9">雲林</a>  
     </div>
     <p class="menu_head">南部</p>
     <div class="menu_body">
-    <a href="景點.html?&10">嘉義</a>
-    <a href="景點.html?&11">台南</a>
-    <a href="景點.html?&12">高雄</a>  
-    <a href="景點.html?&13">屏東</a>  
-    <a href="景點.html?&15">澎湖</a>   
+    <a href="美食.html?&10">嘉義</a>
+    <a href="美食.html?&11">台南</a>
+    <a href="美食.html?&12">高雄</a>  
+    <a href="美食.html?&13">屏東</a>  
+    <a href="美食.html?&15">澎湖</a>   
     </div>
      <p class="menu_head">東部</p>
     <div class="menu_body">
-    <a href="景點.html?&20">花蓮</a>
-    <a href="景點.html?&14">台東</a>  
+    <a href="美食.html?&20">花蓮</a>
+    <a href="美食.html?&14">台東</a>  
     </div>
      <p class="menu_head">離島</p>
     <div class="menu_body">
-    <a href="景點.html?&18">金門</a>
-    <a href="景點.html?&17">綠島</a>
-    <a href="景點.html?&19">蘭嶼</a>    
+    <a href="美食.html?&18">金門</a>
+    <a href="美食.html?&17">綠島</a>
+    <a href="美食.html?&19">蘭嶼</a> 
     </div>
   </div>      <!--Code for menu ends here-->
 </div>
@@ -487,39 +486,39 @@ list-style-type:none;
   <div class="menu_list" id="secondpane"> <!--Code for menu starts here-->
     <p class="menu_head">北部</p>
     <div class="menu_body">
-    <a href="景點.html?&0">基隆</a> 
-    <a href="景點.html?&1">台北</a>
-    <a href="景點.html?&2">新北</a>
-    <a href="景點.html?&3">桃園</a> 
-    <a href="景點.html?&4">新竹</a>
-    <a href="景點.html?&16">宜蘭</a>  
+    <a href="美食.html?&0">基隆</a> 
+    <a href="美食.html?&1">台北</a>
+    <a href="美食.html?&2">新北</a>
+    <a href="美食.html?&3">桃園</a> 
+    <a href="美食.html?&4">新竹</a>
+    <a href="美食.html?&16">宜蘭</a>  
     </div>
     <p class="menu_head">中部</p>
     <div class="menu_body">
-    <a href="景點.html?&5">苗栗</a>
-    <a href="景點.html?&6">台中</a>
-    <a href="景點.html?&7">彰化</a> 
-    <a href="景點.html?&8">南投</a>
-    <a href="景點.html?&9">雲林</a>  
+    <a href="美食.html?&5">苗栗</a>
+    <a href="美食.html?&6">台中</a>
+    <a href="美食.html?&7">彰化</a> 
+    <a href="美食.html?&8">南投</a>
+    <a href="美食.html?&9">雲林</a>  
     </div>
     <p class="menu_head">南部</p>
     <div class="menu_body">
-    <a href="景點.html?&10">嘉義</a>
-    <a href="景點.html?&11">台南</a>
-    <a href="景點.html?&12">高雄</a>  
-    <a href="景點.html?&13">屏東</a>  
-    <a href="景點.html?&15">澎湖</a>   
+    <a href="美食.html?&10">嘉義</a>
+    <a href="美食.html?&11">台南</a>
+    <a href="美食.html?&12">高雄</a>  
+    <a href="美食.html?&13">屏東</a>  
+    <a href="美食.html?&15">澎湖</a>   
     </div>
      <p class="menu_head">東部</p>
     <div class="menu_body">
-    <a href="景點.html?&20">花蓮</a>
-    <a href="景點.html?&14">台東</a>  
+    <a href="美食.html?&20">花蓮</a>
+    <a href="美食.html?&14">台東</a>  
     </div>
      <p class="menu_head">離島</p>
     <div class="menu_body">
-    <a href="景點.html?&18">金門</a>
-    <a href="景點.html?&17">綠島</a>
-    <a href="景點.html?&19">蘭嶼</a>    
+    <a href="美食.html?&18">金門</a>
+    <a href="美食.html?&17">綠島</a>
+    <a href="美食.html?&19">蘭嶼</a> 
     </div>
 
   </div>      <!--Code for menu ends here-->
@@ -538,9 +537,9 @@ list-style-type:none;
   </script>
 
 
-<div id="consolea" class="col-md-6text row justify-content-center">#</div>
-<div id="consolep1" class="row justify-content-center col-md-6 col-sm-12 pic"></div>
-<div id="consolep2" class="col-md-6 col-sm-12 text"></div>
+<div id="consolea" class="container col-md-8 col-md-offset-2">#</div>
+<div id="consolep1" class="col-md-8"></div>
+<div id="consolep2" class="col-md-4"></div>
 
 
 </div>
