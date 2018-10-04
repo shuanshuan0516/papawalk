@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+    <meta charset="UTF-8">
+  <title>加入資料庫</title>
+
+<script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
+</head>
+<body>
+
+<style type="text/css">
+    .draw {
+        height: 28px;
+        width: 200px;
+        font-size: 15px;
+        background-color: transparent;
+        border-radius: 8px;
+        border: 2px solid rgba(105, 105, 105, 0.6);
+    }
+    .col-md-6{
+        margin-top: 30px;
+        background-color:#77DDFF;
+        width: 60%;
+    }
+</style>
+
+<script>
+  // Initialize Firebase
+ // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAU8YeIiWcADYyZUuiUPkHsSEn0C8o7VzI",
+    authDomain: "yunhsin-1753e.firebaseapp.com",
+    databaseURL: "https://yunhsin-1753e.firebaseio.com",
+    projectId: "yunhsin-1753e",
+    storageBucket: "yunhsin-1753e.appspot.com",
+    messagingSenderId: "266910483049"
+  };
+  firebase.initializeApp(config);
+
+
+
+
+
+    function putdata(){
+        var message = $('#message').val();
+
+        var ref = firebase.database().ref("留言區");
+
+            ref.once("value", (function (snapshot) {
+                var buffer = snapshot.child(message).val();
+
+                var a = snapshot.numChildren()+1;
+
+                if (buffer == null){
+
+                    let updates = {};
+
+                    updates["留言區/" + a] = message;
+                    
+                    alert("留言成功");
+                    firebase.database().ref().update(updates);
+                    return;
+                } else {
+                    alert("請重新輸入一次");
+                }
+
+            }))
+    };            
+            var db = firebase.database().ref("留言區/");
+            db.on('value',function(snapshot){
+            var db = snapshot.val();
+            var test = document.getElementById("bb"); 
+            test.innerHTML = db; 
+            });
+             
+            
+</script>
+
+<center> 
+    <div id="bb" class="col-md-6"> </div>
+</center>
+
+<div style="margin-top: 30px;  font-family:Arial, Helvetica, sans-serif;">
+        <center>       
+         <input type="text" id="message" class="draw" placeholder="請輸入留言...">
+        </center>
+</div>
+
+    <div class="button" style="margin-top: 30px;">
+        <center>
+            <button id="login" type="button" onclick="putdata()"
+                    style="font-size: 20px; background-color: transparent; border-radius: 8px; border: 2px solid rgba(105,105,105,0.6);">
+                送出
+            </button>
+        </center>
+    </div>
+
+
+
+</body>
+</html>
