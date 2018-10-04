@@ -18,50 +18,11 @@
 <link href="SpryAssets/SpryMenuBarVertical.css" rel="stylesheet" type="text/css" />
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
-<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-<link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
-    
-<link rel="stylesheet" href="css/選單.css">
-<link rel="stylesheet" type="text/css" href="css/手機選單3.css">
-
-<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAUnA_8r0-qHb6bCTMi0SCzHcUlc07Qbdk",
-    authDomain: "jia618-d8042.firebaseapp.com",
-    databaseURL: "https://jia618-d8042.firebaseio.com",
-    projectId: "jia618-d8042",
-    storageBucket: "jia618-d8042.appspot.com",
-    messagingSenderId: "157048895266"
-  };
-  firebase.initializeApp(config);
-  var get = location.search.split("&");
-var dbname = firebase.database().ref("ig/-LMgrtd3Ga0A5MnCVRxF/景點/"+get[1]+"/1/"+get[2]+"/0");
-  dbname.on('value',function(snapshot){
-    var content = snapshot.val();
-    var text = document.getElementById("a");
-    text.innerText = text.innerText+content;
- });
-var dbimage = firebase.database().ref("ig/-LMgrtd3Ga0A5MnCVRxF/景點/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/0");
-  dbimage.on('value',function(snapshot){
-    var content = snapshot.val();
-    var image = document.getElementById("p1");
-    image.style.backgroundImage = "url("+content+")";
- });
-var dbcontent = firebase.database().ref("ig/-LMgrtd3Ga0A5MnCVRxF/景點/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/1");
-  dbcontent.on('value',function(snapshot){
-    var content = snapshot.val();
-    var text = document.getElementById("p2");
-    text.innerText = content;
- });
-</script>  
+</head>
 <style type="text/css">
-body {
-  font-family: SentyZHAO;
-}
+
+
 
 .container
 {
@@ -70,33 +31,11 @@ body {
     width: 1300px;
    
 }
-#a{
-  text-align:center;
-  font-size:10vmin;
-  margin-top: 150px;
-  position:absolute;
-        z-index: -1;
+body
+{
+    font-family: SentyZHAO;
 }
-#p1{
-  display: block;
-  left:25%;
-  background-size: cover; 
-  height:300px; 
-  width:300px;
-  position:absolute;
-        z-index: -1;
-}
-#p2{
-  top:50%;
-  left:30%;
-  max-width: 40%;
-  height:50%; 
-  position:absolute;
-        z-index: -1;
-}
-.pic{
-  padding:0px;
-}
+
 
 
 .Header {
@@ -231,30 +170,6 @@ table{
   right: 0;
 }
 
-.title{
-    color: #FA8072;
-    font-weight: bold;
-    margin-bottom:10px;
-}
-.row{
-  color: black;
-   font-size:4vmin;
-
-}
-
-.item p{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-
-#wrapper{
-    font-size:6vmin;
-
-    
-}
-
 
 
 
@@ -311,7 +226,6 @@ list-style-type:none;
     background-color:#ED9292;
     
   }
-  
 
 .menu_list {  
   width: 120px;
@@ -341,7 +255,7 @@ list-style-type:none;
   text-decoration:underline;
   }
 
-#phonemenu{
+#phoemenu{
   display: none;
 }
 #nav,#nav-toggle{
@@ -351,16 +265,17 @@ list-style-type:none;
     #netmenu {
       display: none;
     }
-    #phonemenu{
-      display: block;
-    }
 }
-</style>
-<body>
 
-<div class="container" style="padding: 0;">
+</style>
+
+
         
-<<!--往下滑的標題><!-->
+<body>
+<div class="container" style="padding: 0;">
+
+
+<!--往下滑的標題><!-->
 <div id="fixed_header">
     <div id="navi">
       <ul>
@@ -370,6 +285,7 @@ list-style-type:none;
          <li><a href="會員all.html"><img src="images/會員1.png" style="max-width:120px;height:auto;margin-top:7px" /></a></li>
          <li><a href=""><img src="images/about1.png" style="max-width:80px;height:auto;margin-top:7px" /></a></li>
          <li><a href="會員登入.html"><button class="button" style="vertical-align:middle;margin-top:14px;margin-left: 10px"><span>登入</span></button></a></li>
+         <li><a href="會員註冊.html"></a><button class="button" style="vertical-align:middle;margin-top:14px;margin-right: 15px"><span>註冊</span></button></a></li>
       </ul>
     </div>
     <div id="phone-navi">
@@ -377,9 +293,10 @@ list-style-type:none;
     <li><a href="index.html" style="border-left:3px #FFD382 solid;margin: 0px 5px 0px 5px;">首頁</a></li>
     <li><a href="景點all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">景點</a></li>
     <li><a href="美食all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">美食</a></li>
-    <li><a href="會員all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a></li>
+    <li><a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a></li>
     <li><a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">關於我</a></li>
     <li><a href="會員登入.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">登入</a></li>
+    <li><a href="會員註冊.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">註冊</a></li>
       </ul>
     </div>
 </div>
@@ -397,6 +314,7 @@ list-style-type:none;
       <li><a href="#"><img src="images/about1.png" style="max-width:80px;height:auto;padding-top:7px;" /></a></li>
       <li>
         <a href="會員登入.html"><button class="button" style="vertical-align:middle"><span>登入</span></button></a>
+        <a href="會員註冊.html"><button class="button" style="vertical-align:middle"><span>註冊</span></button></a>
       </li>
    </ul>
  </div>
@@ -410,11 +328,12 @@ list-style-type:none;
 <th style="padding-top: 20px ;padding-bottom:10px;list-style-type:none;
     display:inline;">
 
-    <a href="景點all.html" style="border-left:3px #FFD382 solid;margin: 0px 5px 0px 40px;">景點</a>
-    <a href="美食all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">美食</a>
-    <a href="會員all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a>
+    <a href="" style="border-left:3px #FFD382 solid;margin: 0px 5px 0px 40px;">景點</a>
+    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">美食</a>
+    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a>
     <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">關於我</a>
-    <a href="會員登入.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">登入</a>
+    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">登入</a>
+    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">註冊</a>
 
 </th>
 </tr>
@@ -422,141 +341,58 @@ list-style-type:none;
             
 </div>
 
- 
-<div id="netmenu">
-<div id="menu">
-<div class="hamburger">
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"></div>
+<div style="margin-top: 150px;font-size: 8vmin">
+<p><center>網路爬蟲秘境景點系統之建置</center></p>
 </div>
-<div class="menu-inner">
-<ul>
+<p><left>系所／資訊管理學系</left></p>
+<p><left>指導老師／李永山</left></p>
+<p><left>組員／顏嘉慧、鄭吏軒、史筑君、謝昀欣、邱怡瑄、黃楷雯</left></p>
 
-<div style="float:left; margin-left:0px;"> <!--This is the second division of right-->
-  <p><strong>地區選單 </strong></p>
-  <div class="menu_list" id="secondpane"> <!--Code for menu starts here-->
-    <p class="menu_head">北部</p>
-    <div class="menu_body">
-    <a href="景點.html?&0">基隆</a> 
-    <a href="景點.html?&1">台北</a>
-    <a href="景點.html?&2">新北</a>
-    <a href="景點.html?&3">桃園</a> 
-    <a href="景點.html?&4">新竹</a>
-    <a href="景點.html?&16">宜蘭</a>  
-    </div>
-    <p class="menu_head">中部</p>
-    <div class="menu_body">
-    <a href="景點.html?&5">苗栗</a>
-    <a href="景點.html?&6">台中</a>
-    <a href="景點.html?&7">彰化</a> 
-    <a href="景點.html?&8">南投</a>
-    <a href="景點.html?&9">雲林</a>  
-    </div>
-    <p class="menu_head">南部</p>
-    <div class="menu_body">
-    <a href="景點.html?&10">嘉義</a>
-    <a href="景點.html?&11">台南</a>
-    <a href="景點.html?&12">高雄</a>  
-    <a href="景點.html?&13">屏東</a>  
-    <a href="景點.html?&15">澎湖</a>   
-    </div>
-     <p class="menu_head">東部</p>
-    <div class="menu_body">
-    <a href="景點.html?&20">花蓮</a>
-    <a href="景點.html?&14">台東</a>  
-    </div>
-     <p class="menu_head">離島</p>
-    <div class="menu_body">
-    <a href="景點.html?&18">金門</a>
-    <a href="景點.html?&17">綠島</a>
-    <a href="景點.html?&19">蘭嶼</a>    
-    </div>
-  </div>      <!--Code for menu ends here-->
-</div>
+ <div style="font-size:5vmin;">
+<center>
+<p>近幾年Instagram興起，Instagram是分享相片及短影片的社交 App, 使</p>
+<p>用者利用智慧型手機拍照後，可以套用不同的濾鏡，使畫面呈現不同的效果，再</p>
+<p>分享到Instagram的伺服器上，很多使用者會利用此平台分享並介紹景點及美食。</p>
 
-</ul>
-</div>
-<svg version="1.1" id="blob" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<path id="blob-path" d="M60,500H0V0h60c0,0,20,172,20,250S60,900,60,500z" />
-</svg>
-</div>
-<h2>地區選單</h2>
-</div>
-<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-<script src="js/選單.js"></script>
+<p>    現今的行動設備蓬勃發展，許多人會透過Google等搜尋引擎，尋找旅遊的景</p>
+<p>點(美食)，但透過搜尋引擎找到的景點(美食)，大多是官方、或充滿廣告的網頁，</p>
+<p>無法滿足使用者真正想要的景點；所以，本研究將使用Python針對Instagram進</p>
+<p>行網路爬蟲，將擷取的景點(美食)資料，匯入資料庫；同時，利用HTML5、CSS、及</p>
+<p>JavaScript架設跨平台行動網站，讓使用者可以方便地取得景點(美食)資料，進</p>
+<p>行行程規劃。</p>
 
 
+<p>    本研究主要目的為開發一套結合景點、美食與行程規劃的跨平台網站，讓使用</p>
+<p>者點選相關關鍵字查詢或分類地區，即可顯示該地區從Instagram抓取下來景的點</p>
+<p>圖片及遊玩心得等資料，且可對該景點(美食)進行評論或收藏。另一目的為透過使</p>
+<p>用者收藏的景點(美食)進行行程規劃，便於統整及瀏覽所有收藏的景點(美食)。</p>
 
-<div id="phonemenu">
-<nav class="nav">
-<ul>
-  <div class="menu_list" id="secondpane"> <!--Code for menu starts here-->
-    <p class="menu_head">北部</p>
-    <div class="menu_body">
-    <a href="景點.html?&0">基隆</a> 
-    <a href="景點.html?&1">台北</a>
-    <a href="景點.html?&2">新北</a>
-    <a href="景點.html?&3">桃園</a> 
-    <a href="景點.html?&4">新竹</a>
-    <a href="景點.html?&16">宜蘭</a>  
-    </div>
-    <p class="menu_head">中部</p>
-    <div class="menu_body">
-    <a href="景點.html?&5">苗栗</a>
-    <a href="景點.html?&6">台中</a>
-    <a href="景點.html?&7">彰化</a> 
-    <a href="景點.html?&8">南投</a>
-    <a href="景點.html?&9">雲林</a>  
-    </div>
-    <p class="menu_head">南部</p>
-    <div class="menu_body">
-    <a href="景點.html?&10">嘉義</a>
-    <a href="景點.html?&11">台南</a>
-    <a href="景點.html?&12">高雄</a>  
-    <a href="景點.html?&13">屏東</a>  
-    <a href="景點.html?&15">澎湖</a>   
-    </div>
-     <p class="menu_head">東部</p>
-    <div class="menu_body">
-    <a href="景點.html?&20">花蓮</a>
-    <a href="景點.html?&14">台東</a>  
-    </div>
-     <p class="menu_head">離島</p>
-    <div class="menu_body">
-    <a href="景點.html?&18">金門</a>
-    <a href="景點.html?&17">綠島</a>
-    <a href="景點.html?&19">蘭嶼</a>    
-    </div>
+<p>    本研究使用Google Map作為景點(美食)導覽，使用Python爬蟲技術來抓取、</p>
+<p>分類與儲存資料，並利用HTML5、CSS、及JavaScript架設跨平台行動網站，採用</p>
+<p>Firebase的雲端伺服器架設網站。期望藉由上述之資訊技術，架設跨平台行動景點</p>
+<p>(美食)網站，提升使用者的便利性與實用性，獲取符合使用者需求的資訊。</p>
 
-  </div>      <!--Code for menu ends here-->
-</ul>
-</nav>
-<div class="nav-toggle">
-<div class="icon"></div>
-</div>
+<p>本研究之具體目的如下:</p>
+<p>1.利用Python語言，對Instagram進行網路爬蟲，擷取網友對景點(美食)的介紹資</p>
+<p>料，並將擷取的資料，進行分類，儲存在資料庫中。</p>
+<p>2.使用HTML5、CSS、JavaScript建置跨平台行動網站，並利用Firebase架設雲端網站。</p>
+<p>3.此跨平台行動網站功能包括：提供景點(美食)介紹、連結Google Map、評論與收藏</p>
+<p>功能、及行程規劃。</p>
+</center>
 </div>
 
 
 
 
-<script src="http://www.jq22.com/jquery/2.1.1/jquery.min.js"></script>
-<script>
-  $('.nav-toggle').click(function () {
-      $('body').toggleClass('nav-open');
-  });
-  </script>
-
-
-<div id="a" class="col-md-6text row justify-content-center">#</div>
-<div id="p1" class="row justify-content-center col-md-6 col-sm-12 pic"></div>
-<div id="p2" class="col-md-6 col-sm-12 text"></div>
 
 
 </div>
 
+  
 
- <script type="text/javascript">
+
+
+<script type="text/javascript">
 $(document).ready(function()
 {
   //slides the element with class "menu_body" when paragraph with class "menu_head" is clicked 

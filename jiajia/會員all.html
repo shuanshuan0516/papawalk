@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>就i趴趴走·景點</title>
+<title>就i趴趴走·會員專區</title>
 
 <link rel="stylesheet" href="css/bootstrap.min.css"> 
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
@@ -18,50 +18,11 @@
 <link href="SpryAssets/SpryMenuBarVertical.css" rel="stylesheet" type="text/css" />
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
-<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-<link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
-    
-<link rel="stylesheet" href="css/選單.css">
-<link rel="stylesheet" type="text/css" href="css/手機選單3.css">
-
-<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAUnA_8r0-qHb6bCTMi0SCzHcUlc07Qbdk",
-    authDomain: "jia618-d8042.firebaseapp.com",
-    databaseURL: "https://jia618-d8042.firebaseio.com",
-    projectId: "jia618-d8042",
-    storageBucket: "jia618-d8042.appspot.com",
-    messagingSenderId: "157048895266"
-  };
-  firebase.initializeApp(config);
-  var get = location.search.split("&");
-var dbname = firebase.database().ref("ig/-LMgrtd3Ga0A5MnCVRxF/景點/"+get[1]+"/1/"+get[2]+"/0");
-  dbname.on('value',function(snapshot){
-    var content = snapshot.val();
-    var text = document.getElementById("a");
-    text.innerText = text.innerText+content;
- });
-var dbimage = firebase.database().ref("ig/-LMgrtd3Ga0A5MnCVRxF/景點/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/0");
-  dbimage.on('value',function(snapshot){
-    var content = snapshot.val();
-    var image = document.getElementById("p1");
-    image.style.backgroundImage = "url("+content+")";
- });
-var dbcontent = firebase.database().ref("ig/-LMgrtd3Ga0A5MnCVRxF/景點/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/1");
-  dbcontent.on('value',function(snapshot){
-    var content = snapshot.val();
-    var text = document.getElementById("p2");
-    text.innerText = content;
- });
-</script>  
+</head>
 <style type="text/css">
-body {
-  font-family: SentyZHAO;
-}
+
+
 
 .container
 {
@@ -70,33 +31,11 @@ body {
     width: 1300px;
    
 }
-#a{
-  text-align:center;
-  font-size:10vmin;
-  margin-top: 150px;
-  position:absolute;
-        z-index: -1;
+body
+{
+    font-family: SentyZHAO;
 }
-#p1{
-  display: block;
-  left:25%;
-  background-size: cover; 
-  height:300px; 
-  width:300px;
-  position:absolute;
-        z-index: -1;
-}
-#p2{
-  top:50%;
-  left:30%;
-  max-width: 40%;
-  height:50%; 
-  position:absolute;
-        z-index: -1;
-}
-.pic{
-  padding:0px;
-}
+
 
 
 .Header {
@@ -231,30 +170,6 @@ table{
   right: 0;
 }
 
-.title{
-    color: #FA8072;
-    font-weight: bold;
-    margin-bottom:10px;
-}
-.row{
-  color: black;
-   font-size:4vmin;
-
-}
-
-.item p{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-
-#wrapper{
-    font-size:6vmin;
-
-    
-}
-
 
 
 
@@ -311,7 +226,6 @@ list-style-type:none;
     background-color:#ED9292;
     
   }
-  
 
 .menu_list {  
   width: 120px;
@@ -341,7 +255,7 @@ list-style-type:none;
   text-decoration:underline;
   }
 
-#phonemenu{
+#phoemenu{
   display: none;
 }
 #nav,#nav-toggle{
@@ -351,16 +265,25 @@ list-style-type:none;
     #netmenu {
       display: none;
     }
-    #phonemenu{
-      display: block;
-    }
 }
-</style>
-<body>
 
+#content {
+        margin-top: 0px;
+        position:absolute;
+        z-index: -1;
+    }
+
+@media (max-width: 768px) {
+    #hand {
+      transform:rotate(90deg);
+      padding-top: 40px;
+    }
+</style>
+
+<body>
 <div class="container" style="padding: 0;">
         
-<<!--往下滑的標題><!-->
+<!--往下滑的標題><!-->
 <div id="fixed_header">
     <div id="navi">
       <ul>
@@ -370,6 +293,7 @@ list-style-type:none;
          <li><a href="會員all.html"><img src="images/會員1.png" style="max-width:120px;height:auto;margin-top:7px" /></a></li>
          <li><a href=""><img src="images/about1.png" style="max-width:80px;height:auto;margin-top:7px" /></a></li>
          <li><a href="會員登入.html"><button class="button" style="vertical-align:middle;margin-top:14px;margin-left: 10px"><span>登入</span></button></a></li>
+         <li><a href="會員註冊.html"></a><button class="button" style="vertical-align:middle;margin-top:14px;margin-right: 15px"><span>註冊</span></button></a></li>
       </ul>
     </div>
     <div id="phone-navi">
@@ -377,9 +301,10 @@ list-style-type:none;
     <li><a href="index.html" style="border-left:3px #FFD382 solid;margin: 0px 5px 0px 5px;">首頁</a></li>
     <li><a href="景點all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">景點</a></li>
     <li><a href="美食all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">美食</a></li>
-    <li><a href="會員all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a></li>
+    <li><a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a></li>
     <li><a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">關於我</a></li>
     <li><a href="會員登入.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">登入</a></li>
+    <li><a href="會員註冊.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">註冊</a></li>
       </ul>
     </div>
 </div>
@@ -397,6 +322,7 @@ list-style-type:none;
       <li><a href="#"><img src="images/about1.png" style="max-width:80px;height:auto;padding-top:7px;" /></a></li>
       <li>
         <a href="會員登入.html"><button class="button" style="vertical-align:middle"><span>登入</span></button></a>
+        <a href="會員註冊.html"><button class="button" style="vertical-align:middle"><span>註冊</span></button></a>
       </li>
    </ul>
  </div>
@@ -410,11 +336,12 @@ list-style-type:none;
 <th style="padding-top: 20px ;padding-bottom:10px;list-style-type:none;
     display:inline;">
 
-    <a href="景點all.html" style="border-left:3px #FFD382 solid;margin: 0px 5px 0px 40px;">景點</a>
-    <a href="美食all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">美食</a>
-    <a href="會員all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a>
+    <a href="" style="border-left:3px #FFD382 solid;margin: 0px 5px 0px 40px;">景點</a>
+    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">美食</a>
+    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a>
     <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">關於我</a>
-    <a href="會員登入.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">登入</a>
+    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">登入</a>
+    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">註冊</a>
 
 </th>
 </tr>
@@ -422,141 +349,29 @@ list-style-type:none;
             
 </div>
 
- 
-<div id="netmenu">
-<div id="menu">
-<div class="hamburger">
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"></div>
-</div>
-<div class="menu-inner">
-<ul>
 
-<div style="float:left; margin-left:0px;"> <!--This is the second division of right-->
-  <p><strong>地區選單 </strong></p>
-  <div class="menu_list" id="secondpane"> <!--Code for menu starts here-->
-    <p class="menu_head">北部</p>
-    <div class="menu_body">
-    <a href="景點.html?&0">基隆</a> 
-    <a href="景點.html?&1">台北</a>
-    <a href="景點.html?&2">新北</a>
-    <a href="景點.html?&3">桃園</a> 
-    <a href="景點.html?&4">新竹</a>
-    <a href="景點.html?&16">宜蘭</a>  
-    </div>
-    <p class="menu_head">中部</p>
-    <div class="menu_body">
-    <a href="景點.html?&5">苗栗</a>
-    <a href="景點.html?&6">台中</a>
-    <a href="景點.html?&7">彰化</a> 
-    <a href="景點.html?&8">南投</a>
-    <a href="景點.html?&9">雲林</a>  
-    </div>
-    <p class="menu_head">南部</p>
-    <div class="menu_body">
-    <a href="景點.html?&10">嘉義</a>
-    <a href="景點.html?&11">台南</a>
-    <a href="景點.html?&12">高雄</a>  
-    <a href="景點.html?&13">屏東</a>  
-    <a href="景點.html?&15">澎湖</a>   
-    </div>
-     <p class="menu_head">東部</p>
-    <div class="menu_body">
-    <a href="景點.html?&20">花蓮</a>
-    <a href="景點.html?&14">台東</a>  
-    </div>
-     <p class="menu_head">離島</p>
-    <div class="menu_body">
-    <a href="景點.html?&18">金門</a>
-    <a href="景點.html?&17">綠島</a>
-    <a href="景點.html?&19">蘭嶼</a>    
-    </div>
-  </div>      <!--Code for menu ends here-->
+<div class="row" style="margin-top:210px;">
+<div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+  <a href="index.html"><img src="images/3.png" style="width:auto;max-height:290px;"/>
 </div>
 
-</ul>
+
+<div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+  <div id="hand">
+  <a href="index.html"><img src="images/2.png" style="margin-left:-20px;margin-top:-40px;max-width:275px;height:auto;"/>
 </div>
-<svg version="1.1" id="blob" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<path id="blob-path" d="M60,500H0V0h60c0,0,20,172,20,250S60,900,60,500z" />
-</svg>
 </div>
-<h2>地區選單</h2>
-</div>
-<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-<script src="js/選單.js"></script>
 
-
-
-<div id="phonemenu">
-<nav class="nav">
-<ul>
-  <div class="menu_list" id="secondpane"> <!--Code for menu starts here-->
-    <p class="menu_head">北部</p>
-    <div class="menu_body">
-    <a href="景點.html?&0">基隆</a> 
-    <a href="景點.html?&1">台北</a>
-    <a href="景點.html?&2">新北</a>
-    <a href="景點.html?&3">桃園</a> 
-    <a href="景點.html?&4">新竹</a>
-    <a href="景點.html?&16">宜蘭</a>  
-    </div>
-    <p class="menu_head">中部</p>
-    <div class="menu_body">
-    <a href="景點.html?&5">苗栗</a>
-    <a href="景點.html?&6">台中</a>
-    <a href="景點.html?&7">彰化</a> 
-    <a href="景點.html?&8">南投</a>
-    <a href="景點.html?&9">雲林</a>  
-    </div>
-    <p class="menu_head">南部</p>
-    <div class="menu_body">
-    <a href="景點.html?&10">嘉義</a>
-    <a href="景點.html?&11">台南</a>
-    <a href="景點.html?&12">高雄</a>  
-    <a href="景點.html?&13">屏東</a>  
-    <a href="景點.html?&15">澎湖</a>   
-    </div>
-     <p class="menu_head">東部</p>
-    <div class="menu_body">
-    <a href="景點.html?&20">花蓮</a>
-    <a href="景點.html?&14">台東</a>  
-    </div>
-     <p class="menu_head">離島</p>
-    <div class="menu_body">
-    <a href="景點.html?&18">金門</a>
-    <a href="景點.html?&17">綠島</a>
-    <a href="景點.html?&19">蘭嶼</a>    
-    </div>
-
-  </div>      <!--Code for menu ends here-->
-</ul>
-</nav>
-<div class="nav-toggle">
-<div class="icon"></div>
+<div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+  <a href="index.html"><img src="images/1-1.png" style="width:auto;max-height:290px;"/>
 </div>
 </div>
 
 
+    </div>
 
-
-<script src="http://www.jq22.com/jquery/2.1.1/jquery.min.js"></script>
-<script>
-  $('.nav-toggle').click(function () {
-      $('body').toggleClass('nav-open');
-  });
-  </script>
-
-
-<div id="a" class="col-md-6text row justify-content-center">#</div>
-<div id="p1" class="row justify-content-center col-md-6 col-sm-12 pic"></div>
-<div id="p2" class="col-md-6 col-sm-12 text"></div>
-
-
-</div>
-
-
- <script type="text/javascript">
+    
+<script type="text/javascript">
 $(document).ready(function()
 {
   //slides the element with class "menu_body" when paragraph with class "menu_head" is clicked 
