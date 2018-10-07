@@ -25,6 +25,8 @@
     
 <link rel="stylesheet" href="css/選單.css">
 <link rel="stylesheet" type="text/css" href="css/手機選單3.css">
+<link rel="stylesheet" type="text/css" href="css/jia.css">
+<link rel="stylesheet" type="text/css" href="css/header.css">
 
     <!--[if IE]>
     <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -90,268 +92,6 @@
 </head>
 <style type="text/css">
 
-    .container {
-        margin: 0;
-        max-width: 100%;
-        width: 1300px;
-
-    }
-
-    body {
-        font-family: SentyZHAO;
-
-    }
-
-.Header {
-    height: 135px;
-    background:#ED9292;
-
-}
-@media (max-width: 768px) {
-    .Header {
-      max-width: 100%; 
-      height: auto;
-      background:#ED9292;
-      } //最大寬度為100%,取消高度改自動
-      }
-
-
-.Logo {
-  float: left;
-  margin: 10px 0 0 10px;
-  
-  }
-  
-@media (max-width: 768px) {
-    .Logo {
-            float: none;//取消浮動
-            margin: 0;
-    }
-}
-
-.Logo a {
-    display: block;
-    background: url(images/趴.png);
-    text-indent: -999999px;
-    width: 338px;
-    height:100px;
-    text-decoration: none; 
-    background-size: auto 100%;
-    margin-left:50px; 
-    }
-@media (max-width: 768px) {
-    .Logo a{
-        margin: 0 auto;//logo置中
-        
-    }
-}
-
-
-.good {
-    float: right;
-}
-
-.good li {
-    float: left;
-    width: 130px;
-    text-align: center;
-    list-style: none;
-    margin: 0px auto;
-    }
-
-@media (max-width: 768px) {
-    .good li {
-        display: none;
-    }
-}
-
-table{
-  display: none;
-}
-
-
-
-.good li a {
-      text-decoration: none;
-      color: #00a67d;
-      display: block;
-      margin: 0 1px; 
-
-      }
-
-
-@media (max-width: 768px) {
-    table {
-      display: inline;
-    }
-}
-@media (max-width: 768px) { 
-    table a:hover{
-    color: white;//滑過文字變黑色
-
-    }
-}
-
-
-
-.button {
-  display: inline-block;
-  border-radius: 4px;
-  background-color: #7C9885;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 25px;
-  padding: 2px;
-  width: 80px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
-}
-
-.button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
-
-.button span:after {
-  content: '»';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-
-.button:hover span {
-  padding-right: 25px;
-}
-
-.button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-
-.title{
-    color: #FA8072;
-    font-weight: bold;
-    margin-bottom:10px;
-    margin-top: 150px;
-}
-.row{
-  color: black;
-   font-size:4vmin;
-}
-
-.item p{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-
-
-
-
-#fixed_header {
-    position:fixed;
-    z-index:1;
-    top:0;
-    width:100%;
-    background-color:#ED9292;
-
-  }
-  
-  #navi {
-    margin:0 auto;
-    text-align:right;
-list-style-type:none;
-  }
-  #phone-navi{
-    display: none;
-  }
-  @media (max-width: 768px) {
-    #navi {
-      display: none;
-    }
-}
-@media (max-width: 768px) {
-    #phone-navi {
-    display: inline;
-     margin:0px auto 0px auto;
-    text-align:center;
-
-    }
-    #phone-navi li {
-    list-style-type:none;
-    display:inline;
-  }
-    li{
-      margin: 0px 12px 0px 12px;
-      font-size:5vmin;
-      border-width:3px
-    }
-}
-
-  #navi li {
-    list-style-type:none;
-    display:inline;
-  }
-
-  #real_header {
-    top:0%;
-    position:absolute;
-    width:100%;
-    z-index:2;
-    background-color:#ED9292;
-    
-  }
-  
-
-.menu_list {  
-  width: 120px;
-}
-.menu_head {
-  font-size:5vmin;
-  padding: 5px 10px;
-  cursor: pointer;
-  position: relative;
-  margin:1px;
-  font-weight:bold;
-  background:#fff;
-}
-.menu_body {
-  display:none;
-}
-.menu_body a{
-  display:block;
-  color:#006699;
-  background-color:#EFEFEF;
-  padding-left:10px;
-  font-weight:bold;
-  text-decoration:none;
-}
-.menu_body a:hover{
-  color: #000000;
-  text-decoration:underline;
-  }
-
-#phonemenu{
-  display: none;
-}
-#nav,#nav-toggle{
-  display: none;
-}
-@media (max-width: 768px) {
-    #netmenu {
-      display: none;
-    }
-    #phonemenu{
-      display: block;
-    }
-}
     #p1, #p2, #p3, #p4, #p5, #p6, #p7, #p8, #p9, #p10, #p11, #p12, #p13, #p14, #p15, #p16, #p17, #p18, #p19, #p20 {
         background-size: cover;
         height: 250px;
@@ -368,6 +108,7 @@ list-style-type:none;
         z-index: -1;
     }
 
+
 .row .item{   
   border:4px black dashed;   
   margin: 10px;   
@@ -376,6 +117,42 @@ list-style-type:none;
   max-width: 300px;   
   border-radius:10px; 
 } 
+
+.mm{
+        border-radius: 8px;
+        border: 2px solid rgba(105, 105, 105, 0.6);
+        padding: 20px;
+        max-width:350px;
+        margin-top: 50px;
+        margin-left:37%;
+        font-size: 6vmin;
+}
+.draw {
+        height: 28px;
+        width: 200px;
+        font-size: 4vmin;
+        background-color: transparent;
+        border-radius: 8px;
+        border: 2px solid rgba(105, 105, 105, 0.6);
+ 
+    }
+.col-md-6{
+        font-size:4vmin;
+        margin-left: 37%;
+        margin-top: 30px;
+        margin-bottom: 50px;
+        padding: 5px 0px 5px 0px; 
+        background-color:#5b5b5b;
+        width: 30%;
+        height: auto;
+        border-radius: 2px;
+        border: 2px solid rgba(105, 105, 105, 0.6);
+
+    }
+
+#bb{
+  display: inline;
+}
 </style>
 <body>
 <div class="container" style="padding: 0;">
@@ -569,8 +346,8 @@ list-style-type:none;
         <div id="content" class="container">
             <h3 class="title">
                 <center id="all_title">|#</center>
-                <center><a id="m1" href="" target="_blank"><img src="images/map.png"
-                                                                style="max-width: 4%;"></a></center>
+                <center><a id="m1" href="" target="_blank">
+                <img src="images/map.png" style="max-width: 4%;"></a></center>
             </h3>
             <div class="row" style="padding-left:15%;">
 
@@ -692,8 +469,67 @@ list-style-type:none;
            
 
 
+<div class="mm">
+<p><center>留言區</center></p>
+        <center>       
+         <input type="text" id="message" class="draw" placeholder="請輸入留言...">
+        </center>
+
+<div class="but" style="margin-top: 30px;">
+        <center>
+            <button id="login" type="button" onclick="putdata()"
+                    style="font-size: 20px; background-color: transparent; border-radius: 8px; border: 2px solid rgba(105,105,105,0.6);">
+                送出
+            </button>
+        </center>
+    </div>
 </div>
 
+<center> 
+    <div id="bb" class="col-md-6"> </div>
+</center>
+
+
+
+
+</div>
+
+<script type="text/javascript">
+      function putdata(){
+        var message = $('#message').val();
+
+        var ref = firebase.database().ref("留言區");
+
+            ref.once("value", (function (snapshot) {
+                var buffer = snapshot.child(message).val();
+
+                var a = snapshot.numChildren()+1;
+
+                if (buffer == null){
+
+                    let updates = {};
+
+                    updates["留言區/" + a] = message;
+                    
+                    alert("留言成功");
+                    firebase.database().ref().update(updates);
+                    return;
+                } else {
+                    alert("請重新輸入一次");
+                }
+
+            }))
+    };            
+            var db = firebase.database().ref("留言區/");
+            db.on('value',function(snapshot){
+            var db = snapshot.val();
+            var test = document.getElementById("bb");
+            test.innerHTML = db; 
+            });
+             
+            
+</script>
+</script>
 
 <script type="text/javascript">
 $(document).ready(function()

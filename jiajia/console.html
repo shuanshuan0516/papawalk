@@ -25,6 +25,8 @@
     
 <link rel="stylesheet" href="css/選單.css">
 <link rel="stylesheet" type="text/css" href="css/手機選單3.css">
+<link rel="stylesheet" type="text/css" href="css/jia.css">
+<link rel="stylesheet" type="text/css" href="css/header.css">
 
 <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
 <script>
@@ -63,13 +65,7 @@ body {
   font-family: SentyZHAO;
 }
 
-.container
-{
-    margin: 0;
-    max-width: 100%;
-    width: 1300px;
-   
-}
+
 #consolea{
   text-align:center;
   font-size:10vmin;
@@ -79,7 +75,7 @@ body {
 }
 #consolep1{
   display: block;
-
+  left:25%;
   background-size: cover; 
   height:300px; 
   width:300px;
@@ -99,262 +95,9 @@ body {
 }
 
 
-.Header {
-    height: 135px;
-    background:#ED9292;
-
-}
-@media (max-width: 768px) {
-    .Header {
-      max-width: 100%; 
-      height: auto;
-      background:#ED9292;
-      } //最大寬度為100%,取消高度改自動
-      }
-
-
-.Logo {
-  float: left;
-  margin: 10px 0 0 10px;
-  
-  }
-  
-@media (max-width: 768px) {
-    .Logo {
-            float: none;//取消浮動
-            margin: 0;
-    }
-}
-
-.Logo a {
-    display: block;
-    background: url(images/趴.png);
-    text-indent: -999999px;
-    width: 338px;
-    height:100px;
-    text-decoration: none; 
-    background-size: auto 100%;
-    margin-left:50px; 
-    }
-@media (max-width: 768px) {
-    .Logo a{
-        margin: 0 auto;//logo置中
-        
-    }
-}
-
-
-.good {
-    float: right;
-}
-
-.good li {
-    float: left;
-    width: 130px;
-    text-align: center;
-    list-style: none;
-    margin: 0px auto;
-    }
-
-@media (max-width: 768px) {
-    .good li {
-        display: none;
-    }
-}
-
-table{
-  display: none;
-}
 
 
 
-.good li a {
-      text-decoration: none;
-      color: #00a67d;
-      display: block;
-      margin: 0 1px; 
-
-      }
-
-
-@media (max-width: 768px) {
-    table {
-      display: inline;
-    }
-}
-@media (max-width: 768px) { 
-    table a:hover{
-    color: white;//滑過文字變黑色
-
-    }
-}
-
-
-
-.button {
-  display: inline-block;
-  border-radius: 4px;
-  background-color: #7C9885;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 25px;
-  padding: 2px;
-  width: 80px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
-}
-
-.button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
-
-.button span:after {
-  content: '»';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-
-.button:hover span {
-  padding-right: 25px;
-}
-
-.button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-
-.title{
-    color: #FA8072;
-    font-weight: bold;
-    margin-bottom:10px;
-}
-.row{
-  color: black;
-   font-size:4vmin;
-
-}
-
-.item p{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-
-#wrapper{
-    font-size:6vmin;
-
-    
-}
-
-
-
-
-#fixed_header {
-    position:fixed;
-    z-index:1;
-    top:0;
-    width:100%;
-    background-color:#ED9292;
-
-  }
-  
-  #navi {
-    margin:0 auto;
-    text-align:right;
-list-style-type:none;
-  }
-  #phone-navi{
-    display: none;
-  }
-  @media (max-width: 768px) {
-    #navi {
-      display: none;
-    }
-}
-@media (max-width: 768px) {
-    #phone-navi {
-    display: inline;
-     margin:0px auto 0px auto;
-    text-align:center;
-
-    }
-    #phone-navi li {
-    list-style-type:none;
-    display:inline;
-  }
-    li{
-      margin: 0px 12px 0px 12px;
-      font-size:5vmin;
-      border-width:3px
-    }
-}
-
-  #navi li {
-    list-style-type:none;
-    display:inline;
-  }
-
-  #real_header {
-    top:0%;
-    position:absolute;
-    width:100%;
-    z-index:2;
-    background-color:#ED9292;
-    
-  }
-  
-
-.menu_list {  
-  width: 120px;
-}
-.menu_head {
-  font-size:5vmin;
-  padding: 5px 10px;
-  cursor: pointer;
-  position: relative;
-  margin:1px;
-  font-weight:bold;
-  background:#fff;
-}
-.menu_body {
-  display:none;
-}
-.menu_body a{
-  display:block;
-  color:#006699;
-  background-color:#EFEFEF;
-  padding-left:10px;
-  font-weight:bold;
-  text-decoration:none;
-}
-.menu_body a:hover{
-  color: #000000;
-  text-decoration:underline;
-  }
-
-#phonemenu{
-  display: none;
-}
-#nav,#nav-toggle{
-  display: none;
-}
-@media (max-width: 768px) {
-    #netmenu {
-      display: none;
-    }
-    #phonemenu{
-      display: block;
-    }
-}
 </style>
 <body>
 
