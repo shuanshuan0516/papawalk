@@ -18,22 +18,18 @@
 <link href="SpryAssets/SpryMenuBarVertical.css" rel="stylesheet" type="text/css" />
 
 
-<!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script-->
-<!--留言-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
 <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
 <link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
     
 <link rel="stylesheet" href="css/選單.css">
-<link rel="stylesheet" type="text/css" href="css/手機選單3.css">
+
     <!--[if IE]>
     <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
 
-<!--script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script-->
-<!--留言-->
-<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
 <script>
   // Initialize Firebase
   var config = {
@@ -66,75 +62,6 @@
                 image.href = href;
             }
         });
-
-
-
-  var firebase;
-$(function(){
-  var $who = $('who'),
-      $message = $('#message'),
-      $btn = $('#btn'),
-      $show = $('#show'),
-      ms = new Date().getTime();
-  
-  var database = firebase.database().ref();
-  
-  $btn.on('click',write);
-  $message.on('keydown', function(e){
-    if(e.keyCode == 13){
-      write();
-    }
-  });
-  
-  function write(){
-    var date = new Date();
-    var h = date.getHours();
-    var m = date.getMinutes();
-    var s = date.getSeconds();
-    if(h<10){
-      h = '0'+h;
-    }
-    if(m<10){
-      m = '0' + m;
-    }
-    if(s<10){
-      s = '0' + s;
-    }
-    var now = h+1+  ':'+m+':'+s;
-    var postData = {
-      who:$('#who').val(),
-      message:$('#message').val(),
-      time:now,
-      id:'id'+ms
-    };
-    database.push(postData);
-    $message.val('');
-  }
-  
-  database.once('value', function(snapshot) {
-    $show.html('');
-    for(var i in snapshot.val()){
-       $show.prepend('<div><div>時間：'+snapshot.val()[i].time+'</div>'+snapshot.val()[i].who+'：'+snapshot.val()[i].message+'</div>');
-    }
-  });
-
-  database.limitToLast(1).on('value', function(snapshot) {
-    for(var i in snapshot.val()){
-       $show.prepend('<div class="'+snapshot.val()[i].id+'"><div>'+snapshot.val()[i].time+'</div>'+snapshot.val()[i].who+'：'+snapshot.val()[i].message+'</div>');
-    }
-    $show.find('.id'+ms).css({
-      color:'#f00'
-    });
-    $show.find('.id'+ms+' div').css({
-      color:'#f00'
-    });
-  });
-  
-  
-});
-
-
-
 
         // for (var i = 1; i < 21; i++) {
         //     var db = firebase.database().ref("ig/-LJp73c4QGkmiu_i86Bu/景點/0/1/0/" + i + "/0");
@@ -416,21 +343,6 @@ list-style-type:none;
   text-decoration:underline;
   }
 
-#phonemenu{
-  display: none;
-}
-#nav,#nav-toggle{
-  display: none;
-}
-@media (max-width: 768px) {
-    #netmenu {
-      display: none;
-    }
-    #phonemenu{
-      display: block;
-    }
-}
-
     #p1, #p2, #p3, #p4, #p5, #p6, #p7, #p8, #p9, #p10, #p11, #p12, #p13, #p14, #p15, #p16, #p17, #p18, #p19, #p20 {
         background-size: cover;
         height: 250px;
@@ -443,8 +355,7 @@ list-style-type:none;
 
     #content {
         margin-top: 0px;
-        position:absolute;
-        z-index: -1;
+
     }
 
 
@@ -465,6 +376,7 @@ list-style-type:none;
          <li><a href="會員all.html"><img src="images/會員1.png" style="max-width:120px;height:auto;margin-top:7px" /></a></li>
          <li><a href=""><img src="images/about1.png" style="max-width:80px;height:auto;margin-top:7px" /></a></li>
          <li><a href="會員登入.html"><button class="button" style="vertical-align:middle;margin-top:14px;margin-left: 10px"><span>登入</span></button></a></li>
+         <li><a href="會員註冊.html"></a><button class="button" style="vertical-align:middle;margin-top:14px;margin-right: 15px"><span>註冊</span></button></a></li>
       </ul>
     </div>
     <div id="phone-navi">
@@ -472,9 +384,10 @@ list-style-type:none;
     <li><a href="index.html" style="border-left:3px #FFD382 solid;margin: 0px 5px 0px 5px;">首頁</a></li>
     <li><a href="景點all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">景點</a></li>
     <li><a href="美食all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">美食</a></li>
-    <li><a href="會員all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a></li>
+    <li><a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a></li>
     <li><a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">關於我</a></li>
     <li><a href="會員登入.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">登入</a></li>
+    <li><a href="會員註冊.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">註冊</a></li>
       </ul>
     </div>
 </div>
@@ -492,6 +405,7 @@ list-style-type:none;
       <li><a href="#"><img src="images/about1.png" style="max-width:80px;height:auto;padding-top:7px;" /></a></li>
       <li>
         <a href="會員登入.html"><button class="button" style="vertical-align:middle"><span>登入</span></button></a>
+        <a href="會員註冊.html"><button class="button" style="vertical-align:middle"><span>註冊</span></button></a>
       </li>
    </ul>
  </div>
@@ -505,11 +419,12 @@ list-style-type:none;
 <th style="padding-top: 20px ;padding-bottom:10px;list-style-type:none;
     display:inline;">
 
-    <a href="景點all.html" style="border-left:3px #FFD382 solid;margin: 0px 5px 0px 40px;">景點</a>
-    <a href="美食all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">美食</a>
-    <a href="會員all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a>
+    <a href="" style="border-left:3px #FFD382 solid;margin: 0px 5px 0px 40px;">景點</a>
+    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">美食</a>
+    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a>
     <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">關於我</a>
-    <a href="會員登入.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">登入</a>
+    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">登入</a>
+    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">註冊</a>
 
 </th>
 </tr>
@@ -518,7 +433,6 @@ list-style-type:none;
 </div>
 
  
-<div id="netmenu">
 <div id="menu">
 <div class="hamburger">
 <div class="line"></div>
@@ -577,69 +491,8 @@ list-style-type:none;
 </svg>
 </div>
 <h2>地區選單</h2>
-</div>
 <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 <script src="js/選單.js"></script>
-
-
-<div id="phonemenu">
-<nav class="nav">
-<ul>
-  <div class="menu_list" id="secondpane"> <!--Code for menu starts here-->
-    <p class="menu_head">北部</p>
-    <div class="menu_body">
-    <a href="景點.html?&0">基隆</a> 
-    <a href="景點.html?&1">台北</a>
-    <a href="景點.html?&2">新北</a>
-    <a href="景點.html?&3">桃園</a> 
-    <a href="景點.html?&4">新竹</a>
-    <a href="景點.html?&16">宜蘭</a>  
-    </div>
-    <p class="menu_head">中部</p>
-    <div class="menu_body">
-    <a href="景點.html?&5">苗栗</a>
-    <a href="景點.html?&6">台中</a>
-    <a href="景點.html?&7">彰化</a> 
-    <a href="景點.html?&8">南投</a>
-    <a href="景點.html?&9">雲林</a>  
-    </div>
-    <p class="menu_head">南部</p>
-    <div class="menu_body">
-    <a href="景點.html?&10">嘉義</a>
-    <a href="景點.html?&11">台南</a>
-    <a href="景點.html?&12">高雄</a>  
-    <a href="景點.html?&13">屏東</a>  
-    <a href="景點.html?&15">澎湖</a>   
-    </div>
-     <p class="menu_head">東部</p>
-    <div class="menu_body">
-    <a href="景點.html?&20">花蓮</a>
-    <a href="景點.html?&14">台東</a>  
-    </div>
-     <p class="menu_head">離島</p>
-    <div class="menu_body">
-    <a href="景點.html?&18">金門</a>
-    <a href="景點.html?&17">綠島</a>
-    <a href="景點.html?&19">蘭嶼</a>    
-    </div>
-
-  </div>      <!--Code for menu ends here-->
-</ul>
-</nav>
-<div class="nav-toggle">
-<div class="icon"></div>
-</div>
-</div>
-
-
-
-
-<script src="http://www.jq22.com/jquery/2.1.1/jquery.min.js"></script>
-<script>
-  $('.nav-toggle').click(function () {
-      $('body').toggleClass('nav-open');
-  });
-  </script>
 
 
         <div id="content" class="container">
@@ -762,20 +615,13 @@ list-style-type:none;
                     <a id="p20">
                     </a>
                 </div>
+
+
             </div>
 
+        </div>
 
-<div style="text-align: center;">
-  姓名：<input id="who"><br/>
-  留言：<input id="message"><br/>
-  <button id="btn">送出</button>
-  <br/>
 
-<center>
-  <div id="show" style="background-color: white; border-radius: 8px; border: 2px solid rgba(105,105,105,0.6); margin-bottom:50px;width:300px;height:auto;"></div>
-</center>
-</div>
-   
 
 </div>
 
@@ -798,7 +644,5 @@ $(document).ready(function()
   });
 });
 </script>
-
-
 </body>
 </html>
