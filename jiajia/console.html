@@ -533,11 +533,11 @@ $(document).ready(function()
 
 $(document).ready(function(){
     var userid = $("#userid").text();
-    var password = $("password").text();
-   if(userid == 0){
+    var password = $("#password").text();
+   if(userid == 0){ 
        $("login").show();
    }
-else{
+else{ 
     $.post("會員登入.html",{userid:userid,password:password},function(result){
         if(result == 1){
             $("img").html("已收藏");
