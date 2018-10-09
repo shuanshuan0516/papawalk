@@ -19,6 +19,35 @@
 
 
 
+<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAUnA_8r0-qHb6bCTMi0SCzHcUlc07Qbdk",
+    authDomain: "jia618-d8042.firebaseapp.com",
+    databaseURL: "https://jia618-d8042.firebaseio.com",
+    projectId: "jia618-d8042",
+    storageBucket: "jia618-d8042.appspot.com",
+    messagingSenderId: "157048895266"
+  };
+  firebase.initializeApp(config);
+
+  var pre = document.getElementById('object');
+  var a = 0;
+  for(var i = 0;i<10;i++){
+    var db = firebase.database().ref("ig/-LMgrtd3Ga0A5MnCVRxF/景點/0/1/"+i+"/1/0");
+  db.on('value',function(snapshot){
+    var test = snapshot.val();
+    a++;
+    var image = document.getElementById("p"+a);
+    image.style.backgroundImage = "url("+test+")";
+ });
+  }
+
+
+  ;
+
+</script>
 </head>
 <style type="text/css">
 
@@ -29,11 +58,12 @@
     margin: 0;
     max-width: 100%;
     width: 1300px;
+
 }
 body
 {
     font-family: SentyZHAO;
-    background-color:#f2e6e6;
+    background-color:   #f2e6e6;
 }
 
 
@@ -273,26 +303,42 @@ list-style-type:none;
         position:absolute;
         z-index: -1;
     }
-#hand1{
-  display: none;
+#love1{
+  margin-left:5px;
+  margin-top:135px;
+  box-shadow:5px 5px 12px #ED9292;
+  width:130px;
+  height: 500px;
+  text-align:center;
+  color: black;
+  position: fixed;
 }
-@media (max-width: 768px) {
-    #hand1 {
-      display:block;
-      padding-top: 40px;
-}
-   #hand{display: none;}
-}
-.row{
-  margin-top:210px;
-  position:fixed;
-}
-@media (max-width: 768px) {
-  .row{
-  position: absolute;
-}
+    #p1, #p2, #p3, #p4, #p5, #p6, #p7, #p8, #p9, #p10{
+        background-size: cover;
+        height: 250px;
+        width: 250px;
+        display: block;
+        margin: auto;
+        padding-top: 20px;}
+#content {
+        margin-top: 0px;
+        position:absolute;
+        z-index: -1;
+        margin-top: 150px;
     }
 
+.row .item{   
+  border:4px black dashed;   
+  margin: 10px;   
+  padding: 10px;
+  height: auto;   
+  max-width: 300px;   
+  border-radius:10px; 
+  font-size: 5vmin;
+} 
+#rowp{
+  font-size: 8vmin;
+}
 </style>
 
 <body>
@@ -364,27 +410,100 @@ list-style-type:none;
             
 </div>
 
+<div id="love1">
+  <div class="menu_list" id="secondpane" style="padding-top: 20px"> <!--Code for menu starts here-->
+    <p class="menu_head">北部</p>
+    <div class="menu_body">
+    <a href="景點.html?&0">基隆</a> 
+    <a href="景點.html?&1">台北</a>
+    <a href="景點.html?&2">新北</a>
+    <a href="景點.html?&3">桃園</a> 
+    <a href="景點.html?&4">新竹</a>
+    <a href="景點.html?&16">宜蘭</a>  
+    </div>
+    <p class="menu_head">中部</p>
+    <div class="menu_body">
+    <a href="景點.html?&5">苗栗</a>
+    <a href="景點.html?&6">台中</a>
+    <a href="景點.html?&7">彰化</a> 
+    <a href="景點.html?&8">南投</a>
+    <a href="景點.html?&9">雲林</a>  
+    </div>
+    <p class="menu_head">南部</p>
+    <div class="menu_body">
+    <a href="景點.html?&10">嘉義</a>
+    <a href="景點.html?&11">台南</a>
+    <a href="景點.html?&12">高雄</a>  
+    <a href="景點.html?&13">屏東</a>  
+    <a href="景點.html?&15">澎湖</a>   
+    </div>
+     <p class="menu_head">東部</p>
+    <div class="menu_body">
+    <a href="景點.html?&20">花蓮</a>
+    <a href="景點.html?&14">台東</a>  
+    </div>
+     <p class="menu_head">離島</p>
+    <div class="menu_body">
+    <a href="景點.html?&18">金門</a>
+    <a href="景點.html?&17">綠島</a>
+    <a href="景點.html?&19">蘭嶼</a>    
+    </div>
 
-<div class="row">
-<div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-  <a href="我的收藏.html"><img src="images/3.png" style="width:auto;max-height:360px;margin-left:-10px;margin-top: -20px"/>
+  </div>      <!--Code for menu ends here-->
 </div>
 
+<div id="content">
+  <center><p id="rowp">我的收藏-基隆</p></center>
+  <div class="row" style="padding-left:15%">
 
-<div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-  <div id="hand">
-  <a href="行程規劃.html"><img src="images/2.png" style="margin-right:-20px;margin-top:-25px;max-width:370px;height:auto;"/>
-  </div>
-  <div id="hand1">
-  <a href="index.html"><img src="images/2-1.png" style="margin-left:-30px;margin-top:-35px;max-width:400px;height:auto;padding: 30px 0px 30px 0px;"/>
-</div>
-</div>
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+                    <a id="p2"></a>
+                    <div id="n2">#基隆車站</div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+                    <a id="p9"></a>
+                    <div id="n9">#阿根納造船廠</div>
+                </div>
 
-<div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-  <a href="index.html"><img src="images/1-1.png" style="width:auto;max-height:310px;"/>
-</div>
-</div>
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+                    <a id="p1"></a>
+                    <div id="n1">#飛碟屋遺址</div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+                    <a id="p4"></a>
+                    <div id="n4"></div>
+                </div>
 
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+                    <a id="p5"></a>
+                    <div id="n5"></div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+                    <a id="p6"></a>
+                    <div id="n6"></div>
+
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+                    <a id="p7"></a>
+                    <div id="n7"></div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+                    <a id="p8"></a>
+                    <div id="n8"></div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+                    <a id="p3"></a>
+                    <div id="n3"></div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+                    <a id="p10"></a>
+                    <div id="n10"></div>
+                </div>
+              </div>
+</div>
 
     </div>
 

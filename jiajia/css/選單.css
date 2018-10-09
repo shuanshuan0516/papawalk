@@ -9,6 +9,9 @@
 	left:60px}
 #menu.expanded{transform:translateX(-2%);left:0}
 .menu-inner{width:100%;height:100%;position:relative}
+.menu_head{
+	background-color:#408080; 
+}
 #blob{top:0;z-index:-1;right:60px;transform:translateX(100%);height:100%;position:absolute}
 #blob-path{height:100%;fill:#ED9292}
 .hamburger{right:20px;position:absolute;width:20px;height:20px;margin-top:-10px}
