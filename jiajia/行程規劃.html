@@ -63,7 +63,7 @@
 body
 {
     font-family: SentyZHAO;
-    background-color:   #f2e6e6;
+    background-color:#f2e6e6;
 }
 
 
@@ -254,10 +254,17 @@ list-style-type:none;
     width:100%;
     z-index:2;
     background-color:#ED9292;
-
-    
   }
-
+@media (max-width: 768px) {
+    #real_header {
+    top:0%;
+    position:absolute;
+    width:100%;
+    z-index:2;
+    background-color:#ED9292;
+    padding-bottom:30px;
+  }
+}
 .menu_list {  
   width: 120px;
 }
@@ -469,9 +476,9 @@ font-size: 6vmin;
          <li><a href="景點all.html"><img src="images/景點.png" style="max-width:120px;height:auto" /></a></li>
          <li><a href="美食all.html"><img src="images/美食.png" style="max-width:120px;height:auto" /></a></li>
          <li><a href="會員all.html"><img src="images/會員1.png" style="max-width:120px;height:auto;margin-top:7px" /></a></li>
-         <li><a href=""><img src="images/about1.png" style="max-width:80px;height:auto;margin-top:7px" /></a></li>
+         <li><a href="關於我.html"><img src="images/about1.png" style="max-width:80px;height:auto;margin-top:7px" /></a></li>
          <li><a href="會員登入.html"><button class="button" style="vertical-align:middle;margin-top:14px;margin-left: 10px"><span>登入</span></button></a></li>
-         <li><a href="會員註冊.html"></a><button class="button" style="vertical-align:middle;margin-top:14px;margin-right: 15px"><span>註冊</span></button></a></li>
+         <li><a href=""><button class="button" style="vertical-align:middle;margin-top:14px;margin-left: 10px"><span>登出</span></button></a></li>
       </ul>
     </div>
     <div id="phone-navi">
@@ -479,10 +486,10 @@ font-size: 6vmin;
     <li><a href="index.html" style="border-left:3px #FFD382 solid;margin: 0px 5px 0px 5px;">首頁</a></li>
     <li><a href="景點all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">景點</a></li>
     <li><a href="美食all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">美食</a></li>
-    <li><a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a></li>
-    <li><a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">關於我</a></li>
+    <li><a href="會員all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a></li>
+    <li><a href="關於我.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">關於我</a></li>
     <li><a href="會員登入.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">登入</a></li>
-    <li><a href="會員註冊.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">註冊</a></li>
+    <li><a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">登出</a></li>
       </ul>
     </div>
 </div>
@@ -497,11 +504,12 @@ font-size: 6vmin;
       <li><a href="景點all.html"><img src="images/景點.png" style="max-width:120px;height:auto" /></a></li>
       <li><a href="美食all.html"><img src="images/美食.png" style="max-width:120px;height:auto" /></a></li>
       <li><a href="會員all.html"><img src="images/會員1.png" style="max-width:120px;height:auto;padding-top:7px;margin-left:7px;" /></a></li>
-      <li><a href="#"><img src="images/about1.png" style="max-width:80px;height:auto;padding-top:7px;" /></a></li>
+      <li><a href="關於我.html"><img src="images/about1.png" style="max-width:80px;height:auto;padding-top:7px;" /></a></li>
       <li>
         <a href="會員登入.html"><button class="button" style="vertical-align:middle"><span>登入</span></button></a>
-        <a href="會員註冊.html"><button class="button" style="vertical-align:middle"><span>註冊</span></button></a>
+        <a href=""><button class="button" style="vertical-align:middle"><span>登出</span></button></a>
       </li>
+  
    </ul>
  </div>
 </div>
@@ -511,15 +519,21 @@ font-size: 6vmin;
 <!--手機板的標題><!-->
 <table width="100%" style="font-size: 4vmin;border-width: 3px;">
 <tr>
-<th style="padding-top: 20px ;padding-bottom:10px;list-style-type:none;
-    display:inline;">
+<th style="
+  left: 30px;
+  padding-top:120px;
+  padding-bottom:10px;
+  list-style-type:none;
+  display:inline;
+  position: absolute;
+  z-index:2;">
 
-    <a href="" style="border-left:3px #FFD382 solid;margin: 0px 5px 0px 40px;">景點</a>
-    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">美食</a>
-    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a>
-    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">關於我</a>
-    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">登入</a>
-    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">註冊</a>
+    <a href="景點all.html" style="border-left:3px #FFD382 solid;margin: 0px 5px 0px 40px;">景點</a>
+    <a href="美食all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">美食</a>
+    <a href="會員all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a>
+    <a href="關於我.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">關於我</a>
+    <a href="會員登入.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">登入</a>
+    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">登出</a>
 
 </th>
 </tr>

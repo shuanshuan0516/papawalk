@@ -4,7 +4,7 @@
 
 }
 @media (max-width: 768px) {
-    .Heamder {
+    .Header {
       max-width: 100%; 
       height: auto;
       background:#ED9292;
@@ -183,8 +183,17 @@ list-style-type:none;
     width:100%;
     z-index:2;
     background-color:#ED9292;
-    
   }
+  @media (max-width: 768px) {
+    #real_header {
+    top:0%;
+    position:absolute;
+    width:100%;
+    z-index:2;
+    background-color:#ED9292;
+    padding-bottom: 35px;
+  }
+}
 
   .menu_list {  
   width: 120px;
@@ -281,10 +290,13 @@ padding-top:7px;
   border-width: 3px;
 }
 #ph2{
-  padding-top: 20px ;
+  left: 30px;
+  padding-top:120px;
   padding-bottom:10px;
   list-style-type:none;
   display:inline;
+  position: absolute;
+  z-index:2;
 }
 #ph3{
 border-left:3px #FFD382 solid;

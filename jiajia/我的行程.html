@@ -247,17 +247,23 @@ list-style-type:none;
     list-style-type:none;
     display:inline;
   }
-
   #real_header {
     top:0%;
     position:fixed;
     width:100%;
     z-index:2;
     background-color:#ED9292;
-
-    
   }
-
+@media (max-width: 768px) {
+    #real_header {
+    top:0%;
+    position:absolute;
+    width:100%;
+    z-index:2;
+    background-color:#ED9292;
+    padding-bottom:30px;
+  }
+}
 .menu_list {  
   width: 120px;
 }
@@ -303,40 +309,7 @@ list-style-type:none;
         position:absolute;
         z-index: -1;
     }
-#love1{
-  margin-left:5px;
-  margin-top:135px;
-  box-shadow:5px 5px 12px #ED9292;
-  width:130px;
-  height: 500px;
-  text-align:center;
-  color: black;
-  position: fixed;
-}
-#love2{
-  margin-left:145px;
-  margin-top:135px;
-  box-shadow:5px 5px 12px #ED9292;
-  width:250px;
-  height: 500px;
-  text-align:center;
-  color: black;
-  position: fixed;
-}
-#l1{
-  border:4px black solid;
-  border-radius:5px;
-  width:165px;
-  height:45px;
-  background-color:#eee;
-  font-size:4vmin;
-  text-align:center;
-  margin-top: 20px;
-  padding:3px;
-}
-#l2{
-  padding: 5px;
-}
+
 #p1{
      border:2px black dashed;  
      background-size: cover;
@@ -399,28 +372,10 @@ list-style-type:none;
 #p11,#p22,#p33,#p44{
   padding-top: 90px
 }
-.but{
-  font-size: 20px; 
-  background-color: transparent; 
-  border-radius: 8px; 
-  border: 2px solid rgba(105,105,105,0.6);
-  margin-top: 70px;
-}
-.but1{
-  font-size: 20px; 
-  background-color: transparent; 
-  border-radius: 8px; 
-  border: 2px solid rgba(105,105,105,0.6);
-  margin:10px;
-}
+
 .love3{
-  margin-left:400px;
   margin-top:135px;
-  box-shadow:1px 1px 12px #ED9292;
-  width:860px;
-  height:auto;
   text-align:center;
-  position: absolute;
 }
 #love31{
   border:4px black dashed;   
@@ -428,7 +383,7 @@ list-style-type:none;
   padding: 10px;
   height: 180px;  
   width:500px;  
-  margin-left:150px;  
+  margin-left:350px;  
   margin-bottom: 20px;
   border-radius:10px;
   text-align: center;
@@ -469,9 +424,9 @@ font-size: 6vmin;
          <li><a href="景點all.html"><img src="images/景點.png" style="max-width:120px;height:auto" /></a></li>
          <li><a href="美食all.html"><img src="images/美食.png" style="max-width:120px;height:auto" /></a></li>
          <li><a href="會員all.html"><img src="images/會員1.png" style="max-width:120px;height:auto;margin-top:7px" /></a></li>
-         <li><a href=""><img src="images/about1.png" style="max-width:80px;height:auto;margin-top:7px" /></a></li>
+         <li><a href="關於我.html"><img src="images/about1.png" style="max-width:80px;height:auto;margin-top:7px" /></a></li>
          <li><a href="會員登入.html"><button class="button" style="vertical-align:middle;margin-top:14px;margin-left: 10px"><span>登入</span></button></a></li>
-         <li><a href="會員註冊.html"></a><button class="button" style="vertical-align:middle;margin-top:14px;margin-right: 15px"><span>註冊</span></button></a></li>
+         <li><a href=""><button class="button" style="vertical-align:middle;margin-top:14px;margin-left: 10px"><span>登出</span></button></a></li>
       </ul>
     </div>
     <div id="phone-navi">
@@ -479,10 +434,10 @@ font-size: 6vmin;
     <li><a href="index.html" style="border-left:3px #FFD382 solid;margin: 0px 5px 0px 5px;">首頁</a></li>
     <li><a href="景點all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">景點</a></li>
     <li><a href="美食all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">美食</a></li>
-    <li><a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a></li>
-    <li><a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">關於我</a></li>
+    <li><a href="會員all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a></li>
+    <li><a href="關於我.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">關於我</a></li>
     <li><a href="會員登入.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">登入</a></li>
-    <li><a href="會員註冊.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">註冊</a></li>
+    <li><a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">登出</a></li>
       </ul>
     </div>
 </div>
@@ -497,11 +452,12 @@ font-size: 6vmin;
       <li><a href="景點all.html"><img src="images/景點.png" style="max-width:120px;height:auto" /></a></li>
       <li><a href="美食all.html"><img src="images/美食.png" style="max-width:120px;height:auto" /></a></li>
       <li><a href="會員all.html"><img src="images/會員1.png" style="max-width:120px;height:auto;padding-top:7px;margin-left:7px;" /></a></li>
-      <li><a href="#"><img src="images/about1.png" style="max-width:80px;height:auto;padding-top:7px;" /></a></li>
+      <li><a href="關於我.html"><img src="images/about1.png" style="max-width:80px;height:auto;padding-top:7px;" /></a></li>
       <li>
         <a href="會員登入.html"><button class="button" style="vertical-align:middle"><span>登入</span></button></a>
-        <a href="會員註冊.html"><button class="button" style="vertical-align:middle"><span>註冊</span></button></a>
+        <a href=""><button class="button" style="vertical-align:middle"><span>登出</span></button></a>
       </li>
+  
    </ul>
  </div>
 </div>
@@ -511,91 +467,42 @@ font-size: 6vmin;
 <!--手機板的標題><!-->
 <table width="100%" style="font-size: 4vmin;border-width: 3px;">
 <tr>
-<th style="padding-top: 20px ;padding-bottom:10px;list-style-type:none;
-    display:inline;">
+<th style="
+  left: 30px;
+  padding-top:120px;
+  padding-bottom:10px;
+  list-style-type:none;
+  display:inline;
+  position: absolute;
+  z-index:2;">
 
-    <a href="" style="border-left:3px #FFD382 solid;margin: 0px 5px 0px 40px;">景點</a>
-    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">美食</a>
-    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a>
-    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">關於我</a>
-    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">登入</a>
-    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">註冊</a>
-
+    <a href="景點all.html" style="border-left:3px #FFD382 solid;margin: 0px 5px 0px 40px;">景點</a>
+    <a href="美食all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">美食</a>
+    <a href="會員all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a>
+    <a href="關於我.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">關於我</a>
+    <a href="會員登入.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">登入</a>
+    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">登出</a>
 </th>
 </tr>
 </table>
             
 </div>
 
-<div id="love1">
-  <div class="menu_list" id="secondpane" style="padding-top: 20px"> <!--Code for menu starts here-->
-    <p class="menu_head">北部</p>
-    <div class="menu_body">
-    <a href="景點.html?&0">基隆</a> 
-    <a href="景點.html?&1">台北</a>
-    <a href="景點.html?&2">新北</a>
-    <a href="景點.html?&3">桃園</a> 
-    <a href="景點.html?&4">新竹</a>
-    <a href="景點.html?&16">宜蘭</a>  
-    </div>
-    <p class="menu_head">中部</p>
-    <div class="menu_body">
-    <a href="景點.html?&5">苗栗</a>
-    <a href="景點.html?&6">台中</a>
-    <a href="景點.html?&7">彰化</a> 
-    <a href="景點.html?&8">南投</a>
-    <a href="景點.html?&9">雲林</a>  
-    </div>
-    <p class="menu_head">南部</p>
-    <div class="menu_body">
-    <a href="景點.html?&10">嘉義</a>
-    <a href="景點.html?&11">台南</a>
-    <a href="景點.html?&12">高雄</a>  
-    <a href="景點.html?&13">屏東</a>  
-    <a href="景點.html?&15">澎湖</a>   
-    </div>
-     <p class="menu_head">東部</p>
-    <div class="menu_body">
-    <a href="景點.html?&20">花蓮</a>
-    <a href="景點.html?&14">台東</a>  
-    </div>
-     <p class="menu_head">離島</p>
-    <div class="menu_body">
-    <a href="景點.html?&18">金門</a>
-    <a href="景點.html?&17">綠島</a>
-    <a href="景點.html?&19">蘭嶼</a>    
-    </div>
-
-  </div>      <!--Code for menu ends here-->
-</div>
-<div id="love2">
-<center><div id="l1"> 我的收藏-基隆</div></center>
-<div id="l2">
-  <div id=p1><div id="p11">#飛碟屋遺址</div></div>
-  <div id="p2"><div id="p11">#基隆車站</div></div>
-  <div id="p9"><div id="p11">#阿根納造船廠</div></div>
-  <div id="p8"><div id="p44">#基隆正濱漁港</div></div>
-</div>
-<button class="but">加入</button>
-</div>
 
 <div class="love3">
-  <p><center style="font-size: 8vmin;padding-top: 20px;">行程規劃</center></p>
+  <p><center style="font-size: 8vmin;padding-top: 20px;">我的行程</center></p>
   <div id="love31">
-      <a id="p3"></a><p id="p111">#基隆車站</p>
+      <a id="p3"></a><p id="p111">#我的基隆兩日遊</p>
   </div>
   <div id="love31">
-      <a id="p4"></a><p id="p222">#阿根納造船廠</p>
+      <a id="p4"></a><p id="p222">#快閃宜蘭一日遊</p>
   </div>
   <div id="love31">
-      <a id="p5"></a><p id="p333">#正濱漁港</p>
+      <a id="p5"></a><p id="p333">#台中兩天一夜</p>
   </div>
   <div id="love31">
-      <a id="p6"></a><p id="p444">#基隆象鼻岩</p>
+      <a id="p6"></a><p id="p444">#開心出遊花蓮</p>
   </div>
-  <ul id=sure>
-<button class="but1">確認</button>
-</ul>
 </div>
 
     </div>
