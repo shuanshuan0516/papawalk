@@ -94,7 +94,7 @@
   padding: 10px;
   height: auto;   
   max-width: 300px;   
-  border-radius:10px; 
+  border-radius:10px;
 } 
 
 .mm{
@@ -129,33 +129,36 @@
 #bb{
   display: block;
 }
+
 </style>
 
 
 <body>
 
-<div class="container" style="padding: 0;">
+<div class="container">
         
 <!--往下滑的標題><!-->
 <div id="fixed_header">
     <div id="navi">
       <ul>
-         <li><a href="index.html"><img src="images/趴.png" style="max-height:65px;width:auto;padding-right: 265px"/></li>
-         <li><a href="景點all.html"><img src="images/景點.png" style="max-width:120px;height:auto" /></a></li>
-         <li><a href="美食all.html"><img src="images/美食.png" style="max-width:120px;height:auto" /></a></li>
-         <li><a href="會員all.html"><img src="images/會員1.png" style="max-width:120px;height:auto;margin-top:7px" /></a></li>
-         <li><a href=""><img src="images/about1.png" style="max-width:80px;height:auto;margin-top:7px" /></a></li>
-         <li><a href="會員登入.html"><button class="button" style="vertical-align:middle;margin-top:14px;margin-left: 10px"><span>登入</span></button></a></li>
+         <li><a href="index.html"><img id="navi1" src="images/趴.png"></li>
+         <li><a href="景點all.html"><img id="navi2" src="images/景點.png"></a></li>
+         <li><a href="美食all.html"><img id="navi2" src="images/美食.png"></a></li>
+         <li><a href="會員all.html"><img id="navi3" src="images/會員1.png"></a></li>
+         <li><a href="關於我.html"><img id="navi4" src="images/about1.png"></a></li>
+         <li><a href="會員登入.html"><button class="button"><span>登入</span></button></a></li>
+         <li><a href=""><button class="button"><span>登出</span></button></a></li>
       </ul>
     </div>
     <div id="phone-navi">
       <ul>
-    <li><a href="index.html" style="border-left:3px #FFD382 solid;margin: 0px 5px 0px 5px;">首頁</a></li>
-    <li><a href="景點all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">景點</a></li>
-    <li><a href="美食all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">美食</a></li>
-    <li><a href="會員all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a></li>
-    <li><a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">關於我</a></li>
-    <li><a href="會員登入.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">登入</a></li>
+    <li><a href="index.html" id="phone-navi1">首頁</a></li>
+    <li><a href="景點all.html" id="phone-navi2">景點</a></li>
+    <li><a href="美食all.html" id="phone-navi2">美食</a></li>
+    <li><a href="會員all.html" id="phone-navi2">會員專區</a></li>
+    <li><a href="關於我.html" id="phone-navi2">關於我</a></li>
+    <li><a href="會員登入.html" id="phone-navi2">登入</a></li>
+    <li><a href="" id="phone-navi2">登出</a></li>
       </ul>
     </div>
 </div>
@@ -167,12 +170,13 @@
    </div>
 
    <ul class="good">
-      <li><a href="景點all.html"><img src="images/景點.png" style="max-width:120px;height:auto" /></a></li>
-      <li><a href="美食all.html"><img src="images/美食.png" style="max-width:120px;height:auto" /></a></li>
-      <li><a href="會員all.html"><img src="images/會員1.png" style="max-width:120px;height:auto;padding-top:7px;margin-left:7px;" /></a></li>
-      <li><a href="#"><img src="images/about1.png" style="max-width:80px;height:auto;padding-top:7px;" /></a></li>
+      <li><a href="景點all.html"><img src="images/景點.png" id="good1"></a></li>
+      <li><a href="美食all.html"><img src="images/美食.png" id="good1"></a></li>
+      <li><a href="會員all.html"><img src="images/會員1.png" id="good2"></a></li>
+      <li><a href="關於我.html"><img src="images/about1.png" id="good3"></a></li>
       <li>
-        <a href="會員登入.html"><button class="button" style="vertical-align:middle"><span>登入</span></button></a>
+        <a href="會員登入.html"><button class="button"><span>登入</span></button></a>
+        <a href=""><button class="button"><span>登出</span></button></a>
       </li>
    </ul>
  </div>
@@ -181,16 +185,16 @@
    
     
 <!--手機板的標題><!-->
-<table width="100%" style="font-size: 4vmin;border-width: 3px;">
+<table width="100%" id="ph1">
 <tr>
-<th style="padding-top: 20px ;padding-bottom:10px;list-style-type:none;
-    display:inline;">
+<th id="ph2">
 
-    <a href="景點all.html" style="border-left:3px #FFD382 solid;margin: 0px 5px 0px 40px;">景點</a>
-    <a href="美食all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">美食</a>
-    <a href="會員all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a>
-    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">關於我</a>
-    <a href="會員登入.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">登入</a>
+    <a href="景點all.html" id="ph3">景點</a>
+    <a href="美食all.html" id="ph4">美食</a>
+    <a href="會員all.html" id="ph4">會員專區</a>
+    <a href="關於我.html" id="ph4">關於我</a>
+    <a href="會員登入.html" id="ph4">登入</a>
+    <a href="" id="ph4">登出</a>
 
 </th>
 </tr>
