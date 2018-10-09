@@ -67,33 +67,46 @@ body {
 
 
 #consolea{
-  text-align:center;
-  font-size:10vmin;
-  margin-top: 150px;
-  position:absolute;
-        z-index: -1;
-}
+  font-size:8vmin;
+  color:#4f4f4f;
+  font-weight: bold;
+  margin-bottom:10px;
+  margin-top: 170px;
+    }
 #consolep1{
-  left:50%;
   background-size: cover; 
-  height:300px; 
-  width:300px;
-  position:absolute;
-        z-index: -1;
+  height:350px; 
+  width:350px;
+  margin:20px;
 }
 #consolep2{
-  top:50%;
-  left:30%;
-  max-width: 40%;
+  max-width:330px;
   height:50%; 
-  position:absolute;
-        z-index: -1;
-}
-.pic{
-  padding:0px;
+  color:#4f4f4f;
+  margin: 20px;
 }
 
+.consoleall{   
+  border:4px black dashed;   
+  margin: 10px;   
+  padding: 10px;  
+  max-width: 430px;
+  height: auto;    
+  border-radius:10px;
+  margin-left:410px;
+} 
 
+@media (max-width: 768px) {
+    .consoleall{   
+  border:4px black dashed;   
+  margin: 10px;   
+  padding: 10px;  
+  max-width: 430px;
+  height: auto;    
+  border-radius:10px;
+  margin-left:30px;
+} 
+}
 
 </style>
 <body>
@@ -290,11 +303,14 @@ body {
   });
   </script>
 
-<div class="consoleall">
-<div id="consolea" >#</div>
+
+<center id="consolea" >#</center>
+<center class="consoleall">
 <div id="consolep1"></div>
-<div id="consolep2" class="col-md-6 col-sm-12 text1"></div>
-</div>
+<div id="consolep2"></div>
+</center>
+
+
 
 </div>
 
