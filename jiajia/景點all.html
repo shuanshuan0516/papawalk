@@ -54,16 +54,19 @@
   };
   firebase.initializeApp(config);
 
-  var provider = new firebase.auth.GoogleAuthProvider();
+
+
+
+
+  /*function login_init(){
+
+   var provider = new firebase.auth.GoogleAuthProvider();
   provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
   firebase.auth().languageCode = 'tw';
   provider.setCustomParameters({
       'login_hint': 'user@example.com'
   });
 
-  
-
-  function login_init(){
       let name = document.cookie.split("user=")[1].split(";")[0];
       let login= document.cookie.split("login=")[1].split(";")[0];
       if(login==="1")
@@ -77,11 +80,11 @@
           document.querySelector("#logout").style.visibility = "hidden";
       }
   }
-  login_init();
+  login_init(); */
 
   var token;
   // The signed-in user info.
-  var user;
+  var userr;
 
   function check(condition) {
       if(condition === 1){
@@ -89,10 +92,10 @@
               // This gives you a Google Access Token. You can use it to access the Google API.
               token = result.credential.accessToken;
               // The signed-in user info.
-              user = result.user;
+              userr = result.userr;
 
-              document.cookie = "user="+user.displayName;
-              document.cookie = "uid="+user.uid;
+              document.cookie = "user="+userr.displayName;
+              document.cookie = "uid="+userr.uid;
               document.cookie = "login=1";
               login_init();
               // ...
@@ -139,8 +142,9 @@
   ;
 
 </script>
+
 <script type="text/javascript">
-  var username = document.cookie.split("user=")[1].split(";")[0];
+/*  var username = document.cookie.split("user=")[1].split(";")[0];
   var login= document.cookie.split("login=")[1].split(";")[0];
   if(login=1)
   {
@@ -148,6 +152,7 @@
     document.querySelector("#login").style.visibility = "hidden";
     document.querySelector("#logout").style.visibility = "visible";
   }
+  */
 </script>
 </head>
 <style type="text/css">
@@ -200,9 +205,30 @@
          <li><a href="會員all.html"><img src="images/會員1.png" style="max-width:120px;height:auto;margin-top:7px" /></a></li>
          <li><a href=""><img src="images/about1.png" style="max-width:80px;height:auto;margin-top:7px" /></a></li>
           <li>
+
+              <div id="user" style="text-align: right;"></div>
               <button id="login" class="button" onclick="check(1)" style="vertical-align:middle"><span>登入</span></button>
               <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle"><span>登出</span></button>
-              <div id="user" style="text-align: center;"></div>
+
+
+              <script type="text/javascript">
+
+                  let name = document.cookie.split("user=")[1].split(";")[0];
+                  let login= document.cookie.split("login=")[1].split(";")[0];
+                  if(login.length=== 1)
+                  {
+                      document.getElementById("user").innerText = name;
+                      document.querySelector("#login").style.visibility = "hidden";
+                      document.querySelector("#logout").style.visibility = "visible";
+                  }else{
+                      document.getElementById("user").innerText = "";
+                      document.querySelector("#login").style.visibility = "visible";
+                      document.querySelector("#logout").style.visibility = "hidden";
+                  }
+              </script>
+
+
+
           </li>
       </ul>
     </div>
