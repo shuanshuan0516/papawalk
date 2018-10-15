@@ -121,7 +121,7 @@
 
 
         }
-//登入
+        //登入
   var pre = document.getElementById('object');
   var a = 0;
   for(var i = 0;i<10;i++){
@@ -182,8 +182,8 @@
          <li><a href="關於我.html"><img id="navi4" src="images/about1.png"></a></li>
          <li>
           <div id="user" style="text-align:right;"></div>
-          <button id="login" class="button" onclick="check(1)"><span>登入</span></button>
-          <button id="logout" class="button" onclick="check(2)"><span>登出</span></button>
+          <a id="login" class="button" onclick="check(1)">登入</a>
+          <a id="logout" class="button" onclick="check(2)">登出</a>
          </li>
       </ul>
     </div>
@@ -194,25 +194,26 @@
     <li><a href="美食all.html" id="phone-navi2">美食</a></li>
     <li><a href="會員all.html" id="phone-navi2">會員專區</a></li>
     <li><a href="關於我.html" id="phone-navi2">關於我</a></li>
-    <li>
-          <div id="user" style="text-align:right;"></div>
-          <button id="login" class="button" onclick="check(1)"><span>登入</span></button>
-          <button id="logout" class="button" onclick="check(2)"><span>登出</span></button>
-          <script type="text/javascript">
-            var name = document.cookie.split("user=")[1].split(";")[0];
-            var login= document.cookie.split("login=")[1].split(";")[0];
-            if(login.length=1)
-             {
-              document.getElementById("user").innerText = name;
-              document.querySelector("#login").style.visibility = "hidden";
-              document.querySelector("#logout").style.visibility = "visible";
-             }else{
-              document.getElementById("user").innerText = "";
-              document.querySelector("#login").style.visibility = "visible";
-              document.querySelector("#logout").style.visibility = "hidden";
-             }
-          </script>
-    </li>
+        <li>
+            <div id="user" style="text-align:right;"></div>
+            <a id="login" onclick="check(1)">登入</a>
+            <a id="logout" onclick="check(2)">登出</a>
+
+            <script type="text/javascript">
+                var name = document.cookie.split("user=")[1].split(";")[0];
+                var login= document.cookie.split("login=")[1].split(";")[0];
+                if(login.length=1)
+                {
+                    document.getElementById("user").innerText = name;
+                    document.querySelector("#login").style.visibility = "hidden";
+                    document.querySelector("#logout").style.visibility = "visible";
+                }else{
+                    document.getElementById("user").innerText = "";
+                    document.querySelector("#login").style.visibility = "visible";
+                    document.querySelector("#logout").style.visibility = "hidden";
+                }
+            </script>
+        </li>
     </ul>
     </div>
 </div>
@@ -230,8 +231,8 @@
       <li><a href="關於我.html"><img src="images/about1.png" id="good3"></a></li>
       <li>
           <div id="user" style="text-align:right;"></div>
-          <button id="login" class="button" onclick="check(1)"><span>登入</span></button>
-          <button id="logout" class="button" onclick="check(2)"><span>登出</span></button>
+          <a id="login" class="button" onclick="check(1)">登入</a>
+          <a id="logout" class="button" onclick="check(2)">登出</a>
       </li>
    </ul>
  </div>
@@ -250,8 +251,8 @@
     <a href="關於我.html" id="ph4">關於我</a>
     <li>
         <div id="user" style="text-align:right;"></div>
-        <button id="login" class="button" onclick="check(1)"><span>登入</span></button>
-        <button id="logout" class="button" onclick="check(2)"><span>登出</span></button>
+        <a id="login"  onclick="check(1)">登入</a>
+        <a id="logout"  onclick="check(2)">登出</a>
     </li>
 
 </th>
