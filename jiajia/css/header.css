@@ -195,28 +195,31 @@ list-style-type:none;
   }
 }
 
-  .menu_list {  
-  width: 120px;
+.menu_list {  
+  width: 100px;
 }
 .menu_head {
   font-size:5vmin;
-  padding: 5px 10px;
   cursor: pointer;
   position: relative;
-  margin:1px;
+  margin:0.1px;
   font-weight:bold;
   background:#fff;
+  color:#4f4f4f;
+  text-align: center;
+  height: 70px;
 }
 .menu_body {
   display:none;
 }
 .menu_body a{
   display:block;
-  color:#006699;
+  color:#4f4f4f;
   background-color:#EFEFEF;
-  padding-left:10px;
   font-weight:bold;
   text-decoration:none;
+  padding-bottom:4px;
+  text-align: center;
 }
 .menu_body a:hover{
   color: #000000;
@@ -236,12 +239,26 @@ list-style-type:none;
     #phonemenu{
       display: block;
     }
+    .menu_head {
+  font-size:5vmin;
+  cursor: pointer;
+  position: relative;
+  padding-top: 20px;
+  margin:0.1px;
+  font-weight:bold;
+  background:#fff;
+  color:#4f4f4f;
+  text-align: center;
+  height: 70px;
+}
+   .menu_list{
+    margin-left: 30px;
+   }
 }
 
 #navi1{
   max-height:65px;
   width:auto;
-  padding-right: 265px;
 }
 #navi2{
   max-width:120px;

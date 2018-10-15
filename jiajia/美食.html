@@ -27,6 +27,7 @@
 <link rel="stylesheet" type="text/css" href="css/手機選單3.css">
 <link rel="stylesheet" type="text/css" href="css/jia.css">
 <link rel="stylesheet" type="text/css" href="css/header.css">
+<link rel="stylesheet" href="css/向上.css">
     <!--[if IE]>
     <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -107,7 +108,7 @@
 
 <body>
 <div class="container">
-        
+        <header>
 <!--往下滑的標題><!-->
 <div id="fixed_header">
     <div id="navi">
@@ -172,7 +173,7 @@
 </table>
             
 </div>
-
+</header>
  
 <div id="netmenu">
 <div id="menu">
@@ -228,9 +229,7 @@
 
 </ul>
 </div>
-<svg version="1.1" id="blob" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<path id="blob-path" d="M60,500H0V0h60c0,0,20,172,20,250S60,900,60,500z" />
-</svg>
+
 </div>
 <h2>地區選單</h2>
 </div>
@@ -554,7 +553,9 @@
 
 </div>
 
-
+<button class="material-scrolltop" type="button">
+    <span>↑</span>
+</button>
 <script type="text/javascript">
 $(document).ready(function()
 {
@@ -572,5 +573,17 @@ $(document).ready(function()
   });
 });
 </script>
+<script src="js/向上.js"></script>
+<script>
+    $(document).ready(function() {
+        $('body').materialScrollTop({
+            revealElement: 'header',
+            revealPosition: 'bottom',
+            onScrollEnd: function() {
+            console.log('Scrolling End');
+            }
+        });
+    });
+</script>  
 </body>
 </html>

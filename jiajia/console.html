@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
-
+  
 
 <link href="SpryAssets/stylesheet.css rel="stylesheet" type="text/css"/>
 <script src="SpryAssets/SpryMenuBar.js" type="text/javascript"> </script>
@@ -27,6 +27,7 @@
 <link rel="stylesheet" type="text/css" href="css/手機選單3.css">
 <link rel="stylesheet" type="text/css" href="css/jia.css">
 <link rel="stylesheet" type="text/css" href="css/header.css">
+<link rel="stylesheet" href="css/向上.css">
 
 <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
 <script>
@@ -112,7 +113,7 @@ body {
 <body>
 
 <div class="container">
-        
+        <header>
 <!--往下滑的標題><!-->
 <div id="fixed_header">
     <div id="navi">
@@ -177,7 +178,7 @@ body {
 </table>
             
 </div>
-
+</header>
  
 <div id="netmenu">
 <div id="menu">
@@ -233,9 +234,7 @@ body {
 
 </ul>
 </div>
-<svg version="1.1" id="blob" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<path id="blob-path" d="M60,500H0V0h60c0,0,20,172,20,250S60,900,60,500z" />
-</svg>
+
 </div>
 <h2>地區選單</h2>
 </div>
@@ -314,7 +313,9 @@ body {
 
 </div>
 
-
+<button class="material-scrolltop" type="button">
+    <span>↑</span>
+</button>
  <script type="text/javascript">
 $(document).ready(function()
 {
@@ -332,5 +333,29 @@ $(document).ready(function()
   });
 });
 </script>
+<script src="js/向上.js"></script>
+  <script>
+        $(document).ready(function() {
+            $('body').materialScrollTop({
+                revealElement: 'header',
+                revealPosition: 'bottom',
+                onScrollEnd: function() {
+                    console.log('Scrolling End');
+                }
+            });
+        });
+    </script>
+<script src="js/向上.js"></script>
+<script>
+    $(document).ready(function() {
+        $('body').materialScrollTop({
+            revealElement: 'header',
+            revealPosition: 'bottom',
+            onScrollEnd: function() {
+            console.log('Scrolling End');
+            }
+        });
+    });
+</script>  
 </body>
 </html>
