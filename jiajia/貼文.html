@@ -44,7 +44,74 @@
     messagingSenderId: "157048895266"
   };
   firebase.initializeApp(config);
+  //登入
+  var provider = new firebase.auth.GoogleAuthProvider();
+  provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+  firebase.auth().languageCode = 'tw';
+  provider.setCustomParameters({
+      'login_hint': 'user@example.com'
+  });
 
+  function login_init(){
+      let name = document.cookie.split("user=")[1].split(";")[0];
+      let login= document.cookie.split("login=")[1].split(";")[0];
+      if(login==="1")
+      {
+          document.getElementById("user").innerText = name;
+          document.querySelector("#login").style.visibility = "hidden";
+          document.querySelector("#logout").style.visibility = "visible";
+      }else{
+          document.getElementById("user").innerText = "";
+          document.querySelector("#login").style.visibility = "visible";
+          document.querySelector("#logout").style.visibility = "hidden";
+      }
+  }
+  login_init();
+
+  var token;
+  // The signed-in user info.
+  var user;
+
+
+  function check(condition) {
+      if(condition === 1){
+          firebase.auth().signInWithPopup(provider).then(function (result) {
+              // This gives you a Google Access Token. You can use it to access the Google API.
+              token = result.credential.accessToken;
+              // The signed-in user info.
+              user = result.user;
+
+              document.cookie = "user="+user.displayName;
+              document.cookie = "uid="+user.uid;
+              document.cookie = "login=1";
+              login_init();
+              // ...
+          }).catch(function (error) {
+              // Handle Errors here.
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              // The email of the user's account used.
+              var email = error.email;
+              // The firebase.auth.AuthCredential type that was used.
+              var credential = error.credential;
+              // ...
+
+              firebase.auth().signInWithRedirect(provider);
+          });
+      }else{
+          firebase.auth().signOut().then(function() {
+              alert("已成功登出!");
+              document.cookie = "login= ";
+              document.cookie = "user= ";
+              document.cookie = "uid= ";
+              login_init();
+              // Sign-out successful.
+          }).catch(function(error) {
+              // An error happened.
+          });
+      }
+  }
+  //登入
         let get = location.search.split("&");
 
         var db = firebase.database().ref("ig/-LMgrtd3Ga0A5MnCVRxF/景點/" + get[1] + "/1/" + get[2]);
@@ -148,8 +215,11 @@
          <li><a href="美食all.html"><img id="navi2" src="images/美食.png"></a></li>
          <li><a href="會員all.html"><img id="navi3" src="images/會員1.png"></a></li>
          <li><a href="關於我.html"><img id="navi4" src="images/about1.png"></a></li>
-         <li><a href="會員登入.html"><button class="button"><span>登入</span></button></a></li>
-         <li><a href=""><button class="button"><span>登出</span></button></a></li>
+          <li>
+              <div id="user" style="text-align:right;"></div>
+              <a id="login" class="button" onclick="check(1)">登入</a>
+              <a id="logout" class="button" onclick="check(2)">登出</a>
+          </li>
       </ul>
     </div>
     <div id="phone-navi">
@@ -159,8 +229,26 @@
     <li><a href="美食all.html" id="phone-navi2">美食</a></li>
     <li><a href="會員all.html" id="phone-navi2">會員專區</a></li>
     <li><a href="關於我.html" id="phone-navi2">關於我</a></li>
-    <li><a href="會員登入.html" id="phone-navi2">登入</a></li>
-    <li><a href="" id="phone-navi2">登出</a></li>
+          <li>
+              <div id="user" style="text-align:right;"></div>
+              <a id="login" onclick="check(1)">登入</a>
+              <a id="logout" onclick="check(2)">登出</a>
+
+              <script type="text/javascript">
+                  var name = document.cookie.split("user=")[1].split(";")[0];
+                  var login= document.cookie.split("login=")[1].split(";")[0];
+                  if(login.length=1)
+                  {
+                      document.getElementById("user").innerText = name;
+                      document.querySelector("#login").style.visibility = "hidden";
+                      document.querySelector("#logout").style.visibility = "visible";
+                  }else{
+                      document.getElementById("user").innerText = "";
+                      document.querySelector("#login").style.visibility = "visible";
+                      document.querySelector("#logout").style.visibility = "hidden";
+                  }
+              </script>
+          </li>
       </ul>
     </div>
 </div>
@@ -176,10 +264,11 @@
       <li><a href="美食all.html"><img src="images/美食.png" id="good1"></a></li>
       <li><a href="會員all.html"><img src="images/會員1.png" id="good2"></a></li>
       <li><a href="關於我.html"><img src="images/about1.png" id="good3"></a></li>
-      <li>
-        <a href="會員登入.html"><button class="button"><span>登入</span></button></a>
-        <a href=""><button class="button"><span>登出</span></button></a>
-      </li>
+       <li>
+           <div id="user" style="text-align:right;"></div>
+           <a id="login" class="button" onclick="check(1)">登入</a>
+           <a id="logout" class="button" onclick="check(2)">登出</a>
+       </li>
    </ul>
  </div>
 </div>
@@ -195,8 +284,11 @@
     <a href="美食all.html" id="ph4">美食</a>
     <a href="會員all.html" id="ph4">會員專區</a>
     <a href="關於我.html" id="ph4">關於我</a>
-    <a href="會員登入.html" id="ph4">登入</a>
-    <a href="" id="ph4">登出</a>
+    <li>
+        <div id="user" style="text-align:right;"></div>
+        <a id="login"  onclick="check(1)">登入</a>
+        <a id="logout"  onclick="check(2)">登出</a>
+    </li>
 
 </th>
 </tr>
