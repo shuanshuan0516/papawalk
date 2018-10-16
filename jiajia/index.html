@@ -13,13 +13,14 @@
 
 <script src="js/bootstrap.min.js"></script>
 
-    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 <link href="SpryAssets/stylesheet.css" rel="stylesheet" type="text/css"/>
 <script src="SpryAssets/SpryMenuBar.js" type="text/javascript"> </script>
 <link href="SpryAssets/SpryMenuBarVertical.css" rel="stylesheet" type="text/css" />
     <script>
 
-        var config = {
+
+       var config = {
             apiKey: "AIzaSyAUnA_8r0-qHb6bCTMi0SCzHcUlc07Qbdk",
             authDomain: "jia618-d8042.firebaseapp.com",
             databaseURL: "https://jia618-d8042.firebaseio.com",
@@ -105,11 +106,11 @@ body{
 }
 .container
 {
-	margin: 0;
-	max-width: 100%;
+  margin: 0;
+  max-width: 100%;
   width: 1300px;
   padding: 0;
-		
+    
 }
 
   #outerspace {
@@ -440,6 +441,14 @@ body{
 </style>
 <body onload="login_init()">
 <div class="container" >
+<script type="text/javascript">
+    let name = document.cookie.split("user=");
+    let login= document.cookie.split("login=");
+    if(login=1)
+       {
+         document.getElementById("container").innerText = name[1]+"您好!!";
+       }
+</script>
 
 
 <div class="Header">
@@ -464,6 +473,7 @@ body{
         <button id="login" class="button" onclick="check(1)" style="vertical-align:middle"><span>登入</span></button>
           <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle"><span>登出</span></button>
           <div id="user" style="text-align: center;"></div>
+
       </li>
 
    </ul>
@@ -472,8 +482,9 @@ body{
       <li><a href="景點all.html" >景點</a></li>
       <li><a href="美食all.html">美食</a></li>
       <li><a href="會員all.html">會員專區</a></li>
-      <li><a href="#">關於我</a></li>
+      <li><a href="關於我.html">關於我</a></li>
       <li><a href="#">登入</a></li>
+      <li><a href="">登出</a></li>
       </center>
    </ul> 
 </div>

@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>就i趴趴走·景點</title>
+<title>就i趴趴走·美食貼文</title>
 
 <link rel="stylesheet" href="css/bootstrap.min.css"> 
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
@@ -25,6 +25,9 @@
     
 <link rel="stylesheet" href="css/選單.css">
 <link rel="stylesheet" type="text/css" href="css/手機選單3.css">
+<link rel="stylesheet" type="text/css" href="css/jia.css">
+<link rel="stylesheet" type="text/css" href="css/header.css">
+<link rel="stylesheet" href="css/向上.css">
 
 <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
 <script>
@@ -43,19 +46,19 @@
 var dbname = firebase.database().ref("ig/-LMzDW-tksmwMEzbo2P1/美食/"+get[1]+"/1/"+get[2]+"/0");
   dbname.on('value',function(snapshot){
     var content = snapshot.val();
-    var text = document.getElementById("a");
+    var text = document.getElementById("consolea");
     text.innerText = text.innerText+content;
  });
 var dbimage = firebase.database().ref("ig/-LMzDW-tksmwMEzbo2P1/美食/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/0");
   dbimage.on('value',function(snapshot){
     var content = snapshot.val();
-    var image = document.getElementById("p1");
+    var image = document.getElementById("consolep1");
     image.style.backgroundImage = "url("+content+")";
  });
 var dbcontent = firebase.database().ref("ig/-LMzDW-tksmwMEzbo2P1/美食/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/1");
   dbcontent.on('value',function(snapshot){
     var content = snapshot.val();
-    var text = document.getElementById("p2");
+    var text = document.getElementById("consolep2");
     text.innerText = content;
  });
 </script>  
@@ -64,315 +67,75 @@ body {
   font-family: SentyZHAO;
 }
 
-.container
-{
-    margin: 0;
-    max-width: 100%;
-    width: 1300px;
-   
-}
+
 #consolea{
-  text-align:center;
-  font-size:10vmin;
-  margin-top: 150px;
-  position:absolute;
-  z-index: -1;
-}
+  font-size:8vmin;
+  color:#4f4f4f;
+  font-weight: bold;
+  margin-bottom:10px;
+  margin-top: 230px;
+    }
 #consolep1{
-  display: block;
-  left:25%;
   background-size: cover; 
-  height:300px; 
-  width:300px;
-  position:absolute;
-  z-index: -1;
+  height:350px; 
+  width:350px;
+  margin:20px;
 }
 #consolep2{
-  top:50%;
-  left:30%;
-  max-width: 40%;
+  max-width:330px;
   height:50%; 
-  position:absolute;
-  z-index: -1;
-}
-.pic{
-  padding:0px;
+  color:#4f4f4f;
+  margin: 20px;
 }
 
-
-.Header {
-    height: 135px;
-    background:#ED9292;
-
-}
-@media (max-width: 768px) {
-    .Header {
-      max-width: 100%; 
-      height: auto;
-      background:#ED9292;
-      } //最大寬度為100%,取消高度改自動
-      }
-
-
-.Logo {
-  float: left;
-  margin: 10px 0 0 10px;
-  
-  }
-  
-@media (max-width: 768px) {
-    .Logo {
-            float: none;//取消浮動
-            margin: 0;
-    }
-}
-
-.Logo a {
-    display: block;
-    background: url(images/趴.png);
-    text-indent: -999999px;
-    width: 338px;
-    height:100px;
-    text-decoration: none; 
-    background-size: auto 100%;
-    margin-left:50px; 
-    }
-@media (max-width: 768px) {
-    .Logo a{
-        margin: 0 auto;//logo置中
-        
-    }
-}
-
-
-.good {
-    float: right;
-}
-
-.good li {
-    float: left;
-    width: 130px;
-    text-align: center;
-    list-style: none;
-    margin: 0px auto;
-    }
+.consoleall{   
+  border:4px black dashed;   
+  margin: 10px;   
+  padding: 10px;  
+  max-width: 430px;
+  height: auto;    
+  border-radius:10px;
+  margin-left:410px;
+} 
 
 @media (max-width: 768px) {
-    .good li {
-        display: none;
-    }
+    .consoleall{   
+  border:4px black dashed;   
+  margin: 10px;   
+  padding: 10px;  
+  max-width: 430px;
+  height: auto;    
+  border-radius:10px;
+  margin-left:30px;
+} 
 }
 
-table{
-  display: none;
-}
-
-
-
-.good li a {
-      text-decoration: none;
-      color: #00a67d;
-      display: block;
-      margin: 0 1px; 
-
-      }
-
-
-@media (max-width: 768px) {
-    table {
-      display: inline;
-    }
-}
-@media (max-width: 768px) { 
-    table a:hover{
-    color: white;//滑過文字變黑色
-
-    }
-}
-
-
-
-.button {
-  display: inline-block;
-  border-radius: 4px;
-  background-color: #7C9885;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 25px;
-  padding: 2px;
-  width: 80px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
-}
-
-.button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
-
-.button span:after {
-  content: '»';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-
-.button:hover span {
-  padding-right: 25px;
-}
-
-.button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-
-.title{
-    color: #FA8072;
-    font-weight: bold;
-    margin-bottom:10px;
-}
-.row{
-  color: black;
-   font-size:4vmin;
-
-}
-
-.item p{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-
-
-
-#fixed_header {
-    position:fixed;
-    z-index:1;
-    top:0;
-    width:100%;
-    background-color:#ED9292;
-
-  }
-  
-  #navi {
-    margin:0 auto;
-    text-align:right;
-list-style-type:none;
-  }
-  #phone-navi{
-    display: none;
-  }
-  @media (max-width: 768px) {
-    #navi {
-      display: none;
-    }
-}
-@media (max-width: 768px) {
-    #phone-navi {
-    display: inline;
-     margin:0px auto 0px auto;
-    text-align:center;
-
-    }
-    #phone-navi li {
-    list-style-type:none;
-    display:inline;
-  }
-    li{
-      margin: 0px 12px 0px 12px;
-      font-size:5vmin;
-      border-width:3px
-    }
-}
-
-  #navi li {
-    list-style-type:none;
-    display:inline;
-  }
-
-  #real_header {
-    top:0%;
-    position:absolute;
-    width:100%;
-    z-index:2;
-    background-color:#ED9292;
-    
-  }
-  
-
-.menu_list {  
-  width: 120px;
-}
-.menu_head {
-  font-size:5vmin;
-  padding: 5px 10px;
-  cursor: pointer;
-  position: relative;
-  margin:1px;
-  font-weight:bold;
-  background:#fff;
-}
-.menu_body {
-  display:none;
-}
-.menu_body a{
-  display:block;
-  color:#006699;
-  background-color:#EFEFEF;
-  padding-left:10px;
-  font-weight:bold;
-  text-decoration:none;
-}
-.menu_body a:hover{
-  color: #000000;
-  text-decoration:underline;
-  }
-
-#phonemenu{
-  display: none;
-}
-#nav,#nav-toggle{
-  display: none;
-}
-@media (max-width: 768px) {
-    #netmenu {
-      display: none;
-    }
-    #phonemenu{
-      display: block;
-    }
-}
 </style>
 <body>
-<div class="container" style="padding: 0;">
-        
+<div class="container">
+        <header>
 <!--往下滑的標題><!-->
 <div id="fixed_header">
     <div id="navi">
       <ul>
-         <li><a href="index.html"><img src="images/趴.png" style="max-height:65px;width:auto;padding-right: 265px"/></li>
-         <li><a href="景點all.html"><img src="images/景點.png" style="max-width:120px;height:auto" /></a></li>
-         <li><a href="美食all.html"><img src="images/美食.png" style="max-width:120px;height:auto" /></a></li>
-         <li><a href="會員all.html"><img src="images/會員1.png" style="max-width:120px;height:auto;margin-top:7px" /></a></li>
-         <li><a href=""><img src="images/about1.png" style="max-width:80px;height:auto;margin-top:7px" /></a></li>
-         <li><a href="會員登入.html"><button class="button" style="vertical-align:middle;margin-top:14px;margin-left: 10px"><span>登入</span></button></a></li>
+         <li><a href="index.html"><img id="navi1" src="images/趴.png"></li>
+         <li><a href="景點all.html"><img id="navi2" src="images/景點.png"></a></li>
+         <li><a href="美食all.html"><img id="navi2" src="images/美食.png"></a></li>
+         <li><a href="會員all.html"><img id="navi3" src="images/會員1.png"></a></li>
+         <li><a href="關於我.html"><img id="navi4" src="images/about1.png"></a></li>
+         <li><a href="會員登入.html"><button class="button"><span>登入</span></button></a></li>
+         <li><a href=""><button class="button"><span>登出</span></button></a></li>
       </ul>
     </div>
     <div id="phone-navi">
       <ul>
-    <li><a href="index.html" style="border-left:3px #FFD382 solid;margin: 0px 5px 0px 5px;">首頁</a></li>
-    <li><a href="景點all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">景點</a></li>
-    <li><a href="美食all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">美食</a></li>
-    <li><a href="會員all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a></li>
-    <li><a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">關於我</a></li>
-    <li><a href="會員登入.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">登入</a></li>
+    <li><a href="index.html" id="phone-navi1">首頁</a></li>
+    <li><a href="景點all.html" id="phone-navi2">景點</a></li>
+    <li><a href="美食all.html" id="phone-navi2">美食</a></li>
+    <li><a href="會員all.html" id="phone-navi2">會員專區</a></li>
+    <li><a href="關於我.html" id="phone-navi2">關於我</a></li>
+    <li><a href="會員登入.html" id="phone-navi2">登入</a></li>
+    <li><a href="" id="phone-navi2">登出</a></li>
       </ul>
     </div>
 </div>
@@ -384,12 +147,13 @@ list-style-type:none;
    </div>
 
    <ul class="good">
-      <li><a href="景點all.html"><img src="images/景點.png" style="max-width:120px;height:auto" /></a></li>
-      <li><a href="美食all.html"><img src="images/美食.png" style="max-width:120px;height:auto" /></a></li>
-      <li><a href="會員all.html"><img src="images/會員1.png" style="max-width:120px;height:auto;padding-top:7px;margin-left:7px;" /></a></li>
-      <li><a href="#"><img src="images/about1.png" style="max-width:80px;height:auto;padding-top:7px;" /></a></li>
+      <li><a href="景點all.html"><img src="images/景點.png" id="good1"></a></li>
+      <li><a href="美食all.html"><img src="images/美食.png" id="good1"></a></li>
+      <li><a href="會員all.html"><img src="images/會員1.png" id="good2"></a></li>
+      <li><a href="關於我.html"><img src="images/about1.png" id="good3"></a></li>
       <li>
-        <a href="會員登入.html"><button class="button" style="vertical-align:middle"><span>登入</span></button></a>
+        <a href="會員登入.html"><button class="button"><span>登入</span></button></a>
+        <a href=""><button class="button"><span>登出</span></button></a>
       </li>
    </ul>
  </div>
@@ -398,23 +162,23 @@ list-style-type:none;
    
     
 <!--手機板的標題><!-->
-<table width="100%" style="font-size: 4vmin;border-width: 3px;">
+<table width="100%" id="ph1">
 <tr>
-<th style="padding-top: 20px ;padding-bottom:10px;list-style-type:none;
-    display:inline;">
+<th id="ph2">
 
-    <a href="景點all.html" style="border-left:3px #FFD382 solid;margin: 0px 5px 0px 40px;">景點</a>
-    <a href="美食all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">美食</a>
-    <a href="會員all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a>
-    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">關於我</a>
-    <a href="會員登入.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">登入</a>
+    <a href="景點all.html" id="ph3">景點</a>
+    <a href="美食all.html" id="ph4">美食</a>
+    <a href="會員all.html" id="ph4">會員專區</a>
+    <a href="關於我.html" id="ph4">關於我</a>
+    <a href="會員登入.html" id="ph4">登入</a>
+    <a href="" id="ph4">登出</a>
 
 </th>
 </tr>
 </table>
             
 </div>
-
+</header>
  
 <div id="netmenu">
 <div id="menu">
@@ -431,48 +195,46 @@ list-style-type:none;
   <div class="menu_list" id="secondpane"> <!--Code for menu starts here-->
     <p class="menu_head">北部</p>
     <div class="menu_body">
-    <a href="景點.html?&0">基隆</a> 
-    <a href="景點.html?&1">台北</a>
-    <a href="景點.html?&2">新北</a>
-    <a href="景點.html?&3">桃園</a> 
-    <a href="景點.html?&4">新竹</a>
-    <a href="景點.html?&16">宜蘭</a>  
+    <a href="美食.html?&0">基隆</a> 
+    <a href="美食.html?&1">台北</a>
+    <a href="美食.html?&2">新北</a>
+    <a href="美食.html?&3">桃園</a> 
+    <a href="美食.html?&4">新竹</a>
+    <a href="美食.html?&16">宜蘭</a>  
     </div>
     <p class="menu_head">中部</p>
     <div class="menu_body">
-    <a href="景點.html?&5">苗栗</a>
-    <a href="景點.html?&6">台中</a>
-    <a href="景點.html?&7">彰化</a> 
-    <a href="景點.html?&8">南投</a>
-    <a href="景點.html?&9">雲林</a>  
+    <a href="美食.html?&5">苗栗</a>
+    <a href="美食.html?&6">台中</a>
+    <a href="美食.html?&7">彰化</a> 
+    <a href="美食.html?&8">南投</a>
+    <a href="美食.html?&9">雲林</a>  
     </div>
     <p class="menu_head">南部</p>
     <div class="menu_body">
-    <a href="景點.html?&10">嘉義</a>
-    <a href="景點.html?&11">台南</a>
-    <a href="景點.html?&12">高雄</a>  
-    <a href="景點.html?&13">屏東</a>  
-    <a href="景點.html?&15">澎湖</a>   
+    <a href="美食.html?&10">嘉義</a>
+    <a href="美食.html?&11">台南</a>
+    <a href="美食.html?&12">高雄</a>  
+    <a href="美食.html?&13">屏東</a>  
+    <a href="美食.html?&15">澎湖</a>   
     </div>
      <p class="menu_head">東部</p>
     <div class="menu_body">
-    <a href="景點.html?&20">花蓮</a>
-    <a href="景點.html?&14">台東</a>  
+    <a href="美食.html?&20">花蓮</a>
+    <a href="美食.html?&14">台東</a>  
     </div>
      <p class="menu_head">離島</p>
     <div class="menu_body">
-    <a href="景點.html?&18">金門</a>
-    <a href="景點.html?&17">綠島</a>
-    <a href="景點.html?&19">蘭嶼</a>    
+    <a href="美食.html?&18">金門</a>
+    <a href="美食.html?&17">綠島</a>
+    <a href="美食.html?&19">蘭嶼</a> 
     </div>
   </div>      <!--Code for menu ends here-->
 </div>
 
 </ul>
 </div>
-<svg version="1.1" id="blob" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<path id="blob-path" d="M60,500H0V0h60c0,0,20,172,20,250S60,900,60,500z" />
-</svg>
+
 </div>
 <h2>地區選單</h2>
 </div>
@@ -487,39 +249,39 @@ list-style-type:none;
   <div class="menu_list" id="secondpane"> <!--Code for menu starts here-->
     <p class="menu_head">北部</p>
     <div class="menu_body">
-    <a href="景點.html?&0">基隆</a> 
-    <a href="景點.html?&1">台北</a>
-    <a href="景點.html?&2">新北</a>
-    <a href="景點.html?&3">桃園</a> 
-    <a href="景點.html?&4">新竹</a>
-    <a href="景點.html?&16">宜蘭</a>  
+    <a href="美食.html?&0">基隆</a> 
+    <a href="美食.html?&1">台北</a>
+    <a href="美食.html?&2">新北</a>
+    <a href="美食.html?&3">桃園</a> 
+    <a href="美食.html?&4">新竹</a>
+    <a href="美食.html?&16">宜蘭</a>  
     </div>
     <p class="menu_head">中部</p>
     <div class="menu_body">
-    <a href="景點.html?&5">苗栗</a>
-    <a href="景點.html?&6">台中</a>
-    <a href="景點.html?&7">彰化</a> 
-    <a href="景點.html?&8">南投</a>
-    <a href="景點.html?&9">雲林</a>  
+    <a href="美食.html?&5">苗栗</a>
+    <a href="美食.html?&6">台中</a>
+    <a href="美食.html?&7">彰化</a> 
+    <a href="美食.html?&8">南投</a>
+    <a href="美食.html?&9">雲林</a>  
     </div>
     <p class="menu_head">南部</p>
     <div class="menu_body">
-    <a href="景點.html?&10">嘉義</a>
-    <a href="景點.html?&11">台南</a>
-    <a href="景點.html?&12">高雄</a>  
-    <a href="景點.html?&13">屏東</a>  
-    <a href="景點.html?&15">澎湖</a>   
+    <a href="美食.html?&10">嘉義</a>
+    <a href="美食.html?&11">台南</a>
+    <a href="美食.html?&12">高雄</a>  
+    <a href="美食.html?&13">屏東</a>  
+    <a href="美食.html?&15">澎湖</a>   
     </div>
      <p class="menu_head">東部</p>
     <div class="menu_body">
-    <a href="景點.html?&20">花蓮</a>
-    <a href="景點.html?&14">台東</a>  
+    <a href="美食.html?&20">花蓮</a>
+    <a href="美食.html?&14">台東</a>  
     </div>
      <p class="menu_head">離島</p>
     <div class="menu_body">
-    <a href="景點.html?&18">金門</a>
-    <a href="景點.html?&17">綠島</a>
-    <a href="景點.html?&19">蘭嶼</a>    
+    <a href="美食.html?&18">金門</a>
+    <a href="美食.html?&17">綠島</a>
+    <a href="美食.html?&19">蘭嶼</a> 
     </div>
 
   </div>      <!--Code for menu ends here-->
@@ -538,14 +300,17 @@ list-style-type:none;
   </script>
 
 
-<div id="consolea" class="col-md-6text row justify-content-center">#</div>
-<div id="consolep1" class="row justify-content-center col-md-6 col-sm-12 pic"></div>
-<div id="consolep2" class="col-md-6 col-sm-12 text"></div>
+<center id="consolea" >#</center>
+<center class="consoleall">
+<div id="consolep1"></div>
+<div id="consolep2"></div>
+</center>
 
+</div> 
 
-</div>
-
-
+<button class="material-scrolltop" type="button">
+    <span>↑</span>
+</button>
 <script type="text/javascript">
 $(document).ready(function()
 {
@@ -563,5 +328,17 @@ $(document).ready(function()
   });
 });
 </script>
+<script src="js/向上.js"></script>
+<script>
+    $(document).ready(function() {
+        $('body').materialScrollTop({
+            revealElement: 'header',
+            revealPosition: 'bottom',
+            onScrollEnd: function() {
+            console.log('Scrolling End');
+            }
+        });
+    });
+</script>  
 </body>
 </html>
