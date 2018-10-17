@@ -13,23 +13,26 @@
 <script src="js/bootstrap.min.js"></script>
 
 
-<link href="SpryAssets/stylesheet.css rel="stylesheet" type="text/css"/>
+<link href="SpryAssets/stylesheet.css rel=" type="text/css"/>
 <script src="SpryAssets/SpryMenuBar.js" type="text/javascript"> </script>
 <link href="SpryAssets/SpryMenuBarVertical.css" rel="stylesheet" type="text/css" />
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script-->
+<!--留言-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
 <link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
     
 <link rel="stylesheet" href="css/選單.css">
-
-    <!--[if IE]>
-    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <![endif]-->
-
-<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+<link rel="stylesheet" type="text/css" href="css/手機選單3.css">
+<link rel="stylesheet" type="text/css" href="css/jia.css">
+<link rel="stylesheet" type="text/css" href="css/header.css">
+<link rel="stylesheet" href="css/向上.css">
+<!--script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script-->
+<!--留言-->
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
 <script>
   // Initialize Firebase
   var config = {
@@ -41,7 +44,76 @@
     messagingSenderId: "157048895266"
   };
   firebase.initializeApp(config);
+  //登入
+  var provider = new firebase.auth.GoogleAuthProvider();
+  provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+  firebase.auth().languageCode = 'tw';
+  provider.setCustomParameters({
+      'login_hint': 'user@example.com'
+  });
 
+  function login_init(){
+      let name = document.cookie.split("user=")[1].split(";")[0];
+      let login= document.cookie.split("login=")[1].split(";")[0];
+      if(login==="1")
+      {
+          document.getElementById("user").innerText = name;
+          document.querySelector("#login").style.visibility = "hidden";
+          document.querySelector("#logout").style.visibility = "visible";
+      }else{
+          document.getElementById("user").innerText = "";
+          document.querySelector("#login").style.visibility = "visible";
+          document.querySelector("#logout").style.visibility = "hidden";
+      }
+  }
+  login_init();
+
+  var token;
+  // The signed-in user info.
+  var user;
+
+
+  function check(condition) {
+      if(condition === 1){
+          firebase.auth().signInWithPopup(provider).then(function (result) {
+              // This gives you a Google Access Token. You can use it to access the Google API.
+              token = result.credential.accessToken;
+              // The signed-in user info.
+              user = result.user;
+
+              document.cookie = "user="+user.displayName;
+              document.cookie = "uid="+user.uid;
+              document.cookie = "login=1";
+              login_init();
+              // ...
+          }).catch(function (error) {
+              // Handle Errors here.
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              // The email of the user's account used.
+              var email = error.email;
+              // The firebase.auth.AuthCredential type that was used.
+              var credential = error.credential;
+              // ...
+
+              firebase.auth().signInWithRedirect(provider);
+          });
+      }else{
+          firebase.auth().signOut().then(function() {
+              alert("已成功登出!");
+              document.cookie = "login= ";
+              document.cookie = "user= ";
+              document.cookie = "uid= ";
+              login_init();
+              // Sign-out successful.
+          }).catch(function(error) {
+              // An error happened.
+          });
+      }
+  }
+  //登入
+</script>
+    <script>
         let get = location.search.split("&");
 
         var db = firebase.database().ref("ig/-LMgrtd3Ga0A5MnCVRxF/景點/" + get[1] + "/1/" + get[2]);
@@ -63,285 +135,12 @@
             }
         });
 
-        // for (var i = 1; i < 21; i++) {
-        //     var db = firebase.database().ref("ig/-LJp73c4QGkmiu_i86Bu/景點/0/1/0/" + i + "/0");
-        //     db.on('value', function (snapshot) {
-        //         var test = snapshot.val();
-        //         a++;
-        //         var image = document.getElementById("p" + a);
-        //         image.style.backgroundImage = "url(" + test + ")";
-        //     });
-        // }
-        //
-        //
-        // for (var j = 0; j < 20; j++) {
-        //     var db2 = firebase.database().ref("ig/-LJp73c4QGkmiu_i86Bu/景點/0/1/" + j + "/0");
-        //     db2.on('value', function (snapshot) {
-        //         var test2 = snapshot.val();
-        //         b++;
-        //         var icon = document.getElementById("m" + b);
-        //         gotomap = "https://www.google.com/maps/dir//" + test2 + "/@" + test2 + ",13z?hl=zh-TW";
-        //         icon.href = gotomap;
-        //
-        //     })
-        // }
     </script>
+
 </head>
 <style type="text/css">
 
-    .container {
-        margin: 0;
-        max-width: 100%;
-        width: 1300px;
 
-    }
-
-    body {
-        font-family: SentyZHAO;
-
-    }
-
-.Header {
-    height: 135px;
-    background:#ED9292;
-
-}
-@media (max-width: 768px) {
-    .Header {
-      max-width: 100%; 
-      height: auto;
-      background:#ED9292;
-      } //最大寬度為100%,取消高度改自動
-      }
-
-
-.Logo {
-  float: left;
-  margin: 10px 0 0 10px;
-  
-  }
-  
-@media (max-width: 768px) {
-    .Logo {
-            float: none;//取消浮動
-            margin: 0;
-    }
-}
-
-.Logo a {
-    display: block;
-    background: url(images/趴.png);
-    text-indent: -999999px;
-    width: 338px;
-    height:100px;
-    text-decoration: none; 
-    background-size: auto 100%;
-    margin-left:50px; 
-    }
-@media (max-width: 768px) {
-    .Logo a{
-        margin: 0 auto;//logo置中
-        
-    }
-}
-
-
-.good {
-    float: right;
-}
-
-.good li {
-    float: left;
-    width: 130px;
-    text-align: center;
-    list-style: none;
-    margin: 0px auto;
-    }
-
-@media (max-width: 768px) {
-    .good li {
-        display: none;
-    }
-}
-
-table{
-  display: none;
-}
-
-
-
-.good li a {
-      text-decoration: none;
-      color: #00a67d;
-      display: block;
-      margin: 0 1px; 
-
-      }
-
-
-@media (max-width: 768px) {
-    table {
-      display: inline;
-    }
-}
-@media (max-width: 768px) { 
-    table a:hover{
-    color: white;//滑過文字變黑色
-
-    }
-}
-
-
-
-.button {
-  display: inline-block;
-  border-radius: 4px;
-  background-color: #7C9885;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 25px;
-  padding: 2px;
-  width: 80px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
-}
-
-.button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
-
-.button span:after {
-  content: '»';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-
-.button:hover span {
-  padding-right: 25px;
-}
-
-.button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-
-.title{
-    color: #FA8072;
-    font-weight: bold;
-    margin-bottom:10px;
-    margin-top: 150px;
-}
-.row{
-  color: black;
-   font-size:4vmin;
-}
-
-.item p{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-
-#wrapper{
-    font-size:6vmin;
-
-    
-}
-
-
-
-
-#fixed_header {
-    position:fixed;
-    z-index:1;
-    top:0;
-    width:100%;
-    background-color:#ED9292;
-
-  }
-  
-  #navi {
-    margin:0 auto;
-    text-align:right;
-list-style-type:none;
-  }
-  #phone-navi{
-    display: none;
-  }
-  @media (max-width: 768px) {
-    #navi {
-      display: none;
-    }
-}
-@media (max-width: 768px) {
-    #phone-navi {
-    display: inline;
-     margin:0px auto 0px auto;
-    text-align:center;
-
-    }
-    #phone-navi li {
-    list-style-type:none;
-    display:inline;
-  }
-    li{
-      margin: 0px 12px 0px 12px;
-      font-size:5vmin;
-      border-width:3px
-    }
-}
-
-  #navi li {
-    list-style-type:none;
-    display:inline;
-  }
-
-  #real_header {
-    top:0%;
-    position:absolute;
-    width:100%;
-    z-index:2;
-    background-color:#ED9292;
-    
-  }
-  
-
-.menu_list {  
-  width: 120px;
-}
-.menu_head {
-  font-size:5vmin;
-  padding: 5px 10px;
-  cursor: pointer;
-  position: relative;
-  margin:1px;
-  font-weight:bold;
-  background:#fff;
-}
-.menu_body {
-  display:none;
-}
-.menu_body a{
-  display:block;
-  color:#006699;
-  background-color:#EFEFEF;
-  padding-left:10px;
-  font-weight:bold;
-  text-decoration:none;
-}
-.menu_body a:hover{
-  color: #000000;
-  text-decoration:underline;
-  }
 
     #p1, #p2, #p3, #p4, #p5, #p6, #p7, #p8, #p9, #p10, #p11, #p12, #p13, #p14, #p15, #p16, #p17, #p18, #p19, #p20 {
         background-size: cover;
@@ -355,39 +154,103 @@ list-style-type:none;
 
     #content {
         margin-top: 0px;
-
+        position:absolute;
+        z-index: -1;
     }
 
+.row .item{   
+  border:4px black dashed;   
+  margin: 10px;   
+  padding: 10px;
+  height: auto;   
+  max-width: 300px;   
+  border-radius:10px;
+} 
+
+.mm{
+        border-radius: 8px;
+        border: 2px solid rgba(105, 105, 105, 0.6);
+        padding: 20px;
+        max-width:30%;
+        margin-top: 50px;
+        margin-left:37%;
+        font-size: 6vmin;
+}
+.draw {
+        height: 28px;
+        width: 200px;
+        font-size: 4vmin;
+        background-color: transparent;
+        border-radius: 8px;
+        border: 2px solid rgba(105, 105, 105, 0.6);
+ 
+    }
+.col-md-6{
+        margin-left: 37%;
+        margin-top: 30px;
+        margin-bottom: 50px;
+        background-color:#5b5b5b;
+        width: 30%;
+        height: auto;
+        border-radius: 8px;
+        border: 2px solid rgba(105, 105, 105, 0.6);
+        font-size: 4vmin;
+    }
+
+#bb{
+  display: block;
+}
 
 </style>
 
 
 <body>
 
-<div class="container" style="padding: 0;">
-        
+<div class="container">
+        <header>
 <!--往下滑的標題><!-->
 <div id="fixed_header">
     <div id="navi">
       <ul>
-         <li><a href="index.html"><img src="images/趴.png" style="max-height:65px;width:auto;padding-right: 265px"/></li>
-         <li><a href="景點all.html"><img src="images/景點.png" style="max-width:120px;height:auto" /></a></li>
-         <li><a href="美食all.html"><img src="images/美食.png" style="max-width:120px;height:auto" /></a></li>
-         <li><a href="會員all.html"><img src="images/會員1.png" style="max-width:120px;height:auto;margin-top:7px" /></a></li>
-         <li><a href=""><img src="images/about1.png" style="max-width:80px;height:auto;margin-top:7px" /></a></li>
-         <li><a href="會員登入.html"><button class="button" style="vertical-align:middle;margin-top:14px;margin-left: 10px"><span>登入</span></button></a></li>
-         <li><a href="會員註冊.html"></a><button class="button" style="vertical-align:middle;margin-top:14px;margin-right: 15px"><span>註冊</span></button></a></li>
+         <li><a href="index.html"><img id="navi1" src="images/趴.png"></li>
+         <li><a href="景點all.html"><img id="navi2" src="images/景點.png"></a></li>
+         <li><a href="美食all.html"><img id="navi2" src="images/美食.png"></a></li>
+         <li><a href="會員all.html"><img id="navi3" src="images/會員1.png"></a></li>
+         <li><a href="關於我.html"><img id="navi4" src="images/about1.png"></a></li>
+          <li>
+              <div id="user" style="text-align:right;"></div>
+              <a id="login" class="button" onclick="check(1)">登入</a>
+              <a id="logout" class="button" onclick="check(2)">登出</a>
+          </li>
       </ul>
     </div>
     <div id="phone-navi">
       <ul>
-    <li><a href="index.html" style="border-left:3px #FFD382 solid;margin: 0px 5px 0px 5px;">首頁</a></li>
-    <li><a href="景點all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">景點</a></li>
-    <li><a href="美食all.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">美食</a></li>
-    <li><a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a></li>
-    <li><a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">關於我</a></li>
-    <li><a href="會員登入.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">登入</a></li>
-    <li><a href="會員註冊.html" style="border-left:3px #FFD382 solid;margin: 0 5px;">註冊</a></li>
+    <li><a href="index.html" id="phone-navi1">首頁</a></li>
+    <li><a href="景點all.html" id="phone-navi2">景點</a></li>
+    <li><a href="美食all.html" id="phone-navi2">美食</a></li>
+    <li><a href="會員all.html" id="phone-navi2">會員專區</a></li>
+    <li><a href="關於我.html" id="phone-navi2">關於我</a></li>
+          <li>
+              <div id="user" style="text-align:right;"></div>
+              <a id="login" onclick="check(1)">登入</a>
+              <a id="logout" onclick="check(2)">登出</a>
+
+              <script type="text/javascript">
+                  var name = document.cookie.split("user=")[1].split(";")[0];
+                  var login= document.cookie.split("login=")[1].split(";")[0];
+                  if(login.length=1)
+                  {
+                      document.getElementById("user").innerText = name;
+                      document.querySelector("#login").style.visibility = "hidden";
+                      document.querySelector("#logout").style.visibility = "visible";
+                  }else{
+                      document.getElementById("user").innerText = "";
+                      document.querySelector("#login").style.visibility = "visible";
+                      document.querySelector("#logout").style.visibility = "hidden";
+                  }
+              </script>
+          </li>
       </ul>
     </div>
 </div>
@@ -399,14 +262,15 @@ list-style-type:none;
    </div>
 
    <ul class="good">
-      <li><a href="景點all.html"><img src="images/景點.png" style="max-width:120px;height:auto" /></a></li>
-      <li><a href="美食all.html"><img src="images/美食.png" style="max-width:120px;height:auto" /></a></li>
-      <li><a href="會員all.html"><img src="images/會員1.png" style="max-width:120px;height:auto;padding-top:7px;margin-left:7px;" /></a></li>
-      <li><a href="#"><img src="images/about1.png" style="max-width:80px;height:auto;padding-top:7px;" /></a></li>
-      <li>
-        <a href="會員登入.html"><button class="button" style="vertical-align:middle"><span>登入</span></button></a>
-        <a href="會員註冊.html"><button class="button" style="vertical-align:middle"><span>註冊</span></button></a>
-      </li>
+      <li><a href="景點all.html"><img src="images/景點.png" id="good1"></a></li>
+      <li><a href="美食all.html"><img src="images/美食.png" id="good1"></a></li>
+      <li><a href="會員all.html"><img src="images/會員1.png" id="good2"></a></li>
+      <li><a href="關於我.html"><img src="images/about1.png" id="good3"></a></li>
+       <li>
+           <div id="user" style="text-align:right;"></div>
+           <a id="login" class="button" onclick="check(1)">登入</a>
+           <a id="logout" class="button" onclick="check(2)">登出</a>
+       </li>
    </ul>
  </div>
 </div>
@@ -414,25 +278,28 @@ list-style-type:none;
    
     
 <!--手機板的標題><!-->
-<table width="100%" style="font-size: 4vmin;border-width: 3px;">
+<table width="100%" id="ph1">
 <tr>
-<th style="padding-top: 20px ;padding-bottom:10px;list-style-type:none;
-    display:inline;">
+<th id="ph2">
 
-    <a href="" style="border-left:3px #FFD382 solid;margin: 0px 5px 0px 40px;">景點</a>
-    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">美食</a>
-    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">會員專區</a>
-    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">關於我</a>
-    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">登入</a>
-    <a href="" style="border-left:3px #FFD382 solid;margin: 0 5px;">註冊</a>
+    <a href="景點all.html" id="ph3">景點</a>
+    <a href="美食all.html" id="ph4">美食</a>
+    <a href="會員all.html" id="ph4">會員專區</a>
+    <a href="關於我.html" id="ph4">關於我</a>
+    <li>
+        <div id="user" style="text-align:right;"></div>
+        <a id="login"  onclick="check(1)">登入</a>
+        <a id="logout"  onclick="check(2)">登出</a>
+    </li>
 
 </th>
 </tr>
 </table>
             
 </div>
-
+</header>
  
+<div id="netmenu">
 <div id="menu">
 <div class="hamburger">
 <div class="line"></div>
@@ -486,13 +353,72 @@ list-style-type:none;
 
 </ul>
 </div>
-<svg version="1.1" id="blob" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<path id="blob-path" d="M60,500H0V0h60c0,0,20,172,20,250S60,900,60,500z" />
-</svg>
+
 </div>
 <h2>地區選單</h2>
+</div>
 <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 <script src="js/選單.js"></script>
+
+
+<div id="phonemenu">
+<nav class="nav">
+<ul>
+  <div class="menu_list" id="secondpane"> <!--Code for menu starts here-->
+    <p class="menu_head">北部</p>
+    <div class="menu_body">
+    <a href="景點.html?&0">基隆</a> 
+    <a href="景點.html?&1">台北</a>
+    <a href="景點.html?&2">新北</a>
+    <a href="景點.html?&3">桃園</a> 
+    <a href="景點.html?&4">新竹</a>
+    <a href="景點.html?&16">宜蘭</a>  
+    </div>
+    <p class="menu_head">中部</p>
+    <div class="menu_body">
+    <a href="景點.html?&5">苗栗</a>
+    <a href="景點.html?&6">台中</a>
+    <a href="景點.html?&7">彰化</a> 
+    <a href="景點.html?&8">南投</a>
+    <a href="景點.html?&9">雲林</a>  
+    </div>
+    <p class="menu_head">南部</p>
+    <div class="menu_body">
+    <a href="景點.html?&10">嘉義</a>
+    <a href="景點.html?&11">台南</a>
+    <a href="景點.html?&12">高雄</a>  
+    <a href="景點.html?&13">屏東</a>  
+    <a href="景點.html?&15">澎湖</a>   
+    </div>
+     <p class="menu_head">東部</p>
+    <div class="menu_body">
+    <a href="景點.html?&20">花蓮</a>
+    <a href="景點.html?&14">台東</a>  
+    </div>
+     <p class="menu_head">離島</p>
+    <div class="menu_body">
+    <a href="景點.html?&18">金門</a>
+    <a href="景點.html?&17">綠島</a>
+    <a href="景點.html?&19">蘭嶼</a>    
+    </div>
+
+  </div>      <!--Code for menu ends here-->
+</ul>
+</nav>
+<div class="nav-toggle">
+<div class="icon"></div>
+</div>
+</div>
+
+
+
+
+<script src="http://www.jq22.com/jquery/2.1.1/jquery.min.js"></script>
+<script>
+  $('.nav-toggle').click(function () {
+      $('body').toggleClass('nav-open');
+  });
+  </script>
 
 
         <div id="content" class="container">
@@ -615,17 +541,76 @@ list-style-type:none;
                     <a id="p20">
                     </a>
                 </div>
-
-
             </div>
 
-        </div>
+<div class="mm">
+<p><center style="color:black;">留言區</center></p>
+        <center>       
+         <input type="text" id="message" class="draw" placeholder="請輸入留言...">
+        </center>
+
+<div class="but" style="margin-top: 30px;">
+        <center>
+            <button id="login" type="button" onclick="putdata()"
+                    style="color:black;font-size: 20px; background-color: transparent; border-radius: 8px; border: 2px solid rgba(105,105,105,0.6);">
+                送出
+            </button>
+        </center>
+    </div>
+</div>
+
+<center> 
+    <div id="bb" class="col-md-6"> </div>
+</center>
 
 
+   
 
 </div>
 
+<button class="material-scrolltop" type="button">
+    <span>↑</span>
+</button>
+<script type="text/javascript">
+      function putdata(){
+        var message = $('#message').val();
 
+        var ref = firebase.database().ref("留言區");
+
+            ref.once("value", (function (snapshot) {
+                var buffer = snapshot.child(message).val();
+
+                var a = snapshot.numChildren()+1;
+
+                if (buffer == null){
+
+                    let updates = {};
+
+            
+                    
+                    updates["留言區/" + a] = message;
+                    
+
+                    alert("留言成功");
+                    firebase.database().ref().update(updates);
+                    return;
+                } else {
+                    alert("請重新輸入一次");
+                }
+
+            }))
+    };            
+            var db = firebase.database().ref("留言區/");
+            db.on('value',function(snapshot){
+            var db = snapshot.val();
+            var test = document.getElementById("bb");
+
+            test.innerHTML = db; 
+            db=db+"</br>";
+            });
+             
+            
+</script>
 
 <script type="text/javascript">
 $(document).ready(function()
@@ -644,5 +629,19 @@ $(document).ready(function()
   });
 });
 </script>
+
+<script src="js/向上.js"></script>
+<script>
+    $(document).ready(function() {
+        $('body').materialScrollTop({
+            revealElement: 'header',
+            revealPosition: 'bottom',
+            onScrollEnd: function() {
+            console.log('Scrolling End');
+            }
+        });
+    });
+</script>  
+
 </body>
 </html>
