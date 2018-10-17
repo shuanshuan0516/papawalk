@@ -28,6 +28,7 @@
 <link rel="stylesheet" type="text/css" href="css/jia.css">
 <link rel="stylesheet" type="text/css" href="css/header.css">
 <link rel="stylesheet" href="css/向上.css">
+<link rel="stylesheet" href="css/登入.css"> 
 
 <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
 <script>
@@ -61,6 +62,78 @@ var dbcontent = firebase.database().ref("ig/-LMgrtd3Ga0A5MnCVRxF/景點/"+get[1]
     text.innerText = content;
  });
 </script>  
+<script type="text/javascript">
+    //登入
+  var provider = new firebase.auth.GoogleAuthProvider();
+        provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+        firebase.auth().languageCode = 'tw';
+        provider.setCustomParameters({
+            'login_hint': 'user@example.com'
+        });
+
+        function login_init(){
+            let name = document.cookie.split("user=")[1].split(";")[0];
+            let login= document.cookie.split("login=")[1].split(";")[0];
+            if(login==="1")
+            {
+                document.getElementById("user").innerText = name;
+                document.querySelector("#login").style.visibility = "hidden";
+                document.querySelector("#logout").style.visibility = "visible";
+            }else{
+                document.getElementById("user").innerText = "";
+                document.querySelector("#login").style.visibility = "visible";
+                document.querySelector("#logout").style.visibility = "hidden";
+            }
+        }
+        login_init();
+
+        var token;
+        // The signed-in user info.
+        var user;
+
+
+        function check(condition) {
+            if(condition === 1){
+                firebase.auth().signInWithPopup(provider).then(function (result) {
+                    // This gives you a Google Access Token. You can use it to access the Google API.
+                    token = result.credential.accessToken;
+                    // The signed-in user info.
+                    user = result.user;
+
+                    document.cookie = "user="+user.displayName;
+                    document.cookie = "uid="+user.uid;
+                    document.cookie = "login=1";
+                    login_init();
+                    // ...
+                }).catch(function (error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // The email of the user's account used.
+                    var email = error.email;
+                    // The firebase.auth.AuthCredential type that was used.
+                    var credential = error.credential;
+                    // ...
+
+                    firebase.auth().signInWithRedirect(provider);
+                });
+            }else{
+                firebase.auth().signOut().then(function() {
+                    alert("已成功登出!");
+                    document.cookie = "login= ";
+                    document.cookie = "user= ";
+                    document.cookie = "uid= ";
+                    login_init();
+                    // Sign-out successful.
+                }).catch(function(error) {
+                    // An error happened.
+                });
+            }
+
+
+        }
+        //登入
+</script>
 <style type="text/css">
 body {
   font-family: SentyZHAO;
@@ -110,21 +183,19 @@ body {
 }
 
 </style>
-<body>
+<body onload="login_init()">
 
 <div class="container">
         <header>
 <!--往下滑的標題><!-->
 <div id="fixed_header">
     <div id="navi">
-      <ul>
+      <ul style="margin-right: 130px;">
          <li><a href="index.html"><img id="navi1" src="images/趴.png"></li>
          <li><a href="景點all.html"><img id="navi2" src="images/景點.png"></a></li>
          <li><a href="美食all.html"><img id="navi2" src="images/美食.png"></a></li>
          <li><a href="會員all.html"><img id="navi3" src="images/會員1.png"></a></li>
          <li><a href="關於我.html"><img id="navi4" src="images/about1.png"></a></li>
-         <li><a href="會員登入.html"><button class="button"><span>登入</span></button></a></li>
-         <li><a href=""><button class="button"><span>登出</span></button></a></li>
       </ul>
     </div>
     <div id="phone-navi">
@@ -146,15 +217,11 @@ body {
      <a href="index.html">就I趴趴走</a>
    </div>
 
-   <ul class="good">
+   <ul class="good" style="margin-right: 130px;">
       <li><a href="景點all.html"><img src="images/景點.png" id="good1"></a></li>
       <li><a href="美食all.html"><img src="images/美食.png" id="good1"></a></li>
       <li><a href="會員all.html"><img src="images/會員1.png" id="good2"></a></li>
       <li><a href="關於我.html"><img src="images/about1.png" id="good3"></a></li>
-      <li>
-        <a href="會員登入.html"><button class="button"><span>登入</span></button></a>
-        <a href=""><button class="button"><span>登出</span></button></a>
-      </li>
    </ul>
  </div>
 </div>
@@ -180,6 +247,12 @@ body {
 </div>
 </header>
  
+<div id="log">
+  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登入</span></button>
+  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登出</span></button>
+  <div id="user" style="text-align: center;padding-top:58px;color:#4f4f4f;"></div>
+</div> 
+
 <div id="netmenu">
 <div id="menu">
 <div class="hamburger">
