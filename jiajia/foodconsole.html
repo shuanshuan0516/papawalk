@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>就i趴趴走·景點</title>
+<title>就i趴趴走·美食貼文</title>
 
 <link rel="stylesheet" href="css/bootstrap.min.css"> 
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
@@ -28,17 +28,7 @@
 <link rel="stylesheet" type="text/css" href="css/jia.css">
 <link rel="stylesheet" type="text/css" href="css/header.css">
 <link rel="stylesheet" href="css/向上.css">
-<link rel="stylesheet" href="css/登入.css"> 
-<!--相簿><!-->
-<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
-
-<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
-
-    <!--[if IE]>
-        <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <![endif]-->
-
-
+<link rel="stylesheet" href="css/登入.css">  
 
 <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
 <script>
@@ -53,8 +43,29 @@
   };
   firebase.initializeApp(config);
 
-//登入
-var provider = new firebase.auth.GoogleAuthProvider();
+  var get = location.search.split("&");
+var dbname = firebase.database().ref("ig/-LMpPW-oQoTQYtDaO2_O/美食/"+get[1]+"/1/"+get[2]+"/0");
+  dbname.on('value',function(snapshot){
+    var content = snapshot.val();
+    var text = document.getElementById("consolea");
+    text.innerText = text.innerText+content;
+ });
+var dbimage = firebase.database().ref("ig/-LMpPW-oQoTQYtDaO2_O/美食/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/0");
+  dbimage.on('value',function(snapshot){
+    var content = snapshot.val();
+    var image = document.getElementById("consolep1");
+    image.style.backgroundImage = "url("+content+")";
+ });
+var dbcontent = firebase.database().ref("ig/-LMpPW-oQoTQYtDaO2_O/美食/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/1");
+  dbcontent.on('value',function(snapshot){
+    var content = snapshot.val();
+    var text = document.getElementById("consolep2");
+    text.innerText = content;
+ });
+</script>  
+<script type="text/javascript">
+    //登入
+  var provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
         firebase.auth().languageCode = 'tw';
         provider.setCustomParameters({
@@ -124,97 +135,63 @@ var provider = new firebase.auth.GoogleAuthProvider();
         }
         //登入
 </script>
-<script>
-  var pre = document.getElementById('object');
-  var a = 0;
-  for(var i = 0;i<10;i++){
-    var db = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/0/1/"+i+"/1/0");
-    db.on('value',function(snapshot){
-    var test = snapshot.val();
-    a++;
-    var image = document.getElementById("p"+a);
-    image.style.backgroundImage = "url("+test+")";
- });
-  };
-</script>
-
-   <script>
-  var pre = document.getElementById('object');
-  var d = 0;
-  for(var k = 0;k<10;k++){
-    var db = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/0/1/"+k+"/0");
-    db.on('value',function(snapshot){
-    var content = snapshot.val();
-    d++;
-    var text= document.getElementById("c"+d);    
-    text.innerText = text.innerText+content;
- });
-  };
-</script>
-</head>
 <style type="text/css">
-
-#p1,#p2,#p3,#p4,#p5,#p6,#p7,#p8,#p9,#p10{
-     background-size: cover;
-     height:220px;
-     width:250px;
-     display:block;
-     margin:auto;
-     padding-top: 20px;
-     position: relative;
-     z-index: -1;
-}
-.c1,.c2,.c3,.c4,.c5,.c6,.c7,.c8,.c9,.c10,.c11{
-  position:absolute; 
-  z-index:2; 
-  left:10px; 
-  top:10px;
-  color:#4f4f4f;
-}
-#pp{
-  display:block;
-  margin:auto;
-  text-align: center;
-  border:2px #4f4f4f solid;
-  border-radius:10px;
-  width:90%;
-  height:auto;
-  margin-bottom: 50px;
-  font-size: 6vmin;
-  color:#4f4f4f;
+body {
+  font-family: SentyZHAO;
 }
 
-#log {
-    position: fixed;
-    right: 0;
-    top: 0px;
-    width: 120px;
-    height: 80px;
-    z-index: 5;
-    background:#ED9292;
-    font-size: large;
-    text-align: left;
-    border-right: none;
-    font-size:4vmin;
-}
-@media (max-width: 768px) {
-    #log {
-      display: none;
+
+#consolea{
+  font-size:8vmin;
+  color:#4f4f4f;
+  font-weight: bold;
+  margin-bottom:10px;
+  margin-top: 230px;
     }
+#consolep1{
+  background-size: cover; 
+  height:350px; 
+  width:350px;
+  margin:20px;
+}
+#consolep2{
+  max-width:330px;
+  height:50%; 
+  color:#4f4f4f;
+  margin: 20px;
+}
+
+.consoleall{   
+  border:4px black dashed;   
+  margin: 10px;   
+  padding: 10px;  
+  max-width: 430px;
+  height: auto;    
+  border-radius:10px;
+  margin-left:410px;
+} 
+
+@media (max-width: 768px) {
+    .consoleall{   
+  border:4px black dashed;   
+  margin: 10px;   
+  padding: 10px;  
+  max-width: 430px;
+  height: auto;    
+  border-radius:10px;
+  margin-left:30px;
+} 
 }
 
 </style>
-
-
-        
-<body onload="login_init()">
+<body>
 <div class="container">
         <header>
 <!--往下滑的標題><!-->
 <div id="fixed_header">
     <div id="navi">
-      <ul style="margin-right: 130px;">
-         <li><a href="index.html"><img id="navi1" src="images/趴.png"></li>
+      <ul style="margin-right:130px;">
+         <li><a href="index.html"><img id="navi1" src="images/趴.png"></a></li>
          <li><a href="景點all.html"><img id="navi2" src="images/景點.png"></a></li>
          <li><a href="美食all.html"><img id="navi2" src="images/美食.png"></a></li>
          <li><a href="會員all.html"><img id="navi3" src="images/會員1.png"></a></li>
@@ -270,7 +247,6 @@ var provider = new firebase.auth.GoogleAuthProvider();
 </div>
 </header>
  
- 
 <div id="log">
   <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登入</span></button>
   <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登出</span></button>
@@ -292,39 +268,39 @@ var provider = new firebase.auth.GoogleAuthProvider();
   <div class="menu_list" id="secondpane"> <!--Code for menu starts here-->
     <p class="menu_head">北部</p>
     <div class="menu_body">
-    <a href="景點.html?&0">基隆</a> 
-    <a href="景點.html?&1">台北</a>
-    <a href="景點.html?&2">新北</a>
-    <a href="景點.html?&3">桃園</a> 
-    <a href="景點.html?&4">新竹</a>
-    <a href="景點.html?&16">宜蘭</a>  
+    <a href="美食.html?&0">基隆</a> 
+    <a href="美食.html?&1">台北</a>
+    <a href="美食.html?&2">新北</a>
+    <a href="美食.html?&3">桃園</a> 
+    <a href="美食.html?&4">新竹</a>
+    <a href="美食.html?&16">宜蘭</a>  
     </div>
     <p class="menu_head">中部</p>
     <div class="menu_body">
-    <a href="景點.html?&5">苗栗</a>
-    <a href="景點.html?&6">台中</a>
-    <a href="景點.html?&7">彰化</a> 
-    <a href="景點.html?&8">南投</a>
-    <a href="景點.html?&9">雲林</a>  
+    <a href="美食.html?&5">苗栗</a>
+    <a href="美食.html?&6">台中</a>
+    <a href="美食.html?&7">彰化</a> 
+    <a href="美食.html?&8">南投</a>
+    <a href="美食.html?&9">雲林</a>  
     </div>
     <p class="menu_head">南部</p>
     <div class="menu_body">
-    <a href="景點.html?&10">嘉義</a>
-    <a href="景點.html?&11">台南</a>
-    <a href="景點.html?&12">高雄</a>  
-    <a href="景點.html?&13">屏東</a>  
-    <a href="景點.html?&15">澎湖</a>   
+    <a href="美食.html?&10">嘉義</a>
+    <a href="美食.html?&11">台南</a>
+    <a href="美食.html?&12">高雄</a>  
+    <a href="美食.html?&13">屏東</a>  
+    <a href="美食.html?&15">澎湖</a>   
     </div>
      <p class="menu_head">東部</p>
     <div class="menu_body">
-    <a href="景點.html?&20">花蓮</a>
-    <a href="景點.html?&14">台東</a>  
+    <a href="美食.html?&20">花蓮</a>
+    <a href="美食.html?&14">台東</a>  
     </div>
      <p class="menu_head">離島</p>
     <div class="menu_body">
-    <a href="景點.html?&18">金門</a>
-    <a href="景點.html?&17">綠島</a>
-    <a href="景點.html?&19">蘭嶼</a>     
+    <a href="美食.html?&18">金門</a>
+    <a href="美食.html?&17">綠島</a>
+    <a href="美食.html?&19">蘭嶼</a> 
     </div>
   </div>      <!--Code for menu ends here-->
 </div>
@@ -346,39 +322,39 @@ var provider = new firebase.auth.GoogleAuthProvider();
   <div class="menu_list" id="secondpane"> <!--Code for menu starts here-->
     <p class="menu_head">北部</p>
     <div class="menu_body">
-    <a href="景點.html?&0">基隆</a> 
-    <a href="景點.html?&1">台北</a>
-    <a href="景點.html?&2">新北</a>
-    <a href="景點.html?&3">桃園</a> 
-    <a href="景點.html?&4">新竹</a>
-    <a href="景點.html?&16">宜蘭</a>  
+    <a href="美食.html?&0">基隆</a> 
+    <a href="美食.html?&1">台北</a>
+    <a href="美食.html?&2">新北</a>
+    <a href="美食.html?&3">桃園</a> 
+    <a href="美食.html?&4">新竹</a>
+    <a href="美食.html?&16">宜蘭</a>  
     </div>
     <p class="menu_head">中部</p>
     <div class="menu_body">
-    <a href="景點.html?&5">苗栗</a>
-    <a href="景點.html?&6">台中</a>
-    <a href="景點.html?&7">彰化</a> 
-    <a href="景點.html?&8">南投</a>
-    <a href="景點.html?&9">雲林</a>  
+    <a href="美食.html?&5">苗栗</a>
+    <a href="美食.html?&6">台中</a>
+    <a href="美食.html?&7">彰化</a> 
+    <a href="美食.html?&8">南投</a>
+    <a href="美食.html?&9">雲林</a>  
     </div>
     <p class="menu_head">南部</p>
     <div class="menu_body">
-    <a href="景點.html?&10">嘉義</a>
-    <a href="景點.html?&11">台南</a>
-    <a href="景點.html?&12">高雄</a>  
-    <a href="景點.html?&13">屏東</a>  
-    <a href="景點.html?&15">澎湖</a>   
+    <a href="美食.html?&10">嘉義</a>
+    <a href="美食.html?&11">台南</a>
+    <a href="美食.html?&12">高雄</a>  
+    <a href="美食.html?&13">屏東</a>  
+    <a href="美食.html?&15">澎湖</a>   
     </div>
      <p class="menu_head">東部</p>
     <div class="menu_body">
-    <a href="景點.html?&20">花蓮</a>
-    <a href="景點.html?&14">台東</a>  
+    <a href="美食.html?&20">花蓮</a>
+    <a href="美食.html?&14">台東</a>  
     </div>
      <p class="menu_head">離島</p>
     <div class="menu_body">
-    <a href="景點.html?&18">金門</a>
-    <a href="景點.html?&17">綠島</a>
-    <a href="景點.html?&19">蘭嶼</a> 
+    <a href="美食.html?&18">金門</a>
+    <a href="美食.html?&17">綠島</a>
+    <a href="美食.html?&19">蘭嶼</a> 
     </div>
 
   </div>      <!--Code for menu ends here-->
@@ -397,142 +373,17 @@ var provider = new firebase.auth.GoogleAuthProvider();
   </script>
 
 
-<!--相簿><!-->
-<div id="picture" >
-<div id="pp" style="margin-top: 170px;">北部
- <section class="regular slider">
-       <div id="p1"><div id="c1"></div></div></a>
-       <div id="p2" class="c2"></div>
-       <div id="p3" class="c3"></div>
-       <div id="p4" class="c4"></div>
-       <div id="p5" class="c5"></div>
-       <div id="p6" class="c6"></div>
-       <div id="p7" class="c7"></div>
-       <div id="p8" class="c8"></div>
-       <div id="p9" class="c9"></div>
-       <div id="p10" class="c10"></div>
-       <div id="p11" class="c11"></div> 
-  </section>
-</div>
+<center id="consolea" >#</center>
+<center class="consoleall">
+<div id="consolep1"></div>
+<div id="consolep2"></div>
+</center>
 
-<div>
-<div id="pp">中部
- <section class="regular slider">
-       <div id="p1"></div>
-       <div id="p2"></div>
-       <div id="p3"></div>
-       <div id="p4"></div>
-       <div id="p5"></div>
-       <div id="p6"></div>
-       <div id="p7"></div>
-       <div id="p8"></div>
-       <div id="p9"></div>
-       <div id="p10"></div>
-       <div id="p11"></div>
-  </section>
-  </div>
-  
-<div> 
-<div id="pp">南部
- <section class="regular slider">
-       <div id="p1"></div>
-       <div id="p2"></div>
-       <div id="p3"></div>
-       <div id="p4"></div>
-       <div id="p5"></div>
-       <div id="p6"></div>
-       <div id="p7"></div>
-       <div id="p8"></div>
-       <div id="p9"></div>
-       <div id="p10"></div>
-       <div id="p11"></div>
-  </section>
-  </div>
+</div> 
 
-<div>
-<div id="pp">東部
- <section class="regular slider">
-       <div id="p1"></div>
-       <div id="p2"></div>
-       <div id="p3"></div>
-       <div id="p4"></div>
-       <div id="p5"></div>
-       <div id="p6"></div>
-       <div id="p7"></div>
-       <div id="p8"></div>
-       <div id="p9"></div>
-       <div id="p10"></div>
-       <div id="p11"></div>
-  </section>
-  </div>
-
-<div>
-<div id="pp">離島
- <section class="regular slider">
-       <div id="p1"></div>
-       <div id="p2"></div>
-       <div id="p3"></div>
-       <div id="p4"></div>
-       <div id="p5"></div>
-       <div id="p6"></div>
-       <div id="p7"></div>
-       <div id="p8"></div>
-       <div id="p9"></div>
-       <div id="p10"></div>
-       <div id="p11"></div>
-  </section>
-  </div>
-
-
-
-    </div>
-
-
-  
-    
 <button class="material-scrolltop" type="button">
     <span>↑</span>
 </button>
- 
-<!-- 相簿 -->
-<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
-  <script src="./slick/slick.js" type="text/javascript" charset="utf-8"></script>
-  <script type="text/javascript">
-    $(document).on('ready', function() {
-
-    
-      
-    
-
-    $('.regular').slick({
-  centerMode: true,
-  centerPadding: '60px',
-  slidesToShow: 3,
-  responsive: [
-    {
-      breakpoint: 768,
-      settings: {
-        arrows: false,
-        centerMode: true,
-        centerPadding: '40px',
-        slidesToShow: 3
-      }
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        arrows: false,
-        centerMode: true,
-        centerPadding: '40px',
-        slidesToShow: 1
-      }
-    }
-  ]
-});
-
-});
-</script>
-
 <script type="text/javascript">
 $(document).ready(function()
 {
@@ -549,7 +400,7 @@ $(document).ready(function()
          $(this).siblings().css({backgroundImage:"url(left.png)"});
   });
 });
-</script>    
+</script>
 <script src="js/向上.js"></script>
 <script>
     $(document).ready(function() {
@@ -562,6 +413,5 @@ $(document).ready(function()
         });
     });
 </script>  
-
 </body>
 </html>
