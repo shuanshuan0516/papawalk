@@ -37,7 +37,7 @@
   var pre = document.getElementById('object');
   var a = 0;
   for(var i = 0;i<10;i++){
-    var db = firebase.database().ref("ig/-LMgrtd3Ga0A5MnCVRxF/景點/0/1/"+i+"/1/0");
+    var db = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/0/1/"+i+"/1/0");
   db.on('value',function(snapshot){
     var test = snapshot.val();
     a++;
