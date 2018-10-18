@@ -65,18 +65,19 @@
 }
 
 .sourceItem {
-    color:#4f4f4f;
-    width: 200px;
-    height: 200px;
-    margin-bottom: 20px;
-    padding: 5px;
-    border:2px black dashed;  
-     background-size: cover;
-     border-radius:10px;
+
+
+     border:4px black dashed;   
+  margin: 10px;   
+  padding: 10px;
+  height: auto;   
+  max-width: 200px;   
+  border-radius:10px; 
+  font-size: 5vmin;
   }
   #ul_Source3{
   	width: 250px;
-  	height: 500px;
+  	height: auto;
   	position: absolute;
   	z-index: -1;
   }

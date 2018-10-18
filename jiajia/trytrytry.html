@@ -8,7 +8,6 @@
     <title>兼容ie8的jquery滚动条美化插件|DEMO_jQuery之家-自由分享jQuery、html5、css3的插件库</title>
     <link rel="stylesheet" type="text/css" href="滾輪.css">
     <link type="text/css" href="滾輪1.css" rel="stylesheet"/>
-    <link type="text/css" href="themes/os-theme-round-dark.css" rel="stylesheet"/>
     <link type="text/css" href="滾輪2.css" rel="stylesheet"/>
     <style type="text/css">
         .box { height:400px; width:500px; overflow:scroll; padding:15px; }
@@ -44,28 +43,8 @@
     </div>
     
     <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')</script>
+
     <script type="text/javascript" src="滾輪.js"></script>
-    <script type="text/javascript">
-        //OverlayScrollbars(document.querySelectorAll('body'), { });
-        $(function() {
-            //The passed argument has to be at least a empty object or a object with your desired options
-            $('body').overlayScrollbars({
-                className : "os-theme-light"
-            });
-            $('.box1').overlayScrollbars({
-                className : "os-theme-round-dark",
-                resize : "both",
-                sizeAutoCapable : true,
-                paddingAbsolute : true
-            }); 
-            $('.box2').overlayScrollbars({
-                className : "os-theme-round-light",
-                resize : "both",
-                sizeAutoCapable : true,
-                paddingAbsolute : true
-            }); 
-        });
-    </script>
+    
 </body>
 </html>

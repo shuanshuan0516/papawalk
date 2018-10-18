@@ -5735,6 +5735,13 @@
          * @param options The custom options.
          * @returns {*}
          */
+
+        $(function() {
+            $('body').overlayScrollbars({
+                className : "os-theme-light"
+            });
+        });
+
         window[PLUGINNAME] = function(pluginTargetElements, options) {
             if(arguments.length === 0)
                 return this;
