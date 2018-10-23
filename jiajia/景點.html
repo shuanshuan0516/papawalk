@@ -64,7 +64,7 @@
             let login = document.cookie.split("login=")[1].split(";")[0];
             if (login === "1") {
                 let name = document.cookie.split("user=")[1].split(";")[0];
-                var ref = firebase.database().ref("member/"+name+"/like/"+location.search.split("?")[1]);
+                let ref = firebase.database().ref("member/"+name+"/like/"+location.search.split("?")[1]);
                 ref.once("value", (function (snapshot) {
                     snapshot.forEach(function(childSnapshot) {
                         let i = childSnapshot.val().check;
@@ -245,7 +245,7 @@
 </style>
 
 
-<body onload="login_init()">
+<body onload="init()">
 
 <div class="container">
         
