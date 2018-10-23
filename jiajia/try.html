@@ -1,74 +1,658 @@
-<!doctype html>
-<html lang="zh">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Material Design风格返回顶部jQuery插件|DEMO_jQuery之家-自由分享jQuery、html5、css3的插件库</title>
-<script type="text/javascript" src="js/拖曳2.js"></script>
-<script src="js/拖曳1.js"></script>
-<link href="css/拖曳.css" rel="stylesheet" type="text/css" />
-  
-  <style> 
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>就i趴趴走·景點</title>
 
-  
-  .sourceItem {
-    background: #ff00ff;
-    color: white;
-    width: 50px;
-    height: 50px;
-    margin: 5px;
-    padding: 5px;
-  }
-  
-  </style>
+<link rel="stylesheet" href="css/bootstrap.min.css"> 
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
 
 
-</head>
+<link href="SpryAssets/stylesheet.css rel="stylesheet" type="text/css"/>
+<script src="SpryAssets/SpryMenuBar.js" type="text/javascript"> </script>
+<link href="SpryAssets/SpryMenuBarVertical.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/登入.css"> 
 
+<!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script-->
+<!--留言-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-<body>
-<p style="background: red; color: white; text-align: center">複製 可丟棄</p>
-
-    <div>
-        目標 :
-        <div id="ul_Target3" class="sortgroup3" style="background: #000000; width: 200px; padding: 10px; min-height: 50px"></div>
-
-    </div>
-
-    <div>
-        來源 :
-        <div id="ul_Source3" class="sortgroup3" style="background: #2f4f4f; width: 200px; padding: 10px;min-height: 50px">
-            <div class="sourceItem sourceItem3">S1</div>
-            <div class="sourceItem sourceItem3">S2</div>
-            <div class="sourceItem sourceItem3">S3</div>
-            <div class="sourceItem sourceItem3">S4</div>
-            <div class="sourceItem sourceItem3">S5</div>
-
-        </div>
-    </div>
-
+<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+<link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
+    
+<link rel="stylesheet" href="css/選單.css">
+<link rel="stylesheet" type="text/css" href="css/手機選單3.css">
+<link rel="stylesheet" type="text/css" href="css/jia.css">
+<link rel="stylesheet" type="text/css" href="css/header.css">
+<link rel="stylesheet" href="css/向上.css">
+<!--script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script-->
+<!--留言-->
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
 <script>
- 
-        $(".sourceItem3").draggable({
-            helper: "clone",
-            connectToSortable: ".sortgroup3"
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAUnA_8r0-qHb6bCTMi0SCzHcUlc07Qbdk",
+    authDomain: "jia618-d8042.firebaseapp.com",
+    databaseURL: "https://jia618-d8042.firebaseio.com",
+    projectId: "jia618-d8042",
+    storageBucket: "jia618-d8042.appspot.com",
+    messagingSenderId: "157048895266"
+  };
+  firebase.initializeApp(config);
+
+  //登入
+  var provider = new firebase.auth.GoogleAuthProvider();
+        provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+        firebase.auth().languageCode = 'tw';
+        provider.setCustomParameters({
+            'login_hint': 'user@example.com'
         });
 
-
-        $("#ul_Target3").sortable(
-        {
-            receive: function (e, ui) { isOut = false; },
-            over: function (e, ui) { isOut = false; },
-            out: function (e, ui) { isOut = true; },
-
-            beforeStop: function (e, ui) {
-                if (isOut) {
-                    $(ui.item).remove();
-                }
+        function login_init(){
+            let name = document.cookie.split("user=")[1].split(";")[0];
+            let login= document.cookie.split("login=")[1].split(";")[0];
+            if(login==="1")
+            {
+                document.getElementById("user").innerText = name;
+                document.querySelector("#login").style.visibility = "hidden";
+                document.querySelector("#logout").style.visibility = "visible";
+            }else{
+                document.getElementById("user").innerText = "";
+                document.querySelector("#login").style.visibility = "visible";
+                document.querySelector("#logout").style.visibility = "hidden";
             }
-        }).disableSelection();
+        }
+        login_init();
+
+        var token;
+        // The signed-in user info.
+        var user;
+
+
+        function check(condition) {
+            if(condition === 1){
+                firebase.auth().signInWithPopup(provider).then(function (result) {
+                    // This gives you a Google Access Token. You can use it to access the Google API.
+                    token = result.credential.accessToken;
+                    // The signed-in user info.
+                    user = result.user;
+
+                    document.cookie = "user="+user.displayName;
+                    document.cookie = "uid="+user.uid;
+                    document.cookie = "login=1";
+                    login_init();
+                    // ...
+                }).catch(function (error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // The email of the user's account used.
+                    var email = error.email;
+                    // The firebase.auth.AuthCredential type that was used.
+                    var credential = error.credential;
+                    // ...
+
+                    firebase.auth().signInWithRedirect(provider);
+                });
+            }else{
+                firebase.auth().signOut().then(function() {
+                    alert("已成功登出!");
+                    document.cookie = "login= ";
+                    document.cookie = "user= ";
+                    document.cookie = "uid= ";
+                    login_init();
+                    // Sign-out successful.
+                }).catch(function(error) {
+                    // An error happened.
+                });
+            }
+
+
+        }
+        //登入
+</script>
+<script type="text/javascript">
+        //地圖
+        let get = location.search.split("&");
+
+        var db = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/" + get[1] + "/1/" + get[2]);
+        db.once('value', function (snapshot) {
+            let t2_title = snapshot.child("0").val();
+            document.getElementById("all_title").innerText = "#" + t2_title;
+            let name = snapshot.child("0").val();
+            let gotomap = "https://www.google.com/maps/dir//" + name + "/@" + name + ",13z?hl=zh-TW";
+            document.getElementById("m1").href = gotomap;
+
+            for (let i = 1; i < 21; i++) {
+                //圖片
+                let url = snapshot.child(i + "/0").val();
+                let image = document.getElementById("p" + i);
+                image.style.backgroundImage = "url(" + url + ")";
+                // //名稱 map
+                let href = "console.html?&"+get[1]+"&"+get[2]+"&"+i;
+                image.href = href;
+            }
+        });
+        //地圖
+        //留言
+        var db2 = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/" + get[1] + "/1/" + get[2]+"/comment");
+            db2.on('value',function(snapshot){
+                snapshot.forEach(function(cs){
+                    var text = document.getElementById("show");
+                    text.innerText += cs.val() +"\n";
+
+                    var aa = snapshot.numChildren();
+                    //var num = document.getElementById("sum");
+                    //num.innerText = "共"+aa+"則留言";
+                })
+            });
+
+        function putdata(){
+            var message = $('#message').val();            
+            var ref = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/" + get[1] + "/1/" + get[2]+"/comment");
+                ref.once("value", (function (snapshot) {
+                    var buffer = snapshot.child(message).val();
+                    var a = snapshot.numChildren()+1;
+                    if (buffer == null) {
+                        let updates = {};
+                        updates["ig/-LMpQ6bSy1fXHUHcLTZk/景點/" + get[1] + "/1/" + get[2]+"/comment/"+a ] = message;
+                        alert("留言成功");
+                        firebase.database().ref().update(updates);
+
+                    snapshot.forEach(function(cs){
+                    var text = document.getElementById("show");
+                    $("#message").val("");
+                    text.innerText = "";
+                    show_message();                    
+                    })
+                    } else {
+                        alert("請重新輸入一次");
+                    }
+                }))
+
+        };
+
+        function show_message(){
+            var db3 = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/" + get[1] + "/1/" + get[2]+"/comment");
+            db3.on('value',function(snapshot){
+                snapshot.forEach(function(cs){
+                var text1 = document.getElementById("show");
+                text1.innerText += cs.val() +"\n";
+                var aa2 = snapshot.numChildren();
+                //var num2 = document.getElementById("sum");
+                    //num2.innerText = "共"+aa2+"則留言";
+                })});
+        }
+        //留言  
+</script>
+</head>
+<style type="text/css">
+
+#p1, #p2, #p3, #p4, #p5, #p6, #p7, #p8, #p9, #p10, #p11, #p12, #p13, #p14, #p15, #p16, #p17, #p18, #p19, #p20 {
+        background-size: cover;
+        height: 250px;
+        width: 250px;
+        display: block;
+        margin: auto;
+        padding-top: 20px;
+
+    }
+
+    #content {
+        margin-top: 0px;
+        position:absolute;
+        z-index: -1;
+    }
+
+.row .item{   
+  border:4px black dashed;   
+  margin: 10px;   
+  padding: 10px;
+  height: auto;   
+  max-width: 300px;   
+  border-radius:10px;
+} 
+
+.mm{
+        border-radius: 8px;
+        border: 2px solid rgba(105, 105, 105, 0.6);
+        padding: 20px;
+        max-width:30%;
+        margin-top: 50px;
+        margin-left:37%;
+        font-size: 6vmin;
+        color:#4f4f4f;
+}
+.draw {
+        height: 28px;
+        width: 200px;
+        font-size: 4vmin;
+        background-color: transparent;
+        border-radius: 8px;
+        border: 2px solid rgba(105, 105, 105, 0.6);
  
-   </script>
+    }
+.col-md-6{
+        margin-left: 37%;
+        margin-top: 30px;
+        margin-bottom: 50px;
+        background-color:#5b5b5b;
+        width: 30%;
+        height: auto;
+        border-radius: 8px;
+        border: 2px solid rgba(105, 105, 105, 0.6);
+        font-size: 4vmin;
+        padding: 15px;
+    }
+
+#bb{
+  display: block;
+}
+#czy pr{
+    display: inline;
+    font-size: 7vmin;
+}
+#czyy{
+    border:4px black solid;
+    border-radius:5px;
+    position:absolute;
+    z-index: 999;
+    left: 47%;
+    margin: 10px;
+}
+#m1{
+    margin-left:40%;
+}
+@media (max-width: 768px) {
+    #m1{
+        margin-left: 30%;
+    }
+}
+
+</style>
+
+
+<body onload="login_init()">
+
+<div class="container">
+        <header>
+<!--往下滑的標題><!-->
+<div id="fixed_header">
+    <div id="navi">
+      <ul style="margin-right: 130px;">
+         <li><a href="index.html"><img id="navi1" src="images/趴.png"></li>
+         <li><a href="景點all.html"><img id="navi2" src="images/景點.png"></a></li>
+         <li><a href="美食all.html"><img id="navi2" src="images/美食.png"></a></li>
+         <li><a href="會員all.html"><img id="navi3" src="images/會員1.png"></a></li>
+         <li><a href="關於我.html"><img id="navi4" src="images/about1.png"></a></li>
+      </ul>
+    </div>
+    <div id="phone-navi">
+      <ul>
+    <li><a href="index.html" id="phone-navi1">首頁</a></li>
+    <li><a href="景點all.html" id="phone-navi2">景點</a></li>
+    <li><a href="美食all.html" id="phone-navi2">美食</a></li>
+    <li><a href="會員all.html" id="phone-navi2">會員專區</a></li>
+    <li><a href="關於我.html" id="phone-navi2">關於我</a></li>
+    <li><a href="會員登入.html" id="phone-navi2">登入</a></li>
+    <li><a href="" id="phone-navi2">登出</a></li>
+      </ul>
+    </div>
+</div>
+<!--真的標題><!-->
+<div id="real_header">
+<div class="Header">
+   <div class="Logo">
+     <a href="index.html">就I趴趴走</a>
+   </div>
+
+   <ul class="good" style="margin-right: 130px;">
+      <li><a href="景點all.html"><img src="images/景點.png" id="good1"></a></li>
+      <li><a href="美食all.html"><img src="images/美食.png" id="good1"></a></li>
+      <li><a href="會員all.html"><img src="images/會員1.png" id="good2"></a></li>
+      <li><a href="關於我.html"><img src="images/about1.png" id="good3"></a></li>
+   </ul>
+ </div>
+</div>
+
+   
+    
+<!--手機板的標題><!-->
+<table width="100%" id="ph1">
+<tr>
+<th id="ph2">
+
+    <a href="景點all.html" id="ph3">景點</a>
+    <a href="美食all.html" id="ph4">美食</a>
+    <a href="會員all.html" id="ph4">會員專區</a>
+    <a href="關於我.html" id="ph4">關於我</a>
+    <a href="會員登入.html" id="ph4">登入</a>
+    <a href="" id="ph4">登出</a>
+
+</th>
+</tr>
+</table>
+            
+</div>
+</header>
+ 
+<div id="log">
+  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登入</span></button>
+  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登出</span></button>
+  <div id="user" style="text-align: center;padding-top:58px;color:#4f4f4f;"></div>
+</div>
+
+<div id="netmenu">
+<div id="menu">
+<div class="hamburger">
+<div class="line"></div>
+<div class="line"></div>
+<div class="line"></div>
+</div>
+<div class="menu-inner">
+<ul>
+
+<div style="float:left; margin-left:0px;"> <!--This is the second division of right-->
+  <p><strong>地區選單 </strong></p>
+  <div class="menu_list" id="secondpane"> <!--Code for menu starts here-->
+    <p class="menu_head">北部</p>
+    <div class="menu_body">
+    <a href="景點.html?&0">基隆</a> 
+    <a href="景點.html?&1">台北</a>
+    <a href="景點.html?&2">新北</a>
+    <a href="景點.html?&3">桃園</a> 
+    <a href="景點.html?&4">新竹</a>
+    <a href="景點.html?&16">宜蘭</a>  
+    </div>
+    <p class="menu_head">中部</p>
+    <div class="menu_body">
+    <a href="景點.html?&5">苗栗</a>
+    <a href="景點.html?&6">台中</a>
+    <a href="景點.html?&7">彰化</a> 
+    <a href="景點.html?&8">南投</a>
+    <a href="景點.html?&9">雲林</a>  
+    </div>
+    <p class="menu_head">南部</p>
+    <div class="menu_body">
+    <a href="景點.html?&10">嘉義</a>
+    <a href="景點.html?&11">台南</a>
+    <a href="景點.html?&12">高雄</a>  
+    <a href="景點.html?&13">屏東</a>  
+    <a href="景點.html?&15">澎湖</a>   
+    </div>
+     <p class="menu_head">東部</p>
+    <div class="menu_body">
+    <a href="景點.html?&20">花蓮</a>
+    <a href="景點.html?&14">台東</a>  
+    </div>
+     <p class="menu_head">離島</p>
+    <div class="menu_body">
+    <a href="景點.html?&18">金門</a>
+    <a href="景點.html?&17">綠島</a>
+    <a href="景點.html?&19">蘭嶼</a>    
+    </div>
+  </div>      <!--Code for menu ends here-->
+</div>
+
+</ul>
+</div>
+
+</div>
+<h2>地區選單</h2>
+</div>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="js/選單.js"></script>
+
+
+<div id="phonemenu">
+<nav class="nav">
+<ul>
+  <div class="menu_list" id="secondpane"> <!--Code for menu starts here-->
+    <p class="menu_head">北部</p>
+    <div class="menu_body">
+    <a href="景點.html?&0">基隆</a> 
+    <a href="景點.html?&1">台北</a>
+    <a href="景點.html?&2">新北</a>
+    <a href="景點.html?&3">桃園</a> 
+    <a href="景點.html?&4">新竹</a>
+    <a href="景點.html?&16">宜蘭</a>  
+    </div>
+    <p class="menu_head">中部</p>
+    <div class="menu_body">
+    <a href="景點.html?&5">苗栗</a>
+    <a href="景點.html?&6">台中</a>
+    <a href="景點.html?&7">彰化</a> 
+    <a href="景點.html?&8">南投</a>
+    <a href="景點.html?&9">雲林</a>  
+    </div>
+    <p class="menu_head">南部</p>
+    <div class="menu_body">
+    <a href="景點.html?&10">嘉義</a>
+    <a href="景點.html?&11">台南</a>
+    <a href="景點.html?&12">高雄</a>  
+    <a href="景點.html?&13">屏東</a>  
+    <a href="景點.html?&15">澎湖</a>   
+    </div>
+     <p class="menu_head">東部</p>
+    <div class="menu_body">
+    <a href="景點.html?&20">花蓮</a>
+    <a href="景點.html?&14">台東</a>  
+    </div>
+     <p class="menu_head">離島</p>
+    <div class="menu_body">
+    <a href="景點.html?&18">金門</a>
+    <a href="景點.html?&17">綠島</a>
+    <a href="景點.html?&19">蘭嶼</a>    
+    </div>
+
+  </div>      <!--Code for menu ends here-->
+</ul>
+</nav>
+<div class="nav-toggle">
+<div class="icon"></div>
+</div>
+</div>
+
+
+
+
+<script src="http://www.jq22.com/jquery/2.1.1/jquery.min.js"></script>
+<script>
+  $('.nav-toggle').click(function () {
+      $('body').toggleClass('nav-open');
+  });
+  </script>
+
+
+        <div id="content" class="container">
+            <h3 class="title"> 
+                <center id="" style="margin-bottom: 10px;">|#桃園銘傳大學</center>
+                <center>
+                    <div id="czyy">
+                    <div id ="czy">
+                            <pr>★</pr><pr>★</pr><pr>★</pr><pr>★</pr><pr>★</pr>
+                        </div>
+                    <input class="button" id="ok" value="評分">
+                    </div>
+                </center>
+                <a id="m1" href="https://www.google.com.tw/maps/dir/24.9881521,121.3436928/333%E6%A1%83%E5%9C%92%E5%B8%82%E9%BE%9C%E5%B1%B1%E5%8D%80%E5%BE%B7%E6%98%8E%E8%B7%AF5%E8%99%9F%E9%8A%98%E5%82%B3%E5%A4%A7%E5%AD%B8+%E6%A1%83%E5%9C%92%E6%A0%A1%E5%8D%80/@24.9864983,121.3406502,17z/data=!3m1!4b1!4m17!1m6!3m5!1s0x34681e8f88001f51:0xde8e62ebe5442d75!2z6YqY5YKz5aSn5a24IOahg-WckuagoeWNgA!8m2!3d24.9844926!4d121.3423688!4m9!1m1!4e1!1m5!1m1!1s0x34681e8f88001f51:0xde8e62ebe5442d75!2m2!1d121.3423688!2d24.9844926!3e3?hl=zh-TW&authuser=0" target="_blank"><img src="images/map.png" style="max-width: 50px;"></a>
+            </h3>
+            <div class="row" style="padding-left:15%;padding-top: 80px;">
+
+
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+                    <a id="p1" href="trytry.html"><img src="try/IMG_3109.JPG" style="position: absolute;z-index:-1;max-width: 250px;height: 250px;background-size: cover;left: 20px;top:10px;" >
+                    </a>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+                    <a id="p2"><img src="try/13392848_1456298944387071_566854679_n.jpg" style="position: absolute;z-index:-1;max-width: 250px;height: 250px;background-size: cover;left: 20px;top:10px;">
+                    </a>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+                    <a id="p3"><img src="try/13402439_1018357751588546_1161257134_n.jpg" style="position: absolute;z-index:-1;max-width: 250px;height: 250px;background-size: cover;left: 20px;top:10px;">
+                    </a>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+                    <a id="p4"><img src="try/13437389_1718870431659222_729600835_n.jpg" style="position: absolute;z-index:-1;max-width: 250px;height: 250px;background-size: cover;left: 20px;top:10px;">
+                    </a>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+                    <a id="p5"><img src="try/14269001_798824316926435_5675132934667894784_n.jpg" style="position: absolute;z-index:-1;max-width: 250px;height: 250px;background-size: cover;left: 20px;top:10px;">
+                    </a>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+                    <a id="p6"><img src="try/15535399_1057538207710889_6448412908362661888_n.jpg" style="position: absolute;z-index:-1;max-width: 250px;height: 250px;background-size: cover;left: 20px;top:10px;">
+
+                    </a>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+                    <a id="p7"><img src="try/19933082_237960240045738_6800077357316046848_n.jpg" style="position: absolute;z-index:-1;max-width: 250px;height: 250px;background-size: cover;left: 20px;top:10px;">
+
+                    </a>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+                    <a id="p8"><img src="try/23735316_1376931445751449_1098476871370145792_n.jpg" style="position: absolute;z-index:-1;max-width: 250px;height: 250px;background-size: cover;left: 20px;top:10px;">
+
+                    </a>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+                    <a id="p9"><img src="try/36135887_376154706241789_2891174629919948800_n.jpg" style="position: absolute;z-index:-1;max-width: 250px;height: 250px;background-size: cover;left: 20px;top:10px;">
+
+                    </a>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+                    <a id="p10"><img src="try/41517151_243995666298075_3038372186617436056_n.jpg" style="position: absolute;z-index:-1;max-width: 250px;height: 250px;background-size: cover;left: 20px;top:10px;">
+
+                    </a>
+                </div>
+
+
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+                    <a id="p11"><img src="try/43526346_304876073626391_1908321824666967861_n.jpg" style="position: absolute;z-index:-1;max-width: 250px;height: 250px;background-size: cover;left: 20px;top:10px;">
+
+                    </a>
+                </div>
+
+               
+            </div>
+
+
+<div class="mm">
+<p><center>留言區</center></p>
+        <center>       
+         <input type="text" id="message" class="draw" placeholder="請輸入留言...">
+        </center>
+
+<div class="but" style="margin-top: 30px;">
+        <center>
+            <button id="login" type="button" onclick="putdata()"
+                    style="font-size: 20px; background-color: transparent; border-radius: 8px; border: 2px solid rgba(105,105,105,0.6);">
+                送出
+            </button>
+        </center>
+    </div>
+</div>
+
+    <div id="show" class="col-md-6">
+        </div> 
+    </div>
+
+
+
+
+
+</div>
+
+<button class="material-scrolltop" type="button">
+    <span>↑</span>
+</button>
+
+<script>
+    tds=document.getElementsByTagName("pr");
+    for(var i=0;i<tds.length;i++){
+        tds[i].onmouseover=test;
+    }
+    var vote;
+    function  test(){
+
+        for(var i=0;i<tds.length;i++){
+            if(tds[i]==this)
+            {
+                vote=i;
+            }
+        }
+
+        for(var i=0;i<=vote;i++) {
+            tds[i].style.color = "yellow";
+        }
+        for(var i=vote+1;i<tds.length;i++){
+            tds[i].style.color="black";
+        }
+    }
+    document.getElementById("ok").onclick=function(){
+       score = vote+1;
+        alert("評分："+(score)+"分");
+        
+    }
+
+    $(document).ready(function(){
+    var scoreRef = firebase.database().ref("Score");//firebase位址    
+    $('#ok').on('click',function(){
+    var updates = {};
+    updates["Score/score"] = score;
+    firebase.database().ref().update(updates);
+    })
+    
+    
+    })
+ 
+</script>
+
+<script type="text/javascript">
+$(document).ready(function()
+{
+  //slides the element with class "menu_body" when paragraph with class "menu_head" is clicked 
+  $("#firstpane p.menu_head").click(function()
+    {
+    $(this).css({backgroundImage:"url(down.png)"}).next("div.menu_body").slideToggle(300).siblings("div.menu_body").slideUp("slow");
+        $(this).siblings().css({backgroundImage:"url(left.png)"});
+  });
+  //slides the element with class "menu_body" when mouse is over the paragraph
+  $("#secondpane p.menu_head").mouseover(function()
+    {
+       $(this).css({backgroundImage:"url(down.png)"}).next("div.menu_body").slideDown(500).siblings("div.menu_body").slideUp("slow");
+         $(this).siblings().css({backgroundImage:"url(left.png)"});
+  });
+});
+</script>
+
+<script src="js/向上.js"></script>
+<script>
+    $(document).ready(function() {
+        $('body').materialScrollTop({
+            revealElement: 'header',
+            revealPosition: 'bottom',
+            onScrollEnd: function() {
+            console.log('Scrolling End');
+            }
+        });
+    });
+</script>  
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
 </body>
 </html>

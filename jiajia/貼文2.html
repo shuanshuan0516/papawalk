@@ -46,52 +46,7 @@
   };
   firebase.initializeApp(config);
 
-        let get = location.search.split("&");
-
-        var db = firebase.database().ref("ig/-LMzDW-tksmwMEzbo2P1/美食/" + get[1] + "/1/" + get[2]);
-        db.once('value', function (snapshot) {
-            let t2_title = snapshot.child("0").val();
-            document.getElementById("all_title").innerText = "#" + t2_title;
-            let name = snapshot.child("0").val();
-            let gotomap = "https://www.google.com/maps/dir//" + name + "/@" + name + ",13z?hl=zh-TW";
-            document.getElementById("m1").href = gotomap;
-
-            for (let i = 1; i < 21; i++) {
-                //圖片
-                let url = snapshot.child(i + "/0").val();
-                let image = document.getElementById("p" + i);
-                image.style.backgroundImage = "url(" + url + ")";
-                // //名稱 map
-                let href = "foodconsole.html?&"+get[1]+"&"+get[2]+"&"+i;
-                image.href = href;
-            }
-        });
-
-        // for (var i = 1; i < 21; i++) {
-        //     var db = firebase.database().ref("ig/-LJp73c4QGkmiu_i86Bu/景點/0/1/0/" + i + "/0");
-        //     db.on('value', function (snapshot) {
-        //         var test = snapshot.val();
-        //         a++;
-        //         var image = document.getElementById("p" + a);
-        //         image.style.backgroundImage = "url(" + test + ")";
-        //     });
-        // }
-        //
-        //
-        // for (var j = 0; j < 20; j++) {
-        //     var db2 = firebase.database().ref("ig/-LJp73c4QGkmiu_i86Bu/景點/0/1/" + j + "/0");
-        //     db2.on('value', function (snapshot) {
-        //         var test2 = snapshot.val();
-        //         b++;
-        //         var icon = document.getElementById("m" + b);
-        //         gotomap = "https://www.google.com/maps/dir//" + test2 + "/@" + test2 + ",13z?hl=zh-TW";
-        //         icon.href = gotomap;
-        //
-        //     })
-        // }
-    </script>
-    <script type="text/javascript">
-    //登入
+  //登入
   var provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
         firebase.auth().languageCode = 'tw';
@@ -161,11 +116,86 @@
 
         }
         //登入
+    </script>
+    <script type="text/javascript">
+        //地圖
+        let get = location.search.split("&");
+
+        var db = firebase.database().ref("ig/-LMpPW-oQoTQYtDaO2_O/美食/" + get[1] + "/1/" + get[2]);
+        db.once('value', function (snapshot) {
+            let t2_title = snapshot.child("0").val();
+            document.getElementById("all_title").innerText = "#" + t2_title;
+            let name = snapshot.child("0").val();
+            let gotomap = "https://www.google.com/maps/dir//" + name + "/@" + name + ",13z?hl=zh-TW";
+            document.getElementById("m1").href = gotomap;
+
+            for (let i = 1; i < 21; i++) {
+                //圖片
+                let url = snapshot.child(i + "/0").val();
+                let image = document.getElementById("p" + i);
+                image.style.backgroundImage = "url(" + url + ")";
+                // //名稱 map
+                let href = "foodconsole.html?&"+get[1]+"&"+get[2]+"&"+i;
+                image.href = href;
+            }
+        });
+        //地圖
+        //留言
+        var db2 = firebase.database().ref("ig/-LMpPW-oQoTQYtDaO2_O/美食/" + get[1] + "/1/" + get[2]+"/comment");
+            db2.on('value',function(snapshot){
+                snapshot.forEach(function(cs){
+                    var text = document.getElementById("show");
+                    text.innerText += cs.val() +"\n";
+
+                    var aa = snapshot.numChildren();
+                    //var num = document.getElementById("sum");
+                    //num.innerText = "共"+aa+"則留言";
+                })
+            });
+
+        function putdata(){
+            var message = $('#message').val();            
+            var ref = firebase.database().ref("ig/-LMpPW-oQoTQYtDaO2_O/美食/" + get[1] + "/1/" + get[2]+"/comment");
+                ref.once("value", (function (snapshot) {
+                    var buffer = snapshot.child(message).val();
+                    var a = snapshot.numChildren()+1;
+                    if (buffer == null) {
+                        let updates = {};
+                        updates["ig/-LMpPW-oQoTQYtDaO2_O/美食/" + get[1] + "/1/" + get[2]+"/comment/"+a ] = message;
+                        alert("留言成功");
+                        firebase.database().ref().update(updates);
+
+                    snapshot.forEach(function(cs){
+                    var text = document.getElementById("show");
+                    $("#message").val("");
+                    text.innerText = "";
+                    show_message();                    
+                    })
+                    } else {
+                        alert("請重新輸入一次");
+                    }
+                }))
+
+        };
+
+        function show_message(){
+            var db3 = firebase.database().ref("ig/-LMpPW-oQoTQYtDaO2_O/美食/" + get[1] + "/1/" + get[2]+"/comment");
+            db3.on('value',function(snapshot){
+                snapshot.forEach(function(cs){
+                var text1 = document.getElementById("show");
+                text1.innerText += cs.val() +"\n";
+                var aa2 = snapshot.numChildren();
+                //var num2 = document.getElementById("sum");
+                    //num2.innerText = "共"+aa2+"則留言";
+                })});
+        }
+        //留言
+    
 </script>
 </head>
 <style type="text/css">
 
-    #p1, #p2, #p3, #p4, #p5, #p6, #p7, #p8, #p9, #p10, #p11, #p12, #p13, #p14, #p15, #p16, #p17, #p18, #p19, #p20 {
+#p1, #p2, #p3, #p4, #p5, #p6, #p7, #p8, #p9, #p10, #p11, #p12, #p13, #p14, #p15, #p16, #p17, #p18, #p19, #p20 {
         background-size: cover;
         height: 250px;
         width: 250px;
@@ -181,24 +211,24 @@
         z-index: -1;
     }
 
-
 .row .item{   
   border:4px black dashed;   
   margin: 10px;   
   padding: 10px;
   height: auto;   
   max-width: 300px;   
-  border-radius:10px; 
+  border-radius:10px;
 } 
 
 .mm{
         border-radius: 8px;
         border: 2px solid rgba(105, 105, 105, 0.6);
         padding: 20px;
-        max-width:350px;
-        margin-top: 150px;
+        max-width:30%;
+        margin-top: 50px;
         margin-left:37%;
         font-size: 6vmin;
+        color:#4f4f4f;
 }
 .draw {
         height: 28px;
@@ -210,30 +240,38 @@
  
     }
 .col-md-6{
-        font-size:4vmin;
         margin-left: 37%;
         margin-top: 30px;
         margin-bottom: 50px;
-        padding: 5px 0px 5px 0px; 
         background-color:#5b5b5b;
         width: 30%;
         height: auto;
-        border-radius: 2px;
+        border-radius: 8px;
         border: 2px solid rgba(105, 105, 105, 0.6);
-
+        font-size: 4vmin;
     }
 
 #bb{
-  display: inline;
+  display: block;
 }
 #czy pr{
     display: inline;
     font-size: 8vmin;
 }
 #czyy{
-    left: 45%;
+    border:4px black solid;
+    border-radius:5px;
     position:absolute;
     z-index: 999;
+    left: 47%;
+}
+#m1{
+    margin-left:40%;
+}
+@media (max-width: 768px) {
+    #m1{
+        margin-left: 30%;
+    }
 }
 </style>
 <body onload="login_init()">
@@ -427,12 +465,19 @@
 
 
         <div id="content" class="container">
-            <h3 class="title">
-                <center id="all_title">|#</center>
-                <center><a id="m1" href="" target="_blank">
-                <img src="images/map.png" style="max-width: 4%;"></a></center>
+            <h3 class="title"> 
+                <center id="all_title" style="margin-bottom: 10px;">|#</center>
+                <center>
+                    <div id="czyy">
+                    <div id ="czy">
+                            <pr>★</pr><pr>★</pr><pr>★</pr><pr>★</pr><pr>★</pr>
+                        </div>
+                    <input class="button" id="ok" value="評分">
+                    </div>
+                </center>
+                <a id="m1" href="" target="_blank"><img src="images/map.png" style="max-width: 50px;"></a>
             </h3>
-            <div class="row" style="padding-left:15%;">
+            <div class="row" style="padding-left:15%;padding-top: 50px;">
 
 
                 <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
@@ -551,13 +596,6 @@
             </div>
            
 
-<div id="czyy">
-<div id ="czy">
-        <pr>★</pr><pr>★</pr><pr>★</pr><pr>★</pr><pr>★</pr>
-</div>
-<input class="button" id="ok" value="評分">
-</div> 
-
 <div class="mm">
 <p><center>留言區</center></p>
         <center>       
@@ -575,7 +613,10 @@
 </div>
 
 <center> 
-    <div id="bb" class="col-md-6"> </div>
+    <div id="show" class="col-md-6">
+        </div> 
+    </div>
+    
 </center>
 
 
@@ -585,41 +626,7 @@
 <button class="material-scrolltop" type="button">
     <span>↑</span>
 </button>
-<script type="text/javascript">
-      function putdata(){
-        var message = $('#message').val();
 
-        var ref = firebase.database().ref("留言區");
-
-            ref.once("value", (function (snapshot) {
-                var buffer = snapshot.child(message).val();
-
-                var a = snapshot.numChildren()+1;
-
-                if (buffer == null){
-
-                    let updates = {};
-
-                    updates["留言區/" + a] = message;
-                    
-                    alert("留言成功");
-                    firebase.database().ref().update(updates);
-                    return;
-                } else {
-                    alert("請重新輸入一次");
-                }
-
-            }))
-    };            
-            var db = firebase.database().ref("留言區/");
-            db.on('value',function(snapshot){
-            var db = snapshot.val();
-            var test = document.getElementById("bb");
-            test.innerHTML = db; 
-            });
-             
-            
-</script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
     tds=document.getElementsByTagName("pr");
@@ -645,7 +652,7 @@
     }
     document.getElementById("ok").onclick=function(){
        score = vote+1;
-        alert("評分："+(score-11)+"分");
+        alert("評分："+(score)+"分");
         
     }
 

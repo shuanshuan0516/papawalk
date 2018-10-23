@@ -128,7 +128,7 @@ var provider = new firebase.auth.GoogleAuthProvider();
   var pre = document.getElementById('object');
   var a = 0;
   for(var i = 0;i<10;i++){
-    var db = firebase.database().ref("ig/-LMgrtd3Ga0A5MnCVRxF/景點/0/1/"+i+"/1/0");
+    var db = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/0/1/"+i+"/1/0");
     db.on('value',function(snapshot){
     var test = snapshot.val();
     a++;
@@ -142,7 +142,7 @@ var provider = new firebase.auth.GoogleAuthProvider();
   var pre = document.getElementById('object');
   var d = 0;
   for(var k = 0;k<10;k++){
-    var db = firebase.database().ref("ig/-LMgrtd3Ga0A5MnCVRxF/景點/0/1/"+k+"/0");
+    var db = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/0/1/"+k+"/0");
     db.on('value',function(snapshot){
     var content = snapshot.val();
     d++;
@@ -199,7 +199,7 @@ var provider = new firebase.auth.GoogleAuthProvider();
 }
 @media (max-width: 768px) {
     #log {
-      display: none;
+   display: none;
     }
 }
 
@@ -227,9 +227,12 @@ var provider = new firebase.auth.GoogleAuthProvider();
     <li><a href="景點all.html" id="phone-navi2">景點</a></li>
     <li><a href="美食all.html" id="phone-navi2">美食</a></li>
     <li><a href="會員all.html" id="phone-navi2">會員專區</a></li>
-    <li><a href="關於我.html" id="phone-navi2">關於我</a></li>
-    <li><a href="會員登入.html" id="phone-navi2">登入</a></li>
-    <li><a href="" id="phone-navi2">登出</a></li>
+    <li><a href="關於我.html" id="phone-navi2" style="margin-left:40px;">關於我</a></li>
+    <li>
+    <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:4;left:180px;top:28px;"><span>登入</span></button>
+  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:3;left:180px;top:28px;"><span>登出</span></button>
+  <div id="user" style="text-align: center;margin-top:-30px;margin-left:130px;color:#4f4f4f;"></div>
+</li>
       </ul>
     </div>
 </div>
@@ -260,8 +263,9 @@ var provider = new firebase.auth.GoogleAuthProvider();
     <a href="美食all.html" id="ph4">美食</a>
     <a href="會員all.html" id="ph4">會員專區</a>
     <a href="關於我.html" id="ph4">關於我</a>
-    <a href="會員登入.html" id="ph4">登入</a>
-    <a href="" id="ph4">登出</a>
+    <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:4;right:-90px;top:100px;"><span>登入</span></button>
+  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:3;right:-90px;top:100px;"><span>登出</span></button>
+  <div id="user" style="text-align: center;padding-top:10px;margin-right:-390px;color:#4f4f4f;"></div>
 
 </th>
 </tr>
@@ -272,8 +276,8 @@ var provider = new firebase.auth.GoogleAuthProvider();
  
  
 <div id="log">
-  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登入</span></button>
-  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登出</span></button>
+  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登入</span></button>
+  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登出</span></button>
   <div id="user" style="text-align: center;padding-top:58px;color:#4f4f4f;"></div>
 </div>
 
@@ -401,7 +405,7 @@ var provider = new firebase.auth.GoogleAuthProvider();
 <div id="picture" >
 <div id="pp" style="margin-top: 170px;">北部
  <section class="regular slider">
-       <div id="p1"><div id="c1"></div></div></a>
+       <div id="p1"><div id=""></div></div></a>
        <div id="p2" class="c2"></div>
        <div id="p3" class="c3"></div>
        <div id="p4" class="c4"></div>

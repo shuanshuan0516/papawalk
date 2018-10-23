@@ -43,19 +43,19 @@
   };
   firebase.initializeApp(config);
   var get = location.search.split("&");
-var dbname = firebase.database().ref("ig/-LMgrtd3Ga0A5MnCVRxF/景點/"+get[1]+"/1/"+get[2]+"/0");
+var dbname = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/"+get[1]+"/1/"+get[2]+"/0");
   dbname.on('value',function(snapshot){
     var content = snapshot.val();
     var text = document.getElementById("consolea");
     text.innerText = text.innerText+content;
  });
-var dbimage = firebase.database().ref("ig/-LMgrtd3Ga0A5MnCVRxF/景點/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/0");
+var dbimage = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/0");
   dbimage.on('value',function(snapshot){
     var content = snapshot.val();
     var image = document.getElementById("consolep1");
     image.style.backgroundImage = "url("+content+")";
  });
-var dbcontent = firebase.database().ref("ig/-LMgrtd3Ga0A5MnCVRxF/景點/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/1");
+var dbcontent = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/"+get[1]+"/1/"+get[2]+"/"+get[3]+"/1");
   dbcontent.on('value',function(snapshot){
     var content = snapshot.val();
     var text = document.getElementById("consolep2");
