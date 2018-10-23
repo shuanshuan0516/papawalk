@@ -17,6 +17,11 @@
     margin-bottom:10px;
     margin-top: 170px;
 }
+@media (max-width: 768px) {
+    .title{
+        margin-top: 190px;
+    }
+}
 
 .row{
   color: black;

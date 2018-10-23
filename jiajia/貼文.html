@@ -228,6 +228,18 @@
         font-size: 6vmin;
         color:#4f4f4f;
 }
+@media (max-width: 768px) {
+    .mm{
+        border-radius: 8px;
+        border: 2px solid rgba(105, 105, 105, 0.6);
+        padding: 20px;
+        max-width:250px;
+        margin-top: 50px;
+        margin-left:90px;
+        font-size: 6vmin;
+        color:#4f4f4f;
+}
+}
 .draw {
         height: 28px;
         width: 200px;
@@ -248,30 +260,60 @@
         border: 2px solid rgba(105, 105, 105, 0.6);
         font-size: 4vmin;
     }
-
+@media (max-width: 768px) {
+    .col-md-6{
+        margin-left: 90px;
+        margin-top: 30px;
+        margin-bottom: 50px;
+        background-color:#5b5b5b;
+        width: 250px;
+        height: auto;
+        border-radius: 8px;
+        border: 2px solid rgba(105, 105, 105, 0.6);
+        font-size: 4vmin;
+    }
+}
 #bb{
   display: block;
 }
 #czy pr{
     display: inline;
-    font-size: 8vmin;
+    font-size: 7vmin;
 }
 #czyy{
-    border:4px black solid;
     border-radius:5px;
     position:absolute;
     z-index: 999;
-    left: 47%;
+    left: 45%;
+    padding: 10px;
 }
 #m1{
     margin-left:40%;
 }
+
+#gogo{
+  font-size: 6vmin; 
+  background-color: transparent; 
+  border-radius: 8px; 
+  border: 2px solid rgba(105,105,105,0.6);
+  padding:10px;
+  color:#4f4f4f;
+}
+#gogo a{color:#4f4f4f; }
+#gogo a:hover{color: #fff;}
 @media (max-width: 768px) {
     #m1{
         margin-left: 30%;
     }
 }
-
+#ok{
+    margin-top: 5px;
+}
+@media (max-width: 768px) {
+    #gogo{
+        left: 40%
+    }
+}
 </style>
 
 
@@ -288,17 +330,6 @@
          <li><a href="美食all.html"><img id="navi2" src="images/美食.png"></a></li>
          <li><a href="會員all.html"><img id="navi3" src="images/會員1.png"></a></li>
          <li><a href="關於我.html"><img id="navi4" src="images/about1.png"></a></li>
-      </ul>
-    </div>
-    <div id="phone-navi">
-      <ul>
-    <li><a href="index.html" id="phone-navi1">首頁</a></li>
-    <li><a href="景點all.html" id="phone-navi2">景點</a></li>
-    <li><a href="美食all.html" id="phone-navi2">美食</a></li>
-    <li><a href="會員all.html" id="phone-navi2">會員專區</a></li>
-    <li><a href="關於我.html" id="phone-navi2">關於我</a></li>
-    <li><a href="會員登入.html" id="phone-navi2">登入</a></li>
-    <li><a href="" id="phone-navi2">登出</a></li>
       </ul>
     </div>
 </div>
@@ -340,9 +371,9 @@
 </header>
  
 <div id="log">
-  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登入</span></button>
-  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登出</span></button>
-  <div id="user" style="text-align: center;padding-top:58px;color:#4f4f4f;"></div>
+  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登入</span></button>
+  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登出</span></button>
+  <div id="user" style="padding-top:58px;color:#4f4f4f;"></div>
 </div>
 
 <div id="netmenu">
@@ -470,14 +501,16 @@
         <div id="content" class="container">
             <h3 class="title"> 
                 <center id="all_title" style="margin-bottom: 10px;">|#</center>
-                <center>
+                
                     <div id="czyy">
                     <div id ="czy">
-                            <pr>★</pr><pr>★</pr><pr>★</pr><pr>★</pr><pr>★</pr>
-                        </div>
-                    <input class="button" id="ok" value="評分">
+                    <pr>★</pr><pr>★</pr><pr>★</pr><pr>★</pr><pr>★</pr>
+                     <input class="button" id="ok" value="評分">
+                     <a href="#gogogo" id="gogo">↓留言板↓</a>
                     </div>
-                </center>
+                   
+                    </div>
+                
                 <a id="m1" href="" target="_blank"><img src="images/map.png" style="max-width: 50px;"></a>
             </h3>
             <div class="row" style="padding-left:15%;padding-top: 50px;">
@@ -597,7 +630,7 @@
             </div>
 
 
-<div class="mm">
+<div class="mm" id="gogogo">
 <p><center>留言區</center></p>
         <center>       
          <input type="text" id="message" class="draw" placeholder="請輸入留言...">
@@ -656,15 +689,19 @@
     }
 
     $(document).ready(function(){
-    var scoreRef = firebase.database().ref("Score");//firebase位址    
+    let get = location.search.split("&");
+    var scoreRef = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/" + get[1] + "/1/" + get[2]+"/star");//firebase位址    
     $('#ok').on('click',function(){
+    scoreRef.once("value",(function(snapshot){
+    var bbb = snapshot.numChildren()+1;
     var updates = {};
-    updates["Score/score"] = score;
+    updates["ig/-LMpQ6bSy1fXHUHcLTZk/景點/" + get[1] + "/1/" + get[2]+"/star"+bbb] = score;
     firebase.database().ref().update(updates);
+    }))
+    
+    })
     })
     
-    
-    })
  
 </script>
 

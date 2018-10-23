@@ -188,7 +188,7 @@ list-style-type:none;
   @media (max-width: 768px) {
     #real_header {
     top:0%;
-    position:absolute;
+    position:fixed;
     width:100%;
     z-index:2;
     background-color:#ED9292;
@@ -315,12 +315,12 @@ margin-left:50px;
   padding-bottom:10px;
   list-style-type:none;
   display:inline;
-  position: absolute;
+  position:fixed;
   z-index:2;
 }
 #ph3{
 border-left:3px #FFD382 solid;
-margin: 0px 5px 0px 40px;
+margin: 0px 5px 0px 20px;
 }
 #ph4{
 border-left:3px #FFD382 solid;

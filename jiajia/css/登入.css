@@ -11,8 +11,35 @@
     border-right: none;
     font-size:4vmin;
 }
+#user{
+    text-align: center;
+}
 @media (max-width: 768px) {
     #log {
-      display: none;
+        position: fixed;
+    left: 290px;
+    top: 115px;
+    width: 150px;
+    height: 2px;
+    z-index: 5;
+    background:#ED9292;
+    font-size: large;
+    text-align: left;
+    border-right: none;
+    font-size:4vmin;
     }
+    #user{
+        margin-top: -50px;
+        margin-right: 70px;
+        text-align: right;
+    }
+    .button{
+        background-color:#ED9292; 
+        border-radius: 8px; 
+        border: 2px solid rgba(105,105,105,0.6);
+        font-size: 4vmin;
+        width: 70px;
+        margin-top:0px;
+        margin-right: 100px;
+   }
 }

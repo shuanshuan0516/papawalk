@@ -32,56 +32,65 @@
 
 <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
 <script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAUnA_8r0-qHb6bCTMi0SCzHcUlc07Qbdk",
-    authDomain: "jia618-d8042.firebaseapp.com",
-    databaseURL: "https://jia618-d8042.firebaseio.com",
-    projectId: "jia618-d8042",
-    storageBucket: "jia618-d8042.appspot.com",
-    messagingSenderId: "157048895266"
-  };
-  firebase.initializeApp(config);
 
-  var pre = document.getElementById('object');
-  var a = 0;
-  for(var i = 0;i<10;i++){
-    var db = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/0/1/"+i+"/1/0");
-  db.on('value',function(snapshot){
-    var test = snapshot.val();
-    a++;
-    var image = document.getElementById("p"+a);
-    image.style.backgroundImage = "url("+test+")";
- });
-  }
+        if (document.cookie.split("login=")[1].split(";")[0] !== "1") {
+            window.location = "index.html";
+        }
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAUnA_8r0-qHb6bCTMi0SCzHcUlc07Qbdk",
+            authDomain: "jia618-d8042.firebaseapp.com",
+            databaseURL: "https://jia618-d8042.firebaseio.com",
+            projectId: "jia618-d8042",
+            storageBucket: "jia618-d8042.appspot.com",
+            messagingSenderId: "157048895266"
+        };
+        firebase.initializeApp(config);
+        let user = document.cookie.split("user=")[1].split(";")[0];
+        let db = firebase.database().ref("member/" + user + "/景點");
+        db.once('value', function (snapshot) {
+            let count = 0;
+            snapshot.forEach(function (childSnapshot1) {
+                let t1 = childSnapshot1.key.split("&")[1];
+                childSnapshot1.forEach(function (childSnapshot2) {
+                    let t2 = childSnapshot2.key.split("&")[1];
+
+                    let vdb = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/" + t1 + "/1/" + t2 + "/");
+                    vdb.once('value', function (snapshot) {
+                        count++;
+                        document.querySelector("#n" + count).innerText = "#"+snapshot.child("/0").val();
+                        document.querySelector("#p" + count).style.backgroundImage = "url(" + snapshot.child("1/0").val() + ")";
+
+                    })
+                })
+            })
+        });
 
 
-  ;
-
-</script>
-<script type="text/javascript">
-    //登入
-  var provider = new firebase.auth.GoogleAuthProvider();
+    </script>
+    <script type="text/javascript">
+        //登入
+        var provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
         firebase.auth().languageCode = 'tw';
         provider.setCustomParameters({
             'login_hint': 'user@example.com'
         });
 
-        function login_init(){
+        function login_init() {
             let name = document.cookie.split("user=")[1].split(";")[0];
-            let login= document.cookie.split("login=")[1].split(";")[0];
-            if(login==="1")
-            {
+            let login = document.cookie.split("login=")[1].split(";")[0];
+            if (login === "1") {
                 document.getElementById("user").innerText = name;
                 document.querySelector("#login").style.visibility = "hidden";
                 document.querySelector("#logout").style.visibility = "visible";
-            }else{
+            } else {
                 document.getElementById("user").innerText = "";
                 document.querySelector("#login").style.visibility = "visible";
                 document.querySelector("#logout").style.visibility = "hidden";
             }
         }
+
         login_init();
 
         var token;
@@ -90,15 +99,15 @@
 
 
         function check(condition) {
-            if(condition === 1){
+            if (condition === 1) {
                 firebase.auth().signInWithPopup(provider).then(function (result) {
                     // This gives you a Google Access Token. You can use it to access the Google API.
                     token = result.credential.accessToken;
                     // The signed-in user info.
                     user = result.user;
 
-                    document.cookie = "user="+user.displayName;
-                    document.cookie = "uid="+user.uid;
+                    document.cookie = "user=" + user.displayName;
+                    document.cookie = "uid=" + user.uid;
                     document.cookie = "login=1";
                     login_init();
                     // ...
@@ -114,23 +123,24 @@
 
                     firebase.auth().signInWithRedirect(provider);
                 });
-            }else{
-                firebase.auth().signOut().then(function() {
+            } else {
+                firebase.auth().signOut().then(function () {
                     alert("已成功登出!");
                     document.cookie = "login= ";
                     document.cookie = "user= ";
                     document.cookie = "uid= ";
                     login_init();
                     // Sign-out successful.
-                }).catch(function(error) {
+                }).catch(function (error) {
                     // An error happened.
                 });
             }
 
 
         }
+
         //登入
-</script>
+    </script>
 <style type="text/css">
 body {
   font-family: SentyZHAO;
@@ -233,18 +243,14 @@ body {
     <li><a href="美食all.html" id="phone-navi2">美食</a></li>
     <li><a href="會員all.html" id="phone-navi2">會員專區</a></li>
     <li><a href="關於我.html" id="phone-navi2">關於我</a></li>
-    <li><a href="會員登入.html" id="phone-navi2">登入</a></li>
-    <li><a href="" id="phone-navi2">登出</a></li>
       </ul>
     </div>
 </div>
-
 <div id="log">
-  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登入</span></button>
-  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登出</span></button>
-  <div id="user" style="text-align: center;padding-top:58px;color:#4f4f4f;"></div>
-</div> 
-
+  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登入</span></button>
+  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登出</span></button>
+  <div id="user" style="padding-top:58px;color:#4f4f4f;"></div>
+</div>
 
 <div id="love1">
   <div class="menu_list" id="secondpane" style="padding-top: 20px"> <!--Code for menu starts here-->
@@ -349,17 +355,17 @@ body {
 
                 <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
                     <a id="p1"></a>
-                    <div id="n1">#飛碟屋遺址</div>
+                    <div id="n1"></div>
                     
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
                     <a id="p9"></a>
-                    <div id="n9">#阿根納造船廠</div>
+                    <div id="n9"></div>
                 </div>
 
                 <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
                     <a id="p2"></a>
-                    <div id="n2">#基隆車站</div>
+                    <div id="n2"></div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
                     <a id="p4"></a>

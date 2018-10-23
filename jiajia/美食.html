@@ -64,7 +64,7 @@
             let login = document.cookie.split("login=")[1].split(";")[0];
             if (login === "1") {
                 let name = document.cookie.split("user=")[1].split(";")[0];
-                var ref = firebase.database().ref("member/"+name+"/like/"+location.search.split("?")[1]);
+                var ref = firebase.database().ref("member/"+name+"/美食/"+location.search.split("?")[1]);
                 ref.once("value", (function (snapshot) {
                     snapshot.forEach(function(childSnapshot) {
                         let i = childSnapshot.val().check;
@@ -192,14 +192,14 @@
                 let ref = firebase.database().ref("member");
                 ref.once("value", (function (snapshot) {
                     let updates = {};
-                    updates["member/" + name + "/like/" + loca + url + "/check"] = i;
+                    updates["member/" + name + "/美食/" + loca + url + "/check"] = i;
                     firebase.database().ref().update(updates);
                 }));
                 img.src = 'images/on.jpg';
             } else {
                 let ref = firebase.database().ref("member");
                 ref.once("value", (function (snapshot) {
-                    firebase.database().ref("member/" + name + "/like/" + loca + url).remove();
+                    firebase.database().ref("member/" + name + "/美食/" + loca + url).remove();
                 }));
                 img.src = 'images/off.jpg';
             }
@@ -257,17 +257,6 @@
          <li><a href="關於我.html"><img id="navi4" src="images/about1.png"></a></li>
       </ul>
     </div>
-    <div id="phone-navi">
-      <ul>
-    <li><a href="index.html" id="phone-navi1">首頁</a></li>
-    <li><a href="景點all.html" id="phone-navi2">景點</a></li>
-    <li><a href="美食all.html" id="phone-navi2">美食</a></li>
-    <li><a href="會員all.html" id="phone-navi2">會員專區</a></li>
-    <li><a href="關於我.html" id="phone-navi2">關於我</a></li>
-    <li><a href="會員登入.html" id="phone-navi2">登入</a></li>
-    <li><a href="" id="phone-navi2">登出</a></li>
-      </ul>
-    </div>
 </div>
 <!--真的標題><!-->
 <div id="real_header">
@@ -308,9 +297,9 @@
  
 
 <div id="log">
-  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登入</span></button>
-  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登出</span></button>
-  <div id="user" style="text-align: center;padding-top:58px;color:#4f4f4f;"></div>
+  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登入</span></button>
+  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登出</span></button>
+  <div id="user" style="padding-top:58px;color:#4f4f4f;"></div>
 </div>
 
 <div id="netmenu">
