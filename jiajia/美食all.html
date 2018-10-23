@@ -92,10 +92,12 @@
                 document.getElementById("user").innerText = name;
                 document.querySelector("#login").style.visibility = "hidden";
                 document.querySelector("#logout").style.visibility = "visible";
+                document.getElementById("member_all").href = "會員all.html";
             }else{
                 document.getElementById("user").innerText = "";
                 document.querySelector("#login").style.visibility = "visible";
                 document.querySelector("#logout").style.visibility = "hidden";
+                document.getElementById("member_all").onclick = function(){alert("請登入會員");};
             }
         }
         login_init();
@@ -190,7 +192,7 @@
          <li><a href="index.html"><img id="navi1" src="images/趴.png"></li>
          <li><a href="景點all.html"><img id="navi2" src="images/景點.png"></a></li>
          <li><a href="美食all.html"><img id="navi2" src="images/美食.png"></a></li>
-         <li><a href="會員all.html"><img id="navi3" src="images/會員1.png"></a></li>
+         <li><a id="member_all" href=" "><img id="navi3" src="images/會員1.png"></a></li>
          <li><a href="關於我.html"><img id="navi4" src="images/about1.png"></a></li>
       </ul>
     </div>
@@ -216,7 +218,7 @@
    <ul class="good" style="margin-right:130px;">
       <li><a href="景點all.html"><img src="images/景點.png" id="good1"></a></li>
       <li><a href="美食all.html"><img src="images/美食.png" id="good1"></a></li>
-      <li><a href="會員all.html"><img src="images/會員1.png" id="good2"></a></li>
+      <li><a id="member_all" href=" "><img src="images/會員1.png" id="good2"></a></li>
       <li><a href="關於我.html"><img src="images/about1.png" id="good3"></a></li>
    </ul>
  </div>
