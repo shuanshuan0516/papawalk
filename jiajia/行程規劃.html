@@ -35,56 +35,65 @@
 
 <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
 <script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAUnA_8r0-qHb6bCTMi0SCzHcUlc07Qbdk",
-    authDomain: "jia618-d8042.firebaseapp.com",
-    databaseURL: "https://jia618-d8042.firebaseio.com",
-    projectId: "jia618-d8042",
-    storageBucket: "jia618-d8042.appspot.com",
-    messagingSenderId: "157048895266"
-  };
-  firebase.initializeApp(config);
 
-  var pre = document.getElementById('object');
-  var a = 0;
-  for(var i = 0;i<10;i++){
-    var db = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/0/1/"+i+"/1/0");
-  db.on('value',function(snapshot){
-    var test = snapshot.val();
-    a++;
-    var image = document.getElementById("p"+a);
-    image.style.backgroundImage = "url("+test+")";
- });
-  }
+        if (document.cookie.split("login=")[1].split(";")[0] !== "1") {
+            window.location = "index.html";
+        }
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAUnA_8r0-qHb6bCTMi0SCzHcUlc07Qbdk",
+            authDomain: "jia618-d8042.firebaseapp.com",
+            databaseURL: "https://jia618-d8042.firebaseio.com",
+            projectId: "jia618-d8042",
+            storageBucket: "jia618-d8042.appspot.com",
+            messagingSenderId: "157048895266"
+        };
+        firebase.initializeApp(config);
+        let user = document.cookie.split("user=")[1].split(";")[0];
+        let db = firebase.database().ref("member/" + user + "/like");
+        db.once('value', function (snapshot) {
+            let count = 0;
+            snapshot.forEach(function (childSnapshot1) {
+                let t1 = childSnapshot1.key.split("&")[1];
+                childSnapshot1.forEach(function (childSnapshot2) {
+                    let t2 = childSnapshot2.key.split("&")[1];
+
+                    let vdb = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/" + t1 + "/1/" + t2 + "/");
+                    vdb.once('value', function (snapshot) {
+                        count++;
+                        document.querySelector("#n" + count).innerText = "#"+snapshot.child("/0").val();
+                        document.querySelector("#p" + count).style.backgroundImage = "url(" + snapshot.child("1/0").val() + ")";
+
+                    })
+                })
+            })
+        });
 
 
-  ;
-
-</script>
-<script type="text/javascript">
-    //登入
-  var provider = new firebase.auth.GoogleAuthProvider();
+    </script>
+    <script type="text/javascript">
+        //登入
+        var provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
         firebase.auth().languageCode = 'tw';
         provider.setCustomParameters({
             'login_hint': 'user@example.com'
         });
 
-        function login_init(){
+        function login_init() {
             let name = document.cookie.split("user=")[1].split(";")[0];
-            let login= document.cookie.split("login=")[1].split(";")[0];
-            if(login==="1")
-            {
+            let login = document.cookie.split("login=")[1].split(";")[0];
+            if (login === "1") {
                 document.getElementById("user").innerText = name;
                 document.querySelector("#login").style.visibility = "hidden";
                 document.querySelector("#logout").style.visibility = "visible";
-            }else{
+            } else {
                 document.getElementById("user").innerText = "";
                 document.querySelector("#login").style.visibility = "visible";
                 document.querySelector("#logout").style.visibility = "hidden";
             }
         }
+
         login_init();
 
         var token;
@@ -93,15 +102,15 @@
 
 
         function check(condition) {
-            if(condition === 1){
+            if (condition === 1) {
                 firebase.auth().signInWithPopup(provider).then(function (result) {
                     // This gives you a Google Access Token. You can use it to access the Google API.
                     token = result.credential.accessToken;
                     // The signed-in user info.
                     user = result.user;
 
-                    document.cookie = "user="+user.displayName;
-                    document.cookie = "uid="+user.uid;
+                    document.cookie = "user=" + user.displayName;
+                    document.cookie = "uid=" + user.uid;
                     document.cookie = "login=1";
                     login_init();
                     // ...
@@ -117,23 +126,24 @@
 
                     firebase.auth().signInWithRedirect(provider);
                 });
-            }else{
-                firebase.auth().signOut().then(function() {
+            } else {
+                firebase.auth().signOut().then(function () {
                     alert("已成功登出!");
                     document.cookie = "login= ";
                     document.cookie = "user= ";
                     document.cookie = "uid= ";
                     login_init();
                     // Sign-out successful.
-                }).catch(function(error) {
+                }).catch(function (error) {
                     // An error happened.
                 });
             }
 
 
         }
+
         //登入
-</script>
+    </script>
 <style type="text/css">
 body {
   font-family: SentyZHAO;
@@ -341,10 +351,14 @@ body {
 <center><div id="l1"> 我的收藏-基隆</div></center>
 
 <div id="ul_Source3" class="sortgroup3" style="background:#f2e6e6; ">
-  <div id="p1" class="sourceItem sourceItem3"><div id="p11">#飛碟屋遺址</div></div>
-  <div id="p2" class="sourceItem sourceItem3"><div id="p11">#基隆Station</div></div>
-  <div id="p9" class="sourceItem sourceItem3"><div id="p11">#阿根納造船廠</div></div>
-  <div id="p8" class="sourceItem sourceItem3"><div id="p11">#基隆正濱漁港</div></div>
+  <div id="p1" class="sourceItem sourceItem3"><div id="p11"></div></div>
+  <div id="p2" class="sourceItem sourceItem3"><div id="p11"></div></div>
+  <div id="p3" class="sourceItem sourceItem3"><div id="p11"></div></div>
+  <div id="p4" class="sourceItem sourceItem3"><div id="p11"></div></div>
+  <div id="p5" class="sourceItem sourceItem3"><div id="p11"></div></div>
+  <div id="p6" class="sourceItem sourceItem3"><div id="p11"></div></div>
+  <div id="p7" class="sourceItem sourceItem3"><div id="p11"></div></div>
+  <div id="p8" class="sourceItem sourceItem3"><div id="p11"></div></div>
 <button class="but1">拖曳至行程</button>
 </div>
 </div>

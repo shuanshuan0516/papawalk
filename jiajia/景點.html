@@ -64,7 +64,7 @@
             let login = document.cookie.split("login=")[1].split(";")[0];
             if (login === "1") {
                 let name = document.cookie.split("user=")[1].split(";")[0];
-                var ref = firebase.database().ref("member/"+name+"/like/"+location.search.split("?")[1]);
+                let ref = firebase.database().ref("member/"+name+"/like/"+location.search.split("?")[1]);
                 ref.once("value", (function (snapshot) {
                     snapshot.forEach(function(childSnapshot) {
                         let i = childSnapshot.val().check;
@@ -245,7 +245,7 @@
 </style>
 
 
-<body onload="login_init()">
+<body onload="init()">
 
 <div class="container">
         
@@ -526,9 +526,8 @@
 
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-            <a id="p12" href="try.html"><img src="try/IMG_3109.JPG" style="position: absolute;z-index:999;max-width: 250px;height: 250px;background-size: cover;left: 20px;top:10px;">
-            </a>
-            <div id="">桃園銘傳大學</div>
+            <a id="p12"></a>
+            <div id="n12"></div>
             <a id="m12" href=" " target="_blank"><img src="images/map.png"></a>
             <img id='img12' src="images/off.jpg" style="float:right;" onclick="change(11);" width="30px" height="30px">
         </div>
