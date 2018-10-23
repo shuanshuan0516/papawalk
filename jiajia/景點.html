@@ -27,118 +27,185 @@
 <link rel="stylesheet" type="text/css" href="css/jia.css">
 <link rel="stylesheet" type="text/css" href="css/header.css">
 <link rel="stylesheet" href="css/向上.css">
-
+<link rel="stylesheet" href="css/登入.css"> 
+<link type="text/css" href="滾輪1.css" rel="stylesheet"/>
     <!--[if IE]>
     <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
 
 <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
 <script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAUnA_8r0-qHb6bCTMi0SCzHcUlc07Qbdk",
-    authDomain: "jia618-d8042.firebaseapp.com",
-    databaseURL: "https://jia618-d8042.firebaseio.com",
-    projectId: "jia618-d8042",
-    storageBucket: "jia618-d8042.appspot.com",
-    messagingSenderId: "157048895266"
-  };
-  firebase.initializeApp(config);
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAUnA_8r0-qHb6bCTMi0SCzHcUlc07Qbdk",
+            authDomain: "jia618-d8042.firebaseapp.com",
+            databaseURL: "https://jia618-d8042.firebaseio.com",
+            projectId: "jia618-d8042",
+            storageBucket: "jia618-d8042.appspot.com",
+            messagingSenderId: "157048895266"
+        };
+        firebase.initializeApp(config);
 
-  //登入
-  var provider = new firebase.auth.GoogleAuthProvider();
-  provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-  firebase.auth().languageCode = 'tw';
-  provider.setCustomParameters({
-      'login_hint': 'user@example.com'
-  });
+        //登入
+        var provider = new firebase.auth.GoogleAuthProvider();
+        provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+        firebase.auth().languageCode = 'tw';
+        provider.setCustomParameters({
+            'login_hint': 'user@example.com'
+        });
 
-  function login_init(){
-      let name = document.cookie.split("user=")[1].split(";")[0];
-      let login= document.cookie.split("login=")[1].split(";")[0];
-      if(login==="1")
-      {
-          document.getElementById("user").innerText = name;
-          document.querySelector("#login").style.visibility = "hidden";
-          document.querySelector("#logout").style.visibility = "visible";
-      }else{
-          document.getElementById("user").innerText = "";
-          document.querySelector("#login").style.visibility = "visible";
-          document.querySelector("#logout").style.visibility = "hidden";
-      }
-  }
-  login_init();
+        function init() {
+            login_init();
+            like();
+            like_check();
+        }
 
-  var token;
-  // The signed-in user info.
-  var user;
+        function like_check() {
+            let login = document.cookie.split("login=")[1].split(";")[0];
+            if (login === "1") {
+                let name = document.cookie.split("user=")[1].split(";")[0];
+                var ref = firebase.database().ref("member/"+name+"/like/"+location.search.split("?")[1]);
+                ref.once("value", (function (snapshot) {
+                    snapshot.forEach(function(childSnapshot) {
+                        let i = childSnapshot.val().check;
+                        document.querySelector("#img" + (i+1)).src = 'images/on.jpg';
+                    });
 
+                }));
+            }
+        }
 
-  function check(condition) {
-      if(condition === 1){
-          firebase.auth().signInWithPopup(provider).then(function (result) {
-              // This gives you a Google Access Token. You can use it to access the Google API.
-              token = result.credential.accessToken;
-              // The signed-in user info.
-              user = result.user;
-
-              document.cookie = "user="+user.displayName;
-              document.cookie = "uid="+user.uid;
-              document.cookie = "login=1";
-              login_init();
-              // ...
-          }).catch(function (error) {
-              // Handle Errors here.
-              var errorCode = error.code;
-              var errorMessage = error.message;
-              // The email of the user's account used.
-              var email = error.email;
-              // The firebase.auth.AuthCredential type that was used.
-              var credential = error.credential;
-              // ...
-
-              firebase.auth().signInWithRedirect(provider);
-          });
-      }else{
-          firebase.auth().signOut().then(function() {
-              alert("已成功登出!");
-              document.cookie = "login= ";
-              document.cookie = "user= ";
-              document.cookie = "uid= ";
-              login_init();
-              // Sign-out successful.
-          }).catch(function(error) {
-              // An error happened.
-          });
-      }
-  }
-  //登入
-</script>
-    <script>
-            let get = location.search.split("&");
-
-            var db = firebase.database().ref("ig/-LMgrtd3Ga0A5MnCVRxF/景點/"+get[1]);
-            db.once('value', function (snapshot) {
-                let t2_title = snapshot.child("0").val();
-                document.getElementById("all_title").innerText = "#"+t2_title;
-                for (let i = 0; i < 40; i++) {
-                    //圖片
-                    let url = snapshot.child("1/" + i + "/1/0").val();
-                    let image = document.getElementById("p" + (i + 1));
-                    image.style.backgroundImage = "url(" + url + ")";
-                    //名稱 map
-                    let name = snapshot.child("1/" + i + "/0").val();
-                    let icon = document.getElementById("m" + (i + 1));
-                    let gotomap = "https://www.google.com/maps/dir//" + name + "/@" + name + ",13z?hl=zh-TW";
-                    icon.href = gotomap;
-                    //純名稱
-                    let title = document.getElementById("n" + (i + 1));
-                    title.innerText=title.innerText+name;
-                    let href = "貼文.html?&"+get[1]+"&"+i;
-                    image.href = href;
+        function like() {
+            let login = document.cookie.split("login=")[1].split(";")[0];
+            if (login === null || login === "") {
+                for (let i = 1; i < 41; i++) {
+                    document.querySelector("#img" + i).style.visibility = "hidden";
                 }
-            });
-        
+            } else {
+                for (let i = 1; i < 41; i++) {
+                    document.querySelector("#img" + i).src = 'images/off.jpg';
+                    document.querySelector("#img" + i).style.visibility = "visible";
+                }
+            }
+        }
+
+        function login_init() {
+            let name = document.cookie.split("user=")[1].split(";")[0];
+            let login = document.cookie.split("login=")[1].split(";")[0];
+            if (login === "1") {
+                document.getElementById("user").innerText = name;
+                document.querySelector("#login").style.visibility = "hidden";
+                document.querySelector("#logout").style.visibility = "visible";
+            } else {
+                document.getElementById("user").innerText = "";
+                document.querySelector("#login").style.visibility = "visible";
+                document.querySelector("#logout").style.visibility = "hidden";
+            }
+        }
+
+        var token;
+        // The signed-in user info.
+        var user;
+
+
+        function check(condition) {
+            if (condition === 1) {
+                firebase.auth().signInWithPopup(provider).then(function (result) {
+                    // This gives you a Google Access Token. You can use it to access the Google API.
+                    token = result.credential.accessToken;
+                    // The signed-in user info.
+                    user = result.user;
+
+                    document.cookie = "user=" + user.displayName;
+                    document.cookie = "uid=" + user.uid;
+                    document.cookie = "login=1";
+                    login_init();
+                    like();
+                    like_check();
+                    // ...
+                }).catch(function (error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // The email of the user's account used.
+                    var email = error.email;
+                    // The firebase.auth.AuthCredential type that was used.
+                    var credential = error.credential;
+                    // ...
+
+                    firebase.auth().signInWithRedirect(provider);
+                });
+            } else {
+                firebase.auth().signOut().then(function () {
+                    alert("已成功登出!");
+                    document.cookie = "login= ";
+                    document.cookie = "user= ";
+                    document.cookie = "uid= ";
+                    login_init();
+                    like();
+                    like_check();
+                    // Sign-out successful.
+                }).catch(function (error) {
+                    // An error happened.
+                });
+            }
+        }
+
+        //登入
+    </script>
+    <script>
+        let get = location.search.split("&");
+
+        var db = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/" + get[1]);
+        db.once('value', function (snapshot) {
+            let t2_title = snapshot.child("0").val();
+            document.getElementById("all_title").innerText = "#" + t2_title;
+            for (let i = 0; i < 40; i++) {
+                //圖片
+                let url = snapshot.child("1/" + i + "/1/0").val();
+                let image = document.getElementById("p" + (i + 1));
+                image.style.backgroundImage = "url(" + url + ")";
+                //名稱 map
+                let name = snapshot.child("1/" + i + "/0").val();
+                let icon = document.getElementById("m" + (i + 1));
+                let gotomap = "https://www.google.com/maps/dir//" + name + "/@" + name + ",13z?hl=zh-TW";
+                icon.href = gotomap;
+                //純名稱
+                let title = document.getElementById("n" + (i + 1));
+                title.innerText = title.innerText + name;
+                let href = "貼文.html?&" + get[1] + "&" + i;
+                image.href = href;
+
+
+            }
+        });
+
+
+        function change(i) {
+            let img = document.getElementById('img' + (i + 1));
+            let src = img.src;
+            let name = document.cookie.split("user=")[1].split(";")[0];
+            let loca = location.search.split("?")[1];
+            let url ="/&" + i;
+
+            if (src.indexOf('off') >= 0) {
+                let ref = firebase.database().ref("member");
+                ref.once("value", (function (snapshot) {
+                    let updates = {};
+                    updates["member/" + name + "/like/" + loca + url + "/check"] = i;
+                    firebase.database().ref().update(updates);
+                }));
+                img.src = 'images/on.jpg';
+            } else {
+                let ref = firebase.database().ref("member");
+                ref.once("value", (function (snapshot) {
+                    firebase.database().ref("member/" + name + "/like/" + loca + url).remove();
+                }));
+                img.src = 'images/off.jpg';
+            }
+        }
+
+
     </script>
 </head>
 <style type="text/css">
@@ -178,7 +245,7 @@
 </style>
 
 
-<body>
+<body onload="login_init()">
 
 <div class="container">
         
@@ -186,17 +253,12 @@
 <!--往下滑的標題><!-->
 <div id="fixed_header">
     <div id="navi">
-      <ul>
-         <li><a href="index.html"><img id="navi1" src="images/趴.png"></li>
+      <ul style="margin-right: 130px;">
+         <li><a href="index.html"><img id="navi1" src="images/趴.png"></a></li>
          <li><a href="景點all.html"><img id="navi2" src="images/景點.png"></a></li>
          <li><a href="美食all.html"><img id="navi2" src="images/美食.png"></a></li>
          <li><a href="會員all.html"><img id="navi3" src="images/會員1.png"></a></li>
          <li><a href="關於我.html"><img id="navi4" src="images/about1.png"></a></li>
-          <li>
-              <div id="user" style="text-align:right;"></div>
-              <a id="login" class="button" onclick="check(1)">登入</a>
-              <a id="logout" class="button" onclick="check(2)">登出</a>
-          </li>
       </ul>
     </div>
     <div id="phone-navi">
@@ -206,26 +268,8 @@
     <li><a href="美食all.html" id="phone-navi2">美食</a></li>
     <li><a href="會員all.html" id="phone-navi2">會員專區</a></li>
     <li><a href="關於我.html" id="phone-navi2">關於我</a></li>
-          <li>
-              <div id="user" style="text-align:right;"></div>
-              <a id="login" onclick="check(1)">登入</a>
-              <a id="logout" onclick="check(2)">登出</a>
-
-              <script type="text/javascript">
-                  var name = document.cookie.split("user=")[1].split(";")[0];
-                  var login= document.cookie.split("login=")[1].split(";")[0];
-                  if(login.length=1)
-                  {
-                      document.getElementById("user").innerText = name;
-                      document.querySelector("#login").style.visibility = "hidden";
-                      document.querySelector("#logout").style.visibility = "visible";
-                  }else{
-                      document.getElementById("user").innerText = "";
-                      document.querySelector("#login").style.visibility = "visible";
-                      document.querySelector("#logout").style.visibility = "hidden";
-                  }
-              </script>
-          </li>
+    <li><a href="會員登入.html" id="phone-navi2">登入</a></li>
+    <li><a href="" id="phone-navi2">登出</a></li>
       </ul>
     </div>
 </div>
@@ -236,16 +280,11 @@
      <a href="index.html">就I趴趴走</a>
    </div>
 
-   <ul class="good">
+   <ul class="good" style="margin-right: 130px;">
       <li><a href="景點all.html"><img src="images/景點.png" id="good1"></a></li>
       <li><a href="美食all.html"><img src="images/美食.png" id="good1"></a></li>
       <li><a href="會員all.html"><img src="images/會員1.png" id="good2"></a></li>
       <li><a href="關於我.html"><img src="images/about1.png" id="good3"></a></li>
-       <li>
-           <div id="user" style="text-align:right;"></div>
-           <a id="login" class="button" onclick="check(1)">登入</a>
-           <a id="logout" class="button" onclick="check(2)">登出</a>
-       </li>
    </ul>
  </div>
 </div>
@@ -261,11 +300,8 @@
     <a href="美食all.html" id="ph4">美食</a>
     <a href="會員all.html" id="ph4">會員專區</a>
     <a href="關於我.html" id="ph4">關於我</a>
-    <li>
-        <div id="user" style="text-align:right;"></div>
-        <a id="login"  onclick="check(1)">登入</a>
-        <a id="logout"  onclick="check(2)">登出</a>
-    </li>
+    <a href="會員登入.html" id="ph4">登入</a>
+    <a href="" id="ph4">登出</a>
 
 </th>
 </tr>
@@ -275,6 +311,12 @@
 
 </header>
  
+<div id="log">
+  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登入</span></button>
+  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登出</span></button>
+  <div id="user" style="text-align: center;padding-top:58px;color:#4f4f4f;"></div>
+</div>
+
 <div id="netmenu">
 <div id="menu">
 <div class="hamburger">
@@ -398,256 +440,296 @@
   </script>
 
 
-        <div id="content" >
-            <h3 class="title">
-                <center id="all_title">#</center>
-            </h3>
-            <div class="row" style="padding-left:15%">
+        <div id="content">
+    <h3 class="title">
+        <center id="all_title">#</center>
+    </h3>
+    <div class="row" style="padding-left:15%">
 
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p1"></a>
-                    <div id="n1"></div>
-                    <a id="m1" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
-
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p2"></a>
-                    <div id="n2"></div>
-                    <a id="m2" href=" " target="_blank"><img src="images/map.png" ></a>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p3"></a>
-                    <div id="n3"></div>
-                    <a id="m3" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p4"></a>
-                    <div id="n4"></div>
-                    <a id="m4" href=" " target="_blank"><img src="images/map.png" </a>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p5"></a>
-                    <div id="n5"></div>
-                    <a id="m5" href=" " target="_blank"><img src="images/map.png" ></a>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p6"></a>
-                    <div id="n6"></div>
-                    <a id="m6" href=" " target="_blank"><img src="images/map.png" ></a>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p7"></a>
-                    <div id="n7"></div>
-                    <a id="m7" href=" " target="_blank"><img src="images/map.png" style="max-width: 10%;"></a>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p8"></a>
-                    <div id="n8"></div>
-                    <a id="m8" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p9"></a>
-                    <div id="n9"></div>
-                    <a id="m9" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p10"></a>
-                    <div id="n10"></div>
-                    <a id="m10" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p11"></a>
-                    <div id="n11"></div>
-                    <a id="m11" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p1"></a>
+            <div id="n1"></div>
+            <a id="m1" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img1' src="images/off.jpg" style="float:right;" onclick="change(0);" width="30px" height="30px">
+        </div>
 
 
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p12"></a>
-                    <div id="n12"></div>
-                    <a id="m12" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p2"></a>
+            <div id="n2"></div>
+            <a id="m2" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id="img2" src="images/off.jpg" style="float:right;" onclick="change(1);" width="30px" height="30px">
+        </div>
 
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p13"></a>
-                    <div id="n13"></div>
-                    <a id="m13" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p3"></a>
+            <div id="n3"></div>
+            <a id="m3" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img3' src="images/off.jpg" style="float:right;" onclick="change(2);" width="30px" height="30px">
+        </div>
 
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p14"></a>
-                    <div id="n14"></div>
-                    <a id="m14" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p4"></a>
+            <div id="n4"></div>
+            <a id="m4" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img4' src="images/off.jpg" style="float:right;" onclick="change(3);" width="30px" height="30px">
+        </div>
 
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p15"></a>
-                    <div id="n15"></div>
-                    <a id="m15" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p5"></a>
+            <div id="n5"></div>
+            <a id="m5" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img5' src="images/off.jpg" style="float:right;" onclick="change(4);" width="30px" height="30px">
+        </div>
 
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p16"></a>
-                    <div id="n16"></div>
-                    <a id="m16" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p6"></a>
+            <div id="n6"></div>
+            <a id="m6" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img6' src="images/off.jpg" style="float:right;" onclick="change(5);" width="30px" height="30px">
+        </div>
 
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p17"></a>
-                    <div id="n17"></div>
-                    <a id="m17" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p7"></a>
+            <div id="n7"></div>
+            <a id="m7" href=" " target="_blank"><img src="images/map.png" style="max-width: 10%;"></a>
+            <img id='img7' src="images/off.jpg" style="float:right;" onclick="change(6);" width="30px" height="30px">
+        </div>
 
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p18"></a>
-                    <div id="n18"></div>
-                    <a id="m18" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p8"></a>
+            <div id="n8"></div>
+            <a id="m8" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img8' src="images/off.jpg" style="float:right;" onclick="change(7);" width="30px" height="30px">
+        </div>
 
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p19"></a>
-                    <div id="n19"></div>
-                    <a id="m19" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p9"></a>
+            <div id="n9"></div>
+            <a id="m9" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img9' src="images/off.jpg" style="float:right;" onclick="change(8);" width="30px" height="30px">
+        </div>
 
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p20"></a>
-                    <div id="n20"></div>
-                    <a id="m20" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p10"></a>
+            <div id="n10"></div>
+            <a id="m10" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img10' src="images/off.jpg" style="float:right;" onclick="change(9);" width="30px" height="30px">
+        </div>
 
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p21"></a>
-                    <div id="n21"></div>
-                    <a id="m21" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
-
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p22"></a>
-                    <div id="n22"></div>
-                    <a id="m22" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p23"></a>
-                    <div id="n23"></div>
-                    <a id="m23" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p24"></a>
-                    <div id="n24"></div>
-                    <a id="m24" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p25"></a>
-                    <div id="n25"></div>
-                    <a id="m25" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p26"></a>
-                    <div id="n26"></div>
-                    <a id="m26" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p27"></a>
-                    <div id="n27"></div>
-                    <a id="m27" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p28"></a>
-                    <div id="n28"></div>
-                    <a id="m28" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p29"></a>
-                    <div id="n29"></div>
-                    <a id="m29" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p30"></a>
-                    <div id="n30"></div>
-                    <a id="m30" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p31"></a>
-                    <div id="n31"></div>
-                    <a id="m31" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p11"></a>
+            <div id="n11"></div>
+            <a id="m11" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img11' src="images/off.jpg" style="float:right;" onclick="change(10);" width="30px" height="30px">
+        </div>
 
 
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p32"></a>
-                    <div id="n32"></div>
-                    <a id="m32" href=" " target="_blank"><img src="images/map.png" style="max-width: 10%;"></a>
-                </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p12" href="try.html"><img src="try/IMG_3109.JPG" style="position: absolute;z-index:999;max-width: 250px;height: 250px;background-size: cover;left: 20px;top:10px;">
+            </a>
+            <div id="">桃園銘傳大學</div>
+            <a id="m12" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img12' src="images/off.jpg" style="float:right;" onclick="change(11);" width="30px" height="30px">
+        </div>
 
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p33"></a>
-                    <div id="n33"></div>
-                    <a id="m33" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p13"></a>
+            <div id="n13"></div>
+            <a id="m13" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img13' src="images/off.jpg" style="float:right;" onclick="change(12);" width="30px" height="30px">
+        </div>
 
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p34"></a>
-                    <div id="n34"></div>
-                    <a id="m34" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p14"></a>
+            <div id="n14"></div>
+            <a id="m14" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img14' src="images/off.jpg" style="float:right;" onclick="change(13);" width="30px" height="30px">
+        </div>
 
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p35"></a>
-                    <div id="n35"></div>
-                    <a id="m35" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p15"></a>
+            <div id="n15"></div>
+            <a id="m15" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img15' src="images/off.jpg" style="float:right;" onclick="change(14);" width="30px" height="30px">
+        </div>
 
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p36"></a>
-                    <div id="n36"></div>
-                    <a id="m36" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p16"></a>
+            <div id="n16"></div>
+            <a id="m16" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img16' src="images/off.jpg" style="float:right;" onclick="change(15);" width="30px" height="30px">
+        </div>
 
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p37"></a>
-                    <div id="n37"></div>
-                    <a id="m37" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p17"></a>
+            <div id="n17"></div>
+            <a id="m17" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img17' src="images/off.jpg" style="float:right;" onclick="change(16);" width="30px" height="30px">
+        </div>
 
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p38"></a>
-                    <div id="n38"></div>
-                    <a id="m38" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p18"></a>
+            <div id="n18"></div>
+            <a id="m18" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img18' src="images/off.jpg" style="float:right;" onclick="change(17);" width="30px" height="30px">
+        </div>
 
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p39"></a>
-                    <div id="n39"></div>
-                    <a id="m39" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p19"></a>
+            <div id="n19"></div>
+            <a id="m19" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img19' src="images/off.jpg" style="float:right;" onclick="change(18);" width="30px" height="30px">
+        </div>
 
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p40"></a>
-                    <div id="n40"></div>
-                    <a id="m40" href=" " target="_blank"><img src="images/map.png"></a>
-                </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p20"></a>
+            <div id="n20"></div>
+            <a id="m20" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img20' src="images/off.jpg" style="float:right;" onclick="change(19);" width="30px" height="30px">
+        </div>
 
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p21"></a>
+            <div id="n21"></div>
+            <a id="m21" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img21' src="images/off.jpg" style="float:right;" onclick="change(20);" width="30px" height="30px">
+        </div>
+
+
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p22"></a>
+            <div id="n22"></div>
+            <a id="m22" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img22' src="images/off.jpg" style="float:right;" onclick="change(21);" width="30px" height="30px">
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p23"></a>
+            <div id="n23"></div>
+            <a id="m23" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img23' src="images/off.jpg" style="float:right;" onclick="change(22);" width="30px" height="30px">
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p24"></a>
+            <div id="n24"></div>
+            <a id="m24" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img24' src="images/off.jpg" style="float:right;" onclick="change(23);" width="30px" height="30px">
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p25"></a>
+            <div id="n25"></div>
+            <a id="m25" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img25' src="images/off.jpg" style="float:right;" onclick="change(24);" width="30px" height="30px">
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p26"></a>
+            <div id="n26"></div>
+            <a id="m26" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img26' src="images/off.jpg" style="float:right;" onclick="change(25);" width="30px" height="30px">
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p27"></a>
+            <div id="n27"></div>
+            <a id="m27" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img27' src="images/off.jpg" style="float:right;" onclick="change(26);" width="30px" height="30px">
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p28"></a>
+            <div id="n28"></div>
+            <a id="m28" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img28' src="images/off.jpg" style="float:right;" onclick="change(27);" width="30px" height="30px">
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p29"></a>
+            <div id="n29"></div>
+            <a id="m29" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img29' src="images/off.jpg" style="float:right;" onclick="change(28);" width="30px" height="30px">
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p30"></a>
+            <div id="n30"></div>
+            <img id='img30' src="images/off.jpg" style="float:right;" onclick="change(29);" width="30px" height="30px">
+            <a id="m30" href=" " target="_blank"><img src="images/map.png"></a>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p31"></a>
+            <div id="n31"></div>
+            <a id="m31" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img31' src="images/off.jpg" style="float:right;" onclick="change(30);" width="30px" height="30px">
+        </div>
+
+
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p32"></a>
+            <div id="n32"></div>
+            <a id="m32" href=" " target="_blank"><img src="images/map.png" style="max-width: 10%;"></a>
+            <img id='img32' src="images/off.jpg" style="float:right;" onclick="change(31);" width="30px" height="30px">
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p33"></a>
+            <div id="n33"></div>
+            <a id="m33" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img33' src="images/off.jpg" style="float:right;" onclick="change(32);" width="30px" height="30px">
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p34"></a>
+            <div id="n34"></div>
+            <a id="m34" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img34' src="images/off.jpg" style="float:right;" onclick="change(33);" width="30px" height="30px">
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p35"></a>
+            <div id="n35"></div>
+            <a id="m35" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img35' src="images/off.jpg" style="float:right;" onclick="change(34);" width="30px" height="30px">
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p36"></a>
+            <div id="n36"></div>
+            <a id="m36" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img36' src="images/off.jpg" style="float:right;" onclick="change(35);" width="30px" height="30px">
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p37"></a>
+            <div id="n37"></div>
+            <a id="m37" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img37' src="images/off.jpg" style="float:right;" onclick="change(36);" width="30px" height="30px">
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p38"></a>
+            <div id="n38"></div>
+            <a id="m38" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img38' src="images/off.jpg" style="float:right;" onclick="change(37);" width="30px" height="30px">
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p39"></a>
+            <div id="n39"></div>
+            <a id="m39" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img39' src="images/off.jpg" style="float:right;" onclick="change(38);" width="30px" height="30px">
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
+            <a id="p40"></a>
+            <div id="n40"></div>
+            <a id="m40" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img40' src="images/off.jpg" style="float:right;" onclick="change(39);" width="30px" height="30px">
+        </div>
 
             </div>
 
@@ -677,7 +759,6 @@ $(document).ready(function()
 });
 </script>
 
-
 <script src="js/向上.js"></script>
 <script>
     $(document).ready(function() {
@@ -689,6 +770,7 @@ $(document).ready(function()
             }
         });
     });
-</script>     
+</script>   
+ 
 </body>
 </html>

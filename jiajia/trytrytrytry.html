@@ -1,299 +1,519 @@
-
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>就i趴趴走·景點</title>
 
-<title>導覽列 (Navbar) · Bootstrap 4 繁體中文手冊 [六角學院譯]</title>
+<link rel="stylesheet" href="css/bootstrap.min.css"> 
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+  
 
-<!-- Bootstrap core CSS -->
-
-<link href="css/bootstrap.css" rel="stylesheet">
-
-
-<!-- Documentation extras -->
-
-
-<link href="css/docs.min.css" rel="stylesheet">
-
-
-
+<link href="SpryAssets/stylesheet.css rel="stylesheet" type="text/css"/>
+<script src="SpryAssets/SpryMenuBar.js" type="text/javascript"> </script>
+<link href="SpryAssets/SpryMenuBarVertical.css" rel="stylesheet" type="text/css" />
 
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
-
-
-
-
-
-  </head>
-  <body>
+<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+<link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
     
+<link rel="stylesheet" href="css/選單.css">
+<link rel="stylesheet" type="text/css" href="css/手機選單3.css">
+<link rel="stylesheet" type="text/css" href="css/jia.css">
+<link rel="stylesheet" type="text/css" href="css/header.css">
+<link rel="stylesheet" href="css/向上.css">
+<link rel="stylesheet" href="css/登入.css"> 
+<script type="text/javascript" src="js/拖曳2.js"></script>
+<script src="js/拖曳1.js"></script>
+<link href="css/拖曳.css" rel="stylesheet" type="text/css" />
 
-   
-      <div class="row flex-xl-nowrap">
-        <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
-          <form class="bd-search d-flex align-items-center">
-  <input type="search" class="form-control" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
-  <button class="btn btn-link bd-search-docs-toggle d-md-none p-0 ml-3" type="button" data-toggle="collapse" data-target="#bd-docs-nav" aria-controls="bd-docs-nav" aria-expanded="false" aria-label="Toggle docs navigation"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 30 30" width="30" height="30" focusable="false"><title>Menu</title><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"/></svg>
+<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAUnA_8r0-qHb6bCTMi0SCzHcUlc07Qbdk",
+    authDomain: "jia618-d8042.firebaseapp.com",
+    databaseURL: "https://jia618-d8042.firebaseio.com",
+    projectId: "jia618-d8042",
+    storageBucket: "jia618-d8042.appspot.com",
+    messagingSenderId: "157048895266"
+  };
+  firebase.initializeApp(config);
+
+  var pre = document.getElementById('object');
+  var a = 0;
+  for(var i = 0;i<10;i++){
+    var db = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/0/1/"+i+"/1/0");
+  db.on('value',function(snapshot){
+    var test = snapshot.val();
+    a++;
+    var image = document.getElementById("p"+a);
+    image.style.backgroundImage = "url("+test+")";
+ });
+  }
+
+
+  ;
+
+</script>
+<script type="text/javascript">
+    //登入
+  var provider = new firebase.auth.GoogleAuthProvider();
+        provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+        firebase.auth().languageCode = 'tw';
+        provider.setCustomParameters({
+            'login_hint': 'user@example.com'
+        });
+
+        function login_init(){
+            let name = document.cookie.split("user=")[1].split(";")[0];
+            let login= document.cookie.split("login=")[1].split(";")[0];
+            if(login==="1")
+            {
+                document.getElementById("user").innerText = name;
+                document.querySelector("#login").style.visibility = "hidden";
+                document.querySelector("#logout").style.visibility = "visible";
+            }else{
+                document.getElementById("user").innerText = "";
+                document.querySelector("#login").style.visibility = "visible";
+                document.querySelector("#logout").style.visibility = "hidden";
+            }
+        }
+        login_init();
+
+        var token;
+        // The signed-in user info.
+        var user;
+
+
+        function check(condition) {
+            if(condition === 1){
+                firebase.auth().signInWithPopup(provider).then(function (result) {
+                    // This gives you a Google Access Token. You can use it to access the Google API.
+                    token = result.credential.accessToken;
+                    // The signed-in user info.
+                    user = result.user;
+
+                    document.cookie = "user="+user.displayName;
+                    document.cookie = "uid="+user.uid;
+                    document.cookie = "login=1";
+                    login_init();
+                    // ...
+                }).catch(function (error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // The email of the user's account used.
+                    var email = error.email;
+                    // The firebase.auth.AuthCredential type that was used.
+                    var credential = error.credential;
+                    // ...
+
+                    firebase.auth().signInWithRedirect(provider);
+                });
+            }else{
+                firebase.auth().signOut().then(function() {
+                    alert("已成功登出!");
+                    document.cookie = "login= ";
+                    document.cookie = "user= ";
+                    document.cookie = "uid= ";
+                    login_init();
+                    // Sign-out successful.
+                }).catch(function(error) {
+                    // An error happened.
+                });
+            }
+
+
+        }
+        //登入
+</script>
+<style type="text/css">
+body {
+  font-family: SentyZHAO;
+}
+
+.nav-toggle {
+
+          top:16px;
+
+}
+
+#content {
+        margin-top: 0px;
+        position:absolute;
+        z-index: -1;
+    }
+
+#sure {
+  position: fixed;
+    right: 0;
+    top: 50%;
+    width: 6em;
+    margin: -2.5em 0 0 0;
+    z-index: 5;
+    background:#ED9292;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    text-align: left;
+    border: solid hsla(80, 90%, 40%, 0.5);
+    border-right: none;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    box-shadow: 0 1px 3px black;
+    border-radius: 3em 0.5em 0.5em 3em;
+}
+@media (max-width: 768px) {
+    #sure {
+  position: fixed;
+    right: 150px;
+    top: 95%;
+    width: 5.5em;
+    margin: -2.5em 0 0 0;
+    z-index: 1;
+    background:#ED9292;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    text-align: left;
+    border: solid hsla(80, 90%, 40%, 0.5);
+    border-right: none;
+    padding: 0.5em 0.5em 1em 0.5em;
+    box-shadow: 0 1px 3px black;
+    border-radius: 1em 1em 0.5em 0.5em;
+}
+}
+.but1{
+  font-size: 5vmin; 
+  background-color: transparent; 
+  border-radius: 8px; 
+  border: 2px solid rgba(105,105,105,0.6);
+  margin:10px;
+  color:#4f4f4f;
+}
+.but1 a{color:#4f4f4f; }
+.but1 a:hover{color: #fff;}
+@media (max-width: 768px) { 
+    .but1{
+      font-size: 5vmin; 
+  background-color transparent; 
+  border-radius: 8px; 
+  border: 2px solid rgba(105,105,105,0.6);
+  margin:6px;
+  color:#4f4f4f;
+    }
+}
+
+
+#ul_Source3{
+    width: 250px;
+    height: auto;
+    position: absolute;
+    z-index: -1;
+  }
+.sourceItem {
+
+  background-size: cover;
+  border:4px black dashed;   
+  margin: 10px;   
+  padding: 10px;
+  height: auto;   
+  max-width: 200px;   
+  border-radius:10px; 
+  }  
+
+#love31{
+  height: 100px;
+  width: 100%;
+  background-color: #f2e6e6;
+  position: fixed;
+  text-align: center;
+  z-index: 10;
+}
+  #p11{
+  padding-top: 5px;
+}
+#li{
+  font-size: 3vmin;
+}
+</style>
+<body onload="login_init()">
+
+<div class="container">
+        <header>
+<!--往下滑的標題><!-->
+<div id="fixed_header">
+    <div id="navi">
+      <ul style="margin-right: 130px;">
+         <li><a href="index.html"><img id="navi1" src="images/趴.png"></li>
+         <li><a href="景點all.html"><img id="navi2" src="images/景點.png"></a></li>
+         <li><a href="美食all.html"><img id="navi2" src="images/美食.png"></a></li>
+         <li><a href="會員all.html"><img id="navi3" src="images/會員1.png"></a></li>
+         <li><a href="關於我.html"><img id="navi4" src="images/about1.png"></a></li>
+      </ul>
+    </div>
+    <div id="phone-navi">
+      <ul>
+    <li><a href="index.html" id="phone-navi1" style="margin-left: 0px;">首頁</a></li>
+    <li><a href="景點all.html" id="phone-navi2">景點</a></li>
+    <li><a href="美食all.html" id="phone-navi2">美食</a></li>
+    <li><a href="會員all.html" id="phone-navi2">會員專區</a></li>
+    <li><a href="關於我.html" id="phone-navi2">關於我</a></li>
+    <li><a href="會員登入.html" id="phone-navi2">登入</a></li>
+    <li><a href="" id="phone-navi2">登出</a></li>
+      </ul>
+    </div>
+</div>
+
+ 
+<div id="log">
+  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登入</span></button>
+  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登出</span></button>
+  <div id="user" style="text-align: center;padding-top:58px;color:#4f4f4f;"></div>
+</div> 
+
+
+<div id="love1">
+  <div class="menu_list" id="secondpane" style="padding-top: 20px"> <!--Code for menu starts here-->
+    <p class="menu_head">北部</p>
+    <div class="menu_body">
+    <a href="景點.html?&0">基隆</a> 
+    <a href="景點.html?&1">台北</a>
+    <a href="景點.html?&2">新北</a>
+    <a href="景點.html?&3">桃園</a> 
+    <a href="景點.html?&4">新竹</a>
+    <a href="景點.html?&16">宜蘭</a>  
+    </div>
+    <p class="menu_head">中部</p>
+    <div class="menu_body">
+    <a href="景點.html?&5">苗栗</a>
+    <a href="景點.html?&6">台中</a>
+    <a href="景點.html?&7">彰化</a> 
+    <a href="景點.html?&8">南投</a>
+    <a href="景點.html?&9">雲林</a>  
+    </div>
+    <p class="menu_head">南部</p>
+    <div class="menu_body">
+    <a href="景點.html?&10">嘉義</a>
+    <a href="景點.html?&11">台南</a>
+    <a href="景點.html?&12">高雄</a>  
+    <a href="景點.html?&13">屏東</a>  
+    <a href="景點.html?&15">澎湖</a>   
+    </div>
+     <p class="menu_head">東部</p>
+    <div class="menu_body">
+    <a href="景點.html?&20">花蓮</a>
+    <a href="景點.html?&14">台東</a>  
+    </div>
+     <p class="menu_head">離島</p>
+    <div class="menu_body">
+    <a href="景點.html?&18">金門</a>
+    <a href="景點.html?&17">綠島</a>
+    <a href="景點.html?&19">蘭嶼</a>    
+    </div>
+
+  </div>      <!--Code for menu ends here-->
+</div>
+
+<div id="phonemenu">
+<nav class="nav">
+<ul>
+  <div class="menu_list" id="secondpane"> <!--Code for menu starts here-->
+    <p class="menu_head">北部</p>
+    <div class="menu_body">
+    <a href="景點.html?&0">基隆</a> 
+    <a href="景點.html?&1">台北</a>
+    <a href="景點.html?&2">新北</a>
+    <a href="景點.html?&3">桃園</a> 
+    <a href="景點.html?&4">新竹</a>
+    <a href="景點.html?&16">宜蘭</a>  
+    </div>
+    <p class="menu_head">中部</p>
+    <div class="menu_body">
+    <a href="景點.html?&5">苗栗</a>
+    <a href="景點.html?&6">台中</a>
+    <a href="景點.html?&7">彰化</a> 
+    <a href="景點.html?&8">南投</a>
+    <a href="景點.html?&9">雲林</a>  
+    </div>
+    <p class="menu_head">南部</p>
+    <div class="menu_body">
+    <a href="景點.html?&10">嘉義</a>
+    <a href="景點.html?&11">台南</a>
+    <a href="景點.html?&12">高雄</a>  
+    <a href="景點.html?&13">屏東</a>  
+    <a href="景點.html?&15">澎湖</a>   
+    </div>
+     <p class="menu_head">東部</p>
+    <div class="menu_body">
+    <a href="景點.html?&20">花蓮</a>
+    <a href="景點.html?&14">台東</a>  
+    </div>
+     <p class="menu_head">離島</p>
+    <div class="menu_body">
+    <a href="景點.html?&18">金門</a>
+    <a href="景點.html?&17">綠島</a>
+    <a href="景點.html?&19">蘭嶼</a>    
+    </div>
+
+  </div>      <!--Code for menu ends here-->
+</ul>
+</nav>
+<div class="nav-toggle">
+<div class="icon"></div>
+</div>
+</div>
+
+<div id="love2">
+<center><div id="l1"> 我的收藏-桃園</div></center>
+
+<div id="ul_Source3" class="sortgroup3" style="background:#f2e6e6; ">
+  <div  class="sourceItem sourceItem3">
+    <img src="try/IMG_3109.JPG" style=" 
+     background-size: cover;
+     border-radius:10px;
+     left: 0px;
+     margin: 5px;   
+     height:100px;
+     width:140px;
+     display:inline-block;
+     position: relative;
+     z-index: 0;">
+     <div id="p11">#桃園銘傳大學</div></div>
+  <div  class="sourceItem sourceItem3">
+<img src="try/青塘園.jpg" style=" 
+     background-size: cover;
+     border-radius:10px;
+     left: 0px;
+     margin: 5px;   
+     height:100px;
+     width:140px;
+     display:inline-block;
+     margin-bottom:0px;
+     position: relative;
+     z-index: 0;">
+    <div id="p11">#青塘園</div></div>
+  <div  class="sourceItem sourceItem3">
+    <img src="try/新溪口吊橋.jpg" style=" 
+     background-size: cover;
+     border-radius:10px;
+     left: 0px;
+     margin: 5px;   
+     height:100px;
+     width:140px;
+     display:inline-block;
+     margin-bottom:0px;
+     position: relative;
+     z-index: 0;">
+    <div id="p11">#新溪口吊橋</div></div>
+  <div  class="sourceItem sourceItem3">
+    <img src="try/白千層藝術大道.jpg" style=" 
+     background-size: cover;
+     border-radius:10px;
+     left: 0px;
+     margin: 5px;   
+     height:100px;
+     width:140px;
+     display:inline-block;
+     margin-bottom:0px;
+     position: relative;
+     z-index: 0;">
+    <div id="p11">#白千層藝術大道</div></div>
+<button class="but1">拖曳至行程</button>
+</div>
+</div>
+
+<div class="love3">
+  <div id="love31">
+  <center style="font-size: 8vmin;padding-top: 10px;padding-right: 300px;color: #4f4f4f;">
+    行程規劃
+  <picture>
+  <source srcset="images/垃圾桶1.png" id="laji" media="(max-width: 500px)">
+  <source srcset="images/垃圾桶.png" >
+  <img src="images/垃圾桶.png"  style="max-width:90px;height:auto">
+  </picture>
+  <button class="but1" id="laji1">拖至垃圾桶</button>
+  </center>
+  </div>
+  <div id="ul_Target3" class="sortgroup3">拖曳行程至此
+  </div>
+  <ul id=sure>
+<button class="but1">確認</button>
+</ul>
+</div>
+
+    </div>
+
+
+<script>
+  $('.nav-toggle').click(function () {
+      $('body').toggleClass('nav-open');
+  });
+  </script>
+
+
+
+
+<button class="material-scrolltop" type="button">
+    <span>↑</span>
 </button>
-</form>
+ <script type="text/javascript">
+$(document).ready(function()
+{
+  //slides the element with class "menu_body" when paragraph with class "menu_head" is clicked 
+  $("#firstpane p.menu_head").click(function()
+    {
+    $(this).css({backgroundImage:"url(down.png)"}).next("div.menu_body").slideToggle(300).siblings("div.menu_body").slideUp("slow");
+        $(this).siblings().css({backgroundImage:"url(left.png)"});
+  });
+  //slides the element with class "menu_body" when mouse is over the paragraph
+  $("#secondpane p.menu_head").mouseover(function()
+    {
+       $(this).css({backgroundImage:"url(down.png)"}).next("div.menu_body").slideDown(500).siblings("div.menu_body").slideUp("slow");
+         $(this).siblings().css({backgroundImage:"url(left.png)"});
+  });
+});
+</script>
 
-<nav class="collapse bd-links" id="bd-docs-nav">
-  <div class="bd-toc-item">
-      <a class="bd-toc-link" href="/docs/4.0/getting-started/introduction/">
-        快速開始
-      </a>
-
-      <ul class="nav bd-sidenav"><li>
-            <a href="/docs/4.0/getting-started/introduction/">
-              簡介
-            </a></li><li>
-            <a href="/docs/4.0/getting-started/download/">
-              下載
-            </a></li><li>
-            <a href="/docs/4.0/getting-started/contents/">
-              內容
-            </a></li><li>
-            <a href="/docs/4.0/getting-started/browsers-devices/">
-              瀏覽器及裝置
-            </a></li><li>
-            <a href="/docs/4.0/getting-started/javascript/">
-              JavaScript
-            </a></li><li>
-            <a href="/docs/4.0/getting-started/build-tools/">
-              構建工具
-            </a></li><li>
-            <a href="/docs/4.0/getting-started/theming/">
-              主題化
-            </a></li><li>
-            <a href="/docs/4.0/getting-started/webpack/">
-              Webpack
-            </a></li><li>
-            <a href="/docs/4.0/getting-started/accessibility/">
-              網頁親和性
-            </a></li></ul>
-    </div>
-    <div class="bd-toc-item">
-      <a class="bd-toc-link" href="/docs/4.0/layout/overview/">
-        排版
-      </a>
-
-      <ul class="nav bd-sidenav"><li>
-            <a href="/docs/4.0/layout/overview/">
-              概觀
-            </a></li><li>
-            <a href="/docs/4.0/layout/grid/">
-              網格
-            </a></li><li>
-            <a href="/docs/4.0/layout/media-object/">
-              媒體物件
-            </a></li><li>
-            <a href="/docs/4.0/layout/utilities-for-layout/">
-              排版通用類別
-            </a></li></ul>
-    </div>
-    <div class="bd-toc-item">
-      <a class="bd-toc-link" href="/docs/4.0/content/reboot/">
-        內容
-      </a>
-
-      <ul class="nav bd-sidenav"><li>
-            <a href="/docs/4.0/content/reboot/">
-              重置
-            </a></li><li>
-            <a href="/docs/4.0/content/typography/">
-              文字排版
-            </a></li><li>
-            <a href="/docs/4.0/content/code/">
-              程式碼
-            </a></li><li>
-            <a href="/docs/4.0/content/images/">
-              圖片
-            </a></li><li>
-            <a href="/docs/4.0/content/tables/">
-              表格
-            </a></li><li>
-            <a href="/docs/4.0/content/figures/">
-              圖片區
-            </a></li></ul>
-    </div>
-    <div class="bd-toc-item active">
-      <a class="bd-toc-link" href="/docs/4.0/components/alerts/">
-        元件
-      </a>
-
-      <ul class="nav bd-sidenav"><li>
-            <a href="/docs/4.0/components/alerts/">
-              警報 (Alerts)
-            </a></li><li>
-            <a href="/docs/4.0/components/badge/">
-              標籤 (Badge)
-            </a></li><li>
-            <a href="/docs/4.0/components/breadcrumb/">
-              麵包屑 (Breadcrumb)
-            </a></li><li>
-            <a href="/docs/4.0/components/buttons/">
-              按鈕 (Buttons)
-            </a></li><li>
-            <a href="/docs/4.0/components/button-group/">
-              按鈕群組 (Button group)
-            </a></li><li>
-            <a href="/docs/4.0/components/card/">
-              卡片 (Card)
-            </a></li><li>
-            <a href="/docs/4.0/components/carousel/">
-              輪播 (Carousel)
-            </a></li><li>
-            <a href="/docs/4.0/components/collapse/">
-              折疊 (Collapse)
-            </a></li><li>
-            <a href="/docs/4.0/components/dropdowns/">
-              下拉選單 (Dropdowns)
-            </a></li><li>
-            <a href="/docs/4.0/components/forms/">
-              表單 (Forms)
-            </a></li><li>
-            <a href="/docs/4.0/components/input-group/">
-              Input 群組 (Input group)
-            </a></li><li>
-            <a href="/docs/4.0/components/jumbotron/">
-              廣告大屏幕 (Jumbotron)
-            </a></li><li>
-            <a href="/docs/4.0/components/list-group/">
-              列表群組 (List group)
-            </a></li><li>
-            <a href="/docs/4.0/components/modal/">
-              互動視窗 (Modal)
-            </a></li><li>
-            <a href="/docs/4.0/components/navs/">
-              導覽 (Navs)
-            </a></li><li class="active bd-sidenav-active">
-            <a href="/docs/4.0/components/navbar/">
-              導覽列 (Navbar)
-            </a></li><li>
-            <a href="/docs/4.0/components/pagination/">
-              分頁 (Pagination)
-            </a></li><li>
-            <a href="/docs/4.0/components/popovers/">
-              彈出提示框 (Popovers)
-            </a></li><li>
-            <a href="/docs/4.0/components/progress/">
-              進度條 (Progress)
-            </a></li><li>
-            <a href="/docs/4.0/components/scrollspy/">
-              滑動監控 (Scrollspy)
-            </a></li><li>
-            <a href="/docs/4.0/components/tooltips/">
-              工具提示 (Tooltips)
-            </a></li></ul>
-    </div>
-    <div class="bd-toc-item">
-      <a class="bd-toc-link" href="/docs/4.0/utilities/borders/">
-        通用類別
-      </a>
-
-      <ul class="nav bd-sidenav"><li>
-            <a href="/docs/4.0/utilities/borders/">
-              邊框 (Borders)
-            </a></li><li>
-            <a href="/docs/4.0/utilities/clearfix/">
-              清除浮動 (Clearfix)
-            </a></li><li>
-            <a href="/docs/4.0/utilities/close-icon/">
-              關閉圖示 (Close icon)
-            </a></li><li>
-            <a href="/docs/4.0/utilities/colors/">
-              顏色 (Colors)
-            </a></li><li>
-            <a href="/docs/4.0/utilities/display/">
-              Display
-            </a></li><li>
-            <a href="/docs/4.0/utilities/embed/">
-              內嵌 (Embed)
-            </a></li><li>
-            <a href="/docs/4.0/utilities/flex/">
-              Flex
-            </a></li><li>
-            <a href="/docs/4.0/utilities/float/">
-              浮動 (Float)
-            </a></li><li>
-            <a href="/docs/4.0/utilities/image-replacement/">
-              圖片取代 (Image replacement)
-            </a></li><li>
-            <a href="/docs/4.0/utilities/position/">
-              位置 (Position)
-            </a></li><li>
-            <a href="/docs/4.0/utilities/screenreaders/">
-              螢幕閱讀器 (Screenreaders)
-            </a></li><li>
-            <a href="/docs/4.0/utilities/sizing/">
-              尺寸 (Sizing)
-            </a></li><li>
-            <a href="/docs/4.0/utilities/spacing/">
-              間隔 (Spacing)
-            </a></li><li>
-            <a href="/docs/4.0/utilities/text/">
-              文字 (Text)
-            </a></li><li>
-            <a href="/docs/4.0/utilities/vertical-align/">
-              垂直對齊 (Vertical align)
-            </a></li><li>
-            <a href="/docs/4.0/utilities/visibility/">
-              可視性 (Visibility)
-            </a></li></ul>
-    </div>
-    <div class="bd-toc-item">
-      <a class="bd-toc-link" href="/docs/4.0/extend/icons/">
-        擴增
-      </a>
-
-      <ul class="nav bd-sidenav"><li>
-            <a href="/docs/4.0/extend/icons/">
-              圖示
-            </a></li><li>
-            <a href="/docs/4.0/extend/approach/">
-              Approach
-            </a></li></ul>
-    </div>
-    <div class="bd-toc-item">
-      <a class="bd-toc-link" href="/docs/4.0/migration/">
-        更版紀錄
-      </a>
-
-      <ul class="nav bd-sidenav"></ul>
-    </div><div class="bd-toc-item">
-      <a class="bd-toc-link" href="/docs/4.0/about/overview/">
-        關於
-      </a>
-
-      <ul class="nav bd-sidenav"><li>
-            <a href="/docs/4.0/about/overview/">
-              Overview
-            </a></li><li>
-            <a href="/docs/4.0/about/license/">
-              License
-            </a></li><li>
-            <a href="/docs/4.0/about/translations/">
-              Translations
-            </a></li></ul>
-    </div></nav>
-
-        </div>
-
-        
-         
+<script src="js/向上.js"></script>
+<script>
+    $(document).ready(function() {
+        $('body').materialScrollTop({
+            revealElement: 'header',
+            revealPosition: 'bottom',
+            onScrollEnd: function() {
+            console.log('Scrolling End');
+            }
+        });
+    });
+</script>  
+<script>
+ 
+        $(".sourceItem3").draggable({
+            helper: "clone",
+            connectToSortable: ".sortgroup3"
+        });
 
 
-<!-- 手機板 下拉式 -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="js/bootstrap.js"></script>
+        $("#ul_Target3").sortable(
+        {
+            receive: function (e, ui) { isOut = false; },
+            over: function (e, ui) { isOut = false; },
+            out: function (e, ui) { isOut = true; },
 
-
-
-
-
-
-  </body>
+            beforeStop: function (e, ui) {
+                if (isOut) {
+                    $(ui.item).remove();
+                }
+            }
+        }).disableSelection();
+ 
+   </script>
+</body>
 </html>

@@ -103,7 +103,8 @@ table{
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
-  vertical-align:middle;margin-top:14px;margin-left: 10px
+  vertical-align:middle;
+  margin-top:14px;margin-left: 10px
 }
 
 .button span {
@@ -138,6 +139,7 @@ table{
     z-index:1;
     top:0;
     width:100%;
+    height:87px;
     background-color:#ED9292;
 
   }
@@ -157,8 +159,7 @@ list-style-type:none;
 @media (max-width: 768px) {
     #phone-navi {
     display: inline;
-     margin:0px auto 0px auto;
-    text-align:center;
+    margin:0px auto 0px auto;
 
     }
     #phone-navi li {
@@ -166,9 +167,9 @@ list-style-type:none;
     display:inline;
   }
     li{
-      margin: 0px 12px 0px 12px;
-      font-size:5vmin;
-      border-width:3px
+      margin: 0px 5px 5px 5px;
+      font-size:6vmin;
+      border-width:3px;
     }
 }
 
@@ -259,6 +260,7 @@ list-style-type:none;
 #navi1{
   max-height:65px;
   width:auto;
+  padding-right: 400px;
 }
 #navi2{
   max-width:120px;
@@ -290,17 +292,19 @@ margin: 0 5px;
 #good1{
 max-width:120px;
 height:auto;
+margin-left:30px;
 }
 #good2{
 max-width:120px;
 height:auto;
 padding-top:7px;
-margin-left:7px;
+margin-left:40px;
 }
 #good3{
 max-width:80px;
 height:auto;
 padding-top:7px;
+margin-left:50px;
 }
 #ph1{
   font-size: 4vmin;
