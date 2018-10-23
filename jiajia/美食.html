@@ -96,10 +96,12 @@
                 document.getElementById("user").innerText = name;
                 document.querySelector("#login").style.visibility = "hidden";
                 document.querySelector("#logout").style.visibility = "visible";
+                document.getElementById("member_all").href = "會員all.html";
             } else {
                 document.getElementById("user").innerText = "";
                 document.querySelector("#login").style.visibility = "visible";
                 document.querySelector("#logout").style.visibility = "hidden";
+                document.getElementById("member_all").onclick = function(){alert("請登入會員");};
             }
         }
 
