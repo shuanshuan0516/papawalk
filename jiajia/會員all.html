@@ -131,14 +131,13 @@ body {
 }
     }
 </style>
-<body onload="login_init()">
-
+<body onload="init()">
 <div class="container">
         <header>
 <!--往下滑的標題><!-->
 <div id="fixed_header">
     <div id="navi">
-      <ul style="margin-right: 130px;">
+      <ul style="margin-right:130px;">
          <li><a href="index.html"><img id="navi1" src="images/趴.png"></li>
          <li><a href="景點all.html"><img id="navi2" src="images/景點.png"></a></li>
          <li><a href="美食all.html"><img id="navi2" src="images/美食.png"></a></li>
@@ -146,17 +145,8 @@ body {
          <li><a href="關於我.html"><img id="navi4" src="images/about1.png"></a></li>
       </ul>
     </div>
-    <div id="phone-navi">
-      <ul>
-    <li><a href="index.html" id="phone-navi1">首頁</a></li>
-    <li><a href="景點all.html" id="phone-navi2">景點</a></li>
-    <li><a href="美食all.html" id="phone-navi2">美食</a></li>
-    <li><a href="會員all.html" id="phone-navi2">會員專區</a></li>
-    <li><a href="關於我.html" id="phone-navi2">關於我</a></li>
-      </ul>
-    </div>
 </div>
-
+<!--真的標題><!-->
 <div id="real_header">
 <div class="Header">
    <div class="Logo">
@@ -171,6 +161,26 @@ body {
    </ul>
  </div>
 </div>
+
+   
+    
+<!--手機板的標題><!-->
+<table width="100%" id="ph1">
+<tr>
+<th id="ph2">
+
+    <a href="景點all.html" id="ph3">景點</a>
+    <a href="美食all.html" id="ph4">美食</a>
+    <a href="會員all.html" id="ph4">會員專區</a>
+    <a href="關於我.html" id="ph4">關於我</a>
+
+</th>
+</tr>
+</table>
+            
+</div>
+</header>
+ 
 
 <div id="log">
   <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登入</span></button>

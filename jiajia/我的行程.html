@@ -177,7 +177,7 @@ body {
 @media (max-width: 768px) {
   .love3{
     margin-top:100px;
-  right:10px;
+  right:15px;
   text-align: none;
 }
 }
@@ -214,6 +214,35 @@ font-size: 5vmin;
 }
 }
 
+@media (max-width: 768px) {
+    #log {
+        position: fixed;
+    left: 330px;
+    top: 45px;
+    width: 50px;
+    height: 25px;
+    z-index: 5;
+    background:#ED9292;
+    font-size: large;
+    text-align: left;
+    border-right: none;
+    font-size:4vmin;
+    }
+    #user{
+        margin-top: -50px;
+        margin-right: 70px;
+        text-align: right;
+    }
+    .button{
+        background-color:#ED9292; 
+        border-radius: 8px; 
+        border: 2px solid rgba(105,105,105,0.6);
+        font-size: 4vmin;
+        width: 70px;
+        margin-top:0px;
+        margin-right: 50px;
+   }
+}
 </style>
 <body onload="login_init()">
 
@@ -253,14 +282,15 @@ font-size: 5vmin;
       <li><a href="會員all.html"><img src="images/會員1.png" id="good2"></a></li>
       <li><a href="關於我.html"><img src="images/about1.png" id="good3"></a></li>
    </ul>
+
  </div>
 </div>
-
 <div id="log">
-  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登入</span></button>
-  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登出</span></button>
-  <div id="user" style="padding-top:58px;color:#4f4f4f;"></div>
+  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:10;right:20px;"><span>登入</span></button>
+  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:11;right:20px;"><span>登出</span></button>
+  <div id="user" style="padding-top:58px;color:#4f4f4f;">111</div>
 </div>
+
 
 
 <div class="love3">

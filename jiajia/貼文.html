@@ -16,7 +16,7 @@
 <link href="SpryAssets/stylesheet.css rel="stylesheet" type="text/css"/>
 <script src="SpryAssets/SpryMenuBar.js" type="text/javascript"> </script>
 <link href="SpryAssets/SpryMenuBarVertical.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="css/登入.css"> 
+
 
 <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script-->
 <!--留言-->
@@ -30,6 +30,7 @@
 <link rel="stylesheet" type="text/css" href="css/jia.css">
 <link rel="stylesheet" type="text/css" href="css/header.css">
 <link rel="stylesheet" href="css/向上.css">
+<link rel="stylesheet" href="css/登入.css"> 
 <!--script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script-->
 <!--留言-->
 <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
@@ -311,7 +312,9 @@
 }
 @media (max-width: 768px) {
     #gogo{
-        left: 40%
+       position: absolute;
+       left: 185px;
+       top:-30px;
     }
 }
 </style>
@@ -360,8 +363,6 @@
     <a href="美食all.html" id="ph4">美食</a>
     <a href="會員all.html" id="ph4">會員專區</a>
     <a href="關於我.html" id="ph4">關於我</a>
-    <a href="會員登入.html" id="ph4">登入</a>
-    <a href="" id="ph4">登出</a>
 
 </th>
 </tr>
@@ -498,11 +499,10 @@
   </script>
 
 
-        <div id="content" class="container">
+         <div id="content" class="container">
             <h3 class="title"> 
                 <center id="all_title" style="margin-bottom: 10px;">|#</center>
-                
-                    <div id="czyy">
+                <div id="czyy">
                     <div id ="czy">
                     <pr>★</pr><pr>★</pr><pr>★</pr><pr>★</pr><pr>★</pr>
                      <input class="button" id="ok" value="評分">
@@ -510,7 +510,6 @@
                     </div>
                    
                     </div>
-                
                 <a id="m1" href="" target="_blank"><img src="images/map.png" style="max-width: 50px;"></a>
             </h3>
             <div class="row" style="padding-left:15%;padding-top: 50px;">
