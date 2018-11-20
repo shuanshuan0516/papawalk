@@ -46,8 +46,9 @@
             messagingSenderId: "157048895266"
         };
         firebase.initializeApp(config);
-        let user = document.cookie.split("user=")[1].split(";")[0];
+        var user = document.cookie.split("user=")[1].split(";")[0];
         let db = firebase.database().ref("member/" + user + "/景點");
+        
         db.once('value', function (snapshot) {
             let count = 0;
             snapshot.forEach(function (childSnapshot1) {
@@ -62,10 +63,34 @@
                         document.querySelector("#p" + count).style.backgroundImage = "url(" + snapshot.child("1/0").val() + ")";
 
                     })
+
+
+                })
+            })
+        })
+
+
+    </script>
+
+    <script type="text/javascript">
+        let db2 = firebase.database().ref("member/" + user + "/美食");
+        db2.once('value', function (snapshot2) {
+            let count2 = 0;
+            snapshot2.forEach(function (childSnapshot12) {
+                let t12 = childSnapshot12.key.split("&")[1];
+                childSnapshot12.forEach(function (childSnapshot22) {
+                    let t22 = childSnapshot22.key.split("&")[1];
+
+                    let vdb2 = firebase.database().ref("ig/-LMpPW-oQoTQYtDaO2_O/美食/" + t12 + "/1/" + t22 + "/");
+                    vdb2.once('value', function (snapshot3) {
+                        count2++;
+                        document.querySelector("#nn" + count2).innerText = "#"+snapshot3.child("/0").val();
+                        document.querySelector("#pp" + count2).style.backgroundImage = "url(" + snapshot3.child("1/0").val() + ")";
+                    })
+
                 })
             })
         });
-
 
     </script>
     <script type="text/javascript">
@@ -346,7 +371,7 @@ body {
 
 <div id="content">
   <center>
-    <p id="rowp">我的收藏-基隆</p>
+    <p id="rowp">我的收藏</p>
   </center>
   <div id="but11">
   <button class="but1"><a href="行程規劃.html">進入行程規劃</button>
@@ -359,13 +384,13 @@ body {
                     
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p9"></a>
-                    <div id="n9"></div>
+                    <a id="p2"></a>
+                    <div id="n2"></div>
                 </div>
 
                 <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p2"></a>
-                    <div id="n2"></div>
+                    <a id="p3"></a>
+                    <div id="n3"></div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
                     <a id="p4"></a>
@@ -378,27 +403,31 @@ body {
                 </div>
 
                 <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p6"></a>
-                    <div id="n6"></div>
+                    <a id="pp1"></a>
+                    <div id="nn1"></div>
 
                 </div>
 
                 <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p7"></a>
-                    <div id="n7"></div>
+                    <a id="pp2"></a>
+                    <div id="nn2"></div>
                 </div>
 
                 <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p8"></a>
-                    <div id="n8"></div>
+                    <a id="pp3"></a>
+                    <div id="nn3"></div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p3"></a>
-                    <div id="n3"></div>
+                    <a id="pp4"></a>
+                    <div id="nn4"></div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p10"></a>
-                    <div id="n10"></div>
+                    <a id="pp5"></a>
+                    <div id="nn5"></div>
+                </div>
+                  
+
+
                 </div>
               </div>
 </div>

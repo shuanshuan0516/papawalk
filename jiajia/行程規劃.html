@@ -50,7 +50,7 @@
         };
         firebase.initializeApp(config);
         let user = document.cookie.split("user=")[1].split(";")[0];
-        let db = firebase.database().ref("member/" + user + "/like");
+        let db = firebase.database().ref("member/" + user + "/景點");
         db.once('value', function (snapshot) {
             let count = 0;
             snapshot.forEach(function (childSnapshot1) {
@@ -144,6 +144,29 @@
 
         //登入
     </script>
+    <script type="text/javascript">
+      function yes(){
+          var str;
+          if(str=prompt("請為這趟行程命名"))
+          {
+            let name = document.cookie.split("user=")[1].split(";")[0];
+            let ref = firebase.database().ref("member/" + name + "/行程/");
+              ref.once("value", (function (snapshot) {
+              var gg = snapshot.numChildren()+1;
+              let updates = {};
+              updates["member/" + name + "/行程/" + gg ] = str;
+              alert("確定命名為："+ str);
+              alert("你已成功儲存此次行程");
+              firebase.database().ref().update(updates);
+
+          }))
+          }
+          else
+          {
+          alert("你已取消此次命名");
+          } 
+      }
+    </script>
 <style type="text/css">
 body {
   font-family: SentyZHAO;
@@ -219,6 +242,36 @@ body {
   color:#4f4f4f;
     }
 }
+
+@media (max-width: 768px) {
+    #log {
+        position: fixed;
+    left: 330px;
+    top: 45px;
+    width: 50px;
+    height: 25px;
+    z-index: 5;
+    background:#ED9292;
+    font-size: large;
+    text-align: left;
+    border-right: none;
+    font-size:4vmin;
+    }
+    #user{
+        margin-top: -50px;
+        margin-right: 70px;
+        text-align: right;
+    }
+    .button{
+        background-color:#ED9292; 
+        border-radius: 8px; 
+        border: 2px solid rgba(105,105,105,0.6);
+        font-size: 4vmin;
+        width: 70px;
+        margin-top:0px;
+        margin-right: 50px;
+   }
+}
 </style>
 <body onload="login_init()">
 
@@ -250,7 +303,7 @@ body {
 <div id="log">
   <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登入</span></button>
   <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登出</span></button>
-  <div id="user" style="padding-top:58px;color:#4f4f4f;"></div>
+  <div id="user" style="padding-top:58px;color:#4f4f4f;">111</div>
 </div>
 
 
@@ -345,25 +398,9 @@ body {
 </div>
 </div>
 
-<div id="love2">
-<center><div id="l1"> 我的收藏-基隆</div></center>
-
-<div id="ul_Source3" class="sortgroup3" style="background:#f2e6e6; ">
-  <div id="p1" class="sourceItem sourceItem3"><div id="p11"></div></div>
-  <div id="p2" class="sourceItem sourceItem3"><div id="p11"></div></div>
-  <div id="p3" class="sourceItem sourceItem3"><div id="p11"></div></div>
-  <div id="p4" class="sourceItem sourceItem3"><div id="p11"></div></div>
-  <div id="p5" class="sourceItem sourceItem3"><div id="p11"></div></div>
-  <div id="p6" class="sourceItem sourceItem3"><div id="p11"></div></div>
-  <div id="p7" class="sourceItem sourceItem3"><div id="p11"></div></div>
-  <div id="p8" class="sourceItem sourceItem3"><div id="p11"></div></div>
-<button class="but1">拖曳至行程</button>
-</div>
-</div>
-
 <div class="love3">
   <div id="love31">
-  <center style="font-size: 8vmin;padding-top: 10px;padding-right: 300px;color: #4f4f4f;">
+  <center style="font-size: 8vmin;padding-top: 10px;color: #4f4f4f;">
     行程規劃
   <picture>
   <source srcset="images/垃圾桶1.png" id="laji" media="(max-width: 500px)">
@@ -371,14 +408,35 @@ body {
   <img src="images/垃圾桶.png"  style="max-width:90px;height:auto">
   </picture>
   <button class="but1" id="laji1">拖至垃圾桶</button>
+  <button class="but1"><a href="行程規劃.html">進入行程規劃</button>
   </center>
   </div>
   <div id="ul_Target3" class="sortgroup3">拖曳行程至此
   </div>
   <ul id=sure>
-<button class="but1">確認</button>
+<button class="but1" onclick="yes()">確認</button>
 </ul>
 </div>
+
+
+<div id="love2">
+<center><div id="l1"> 我的收藏</div></center>
+
+<div id="ul_Source3" class="sortgroup3" style="background:#f2e6e6; ">
+  <div id="p1" class="sourceItem sourceItem3"><div id="n1"></div></div>
+  <div id="p2" class="sourceItem sourceItem3"><div id="n2"></div></div>
+  <div id="p3" class="sourceItem sourceItem3"><div id="n3"></div></div>
+  <div id="p4" class="sourceItem sourceItem3"><div id="n4"></div></div>
+  <div id="p5" class="sourceItem sourceItem3"><div id="n5"></div></div>
+  <div id="p6" class="sourceItem sourceItem3"><div id="n6"></div></div>
+  <div id="p7" class="sourceItem sourceItem3"><div id="n7"></div></div>
+  <div id="p8" class="sourceItem sourceItem3"><div id="n8"></div></div>
+<button class="but1">拖曳至行程</button>
+</div>
+</div>
+
+
+
 
     </div>
 
@@ -413,18 +471,7 @@ $(document).ready(function()
 });
 </script>
 
-<script src="js/向上.js"></script>
-<script>
-    $(document).ready(function() {
-        $('body').materialScrollTop({
-            revealElement: 'header',
-            revealPosition: 'bottom',
-            onScrollEnd: function() {
-            console.log('Scrolling End');
-            }
-        });
-    });
-</script>  
+
 <script>
  
         $(".sourceItem3").draggable({
