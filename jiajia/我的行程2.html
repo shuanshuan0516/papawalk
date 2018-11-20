@@ -1,0 +1,322 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>就i趴趴走·景點</title>
+
+<link rel="stylesheet" href="css/bootstrap.min.css"> 
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+  
+
+<link href="SpryAssets/stylesheet.css rel="stylesheet" type="text/css"/>
+<script src="SpryAssets/SpryMenuBar.js" type="text/javascript"> </script>
+<link href="SpryAssets/SpryMenuBarVertical.css" rel="stylesheet" type="text/css" />
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+<link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
+    
+<link rel="stylesheet" type="text/css" href="css/jia.css">
+<link rel="stylesheet" type="text/css" href="css/header.css">
+<link rel="stylesheet" href="css/登入.css"> 
+
+<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAUnA_8r0-qHb6bCTMi0SCzHcUlc07Qbdk",
+    authDomain: "jia618-d8042.firebaseapp.com",
+    databaseURL: "https://jia618-d8042.firebaseio.com",
+    projectId: "jia618-d8042",
+    storageBucket: "jia618-d8042.appspot.com",
+    messagingSenderId: "157048895266"
+  };
+  firebase.initializeApp(config);
+
+  var pre = document.getElementById('object');
+  var a = 0;
+  for(var i = 0;i<10;i++){
+    var db = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/0/1/"+i+"/1/0");
+  db.on('value',function(snapshot){
+    var test = snapshot.val();
+    a++;
+    var image = document.getElementById("p"+a);
+    image.style.backgroundImage = "url("+test+")";
+ });
+  }
+  ;
+
+  var name = document.cookie.split("user=")[1].split(";")[0];
+  var b=0;
+  for (let i = 1; i < 20; i++){
+  var db3 = firebase.database().ref("member/" + name + "/行程/");
+            db3.on('value',function(snapshot){
+                snapshot.forEach(function(cs){ 
+                b++;                 
+                var text1 = document.getElementById("y"+b);
+                text1.innerText += "#" + cs.val() +"\n";
+              })
+              })
+            }
+</script>
+<script type="text/javascript">
+    //登入
+  var provider = new firebase.auth.GoogleAuthProvider();
+        provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+        firebase.auth().languageCode = 'tw';
+        provider.setCustomParameters({
+            'login_hint': 'user@example.com'
+        });
+
+        function login_init(){
+            let name = document.cookie.split("user=")[1].split(";")[0];
+            let login= document.cookie.split("login=")[1].split(";")[0];
+            if(login==="1")
+            {
+                document.getElementById("user").innerText = name;
+                document.querySelector("#login").style.visibility = "hidden";
+                document.querySelector("#logout").style.visibility = "visible";
+            }else{
+                document.getElementById("user").innerText = "";
+                document.querySelector("#login").style.visibility = "visible";
+                document.querySelector("#logout").style.visibility = "hidden";
+            }
+        }
+        login_init();
+
+        var token;
+        // The signed-in user info.
+        var user;
+
+
+        function check(condition) {
+            if(condition === 1){
+                firebase.auth().signInWithPopup(provider).then(function (result) {
+                    // This gives you a Google Access Token. You can use it to access the Google API.
+                    token = result.credential.accessToken;
+                    // The signed-in user info.
+                    user = result.user;
+
+                    document.cookie = "user="+user.displayName;
+                    document.cookie = "uid="+user.uid;
+                    document.cookie = "login=1";
+                    login_init();
+                    // ...
+                }).catch(function (error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // The email of the user's account used.
+                    var email = error.email;
+                    // The firebase.auth.AuthCredential type that was used.
+                    var credential = error.credential;
+                    // ...
+
+                    firebase.auth().signInWithRedirect(provider);
+                });
+            }else{
+                firebase.auth().signOut().then(function() {
+                    alert("已成功登出!");
+                    document.cookie = "login= ";
+                    document.cookie = "user= ";
+                    document.cookie = "uid= ";
+                    login_init();
+                    // Sign-out successful.
+                }).catch(function(error) {
+                    // An error happened.
+                });
+            }
+
+
+        }
+        //登入
+</script>
+<style type="text/css">
+body {
+  font-family: SentyZHAO;
+}
+
+#content {
+        margin-top: 0px;
+        position:absolute;
+        z-index: -1;
+    }
+#hand1{
+  display: none;
+}
+@media (max-width: 768px) {
+    #hand1 {
+      display:block;
+      padding-top: 40px;
+}
+   #hand{display: none;}
+}
+.row{
+  margin-top:210px;
+  position:fixed;
+}
+@media (max-width: 768px) {
+  .row{
+  position: absolute;
+}
+}
+
+#p1,#p4,#p5,#p6,#tai{
+  background-size: cover;
+        height: 150px;
+        width: 150px;
+        display: block;
+        margin: auto;
+        padding-top: 20px;
+        margin-left:20px;
+}
+
+.love3{
+  margin-top:135px;
+  margin-bottom: 20px;
+  text-align:center;
+  color: #4f4f4f;
+}
+@media (max-width: 768px) {
+  .love3{
+    margin-top:100px;
+  right:15px;
+  text-align: none;
+}
+}
+#love31{
+  border:4px black dashed;   
+  margin: 10px;   
+  padding: 10px;
+  height: 180px;  
+  width:500px;  
+  margin-left:350px;  
+  margin-bottom: 20px;
+  border-radius:10px;
+}
+@media (max-width: 768px) {
+  #love31{
+  border:4px black dashed;   
+  margin: 10px;   
+  padding: 10px;
+  height: 180px;  
+  width:350px;  
+  margin-left:50px;  
+  margin-bottom: 20px;
+  border-radius:10px;
+}
+}
+#p111,#p222,#p333,#p444,#y1{
+margin-left:200px;
+margin-top:-90px;
+font-size: 5vmin;
+}
+@media (max-width: 768px) {
+  #real_header{
+  display: none;
+}
+}
+
+@media (max-width: 768px) {
+    #log {
+        position: fixed;
+    left: 330px;
+    top: 45px;
+    width: 50px;
+    height: 25px;
+    z-index: 5;
+    background:#ED9292;
+    font-size: large;
+    text-align: left;
+    border-right: none;
+    font-size:4vmin;
+    }
+    #user{
+        margin-top: -50px;
+        margin-right: 70px;
+        text-align: right;
+    }
+    .button{
+        background-color:#ED9292; 
+        border-radius: 8px; 
+        border: 2px solid rgba(105,105,105,0.6);
+        font-size: 4vmin;
+        width: 70px;
+        margin-top:0px;
+        margin-right: 50px;
+   }
+}
+</style>
+<body onload="login_init()">
+
+<div class="container">
+        <header>
+<!--往下滑的標題><!-->
+<div id="fixed_header">
+    <div id="navi">
+      <ul style="margin-right: 130px;">
+         <li><a href="index.html"><img id="navi1" src="images/趴.png"></li>
+         <li><a href="景點all.html"><img id="navi2" src="images/景點.png"></a></li>
+         <li><a href="美食all.html"><img id="navi2" src="images/美食.png"></a></li>
+         <li><a href="會員all.html"><img id="navi3" src="images/會員1.png"></a></li>
+         <li><a href="關於我.html"><img id="navi4" src="images/about1.png"></a></li>
+      </ul>
+    </div>
+    <div id="phone-navi">
+      <ul>
+    <li><a href="index.html" id="phone-navi1">首頁</a></li>
+    <li><a href="景點all.html" id="phone-navi2">景點</a></li>
+    <li><a href="美食all.html" id="phone-navi2">美食</a></li>
+    <li><a href="會員all.html" id="phone-navi2">會員專區</a></li>
+    <li><a href="關於我.html" id="phone-navi2">關於我</a></li>
+      </ul>
+    </div>
+</div>
+
+<div id="real_header">
+<div class="Header">
+   <div class="Logo">
+     <a href="index.html">就I趴趴走</a>
+   </div>
+
+   <ul class="good" style="margin-right: 130px;">
+      <li><a href="景點all.html"><img src="images/景點.png" id="good1"></a></li>
+      <li><a href="美食all.html"><img src="images/美食.png" id="good1"></a></li>
+      <li><a href="會員all.html"><img src="images/會員1.png" id="good2"></a></li>
+      <li><a href="關於我.html"><img src="images/about1.png" id="good3"></a></li>
+   </ul>
+
+ </div>
+</div>
+<div id="log">
+  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:10;right:20px;"><span>登入</span></button>
+  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:11;right:20px;"><span>登出</span></button>
+  <div id="user" style="padding-top:58px;color:#4f4f4f;"></div>
+</div>
+
+
+
+<div class="love3">
+  <p style="font-size: 8vmin;padding-top: 20px;">我的行程</p>
+  <div id="love31">
+<a id="tai" href="行程規劃2.html" style="background-image: url(&quot;https://instagram.ftpe8-3.fna.fbcdn.net/vp/d4fab27eb2b2ec8a32ab3fcc1f588218/5BEF95A6/t51.2885-15/e35/37711244_212514272759447_816493937467326464_n.jpg&quot;);"></a><p id="y1"></p>
+</div>
+</div>
+
+
+
+
+</div>
+
+
+
+
+</body>
+</html>

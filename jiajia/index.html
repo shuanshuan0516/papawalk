@@ -438,6 +438,53 @@ body{
   opacity: 1;
   right: 0;
 }
+
+
+#log {
+    position: fixed;
+    right: 0;
+    top: 0px;
+    width: 120px;
+    height: 80px;
+    z-index: 5;
+    background:#ED9292;
+    font-size: large;
+    text-align: left;
+    border-right: none;
+    font-size:4vmin;
+}
+#user{
+    text-align: center;
+}
+@media (max-width: 768px) {
+    #log {
+        position: fixed;
+    left: 320px;
+    top: 115px;
+    width: 150px;
+    height: 2px;
+    z-index: 5;
+    background:#ED9292;
+    font-size: large;
+    text-align: left;
+    border-right: none;
+    font-size:4vmin;
+    }
+    #user{
+        margin-top: -40px;
+        margin-right: 70px;
+        text-align: right;
+    }
+    .button{
+        background-color:#ED9292; 
+        border-radius: 8px; 
+        border: 2px solid rgba(105,105,105,0.6);
+        font-size: 4vmin;
+        width: 70px;
+        margin-top:0px;
+        margin-right: 100px;
+   }
+}
 </style>
 <body onload="login_init()">
 <div class="container" >
@@ -468,24 +515,24 @@ body{
           <img src="images/food.png" border="0" style="max-width:120px;height:auto" onmouseover="this.src='images/food1.png';" onmouseout="this.src='images/food.png' ;" /> 
         </a>    
       </li>
-      <li><a href="會員all.html"><img src="images/會員.png" style="max-width:120px;height:auto" /></a></li>
-      <li style="">
-        <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:3;right:30px;top:10px;"><span>登入</span></button>
-          <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:4;right:30px;top:10px;"><span>登出</span></button>
-          <div id="user" style="text-align: center;top:150px;"></div>
-
+      <li><a href="會員all.html"><img src="images/會員.png" style="max-width:120px;height:auto;right: 50px;" /></a></li>
+      <li>
       </li>
+        <div id="log">
+  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登入</span></button>
+  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登出</span></button>
+  <div id="user" style="padding-top:58px;color:#4f4f4f;"></div>
+</div>
+
 
    </ul>
 
-   <ul class="hide" style="padding-top: 20px ;padding-bottom:10px"><center>
-      <li><a href="景點all.html" >景點</a></li>
+   <ul class="hide" style="padding-top: 20px ;padding-bottom:10px;margin-left: 20px;">
+      <li><a href="景點all.html">景點</a></li>
       <li><a href="美食all.html">美食</a></li>
       <li><a href="會員all.html">會員專區</a></li>
       <li><a href="關於我.html">關於我</a></li>
-      <li><a href="#">登入</a></li>
-      <li><a href="">登出</a></li>
-      </center>
+      
    </ul> 
 </div>
 

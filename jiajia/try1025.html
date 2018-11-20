@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<script type="text/javascript" src="http://www.pureexample.com/js/lib/jquery.ui.touch-punch.min.js"></script>
+ 
+ 
+<!-- CSS -->
+<style type="text/css">
+.drag {
+    background-size: cover;
+  border:2px black dashed;   
+  margin: 10px;   
+  padding: 10px;
+  height:130px;   
+  max-width: 130px;   
+  border-radius:10px; 
+}
+ 
+#dragbasic {
+   margin-left:5px;
+  margin-top:90px;
+  box-shadow:5px 5px 12px #ED9292;
+  width:400px;
+  height: 600px;
+  text-align:center;
+  color: black;
+  position: absolute;}
+ 
+</style>
+ 
+ 
+<!-- Javascript -->
+<script>
+$(function () {
+        /* basic */
+        $("#dragbasic div[id^='drag']").draggable({
+                containment: "#dragbasic",
+                stack: ".drag"
+        });
+ 
+ 
+ 
+        /* make draggable div always on top */
+        $("div[id^='drag']").mousedown(function () {
+                $("div[id^='drag']").each(function () {
+                        var seq = $(this).attr("id").replace("drag", "");
+                        $(this).css('z-index', seq);
+                });
+        });
+});
+</script>
+ 
+<!-- HTML -->
+
+ 
+
+    垂直及橫向拖曳
+    <div id="dragbasic">    
+        <div id="drag1" class="drag">拖曳</div>
+        <div id="drag1" class="drag">拖曳</div>
+        <div id="drag1" class="drag">拖曳</div>
+        <div id="drag1" class="drag">拖曳</div>
+    </div>
