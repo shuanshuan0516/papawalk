@@ -103,7 +103,8 @@ table{
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
-  vertical-align:middle;margin-top:14px;margin-left: 10px
+  vertical-align:middle;
+  margin-top:14px;margin-left: 10px
 }
 
 .button span {
@@ -158,8 +159,7 @@ list-style-type:none;
 @media (max-width: 768px) {
     #phone-navi {
     display: inline;
-     margin:0px auto 0px auto;
-    text-align:center;
+    margin:0px auto 0px auto;
 
     }
     #phone-navi li {
@@ -167,9 +167,9 @@ list-style-type:none;
     display:inline;
   }
     li{
-      margin: 0px 12px 0px 12px;
-      font-size:5vmin;
-      border-width:3px
+      margin: 0px 5px 5px 5px;
+      font-size:6vmin;
+      border-width:3px;
     }
 }
 
@@ -188,7 +188,7 @@ list-style-type:none;
   @media (max-width: 768px) {
     #real_header {
     top:0%;
-    position:absolute;
+    position:fixed;
     width:100%;
     z-index:2;
     background-color:#ED9292;
@@ -315,12 +315,12 @@ margin-left:50px;
   padding-bottom:10px;
   list-style-type:none;
   display:inline;
-  position: absolute;
+  position:fixed;
   z-index:2;
 }
 #ph3{
 border-left:3px #FFD382 solid;
-margin: 0px 5px 0px 40px;
+margin: 0px 5px 0px 20px;
 }
 #ph4{
 border-left:3px #FFD382 solid;

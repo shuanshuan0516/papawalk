@@ -156,6 +156,7 @@ body {
   height:350px; 
   width:350px;
   margin:20px;
+  border-radius: 10px;
 }
 #consolep2{
   max-width:330px;
@@ -182,8 +183,16 @@ body {
   max-width: 430px;
   height: auto;    
   border-radius:10px;
-  margin-left:30px;
+  margin-left:25px;
 } 
+#consolep1{
+  background-size: cover; 
+  border-radius: 10px;
+  height:320px; 
+  width:310px;
+  margin:20px;
+  right: 5px;
+}
 }
 
 </style>
@@ -200,17 +209,6 @@ body {
          <li><a href="美食all.html"><img id="navi2" src="images/美食.png"></a></li>
          <li><a id="member_all" href=" "><img id="navi3" src="images/會員1.png"></a></li>
          <li><a href="關於我.html"><img id="navi4" src="images/about1.png"></a></li>
-      </ul>
-    </div>
-    <div id="phone-navi">
-      <ul>
-    <li><a href="index.html" id="phone-navi1">首頁</a></li>
-    <li><a href="景點all.html" id="phone-navi2">景點</a></li>
-    <li><a href="美食all.html" id="phone-navi2">美食</a></li>
-    <li><a href="會員all.html" id="phone-navi2">會員專區</a></li>
-    <li><a href="關於我.html" id="phone-navi2">關於我</a></li>
-    <li><a href="會員登入.html" id="phone-navi2">登入</a></li>
-    <li><a href="" id="phone-navi2">登出</a></li>
       </ul>
     </div>
 </div>
@@ -241,8 +239,6 @@ body {
     <a href="美食all.html" id="ph4">美食</a>
     <a href="會員all.html" id="ph4">會員專區</a>
     <a href="關於我.html" id="ph4">關於我</a>
-    <a href="會員登入.html" id="ph4">登入</a>
-    <a href="" id="ph4">登出</a>
 
 </th>
 </tr>
@@ -252,10 +248,10 @@ body {
 </header>
  
 <div id="log">
-  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登入</span></button>
-  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登出</span></button>
-  <div id="user" style="text-align: center;padding-top:58px;color:#4f4f4f;"></div>
-</div> 
+  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登入</span></button>
+  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登出</span></button>
+  <div id="user" style="padding-top:58px;color:#4f4f4f;"></div>
+</div>
 
 <div id="netmenu">
 <div id="menu">
