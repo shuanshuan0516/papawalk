@@ -164,6 +164,7 @@ var provider = new firebase.auth.GoogleAuthProvider();
      position: relative;
      z-index: -1;
 }
+
 .c1,.c2,.c3,.c4,.c5,.c6,.c7,.c8,.c9,.c10,.c11{
   position:absolute; 
   z-index:2; 
@@ -184,13 +185,40 @@ var provider = new firebase.auth.GoogleAuthProvider();
   color:#4f4f4f;
 }
 
-
-
+#pp img{
+  background-size: cover;
+     height:220px;
+     width:250px;
+     display:block;
+     margin:auto;
+     padding-top: 20px;
+     position: relative;
+     z-index: -1;  
+}
+#pp a{
+  color:#4f4f4f;
+}
+#pp a:hover{
+  color:#4f4f4f;
+}
+.picture{
+  font-size: 4vmin;
+}
+#ppp{
+  font-size: 8vmin;
+  margin-bottom: 20px;
+  color:#4f4f4f;
+}
+@media (max-width: 768px) {
+  #ppp{
+    padding-top:20px;
+  }
+}
 </style>
 
 
         
-<body onload="init()">
+<body onload="login_init()">
 
 <div class="container">
         
@@ -370,90 +398,91 @@ var provider = new firebase.auth.GoogleAuthProvider();
 
 
 <!--相簿><!-->
-<div id="picture" >
-<div id="pp" style="margin-top: 170px;">北部
+<center id="ppp" style="margin-top: 170px;">✨熱門景點排行榜✨</center>
+<div id="pp" >北部
+  <div class="picture">
  <section class="regular slider">
-       <div id="p1"><div id=""></div></div></a>
-       <div id="p2" class="c2"></div>
-       <div id="p3" class="c3"></div>
-       <div id="p4" class="c4"></div>
-       <div id="p5" class="c5"></div>
-       <div id="p6" class="c6"></div>
-       <div id="p7" class="c7"></div>
-       <div id="p8" class="c8"></div>
-       <div id="p9" class="c9"></div>
-       <div id="p10" class="c10"></div>
-       <div id="p11" class="c11"></div> 
+       <div><a href="基隆正濱漁港.html"><img src="instagram/基隆正濱漁港.jpg">#基隆正濱漁港</a></div>
+       <div><a href="員山蜊埤湖.html"><img src="instagram/員山蜊埤湖.jpg">#員山蜊埤湖</a></div>
+       <div><a href="豎琴橋.html"><img src="instagram/豎琴橋.jpg">#豎琴橋</a></div>
+       <div><a href="羅東文化工場.html"><img src="instagram/羅東文化工場.jpg">#羅東文化工場</a></div>
+       <div><a href="大溪花海農場.html"><img src="instagram/大溪花海農場.jpg">#大溪花海農場</a></div>
+       <div><a href="金瓜石本山六坑.html"><img src="instagram/金瓜石本山六坑.jpg">#金瓜石本山六坑</a></div>
+       <div><a href="竹東藝術村.html"><img src="instagram/竹東藝術村.jpg">#竹東藝術村</a></div>
+       <div><a href="見晴懷古步道.html"><img src="instagram/見晴懷古步道.jpg">#見晴懷古步道</a></div>
+       <div><img src="instagram/慶和橋.jpg">#慶和橋</div>
+       <div><img src="instagram/明池國家森林遊樂區.jpg">#明池國家森林遊樂區</div>
   </section>
+</div>
 </div>
 
 <div>
 <div id="pp">中部
+  <div class="picture">
  <section class="regular slider">
-       <div id="p1"></div>
-       <div id="p2"></div>
-       <div id="p3"></div>
-       <div id="p4"></div>
-       <div id="p5"></div>
-       <div id="p6"></div>
-       <div id="p7"></div>
-       <div id="p8"></div>
-       <div id="p9"></div>
-       <div id="p10"></div>
-       <div id="p11"></div>
+       <div><img src="instagram/外埔薑荷花園.jpg">#外埔薑荷花園</div>
+       <div><img src="instagram/田在芯頭.jpg">#田在芯頭</div>
+       <div><img src="instagram/忘憂森林.jpg">#忘憂森林</div>
+       <div><img src="instagram/後龍好望角.jpg">#後龍好望角</div>
+       <div><img src="instagram/草悟廣場.jpg">#草悟廣場</div>
+       <div><img src="instagram/愛麗絲的天空攝影基地.jpg">#愛麗絲的天空攝影基地</div>
+       <div><img src="instagram/摩爾花園.jpg">#摩爾花園</div>
+       <div><img src="instagram/蘿莎玫瑰山莊.jpg">#蘿莎玫瑰山莊</div>
+       <div><img src="instagram/澄霖沉香味道森林館.jpg">#澄霖沉香味道森林館</div>
   </section>
+</div>
   </div>
   
 <div> 
 <div id="pp">南部
+  <div class="picture">
  <section class="regular slider">
-       <div id="p1"></div>
-       <div id="p2"></div>
-       <div id="p3"></div>
-       <div id="p4"></div>
-       <div id="p5"></div>
-       <div id="p6"></div>
-       <div id="p7"></div>
-       <div id="p8"></div>
-       <div id="p9"></div>
-       <div id="p10"></div>
-       <div id="p11"></div>
+       <div><img src="instagram/井仔腳瓦盤鹽田.jpg">#井仔腳瓦盤鹽田</div>
+       <div><img src="instagram/Kano園區.jpg">#Kano園區</div>
+       <div><img src="instagram/望安網垵口沙灘.jpg">#望安網垵口沙灘</div>
+       <div><img src="instagram/黃金菠蘿城堡.jpg">#黃金菠蘿城堡</div>
+       <div><img src="instagram/棧貳庫KW2.jpg">#棧貳庫KW2</div>
+       <div><img src="instagram/星空帳篷.jpg">#星空帳篷</div>
+       <div><img src="instagram/屏東公園.jpg">#屏東公園</div>
+       <div><img src="instagram/西瀛紅橋.jpg">#西瀛紅橋</div>
+       <div><img src="instagram/橋頭海灘公園.jpg">#橋頭海灘公園</div>
   </section>
   </div>
+</div>
 
 <div>
 <div id="pp">東部
+  <div class="picture">
  <section class="regular slider">
-       <div id="p1"></div>
-       <div id="p2"></div>
-       <div id="p3"></div>
-       <div id="p4"></div>
-       <div id="p5"></div>
-       <div id="p6"></div>
-       <div id="p7"></div>
-       <div id="p8"></div>
-       <div id="p9"></div>
-       <div id="p10"></div>
-       <div id="p11"></div>
+       <div><img src="instagram/童話屋咖啡館.jpg">#童話屋咖啡館</div>
+       <div><img src="instagram/洄瀾灣會館.jpg">#洄瀾灣會館</div>
+       <div><img src="instagram/花蓮新社梯田.jpg">#花蓮新社梯田</div>
+       <div><img src="instagram/石門班哨角休憩區.jpg">#石門班哨角休憩區</div>
+       <div><img src="instagram/壽豐•雲山水.jpg">#壽豐•雲山水</div>
+       <div><img src="instagram/伽路蘭遊憩區.jpg">#伽路蘭遊憩區</div>
+       <div><img src="instagram/加路蘭海岸.jpg">#加路蘭海岸</div>
+       <div><img src="instagram/華源海灣.jpg">#華源海灣</div>
+       <div><img src="instagram/星浪.新蘭.jpg">#星浪.新蘭</div>
   </section>
   </div>
+</div>
 
 <div>
 <div id="pp">離島
+  <div class="picture">
  <section class="regular slider">
-       <div id="p1"></div>
-       <div id="p2"></div>
-       <div id="p3"></div>
-       <div id="p4"></div>
-       <div id="p5"></div>
-       <div id="p6"></div>
-       <div id="p7"></div>
-       <div id="p8"></div>
-       <div id="p9"></div>
-       <div id="p10"></div>
-       <div id="p11"></div>
+       <div><img src="instagram/彎弓洞.jpg">#彎弓洞</div>
+       <div><img src="instagram/柚子湖.jpg">#柚子湖</div>
+       <div><img src="instagram/朝日溫泉.jpg">#朝日溫泉</div>
+       <div><img src="instagram/金門水頭得月樓.jpg">#金門水頭得月樓</div>
+       <div><img src="instagram/建功嶼.jpg">#建功嶼</div>
+       <div><img src="instagram/沙美老街.jpg">#沙美老街</div>
+       <div><img src="instagram/Orchid Island.jpg">#Orchid Island</div>
+       <div><img src="instagram/椰油國小.jpg">#椰油國小</div>
+       <div><img src="instagram/開元漁港.jpg">#開元漁港</div>
   </section>
   </div>
+</div>
 
 
 

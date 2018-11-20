@@ -72,3 +72,9 @@
 .slick-current {
       opacity: 1;
     }
+
+#back{
+  font-size: 8vmin;
+  margin-left:300px;
+  margin-top:200px;
+}

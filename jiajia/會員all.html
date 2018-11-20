@@ -52,7 +52,21 @@
                 document.querySelector("#logout").style.visibility = "hidden";
             }
         }
+
+        function dic(){
+          let name2 = document.cookie.split("user=")[1].split(";")[0];
+          if(name2==="Kelly Huang"){
+            document.getElementById("who").href = "我的行程1.html";
+          } 
+          else if(name2 === "顏嘉慧"){
+            document.getElementById("who").href = "我的行程2.html";
+          }
+          else{
+            document.getElementById("who").href = "我的行程.html";
+          }
+        }
         login_init();
+        dic();
 
         var token;
         // The signed-in user info.
@@ -71,6 +85,7 @@
                     document.cookie = "uid="+user.uid;
                     document.cookie = "login=1";
                     login_init();
+                    dic();
                     // ...
                 }).catch(function (error) {
                     // Handle Errors here.
@@ -91,6 +106,7 @@
                     document.cookie = "user= ";
                     document.cookie = "uid= ";
                     login_init();
+                    dic();
                     // Sign-out successful.
                 }).catch(function(error) {
                     // An error happened.
@@ -195,7 +211,7 @@ body {
 </div>
 
 <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-  <a href="我的行程.html"><img src="images/1-1.png" style="width:auto;max-height:310px;"/>
+  <a id="who" href=" " onclick="dic()"><img src="images/1-1.png" style="width:auto;max-height:310px;"/>
 </div>
 </div>
 

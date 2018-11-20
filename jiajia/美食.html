@@ -156,7 +156,7 @@
     <script>
         let get = location.search.split("&");
 
-        var db = firebase.database().ref("ig/-LMpPW-oQoTQYtDaO2_O/美食/" + get[1]);
+        var db = firebase.database().ref("ig/-LPgUYnN4rI6hkpDU7SW/美食/" + get[1]);
         db.once('value', function (snapshot) {
             let t2_title = snapshot.child("0").val();
             document.getElementById("all_title").innerText = "#" + t2_title;
@@ -243,7 +243,7 @@
 </style>
 
 
-<body onload="login_init()">
+<body onload="init()">
 <div class="container">
         <header>
 <!--往下滑的標題><!-->
@@ -285,8 +285,6 @@
     <a href="美食all.html" id="ph4">美食</a>
     <a href="會員all.html" id="ph4">會員專區</a>
     <a href="關於我.html" id="ph4">關於我</a>
-    <a href="會員登入.html" id="ph4">登入</a>
-    <a href="" id="ph4">登出</a>
 
 </th>
 </tr>
@@ -338,18 +336,18 @@
     <a href="美食.html?&11">台南</a>
     <a href="美食.html?&12">高雄</a>  
     <a href="美食.html?&13">屏東</a>  
-    <a href="美食.html?&15">澎湖</a>   
+    <a href="美食.html?&19">澎湖</a>   
     </div>
      <p class="menu_head">東部</p>
     <div class="menu_body">
-    <a href="美食.html?&20">花蓮</a>
+    <a href="美食.html?&15">花蓮</a>
     <a href="美食.html?&14">台東</a>  
     </div>
      <p class="menu_head">離島</p>
     <div class="menu_body">
-    <a href="美食.html?&18">金門</a>
-    <a href="美食.html?&17">綠島</a>
-    <a href="美食.html?&19">蘭嶼</a>    
+    <a href="美食.html?&17">金門</a>
+    <a href="美食.html?&16">綠島</a>
+    <a href="美食.html?&18">蘭嶼</a>      
     </div>
   </div>      <!--Code for menu ends here-->
 </div>
@@ -392,18 +390,18 @@
     <a href="美食.html?&11">台南</a>
     <a href="美食.html?&12">高雄</a>  
     <a href="美食.html?&13">屏東</a>  
-    <a href="美食.html?&15">澎湖</a>   
+    <a href="美食.html?&19">澎湖</a>   
     </div>
      <p class="menu_head">東部</p>
     <div class="menu_body">
-    <a href="美食.html?&20">花蓮</a>
+    <a href="美食.html?&15">花蓮</a>
     <a href="美食.html?&14">台東</a>  
     </div>
      <p class="menu_head">離島</p>
     <div class="menu_body">
-    <a href="美食.html?&18">金門</a>
-    <a href="美食.html?&17">綠島</a>
-    <a href="美食.html?&19">蘭嶼</a> 
+    <a href="美食.html?&17">金門</a>
+    <a href="美食.html?&16">綠島</a>
+    <a href="美食.html?&18">蘭嶼</a>  
     </div>
 
   </div>      <!--Code for menu ends here-->
@@ -428,82 +426,97 @@
     </h3>
     <div class="row" style="padding-left:15%">
 
+        
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p1"></a>
             <div id="n1"></div>
+            <center>
             <a id="m1" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img1' src="images/off.jpg" style="float:right;" onclick="change(0);" width="30px" height="30px">
+            <img id='img1' src="images/off.jpg" onclick="change(0);" width="30px" height="30px">
+            </center>
         </div>
 
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p2"></a>
             <div id="n2"></div>
+            <center>
             <a id="m2" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id="img2" src="images/off.jpg" style="float:right;" onclick="change(1);" width="30px" height="30px">
+            <img id="img2" src="images/off.jpg" onclick="change(1);" width="30px" height="30px"></center>
+
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p3"></a>
             <div id="n3"></div>
+            <center>
             <a id="m3" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img3' src="images/off.jpg" style="float:right;" onclick="change(2);" width="30px" height="30px">
+            <img id='img3' src="images/off.jpg" onclick="change(2);" width="30px" height="30px"></center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p4"></a>
             <div id="n4"></div>
+            <center>
             <a id="m4" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img4' src="images/off.jpg" style="float:right;" onclick="change(3);" width="30px" height="30px">
+            <img id='img4' src="images/off.jpg" onclick="change(3);" width="30px" height="30px"></center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p5"></a>
             <div id="n5"></div>
+            <center>
             <a id="m5" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img5' src="images/off.jpg" style="float:right;" onclick="change(4);" width="30px" height="30px">
+            <img id='img5' src="images/off.jpg" onclick="change(4);" width="30px" height="30px"></center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p6"></a>
             <div id="n6"></div>
+            <center>
             <a id="m6" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img6' src="images/off.jpg" style="float:right;" onclick="change(5);" width="30px" height="30px">
+            <img id='img6' src="images/off.jpg" onclick="change(5);" width="30px" height="30px"></center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p7"></a>
             <div id="n7"></div>
+            <center>
             <a id="m7" href=" " target="_blank"><img src="images/map.png" style="max-width: 10%;"></a>
-            <img id='img7' src="images/off.jpg" style="float:right;" onclick="change(6);" width="30px" height="30px">
+            <img id='img7' src="images/off.jpg" onclick="change(6);" width="30px" height="30px"></center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p8"></a>
             <div id="n8"></div>
+            <center>
             <a id="m8" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img8' src="images/off.jpg" style="float:right;" onclick="change(7);" width="30px" height="30px">
+            <img id='img8' src="images/off.jpg" onclick="change(7);" width="30px" height="30px"></center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p9"></a>
             <div id="n9"></div>
             <a id="m9" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img9' src="images/off.jpg" style="float:right;" onclick="change(8);" width="30px" height="30px">
+            <img id='img9' src="images/off.jpg" onclick="change(8);" width="30px" height="30px"></center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p10"></a>
             <div id="n10"></div>
+            <center>
             <a id="m10" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img10' src="images/off.jpg" style="float:right;" onclick="change(9);" width="30px" height="30px">
+            <img id='img10' src="images/off.jpg"  onclick="change(9);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p11"></a>
             <div id="n11"></div>
+            <center>
             <a id="m11" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img11' src="images/off.jpg" style="float:right;" onclick="change(10);" width="30px" height="30px">
+            <img id='img11' src="images/off.jpg" onclick="change(10);" width="30px" height="30px">
+            </center>
         </div>
 
 
@@ -511,205 +524,261 @@
             <a id="p12"></a>
             <div id="n12"></div>
             <a id="m12" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img12' src="images/off.jpg" style="float:right;" onclick="change(11);" width="30px" height="30px">
+            <img id='img12' src="images/off.jpg" onclick="change(11);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p13"></a>
             <div id="n13"></div>
+            <center>
             <a id="m13" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img13' src="images/off.jpg" style="float:right;" onclick="change(12);" width="30px" height="30px">
+            <img id='img13' src="images/off.jpg" onclick="change(12);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p14"></a>
             <div id="n14"></div>
+            <center>
             <a id="m14" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img14' src="images/off.jpg" style="float:right;" onclick="change(13);" width="30px" height="30px">
+            <img id='img14' src="images/off.jpg" onclick="change(13);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p15"></a>
             <div id="n15"></div>
+            <center>
             <a id="m15" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img15' src="images/off.jpg" style="float:right;" onclick="change(14);" width="30px" height="30px">
+            <img id='img15' src="images/off.jpg" onclick="change(14);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p16"></a>
             <div id="n16"></div>
+            <center>
             <a id="m16" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img16' src="images/off.jpg" style="float:right;" onclick="change(15);" width="30px" height="30px">
+            <img id='img16' src="images/off.jpg" onclick="change(15);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p17"></a>
             <div id="n17"></div>
+            <center>
             <a id="m17" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img17' src="images/off.jpg" style="float:right;" onclick="change(16);" width="30px" height="30px">
+            <img id='img17' src="images/off.jpg" onclick="change(16);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p18"></a>
             <div id="n18"></div>
+            <center>
             <a id="m18" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img18' src="images/off.jpg" style="float:right;" onclick="change(17);" width="30px" height="30px">
+            <img id='img18' src="images/off.jpg" onclick="change(17);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p19"></a>
             <div id="n19"></div>
+            <center>
             <a id="m19" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img19' src="images/off.jpg" style="float:right;" onclick="change(18);" width="30px" height="30px">
+            <img id='img19' src="images/off.jpg" onclick="change(18);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p20"></a>
             <div id="n20"></div>
+            <center>
             <a id="m20" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img20' src="images/off.jpg" style="float:right;" onclick="change(19);" width="30px" height="30px">
+            <img id='img20' src="images/off.jpg" onclick="change(19);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p21"></a>
             <div id="n21"></div>
+            <center>
             <a id="m21" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img21' src="images/off.jpg" style="float:right;" onclick="change(20);" width="30px" height="30px">
+            <img id='img21' src="images/off.jpg" onclick="change(20);" width="30px" height="30px">
+            </center>
         </div>
 
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p22"></a>
             <div id="n22"></div>
+            <center>
             <a id="m22" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img22' src="images/off.jpg" style="float:right;" onclick="change(21);" width="30px" height="30px">
+            <img id='img22' src="images/off.jpg" onclick="change(21);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p23"></a>
             <div id="n23"></div>
+            <center>
             <a id="m23" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img23' src="images/off.jpg" style="float:right;" onclick="change(22);" width="30px" height="30px">
+            <img id='img23' src="images/off.jpg" onclick="change(22);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p24"></a>
             <div id="n24"></div>
+            <center>
             <a id="m24" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img24' src="images/off.jpg" style="float:right;" onclick="change(23);" width="30px" height="30px">
+            <img id='img24' src="images/off.jpg" onclick="change(23);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p25"></a>
             <div id="n25"></div>
+            <center>
             <a id="m25" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img25' src="images/off.jpg" style="float:right;" onclick="change(24);" width="30px" height="30px">
+            <img id='img25' src="images/off.jpg" onclick="change(24);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p26"></a>
             <div id="n26"></div>
             <a id="m26" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img26' src="images/off.jpg" style="float:right;" onclick="change(25);" width="30px" height="30px">
+            <img id='img26' src="images/off.jpg" onclick="change(25);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p27"></a>
             <div id="n27"></div>
+            <center>
             <a id="m27" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img27' src="images/off.jpg" style="float:right;" onclick="change(26);" width="30px" height="30px">
+            <img id='img27' src="images/off.jpg" onclick="change(26);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p28"></a>
             <div id="n28"></div>
+            <center>
             <a id="m28" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img28' src="images/off.jpg" style="float:right;" onclick="change(27);" width="30px" height="30px">
+            <img id='img28' src="images/off.jpg" onclick="change(27);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p29"></a>
             <div id="n29"></div>
+            <center>
             <a id="m29" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img29' src="images/off.jpg" style="float:right;" onclick="change(28);" width="30px" height="30px">
+            <img id='img29' src="images/off.jpg" onclick="change(28);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p30"></a>
             <div id="n30"></div>
-            <img id='img30' src="images/off.jpg" style="float:right;" onclick="change(29);" width="30px" height="30px">
+            <center>
             <a id="m30" href=" " target="_blank"><img src="images/map.png"></a>
+            <img id='img30' src="images/off.jpg" onclick="change(29);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p31"></a>
             <div id="n31"></div>
+            <center>
             <a id="m31" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img31' src="images/off.jpg" style="float:right;" onclick="change(30);" width="30px" height="30px">
+            <img id='img31' src="images/off.jpg" onclick="change(30);" width="30px" height="30px">
+            </center>
         </div>
 
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p32"></a>
             <div id="n32"></div>
+            <center>
             <a id="m32" href=" " target="_blank"><img src="images/map.png" style="max-width: 10%;"></a>
-            <img id='img32' src="images/off.jpg" style="float:right;" onclick="change(31);" width="30px" height="30px">
+            <img id='img32' src="images/off.jpg" onclick="change(31);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p33"></a>
             <div id="n33"></div>
+            <center>
             <a id="m33" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img33' src="images/off.jpg" style="float:right;" onclick="change(32);" width="30px" height="30px">
+            <img id='img33' src="images/off.jpg" onclick="change(32);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p34"></a>
             <div id="n34"></div>
+            <center>
             <a id="m34" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img34' src="images/off.jpg" style="float:right;" onclick="change(33);" width="30px" height="30px">
+            <img id='img34' src="images/off.jpg" onclick="change(33);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p35"></a>
             <div id="n35"></div>
+            <center>
             <a id="m35" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img35' src="images/off.jpg" style="float:right;" onclick="change(34);" width="30px" height="30px">
+            <img id='img35' src="images/off.jpg" onclick="change(34);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p36"></a>
             <div id="n36"></div>
+            <center>
             <a id="m36" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img36' src="images/off.jpg" style="float:right;" onclick="change(35);" width="30px" height="30px">
+            <img id='img36' src="images/off.jpg" onclick="change(35);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p37"></a>
             <div id="n37"></div>
+            <center>
             <a id="m37" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img37' src="images/off.jpg" style="float:right;" onclick="change(36);" width="30px" height="30px">
+            <img id='img37' src="images/off.jpg" onclick="change(36);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p38"></a>
             <div id="n38"></div>
+            <center>
             <a id="m38" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img38' src="images/off.jpg" style="float:right;" onclick="change(37);" width="30px" height="30px">
+            <img id='img38' src="images/off.jpg" onclick="change(37);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p39"></a>
             <div id="n39"></div>
+            <center>
             <a id="m39" href=" " target="_blank"><img src="images/map.png"></a>
             <img id='img39' src="images/off.jpg" style="float:right;" onclick="change(38);" width="30px" height="30px">
+            </center>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
             <a id="p40"></a>
             <div id="n40"></div>
+            <center>
             <a id="m40" href=" " target="_blank"><img src="images/map.png"></a>
-            <img id='img40' src="images/off.jpg" style="float:right;" onclick="change(39);" width="30px" height="30px">
+            <img id='img40' src="images/off.jpg" onclick="change(39);" width="30px" height="30px">
+        </center>
         </div>
 
             </div>

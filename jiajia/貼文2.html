@@ -121,7 +121,7 @@
         //地圖
         let get = location.search.split("&");
 
-        var db = firebase.database().ref("ig/-LMpPW-oQoTQYtDaO2_O/美食/" + get[1] + "/1/" + get[2]);
+        var db = firebase.database().ref("ig/-LPgUYnN4rI6hkpDU7SW/美食/" + get[1] + "/1/" + get[2]);
         db.once('value', function (snapshot) {
             let t2_title = snapshot.child("0").val();
             document.getElementById("all_title").innerText = "#" + t2_title;
@@ -141,7 +141,7 @@
         });
         //地圖
         //留言
-        var db2 = firebase.database().ref("ig/-LMpPW-oQoTQYtDaO2_O/美食/" + get[1] + "/1/" + get[2]+"/comment");
+        var db2 = firebase.database().ref("ig/-LPgUYnN4rI6hkpDU7SW/美食/" + get[1] + "/1/" + get[2]+"/comment");
             db2.on('value',function(snapshot){
                 snapshot.forEach(function(cs){
                     var text = document.getElementById("show");
@@ -155,13 +155,13 @@
 
         function putdata(){
             var message = $('#message').val();            
-            var ref = firebase.database().ref("ig/-LMpPW-oQoTQYtDaO2_O/美食/" + get[1] + "/1/" + get[2]+"/comment");
+            var ref = firebase.database().ref("ig/-LPgUYnN4rI6hkpDU7SW/美食/" + get[1] + "/1/" + get[2]+"/comment");
                 ref.once("value", (function (snapshot) {
                     var buffer = snapshot.child(message).val();
                     var a = snapshot.numChildren()+1;
                     if (buffer == null) {
                         let updates = {};
-                        updates["ig/-LMpPW-oQoTQYtDaO2_O/美食/" + get[1] + "/1/" + get[2]+"/comment/"+a ] = message;
+                        updates["ig/-LPgUYnN4rI6hkpDU7SW/美食/" + get[1] + "/1/" + get[2]+"/comment/"+a ] = message;
                         alert("留言成功");
                         firebase.database().ref().update(updates);
 
@@ -179,7 +179,7 @@
         };
 
         function show_message(){
-            var db3 = firebase.database().ref("ig/-LMpPW-oQoTQYtDaO2_O/美食/" + get[1] + "/1/" + get[2]+"/comment");
+            var db3 = firebase.database().ref("ig/-LPgUYnN4rI6hkpDU7SW/美食/" + get[1] + "/1/" + get[2]+"/comment");
             db3.on('value',function(snapshot){
                 snapshot.forEach(function(cs){
                 var text1 = document.getElementById("show");
@@ -315,7 +315,7 @@
     #gogo{
        position: absolute;
        left: 185px;
-       top:-70px;
+       top:-30px;
     }
 }
 </style>
@@ -361,8 +361,6 @@
     <a href="美食all.html" id="ph4">美食</a>
     <a href="會員all.html" id="ph4">會員專區</a>
     <a href="關於我.html" id="ph4">關於我</a>
-    <a href="會員登入.html" id="ph4">登入</a>
-    <a href="" id="ph4">登出</a>
 
 </th>
 </tr>
@@ -413,18 +411,18 @@
     <a href="美食.html?&11">台南</a>
     <a href="美食.html?&12">高雄</a>  
     <a href="美食.html?&13">屏東</a>  
-    <a href="美食.html?&15">澎湖</a>   
+    <a href="美食.html?&19">澎湖</a>   
     </div>
      <p class="menu_head">東部</p>
     <div class="menu_body">
-    <a href="美食.html?&20">花蓮</a>
+    <a href="美食.html?&15">花蓮</a>
     <a href="美食.html?&14">台東</a>  
     </div>
      <p class="menu_head">離島</p>
     <div class="menu_body">
-    <a href="美食.html?&18">金門</a>
-    <a href="美食.html?&17">綠島</a>
-    <a href="美食.html?&19">蘭嶼</a>   
+    <a href="美食.html?&17">金門</a>
+    <a href="美食.html?&16">綠島</a>
+    <a href="美食.html?&18">蘭嶼</a> 
     </div>
   </div>      <!--Code for menu ends here-->
 </div>
@@ -467,18 +465,18 @@
     <a href="美食.html?&11">台南</a>
     <a href="美食.html?&12">高雄</a>  
     <a href="美食.html?&13">屏東</a>  
-    <a href="美食.html?&15">澎湖</a>   
+    <a href="美食.html?&19">澎湖</a>   
     </div>
      <p class="menu_head">東部</p>
     <div class="menu_body">
-    <a href="美食.html?&20">花蓮</a>
+    <a href="美食.html?&15">花蓮</a>
     <a href="美食.html?&14">台東</a>  
     </div>
      <p class="menu_head">離島</p>
     <div class="menu_body">
-    <a href="美食.html?&18">金門</a>
-    <a href="美食.html?&17">綠島</a>
-    <a href="美食.html?&19">蘭嶼</a> 
+    <a href="美食.html?&17">金門</a>
+    <a href="美食.html?&16">綠島</a>
+    <a href="美食.html?&18">蘭嶼</a> 
     </div>
 
   </div>      <!--Code for menu ends here-->
@@ -690,16 +688,18 @@
     }
 
     $(document).ready(function(){
-    var scoreRef = firebase.database().ref("Score");//firebase位址    
+    let get = location.search.split("&");
+    var scoreRef = firebase.database().ref("ig/-LPgUYnN4rI6hkpDU7SW/美食/" + get[1] + "/1/" + get[2]+"/star");//firebase位址    
     $('#ok').on('click',function(){
+    scoreRef.once("value",(function(snapshot){
+    var bbb = snapshot.numChildren()+1;
     var updates = {};
-    updates["Score/score"] = score;
+    updates["ig/-LPgUYnN4rI6hkpDU7SW/美食/" + get[1] + "/1/" + get[2]+"/star"+bbb] = score;
     firebase.database().ref().update(updates);
-    })
+    }))
     
-    
     })
- 
+    })
 </script>
 
 <script type="text/javascript">
