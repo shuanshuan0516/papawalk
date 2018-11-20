@@ -51,10 +51,20 @@
     image.style.backgroundImage = "url("+test+")";
  });
   }
-
-
   ;
 
+  var name = document.cookie.split("user=")[1].split(";")[0];
+  var b=0;
+  for (let i = 1; i < 20; i++){
+  var db3 = firebase.database().ref("member/" + name + "/行程/");
+            db3.on('value',function(snapshot){
+                snapshot.forEach(function(cs){ 
+                b++;                 
+                var text1 = document.getElementById("y"+b);
+                text1.innerText += "#" + cs.val() +"\n";
+              })
+              })
+            }
 </script>
 <script type="text/javascript">
     //登入
@@ -158,7 +168,7 @@ body {
 }
 }
 
-#p1,#p4,#p5,#p6{
+#p1,#p4,#p5,#p6,#tai{
   background-size: cover;
         height: 150px;
         width: 150px;
@@ -288,25 +298,14 @@ font-size: 5vmin;
 <div id="log">
   <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:10;right:20px;"><span>登入</span></button>
   <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:11;right:20px;"><span>登出</span></button>
-  <div id="user" style="padding-top:58px;color:#4f4f4f;">111</div>
+  <div id="user" style="padding-top:58px;color:#4f4f4f;"></div>
 </div>
 
 
 
 <div class="love3">
   <p style="font-size: 8vmin;padding-top: 20px;">我的行程</p>
-  <div id="love31">
-      <a id="p1"></a><p id="p111">#四人基隆一日遊</p>
-  </div>
-  <div id="love31">
-      <a id="p4"></a><p id="p222">#快閃宜蘭一日遊</p>
-  </div>
-  <div id="love31">
-      <a id="p5"></a><p id="p333">#台中兩天一夜</p>
-  </div>
-  <div id="love31">
-      <a id="p6"></a><p id="p444">#開心出遊花蓮</p>
-  </div>
+
 </div>
 
 

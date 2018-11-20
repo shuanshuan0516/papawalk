@@ -29,6 +29,9 @@
 <link rel="stylesheet" type="text/css" href="css/header.css">
 <link rel="stylesheet" href="css/向上.css">
 <link rel="stylesheet" href="css/登入.css"> 
+<script type="text/javascript" src="js/拖曳2.js"></script>
+<script src="js/拖曳1.js"></script>
+<link href="css/拖曳.css" rel="stylesheet" type="text/css" />
 
 <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
 <script>
@@ -141,84 +144,105 @@
 
         //登入
     </script>
+    <script type="text/javascript">
+      function yes(){
+          var str;
+          if(str=prompt("請為這趟行程命名"))
+          {
+            let name = document.cookie.split("user=")[1].split(";")[0];
+            let ref = firebase.database().ref("member/" + name + "/行程/");
+              ref.once("value", (function (snapshot) {
+              var gg = snapshot.numChildren()+1;
+              let updates = {};
+              updates["member/" + name + "/行程/" + gg ] = str;
+              alert("確定命名為："+ str);
+              alert("你已成功儲存此次行程");
+              firebase.database().ref().update(updates);
+
+          }))
+          }
+          else
+          {
+          alert("你已取消此次命名");
+          } 
+      }
+    </script>
 <style type="text/css">
 body {
   font-family: SentyZHAO;
 }
 
-#love1{
-  margin-left:5px;
-  margin-top:90px;
-  box-shadow:5px 5px 12px #ED9292;
-  width:130px;
-  height: 500px;
-  text-align:center;
-  color: black;
-  position: fixed;
-}
-@media (max-width: 768px) {
-    #love1{
-      display: none;
-    }
+.nav-toggle {
+
+          top:16px;
 
 }
-    #p1, #p2, #p3, #p4, #p5, #p6, #p7, #p8, #p9, #p10{
-        background-size: cover;
-        height: 250px;
-        width: 250px;
-        display: block;
-        margin: auto;
-        padding-top: 20px;}
 
 #content {
         margin-top: 0px;
         position:absolute;
         z-index: -1;
-        margin-top: 120px;
     }
-.row .item{   
-  border:4px black dashed;   
-  margin: 10px;   
-  padding: 10px;
-  height: auto;   
-  max-width: 300px;   
-  border-radius:10px; 
-  font-size: 5vmin;
-} 
-#rowp{
-  font-size: 8vmin;
-  color:#4f4f4f;
-  font-weight: bold;
+
+#sure {
+  position: fixed;
+    right: 0;
+    top: 50%;
+    width: 6em;
+    margin: -2.5em 0 0 0;
+    z-index: 5;
+    background:#ED9292;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    text-align: left;
+    border: solid hsla(80, 90%, 40%, 0.5);
+    border-right: none;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    box-shadow: 0 1px 3px black;
+    border-radius: 3em 0.5em 0.5em 3em;
 }
-@media (max-width: 768px) { 
-    #rowp{
-    text-align:center;
-    }
+@media (max-width: 768px) {
+    #sure {
+  position: fixed;
+    right: 150px;
+    top: 95%;
+    width: 5.5em;
+    margin: -2.5em 0 0 0;
+    z-index: 1;
+    background:#ED9292;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    text-align: left;
+    border: solid hsla(80, 90%, 40%, 0.5);
+    border-right: none;
+    padding: 0.5em 0.5em 1em 0.5em;
+    box-shadow: 0 1px 3px black;
+    border-radius: 1em 1em 0.5em 0.5em;
+}
 }
 .but1{
-  font-size: 6vmin; 
+  font-size: 5vmin; 
   background-color: transparent; 
   border-radius: 8px; 
   border: 2px solid rgba(105,105,105,0.6);
   margin:10px;
-  margin-top:-80px;
-  margin-left:850px;
   color:#4f4f4f;
 }
 .but1 a{color:#4f4f4f; }
 .but1 a:hover{color: #fff;}
 @media (max-width: 768px) { 
     .but1{
-      font-size: 6vmin; 
-  background-color: transparent; 
+      font-size: 5vmin; 
+  background-color transparent; 
   border-radius: 8px; 
   border: 2px solid rgba(105,105,105,0.6);
-  margin:10px;
-  margin-top:0px;
-  margin-left:130px;
+  margin:6px;
   color:#4f4f4f;
     }
 }
+
 @media (max-width: 768px) {
     #log {
         position: fixed;
@@ -266,7 +290,7 @@ body {
     </div>
     <div id="phone-navi">
       <ul>
-    <li><a href="index.html" id="phone-navi1">首頁</a></li>
+    <li><a href="index.html" id="phone-navi1" style="margin-left: 0px;">首頁</a></li>
     <li><a href="景點all.html" id="phone-navi2">景點</a></li>
     <li><a href="美食all.html" id="phone-navi2">美食</a></li>
     <li><a href="會員all.html" id="phone-navi2">會員專區</a></li>
@@ -274,80 +298,158 @@ body {
       </ul>
     </div>
 </div>
+
+ 
 <div id="log">
   <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登入</span></button>
   <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登出</span></button>
   <div id="user" style="padding-top:58px;color:#4f4f4f;"></div>
 </div>
 
-<!--下拉式選單
+
 <div id="love1">
- 
-</div>-->
+  <div class="menu_list" id="secondpane" style="padding-top: 20px"> <!--Code for menu starts here-->
+    <p class="menu_head">北部</p>
+    <div class="menu_body">
+    <a href="景點.html?&0">基隆</a> 
+    <a href="景點.html?&1">台北</a>
+    <a href="景點.html?&2">新北</a>
+    <a href="景點.html?&3">桃園</a> 
+    <a href="景點.html?&4">新竹</a>
+    <a href="景點.html?&16">宜蘭</a>  
+    </div>
+    <p class="menu_head">中部</p>
+    <div class="menu_body">
+    <a href="景點.html?&5">苗栗</a>
+    <a href="景點.html?&6">台中</a>
+    <a href="景點.html?&7">彰化</a> 
+    <a href="景點.html?&8">南投</a>
+    <a href="景點.html?&9">雲林</a>  
+    </div>
+    <p class="menu_head">南部</p>
+    <div class="menu_body">
+    <a href="景點.html?&10">嘉義</a>
+    <a href="景點.html?&11">台南</a>
+    <a href="景點.html?&12">高雄</a>  
+    <a href="景點.html?&13">屏東</a>  
+    <a href="景點.html?&15">澎湖</a>   
+    </div>
+     <p class="menu_head">東部</p>
+    <div class="menu_body">
+    <a href="景點.html?&20">花蓮</a>
+    <a href="景點.html?&14">台東</a>  
+    </div>
+     <p class="menu_head">離島</p>
+    <div class="menu_body">
+    <a href="景點.html?&18">金門</a>
+    <a href="景點.html?&17">綠島</a>
+    <a href="景點.html?&19">蘭嶼</a>    
+    </div>
 
-
-<div id="content">
-  <center>
-    <p id="rowp">我的收藏</p>
-  </center>
-  <div id="but11">
-  <button class="but1"><a href="行程規劃.html">進入行程規劃</button>
-  </div>
-  <div class="row" style="padding-left:15%">
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p1"></a>
-                    <div id="n1"></div>
-                    
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p2"></a>
-                    <div id="n2"></div>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p3"></a>
-                    <div id="n3"></div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p4"></a>
-                    <div id="n4"></div>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p5"></a>
-                    <div id="n5"></div>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p6"></a>
-                    <div id="n6"></div>
-
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p7"></a>
-                    <div id="n7"></div>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p8"></a>
-                    <div id="n8"></div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p9"></a>
-                    <div id="n9"></div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p10"></a>
-                    <div id="n10"></div>
-                </div>
-              </div>
+  </div>      <!--Code for menu ends here-->
 </div>
+
+<div id="phonemenu">
+<nav class="nav">
+<ul>
+  <div class="menu_list" id="secondpane"> <!--Code for menu starts here-->
+    <p class="menu_head">北部</p>
+    <div class="menu_body">
+    <a href="景點.html?&0">基隆</a> 
+    <a href="景點.html?&1">台北</a>
+    <a href="景點.html?&2">新北</a>
+    <a href="景點.html?&3">桃園</a> 
+    <a href="景點.html?&4">新竹</a>
+    <a href="景點.html?&16">宜蘭</a>  
+    </div>
+    <p class="menu_head">中部</p>
+    <div class="menu_body">
+    <a href="景點.html?&5">苗栗</a>
+    <a href="景點.html?&6">台中</a>
+    <a href="景點.html?&7">彰化</a> 
+    <a href="景點.html?&8">南投</a>
+    <a href="景點.html?&9">雲林</a>  
+    </div>
+    <p class="menu_head">南部</p>
+    <div class="menu_body">
+    <a href="景點.html?&10">嘉義</a>
+    <a href="景點.html?&11">台南</a>
+    <a href="景點.html?&12">高雄</a>  
+    <a href="景點.html?&13">屏東</a>  
+    <a href="景點.html?&15">澎湖</a>   
+    </div>
+     <p class="menu_head">東部</p>
+    <div class="menu_body">
+    <a href="景點.html?&20">花蓮</a>
+    <a href="景點.html?&14">台東</a>  
+    </div>
+     <p class="menu_head">離島</p>
+    <div class="menu_body">
+    <a href="景點.html?&18">金門</a>
+    <a href="景點.html?&17">綠島</a>
+    <a href="景點.html?&19">蘭嶼</a>    
+    </div>
+
+  </div>      <!--Code for menu ends here-->
+</ul>
+</nav>
+<div class="nav-toggle">
+<div class="icon"></div>
+</div>
+</div>
+
+<div class="love3">
+  <div id="love31">
+  <center style="font-size: 8vmin;padding-top: 10px;color: #4f4f4f;">
+    行程規劃
+  <picture>
+  <source srcset="images/垃圾桶1.png" id="laji" media="(max-width: 500px)">
+  <source srcset="images/垃圾桶.png" >
+  <img src="images/垃圾桶.png"  style="max-width:90px;height:auto">
+  </picture>
+  <button class="but1" id="laji1">拖至垃圾桶</button>
+  <button class="but1"><a href="我的行程1.html">進入我的行程</button>
+  </center>
+  </div>
+<div id="ul_Target3" class="sortgroup3 ui-sortable"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">拖曳行程至此
+  </font></font><div class="sourceItem sourceItem3 ui-draggable" style="background-image: url(&quot;https://instagram.ftpe8-3.fna.fbcdn.net/vp/47ca5525db0885b7a17e2824e9f11d7a/5C03A4DB/t51.2885-15/e35/38191773_376682799527379_8019115524053008384_n.jpg&quot;); display: block;"><div id="n5"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">＃台北市立兒童新樂園台北兒童遊樂園</font></font></font></font></div></div><div class="sourceItem sourceItem3 ui-draggable" style="background-image: url(&quot;https://instagram.ftpe8-3.fna.fbcdn.net/vp/9380a80a44dea6c5cb765810f99ad7a5/5C088010/t51.2885-15/e35/37732264_1535032839935498_251706270619271168_n.jpg&quot;); display: block;"><div id="n4"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">＃華山1914年年文化創意產業園區</font></font></font></font></div></div><div class="sourceItem sourceItem3 ui-draggable" style="background-image: url(&quot;https://instagram.ftpe8-3.fna.fbcdn.net/vp/7282467ec6902d231c751d3a3b685424/5C0C6477/t51.2885-15/e35/38469052_2127778054172128_278229630702321664_n.jpg&quot;); display: block;"><div id="n3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">#Tokyo Art City By NAKED in Taipei光影東京！360夢幻視覺系特展</font></font></font></font></div></div></div>
+  <ul id=sure>
+<button class="but1" onclick="yes()">確認</button>
+</ul>
+</div>
+
+
+<div id="love2">
+<center><div id="l1"> 我的收藏</div></center>
+
+<div id="ul_Source3" class="sortgroup3" style="background:#f2e6e6; ">
+  <div id="p1" class="sourceItem sourceItem3"><div id="n1"></div></div>
+  <div id="p2" class="sourceItem sourceItem3"><div id="n2"></div></div>
+  <div id="p3" class="sourceItem sourceItem3"><div id="n3"></div></div>
+  <div id="p4" class="sourceItem sourceItem3"><div id="n4"></div></div>
+  <div id="p5" class="sourceItem sourceItem3"><div id="n5"></div></div>
+  <div id="p6" class="sourceItem sourceItem3"><div id="n6"></div></div>
+  <div id="p7" class="sourceItem sourceItem3"><div id="n7"></div></div>
+  <div id="p8" class="sourceItem sourceItem3"><div id="n8"></div></div>
+<button class="but1">拖曳至行程</button>
+</div>
+</div>
+<div id="dragbasic">    
+        <div id="drag1" class="drag" style="margin-top: 60px;"><img class="hihi" src="葫蘆國小跨堤人行陸.jpg">葫蘆國小跨堤人行陸</div>
+        <div id="drag2" class="drag"><img class="hihi" src="鱷魚島觀景平台.jpg">鱷魚島觀景平台</div>
+        <div id="drag3" class="drag"><img class="hihi" src="Tokyo Art City By NAKED in Taipei 光影東京！360夢幻視覺系特展.jpg" onclick="drag33()">Tokyo Art City By NAKED in Taipei 光影東京！360夢幻視覺系特展</div>
+
+        <div id="drag4" class="drag"><img class="hihi" src="華山1914文化創意產業園.jpg" onclick="drag22()">華山1914文化創意產業園</div>
+
+        <div id="drag5" class="drag"><img class="hihi" src="臺北市立兒童新樂園 Taipei Children's Amusement Park.jpg" onclick="drag11()">臺北市立兒童新樂園 Taipei Children's Amusement Park</div>
+    </div>
+
+
+
 
     </div>
 
-<script src="http://www.jq22.com/jquery/2.1.1/jquery.min.js"></script>
+
 <script>
   $('.nav-toggle').click(function () {
       $('body').toggleClass('nav-open');
@@ -378,17 +480,28 @@ $(document).ready(function()
 });
 </script>
 
-<script src="js/向上.js"></script>
+
 <script>
-    $(document).ready(function() {
-        $('body').materialScrollTop({
-            revealElement: 'header',
-            revealPosition: 'bottom',
-            onScrollEnd: function() {
-            console.log('Scrolling End');
-            }
+ 
+        $(".sourceItem3").draggable({
+            helper: "clone",
+            connectToSortable: ".sortgroup3"
         });
-    });
-</script>  
+
+
+        $("#ul_Target3").sortable(
+        {
+            receive: function (e, ui) { isOut = false; },
+            over: function (e, ui) { isOut = false; },
+            out: function (e, ui) { isOut = true; },
+
+            beforeStop: function (e, ui) {
+                if (isOut) {
+                    $(ui.item).remove();
+                }
+            }
+        }).disableSelection();
+ 
+   </script>
 </body>
 </html>

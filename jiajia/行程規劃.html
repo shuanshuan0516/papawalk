@@ -81,6 +81,7 @@
         });
 
         function login_init() {
+            dic();
             let name = document.cookie.split("user=")[1].split(";")[0];
             let login = document.cookie.split("login=")[1].split(";")[0];
             if (login === "1") {
@@ -94,7 +95,21 @@
             }
         }
 
+          function dic(){
+          let name2 = document.cookie.split("user=")[1].split(";")[0];
+          if(name2==="Kelly Huang"){
+            document.getElementById("who").href = "我的行程1.html";
+          } 
+          if(name2==="顏嘉慧"){
+            document.getElementById("who").href = "我的行程2.html";
+          }
+          //else{
+            //document.getElementById("who").href = "我的行程.html";
+          //}
+        }
+
         login_init();
+        
 
         var token;
         // The signed-in user info.
@@ -113,6 +128,7 @@
                     document.cookie = "uid=" + user.uid;
                     document.cookie = "login=1";
                     login_init();
+                    dic();
                     // ...
                 }).catch(function (error) {
                     // Handle Errors here.
@@ -133,6 +149,7 @@
                     document.cookie = "user= ";
                     document.cookie = "uid= ";
                     login_init();
+                    dic();
                     // Sign-out successful.
                 }).catch(function (error) {
                     // An error happened.
@@ -186,8 +203,8 @@ body {
 
 #sure {
   position: fixed;
-    right: 0;
-    top: 50%;
+    right: 450px;
+    top: 75%;
     width: 6em;
     margin: -2.5em 0 0 0;
     z-index: 5;
@@ -200,12 +217,12 @@ body {
     border-right: none;
     padding: 0.5em 0.5em 0.5em 0.5em;
     box-shadow: 0 1px 3px black;
-    border-radius: 3em 0.5em 0.5em 3em;
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
 }
 @media (max-width: 768px) {
     #sure {
   position: fixed;
-    right: 150px;
+    right: 0px;
     top: 95%;
     width: 5.5em;
     margin: -2.5em 0 0 0;
@@ -223,7 +240,7 @@ body {
 }
 }
 .but1{
-  font-size: 5vmin; 
+  font-size: 4vmin; 
   background-color: transparent; 
   border-radius: 8px; 
   border: 2px solid rgba(105,105,105,0.6);
@@ -272,6 +289,223 @@ body {
         margin-right: 50px;
    }
 }
+
+
+#love1{
+  margin-left:5px;
+  margin-top:90px;
+  box-shadow:5px 5px 12px #ED9292;
+  width:130px;
+  height: 530px;
+  text-align:center;
+  color: black;
+  position: fixed;
+}
+@media (max-width: 768px) {
+    #love1 {
+      display: none;
+    }
+}
+#love2{
+  margin-left:880px;
+  margin-top:90px;
+  box-shadow:5px 5px 12px #ED9292;
+  width:390px;
+  height: 530px;
+  text-align:center;
+  color: black;
+  position: fixed;
+  overflow-x:hidden; 
+  overflow-y:visible;
+}
+@media (max-width: 768px) {
+    #love2{
+  margin-left:5px;
+  margin-top:90px;
+  box-shadow:5px 5px 12px #ED9292;
+  width:0px;
+  height: auto;
+  text-align:center;
+  color: black;
+  position: absolute;
+}
+}
+.love3{
+  margin-left:0px;
+  margin-top:90px;
+  box-shadow:1px 1px 12px #ED9292;
+  width:870px;
+  height:auto;
+  text-align:center;
+  position: absolute;
+}
+@media (max-width: 768px) {
+    .love3{
+  margin-left:120px;
+  margin-top:90px;
+  box-shadow:1px 1px 12px #ED9292;
+  width:370px;
+  height:auto;
+  text-align:center;
+  position: absolute;
+
+}
+}
+#l1{
+  border:4px black solid;
+  border-radius:5px;
+  width:165px;
+  height:50px;
+  background-color:#eee;
+  font-size:4vmin;
+  text-align:center;
+  margin-top:10px;
+  padding:3px;
+  margin-bottom: 20px;
+}
+@media (max-width: 768px) {
+    #l1 {
+      top:70px;
+      position: fixed;
+      margin-top:20px;
+      margin-left: 10px;
+      max-width:90px;
+      height:auto;
+    }
+}
+#p1,#p2,#p3,#p4,#p5,#p6,#p7,#p8,#p9,#p10{
+     border:2px black dashed;  
+     background-size: cover;
+     border-radius:10px;
+     margin: 5px;   
+     height:95px;
+     width:90px;
+     display:inline-block;
+     margin-bottom:50px;
+     position: relative;
+     z-index: -1;
+}
+#p1 img,#p2 img,#p3 img,#p4 img,#p5 img,#p6 img,#p7 img,#p8 img,#p9 img,#p10 img{
+  background-size: cover;
+  height: 70px;
+  width:80px;
+  padding: -5px;
+}
+@media (max-width: 768px) {
+    #p1,#p2,#p9,#p8{
+      display: block;
+      margin-left: 5px;
+      margin-bottom:56px;
+    }
+}
+
+#n1,#n2,#n3,#n4,#n5,#n6,#n7,#n8,#n9,#n10{
+margin-bottom: 10px;
+}
+#p11{
+  padding-top: 90px;
+}
+.but1{
+  font-size: 20px; 
+  background-color: transparent; 
+  border-radius: 8px; 
+  border: 2px solid rgba(105,105,105,0.6);
+  margin:10px;
+}
+
+.sourceItem {
+
+  background-size: cover;
+  border:4px black dashed;   
+  margin: 10px;   
+  padding: 1px;
+  height: 130px;   
+  max-width: 200px;   
+  border-radius:10px; 
+  }
+.sourceItem img{
+  height: 120px;
+  width: 140px;
+  }
+@media (max-width: 768px) {
+    .sourceItem {
+  background-size: cover;
+  border:2px black dashed;   
+  margin: 10px;   
+  padding: 10px;
+  height:130px;   
+  max-width: 130px;   
+  border-radius:10px; 
+  }
+}
+  #ul_Source3{
+    width: 350px;
+    height: auto;
+    position: absolute;
+    z-index: -1;
+  }
+@media (max-width: 768px) {
+    #ul_Source3{
+      width: 100px;
+      margin-left:5px;
+  margin-top:70px;
+  box-shadow:5px 5px 12px #ED9292;
+  height: auto;
+  text-align:center;
+  color: black;
+  position: absolute;
+
+    }
+}
+
+  #ul_Target3{
+    width: 250px; 
+    padding: 10px; 
+    min-height: 330px;
+    padding:10px;
+    background: rgba(255,255,255,0.6);
+    border-radius:10px;
+    margin-left: 35%;
+    margin-top: 150px;
+    margin-bottom: 40px;
+    color: #4f4f4f;
+  }
+@media (max-width: 768px) {
+    #ul_Target3{
+    width: 230px; 
+    min-height: 300px;
+    padding:2px;
+    background: rgba(255,255,255,0.6);
+    border-radius:10px;
+    margin-left:30px;
+    margin-top: 150px;
+    margin-bottom: 40px;
+    color: #4f4f4f;
+  }
+}
+#love31{
+  margin-right: 100px;
+  height: 100px;
+  width: 850px;
+  background-color: #fff;
+  position: fixed;
+  text-align: center;
+}
+@media (max-width: 768px) {
+    #love31{
+  height: 80px;
+  width: 600px;
+  background-color: #f2e6e6;
+  position: fixed;
+  text-align: center;
+  margin-top: -5px;
+}
+}
+#laji1{
+  display:none;
+}
+
+
 </style>
 <body onload="login_init()">
 
@@ -302,13 +536,13 @@ body {
  
 <div id="log">
   <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登入</span></button>
-  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登出</span></button>
-  <div id="user" style="padding-top:58px;color:#4f4f4f;">111</div>
+  <button id="logout" class="button" onclick=https://jia618-d8042.firebaseapp.com/images/%E4%B8%BB.jpg"check(2)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登出</span></button>
+  <div id="user" style="padding-top:58px;color:#4f4f4f;"></div>
 </div>
 
-
+<!--
 <div id="love1">
-  <div class="menu_list" id="secondpane" style="padding-top: 20px"> <!--Code for menu starts here-->
+  <div class="menu_list" id="secondpane" style="padding-top: 20px">
     <p class="menu_head">北部</p>
     <div class="menu_body">
     <a href="景點.html?&0">基隆</a> 
@@ -346,13 +580,13 @@ body {
     <a href="景點.html?&19">蘭嶼</a>    
     </div>
 
-  </div>      <!--Code for menu ends here-->
+  </div>     
 </div>
 
 <div id="phonemenu">
 <nav class="nav">
 <ul>
-  <div class="menu_list" id="secondpane"> <!--Code for menu starts here-->
+  <div class="menu_list" id="secondpane"> 
     <p class="menu_head">北部</p>
     <div class="menu_body">
     <a href="景點.html?&0">基隆</a> 
@@ -390,13 +624,14 @@ body {
     <a href="景點.html?&19">蘭嶼</a>    
     </div>
 
-  </div>      <!--Code for menu ends here-->
+  </div>    
 </ul>
 </nav>
 <div class="nav-toggle">
 <div class="icon"></div>
 </div>
 </div>
+-->
 
 <div class="love3">
   <div id="love31">
@@ -408,13 +643,13 @@ body {
   <img src="images/垃圾桶.png"  style="max-width:90px;height:auto">
   </picture>
   <button class="but1" id="laji1">拖至垃圾桶</button>
-  <button class="but1"><a href="行程規劃.html">進入行程規劃</button>
+  <button class="but1"><a id = "who" href=" " onclick="dic()">進入我的行程></a></button>
   </center>
   </div>
   <div id="ul_Target3" class="sortgroup3">拖曳行程至此
   </div>
   <ul id=sure>
-<button class="but1" onclick="yes()">確認</button>
+<button class="but1" onclick="yes()">確認行程</button>
 </ul>
 </div>
 
@@ -436,8 +671,43 @@ body {
 </div>
 
 
+<div id="dragbasic">    
+        <div id="drag1" class="drag" style="margin-top: 60px;"><img class="hihi" src="葫蘆國小跨堤人行陸.jpg">葫蘆國小跨堤人行陸</div>
+        <div id="drag2" class="drag"><img class="hihi" src="鱷魚島觀景平台.jpg">鱷魚島觀景平台</div>
+        <div id="drag3" class="drag"><img class="hihi" src="Tokyo Art City By NAKED in Taipei 光影東京！360夢幻視覺系特展.jpg" onclick="drag33()">Tokyo Art City By NAKED in Taipei 光影東京！360夢幻視覺系特展</div>
+
+        <div id="drag4" class="drag"><img class="hihi" src="華山1914文化創意產業園.jpg" onclick="drag22()">華山1914文化創意產業園</div>
+
+        <div id="drag5" class="drag"><img class="hihi" src="臺北市立兒童新樂園 Taipei Children's Amusement Park.jpg" onclick="drag11()">臺北市立兒童新樂園 Taipei Children's Amusement Park</div>
+    </div>
+<div id="dragbasic1">    
+        <div class="drag" style="margin-top: 60px;"><img id="drag6" src="" style="width: 80px;height: 80px;"></div>
+        <div class="drag" ><img id="drag7" src="" style="width: 80px;height: 80px;"></div>
+        <div class="drag"><img id="drag8" src="" style="width: 80px;height: 80px;"></div>
+        <div class="drag"><img id="drag9" src="" style="width: 80px;height: 80px;"></div>
+        <div class="drag"><img id="drag10" src="" style="width: 80px;height: 80px;"></div>
+    </div>
+
+<script type="text/javascript">
+  
+  function drag11(){
+                let image = document.getElementById("drag6");
+                image.src = "臺北市立兒童新樂園 Taipei Children's Amusement Park.jpg";
+  }
+
+  function drag22(){
+                let image2 = document.getElementById("drag7");
+                image2.src = "華山1914文化創意產業園.jpg";
+  }
+
+    function drag33(){
+                let image3 = document.getElementById("drag8");
+                image3.src = "Tokyo Art City By NAKED in Taipei 光影東京！360夢幻視覺系特展.jpg";
+  }
 
 
+
+</script>
     </div>
 
 

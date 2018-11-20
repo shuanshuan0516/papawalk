@@ -156,7 +156,7 @@
     <script>
         let get = location.search.split("&");
 
-        var db = firebase.database().ref("ig/-LMpPW-oQoTQYtDaO2_O/美食/" + get[1]);
+        var db = firebase.database().ref("ig/-LPgUYnN4rI6hkpDU7SW/美食/" + get[1]);
         db.once('value', function (snapshot) {
             let t2_title = snapshot.child("0").val();
             document.getElementById("all_title").innerText = "#" + t2_title;
@@ -336,18 +336,18 @@
     <a href="美食.html?&11">台南</a>
     <a href="美食.html?&12">高雄</a>  
     <a href="美食.html?&13">屏東</a>  
-    <a href="美食.html?&15">澎湖</a>   
+    <a href="美食.html?&19">澎湖</a>   
     </div>
      <p class="menu_head">東部</p>
     <div class="menu_body">
-    <a href="美食.html?&20">花蓮</a>
+    <a href="美食.html?&15">花蓮</a>
     <a href="美食.html?&14">台東</a>  
     </div>
      <p class="menu_head">離島</p>
     <div class="menu_body">
-    <a href="美食.html?&18">金門</a>
-    <a href="美食.html?&17">綠島</a>
-    <a href="美食.html?&19">蘭嶼</a>    
+    <a href="美食.html?&17">金門</a>
+    <a href="美食.html?&16">綠島</a>
+    <a href="美食.html?&18">蘭嶼</a>      
     </div>
   </div>      <!--Code for menu ends here-->
 </div>
@@ -390,18 +390,18 @@
     <a href="美食.html?&11">台南</a>
     <a href="美食.html?&12">高雄</a>  
     <a href="美食.html?&13">屏東</a>  
-    <a href="美食.html?&15">澎湖</a>   
+    <a href="美食.html?&19">澎湖</a>   
     </div>
      <p class="menu_head">東部</p>
     <div class="menu_body">
-    <a href="美食.html?&20">花蓮</a>
+    <a href="美食.html?&15">花蓮</a>
     <a href="美食.html?&14">台東</a>  
     </div>
      <p class="menu_head">離島</p>
     <div class="menu_body">
-    <a href="美食.html?&18">金門</a>
-    <a href="美食.html?&17">綠島</a>
-    <a href="美食.html?&19">蘭嶼</a> 
+    <a href="美食.html?&17">金門</a>
+    <a href="美食.html?&16">綠島</a>
+    <a href="美食.html?&18">蘭嶼</a>  
     </div>
 
   </div>      <!--Code for menu ends here-->

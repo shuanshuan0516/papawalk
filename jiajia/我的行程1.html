@@ -28,7 +28,45 @@
 <link rel="stylesheet" href="css/登入.css"> 
 
 <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAUnA_8r0-qHb6bCTMi0SCzHcUlc07Qbdk",
+    authDomain: "jia618-d8042.firebaseapp.com",
+    databaseURL: "https://jia618-d8042.firebaseio.com",
+    projectId: "jia618-d8042",
+    storageBucket: "jia618-d8042.appspot.com",
+    messagingSenderId: "157048895266"
+  };
+  firebase.initializeApp(config);
 
+  var pre = document.getElementById('object');
+  var a = 0;
+  for(var i = 0;i<10;i++){
+    var db = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/0/1/"+i+"/1/0");
+  db.on('value',function(snapshot){
+    var test = snapshot.val();
+    a++;
+    var image = document.getElementById("p"+a);
+    image.style.backgroundImage = "url("+test+")";
+ });
+  };
+
+    //名字
+  var name = document.cookie.split("user=")[1].split(";")[0];
+  var b=0;
+  for (let i = 1; i < 20; i++){
+  var db3 = firebase.database().ref("member/" + name + "/行程/");
+            db3.on('value',function(snapshot){
+                snapshot.forEach(function(cs){ 
+                b++;                 
+                var text1 = document.getElementById("y"+b);
+                text1.innerText += "#" + cs.val() +"\n";
+              })
+              })
+            }
+
+</script>
 <script type="text/javascript">
     //登入
   var provider = new firebase.auth.GoogleAuthProvider();
@@ -52,21 +90,7 @@
                 document.querySelector("#logout").style.visibility = "hidden";
             }
         }
-
-        function dic(){
-          let name2 = document.cookie.split("user=")[1].split(";")[0];
-          if(name2==="Kelly Huang"){
-            document.getElementById("who").href = "我的行程1.html";
-          } 
-          else if(name2 === "顏嘉慧"){
-            document.getElementById("who").href = "我的行程2.html";
-          }
-          else{
-            document.getElementById("who").href = "我的行程.html";
-          }
-        }
         login_init();
-        dic();
 
         var token;
         // The signed-in user info.
@@ -85,7 +109,6 @@
                     document.cookie = "uid="+user.uid;
                     document.cookie = "login=1";
                     login_init();
-                    dic();
                     // ...
                 }).catch(function (error) {
                     // Handle Errors here.
@@ -106,7 +129,6 @@
                     document.cookie = "user= ";
                     document.cookie = "uid= ";
                     login_init();
-                    dic();
                     // Sign-out successful.
                 }).catch(function(error) {
                     // An error happened.
@@ -145,7 +167,64 @@ body {
   .row{
   position: absolute;
 }
-    }
+}
+
+#p1,#p4,#p5,#p6,#tai{
+  background-size: cover;
+        height: 150px;
+        width: 150px;
+        display: block;
+        margin: auto;
+        padding-top: 20px;
+        margin-left:20px;
+}
+
+.love3{
+  margin-top:135px;
+  margin-bottom: 20px;
+  text-align:center;
+  color: #4f4f4f;
+}
+@media (max-width: 768px) {
+  .love3{
+    margin-top:100px;
+  right:10px;
+  text-align: none;
+}
+}
+#love31{
+  border:4px black dashed;   
+  margin: 10px;   
+  padding: 10px;
+  height: 180px;  
+  width:500px;  
+  margin-left:350px;  
+  margin-bottom: 20px;
+  border-radius:10px;
+}
+@media (max-width: 768px) {
+  #love31{
+  border:4px black dashed;   
+  margin: 10px;   
+  padding: 10px;
+  height: 180px;  
+  width:350px;  
+  margin-left:50px;  
+  margin-bottom: 20px;
+  border-radius:10px;
+}
+}
+#p111,#p222,#p333,#p444,#y1{
+margin-left:200px;
+margin-top:-90px;
+font-size: 5vmin;
+}
+@media (max-width: 768px) {
+  #real_header{
+  display: none;
+}
+}
+
 </style>
 <body onload="login_init()">
 
@@ -195,25 +274,16 @@ body {
 </div>
 
 
-<div class="row">
-<div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-  <a href="我的收藏.html"><img src="images/3.png" style="width:auto;max-height:360px;margin-left:-10px;margin-top: -20px"/>
-</div>
-
-
-<div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-  <div id="hand">
-  <a href="行程規劃.html"><img src="images/2.png" style="margin-right:-20px;margin-top:-25px;max-width:370px;height:auto;"/>
+<div class="love3">
+  <p style="font-size: 8vmin;padding-top: 20px;">我的行程</p>
+  <div id="love31">
+      <a id="tai" href="行程規劃1.html" style="background-image: url(https://instagram.ftpe8-3.fna.fbcdn.net/vp/47ca5525db0885b7a17e2824e9f11d7a/5C03A4DB/t51.2885-15/e35/38191773_376682799527379_8019115524053008384_n.jpg);"></a><p id="y1"></p>
   </div>
-  <div id="hand1">
-  <a href="行程規劃.html"><img src="images/2-1.png" style="margin-left:-30px;margin-top:-35px;max-width:400px;height:auto;padding: 30px 0px 30px 0px;"/>
-</div>
+
 </div>
 
-<div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-  <a id="who" href=" " onclick="dic()"><img src="images/1-1.png" style="width:auto;max-height:310px;"/>
-</div>
-</div>
+
+
 
 </div>
 
