@@ -47,7 +47,7 @@
         };
         firebase.initializeApp(config);
         let user = document.cookie.split("user=")[1].split(";")[0];
-        let db = firebase.database().ref("member/" + user + "/like");
+        let db = firebase.database().ref("member/" + user + "/景點");
         db.once('value', function (snapshot) {
             let count = 0;
             snapshot.forEach(function (childSnapshot1) {
@@ -207,6 +207,32 @@ body {
 }
 .but1 a{color:#4f4f4f; }
 .but1 a:hover{color: #fff;}
+
+.but2{
+  font-size: 6vmin; 
+  background-color: transparent; 
+  border-radius: 8px; 
+  border: 2px solid rgba(105,105,105,0.6);
+  margin:10px;
+  margin-top:-80px;
+  margin-left:300px;
+  color:#4f4f4f;
+}
+.but2 a{color:#4f4f4f; }
+.but2 a:hover{color: #fff;}
+
+.but3{
+  font-size: 6vmin; 
+  background-color: transparent; 
+  border-radius: 8px; 
+  border: 2px solid rgba(105,105,105,0.6);
+  margin:10px;
+  margin-top:-80px;
+  margin-left:100px;
+  color:#4f4f4f;
+}
+.but3 a{color:#4f4f4f; }
+.but3 a:hover{color: #fff;}
 @media (max-width: 768px) { 
     .but1{
       font-size: 6vmin; 
@@ -218,8 +244,58 @@ body {
   margin-left:130px;
   color:#4f4f4f;
     }
+        .but2{
+      font-size: 6vmin; 
+  background-color: transparent; 
+  border-radius: 8px; 
+  border: 2px solid rgba(105,105,105,0.6);
+  margin:10px;
+  margin-top:0px;
+  margin-left:50px;
+  color:#4f4f4f;
+    }
+           .but3{
+      font-size: 6vmin; 
+  background-color: transparent; 
+  border-radius: 8px; 
+  border: 2px solid rgba(105,105,105,0.6);
+  margin:10px;
+  margin-top:0px;
+  margin-left:10px;
+  color:#4f4f4f;
+    }
 }
 
+
+@media (max-width: 768px) {
+    #log {
+        position: fixed;
+    left: 330px;
+    top: 45px;
+    width: 50px;
+    height: 25px;
+    z-index: 5;
+    background:#ED9292;
+    font-size: large;
+    text-align: left;
+    border-right: none;
+    font-size:4vmin;
+    }
+    #user{
+        margin-top: -50px;
+        margin-right: 70px;
+        text-align: right;
+    }
+    .button{
+        background-color:#ED9292; 
+        border-radius: 8px; 
+        border: 2px solid rgba(105,105,105,0.6);
+        font-size: 4vmin;
+        width: 70px;
+        margin-top:0px;
+        margin-right: 50px;
+   }
+}
 </style>
 <body onload="login_init()">
 
@@ -243,117 +319,29 @@ body {
     <li><a href="美食all.html" id="phone-navi2">美食</a></li>
     <li><a href="會員all.html" id="phone-navi2">會員專區</a></li>
     <li><a href="關於我.html" id="phone-navi2">關於我</a></li>
-    <li><a href="會員登入.html" id="phone-navi2">登入</a></li>
-    <li><a href="" id="phone-navi2">登出</a></li>
       </ul>
     </div>
 </div>
-
 <div id="log">
-  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登入</span></button>
-  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登出</span></button>
-  <div id="user" style="text-align: center;padding-top:58px;color:#4f4f4f;"></div>
-</div> 
+  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登入</span></button>
+  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登出</span></button>
+  <div id="user" style="padding-top:58px;color:#4f4f4f;"></div>
+</div>
 
-
+<!--下拉式選單
 <div id="love1">
-  <div class="menu_list" id="secondpane" style="padding-top: 20px"> <!--Code for menu starts here-->
-    <p class="menu_head">北部</p>
-    <div class="menu_body">
-    <a href="景點.html?&0">基隆</a> 
-    <a href="景點.html?&1">台北</a>
-    <a href="景點.html?&2">新北</a>
-    <a href="景點.html?&3">桃園</a> 
-    <a href="景點.html?&4">新竹</a>
-    <a href="景點.html?&16">宜蘭</a>  
-    </div>
-    <p class="menu_head">中部</p>
-    <div class="menu_body">
-    <a href="景點.html?&5">苗栗</a>
-    <a href="景點.html?&6">台中</a>
-    <a href="景點.html?&7">彰化</a> 
-    <a href="景點.html?&8">南投</a>
-    <a href="景點.html?&9">雲林</a>  
-    </div>
-    <p class="menu_head">南部</p>
-    <div class="menu_body">
-    <a href="景點.html?&10">嘉義</a>
-    <a href="景點.html?&11">台南</a>
-    <a href="景點.html?&12">高雄</a>  
-    <a href="景點.html?&13">屏東</a>  
-    <a href="景點.html?&15">澎湖</a>   
-    </div>
-     <p class="menu_head">東部</p>
-    <div class="menu_body">
-    <a href="景點.html?&20">花蓮</a>
-    <a href="景點.html?&14">台東</a>  
-    </div>
-     <p class="menu_head">離島</p>
-    <div class="menu_body">
-    <a href="景點.html?&18">金門</a>
-    <a href="景點.html?&17">綠島</a>
-    <a href="景點.html?&19">蘭嶼</a>    
-    </div>
-
-  </div>      <!--Code for menu ends here-->
-</div>
-
-<div id="phonemenu">
-<nav class="nav">
-<ul>
-  <div class="menu_list" id="secondpane"> <!--Code for menu starts here-->
-    <p class="menu_head">北部</p>
-    <div class="menu_body">
-    <a href="景點.html?&0">基隆</a> 
-    <a href="景點.html?&1">台北</a>
-    <a href="景點.html?&2">新北</a>
-    <a href="景點.html?&3">桃園</a> 
-    <a href="景點.html?&4">新竹</a>
-    <a href="景點.html?&16">宜蘭</a>  
-    </div>
-    <p class="menu_head">中部</p>
-    <div class="menu_body">
-    <a href="景點.html?&5">苗栗</a>
-    <a href="景點.html?&6">台中</a>
-    <a href="景點.html?&7">彰化</a> 
-    <a href="景點.html?&8">南投</a>
-    <a href="景點.html?&9">雲林</a>  
-    </div>
-    <p class="menu_head">南部</p>
-    <div class="menu_body">
-    <a href="景點.html?&10">嘉義</a>
-    <a href="景點.html?&11">台南</a>
-    <a href="景點.html?&12">高雄</a>  
-    <a href="景點.html?&13">屏東</a>  
-    <a href="景點.html?&15">澎湖</a>   
-    </div>
-     <p class="menu_head">東部</p>
-    <div class="menu_body">
-    <a href="景點.html?&20">花蓮</a>
-    <a href="景點.html?&14">台東</a>  
-    </div>
-     <p class="menu_head">離島</p>
-    <div class="menu_body">
-    <a href="景點.html?&18">金門</a>
-    <a href="景點.html?&17">綠島</a>
-    <a href="景點.html?&19">蘭嶼</a>    
-    </div>
-
-  </div>      <!--Code for menu ends here-->
-</ul>
-</nav>
-<div class="nav-toggle">
-<div class="icon"></div>
-</div>
-</div>
+ 
+</div>-->
 
 
 <div id="content">
   <center>
-    <p id="rowp">我的收藏-基隆</p>
+    <p id="rowp">我的收藏</p>
   </center>
   <div id="but11">
   <button class="but1"><a href="行程規劃.html">進入行程規劃</button>
+  <button class="but2"><a href="我的收藏美食.html">美食收藏</button>
+  <button class="but3"><a href="我的收藏.html">景點收藏</button>  
   </div>
   <div class="row" style="padding-left:15%">
 
@@ -363,13 +351,13 @@ body {
                     
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p9"></a>
-                    <div id="n9"></div>
+                    <a id="p2"></a>
+                    <div id="n2"></div>
                 </div>
 
                 <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p2"></a>
-                    <div id="n2"></div>
+                    <a id="p3"></a>
+                    <div id="n3"></div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
                     <a id="p4"></a>
@@ -397,8 +385,8 @@ body {
                     <div id="n8"></div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p3"></a>
-                    <div id="n3"></div>
+                    <a id="p9"></a>
+                    <div id="n9"></div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
                     <a id="p10"></a>

@@ -15,10 +15,10 @@
     }
 }
 #love2{
-  margin-left:145px;
+  margin-left:880px;
   margin-top:90px;
   box-shadow:5px 5px 12px #ED9292;
-  width:250px;
+  width:390px;
   height: 530px;
   text-align:center;
   color: black;
@@ -39,13 +39,14 @@
 }
 }
 .love3{
-  margin-left:400px;
+  margin-left:0px;
   margin-top:90px;
   box-shadow:1px 1px 12px #ED9292;
   width:870px;
   height:auto;
   text-align:center;
-  position: absolute;}
+  position: absolute;
+}
 @media (max-width: 768px) {
     .love3{
   margin-left:120px;
@@ -80,17 +81,23 @@
       height:auto;
     }
 }
-#p1,#p2,#p9,#p8{
+#p1,#p2,#p3,#p4,#p5,#p6,#p7,#p8,#p9,#p10{
      border:2px black dashed;  
      background-size: cover;
      border-radius:10px;
      margin: 5px;   
-     height:90px;
+     height:95px;
      width:90px;
      display:inline-block;
      margin-bottom:50px;
      position: relative;
      z-index: -1;
+}
+#p1 img,#p2 img,#p3 img,#p4 img,#p5 img,#p6 img,#p7 img,#p8 img,#p9 img,#p10 img{
+  background-size: cover;
+  height: 70px;
+  width:80px;
+  padding: -5px;
 }
 @media (max-width: 768px) {
     #p1,#p2,#p9,#p8{
@@ -100,6 +107,9 @@
     }
 }
 
+#n1,#n2,#n3,#n4,#n5,#n6,#n7,#n8,#n9,#n10{
+margin-bottom: 10px;
+}
 #p11{
   padding-top: 90px;
 }
@@ -116,10 +126,14 @@
   background-size: cover;
   border:4px black dashed;   
   margin: 10px;   
-  padding: 10px;
-  height: auto;   
+  padding: 1px;
+  height: 130px;   
   max-width: 200px;   
   border-radius:10px; 
+  }
+.sourceItem img{
+  height: 120px;
+  width: 140px;
   }
 @media (max-width: 768px) {
     .sourceItem {
@@ -133,7 +147,7 @@
   }
 }
   #ul_Source3{
-  	width: 250px;
+  	width: 350px;
   	height: auto;
   	position: absolute;
   	z-index: -1;
@@ -151,6 +165,7 @@
 
     }
 }
+
   #ul_Target3{
   	width: 250px; 
   	padding: 10px; 
@@ -177,9 +192,10 @@
   }
 }
 #love31{
+  margin-right: 100px;
 	height: 100px;
-	width: 100%;
-	background-color: #f2e6e6;
+	width: 850px;
+	background-color: #fff;
 	position: fixed;
 	text-align: center;
 }
@@ -196,4 +212,53 @@
 #laji1{
   display:none;
 }
+.drag{display: none;}
+#dragbasic{display: none;}
+@media (max-width: 768px) {
+.drag {
+    background-size: cover;
+  border:2px black dashed;   
+  margin: 10px; 
+  padding: 10px;
+  height:100px;   
+  width: 100px;   
+  border-radius:10px; 
+  display:block;
+}}
+@media (max-width: 768px) {
+#dragbasic {
+   margin-left:5px;
+  margin-top:90px;
+  box-shadow:5px 5px 12px #ED9292;
+  width:110px;
+  height: 600px;
+  text-align:center;
+  color: black;
+  position: absolute;
+  display: block;
+  z-index: -1
 
+}
+#dragbasic1 {
+   margin-left:210px;
+  margin-top:250px;
+
+  width:110px;
+  height: 600px;
+  text-align:center;
+  color: black;
+  position: absolute;
+  display: block;
+  z-index: 0;
+
+}
+}
+.hihi{
+  background-size: cover;   
+
+  padding: 10px;
+  height:100px;   
+  max-width: 100px;   
+  border-radius:10px; 
+  display:block;
+}

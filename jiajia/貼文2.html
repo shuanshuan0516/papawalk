@@ -121,7 +121,7 @@
         //地圖
         let get = location.search.split("&");
 
-        var db = firebase.database().ref("ig/-LMpPW-oQoTQYtDaO2_O/美食/" + get[1] + "/1/" + get[2]);
+        var db = firebase.database().ref("ig/-LPgUYnN4rI6hkpDU7SW/美食/" + get[1] + "/1/" + get[2]);
         db.once('value', function (snapshot) {
             let t2_title = snapshot.child("0").val();
             document.getElementById("all_title").innerText = "#" + t2_title;
@@ -141,7 +141,7 @@
         });
         //地圖
         //留言
-        var db2 = firebase.database().ref("ig/-LMpPW-oQoTQYtDaO2_O/美食/" + get[1] + "/1/" + get[2]+"/comment");
+        var db2 = firebase.database().ref("ig/-LPgUYnN4rI6hkpDU7SW/美食/" + get[1] + "/1/" + get[2]+"/comment");
             db2.on('value',function(snapshot){
                 snapshot.forEach(function(cs){
                     var text = document.getElementById("show");
@@ -155,13 +155,13 @@
 
         function putdata(){
             var message = $('#message').val();            
-            var ref = firebase.database().ref("ig/-LMpPW-oQoTQYtDaO2_O/美食/" + get[1] + "/1/" + get[2]+"/comment");
+            var ref = firebase.database().ref("ig/-LPgUYnN4rI6hkpDU7SW/美食/" + get[1] + "/1/" + get[2]+"/comment");
                 ref.once("value", (function (snapshot) {
                     var buffer = snapshot.child(message).val();
                     var a = snapshot.numChildren()+1;
                     if (buffer == null) {
                         let updates = {};
-                        updates["ig/-LMpPW-oQoTQYtDaO2_O/美食/" + get[1] + "/1/" + get[2]+"/comment/"+a ] = message;
+                        updates["ig/-LPgUYnN4rI6hkpDU7SW/美食/" + get[1] + "/1/" + get[2]+"/comment/"+a ] = message;
                         alert("留言成功");
                         firebase.database().ref().update(updates);
 
@@ -179,7 +179,7 @@
         };
 
         function show_message(){
-            var db3 = firebase.database().ref("ig/-LMpPW-oQoTQYtDaO2_O/美食/" + get[1] + "/1/" + get[2]+"/comment");
+            var db3 = firebase.database().ref("ig/-LPgUYnN4rI6hkpDU7SW/美食/" + get[1] + "/1/" + get[2]+"/comment");
             db3.on('value',function(snapshot){
                 snapshot.forEach(function(cs){
                 var text1 = document.getElementById("show");
@@ -230,6 +230,18 @@
         font-size: 6vmin;
         color:#4f4f4f;
 }
+@media (max-width: 768px) {
+    .mm{
+        border-radius: 8px;
+        border: 2px solid rgba(105, 105, 105, 0.6);
+        padding: 20px;
+        max-width:250px;
+        margin-top: 50px;
+        margin-left:90px;
+        font-size: 6vmin;
+        color:#4f4f4f;
+}
+}
 .draw {
         height: 28px;
         width: 200px;
@@ -250,27 +262,60 @@
         border: 2px solid rgba(105, 105, 105, 0.6);
         font-size: 4vmin;
     }
-
+@media (max-width: 768px) {
+    .col-md-6{
+        margin-left: 90px;
+        margin-top: 30px;
+        margin-bottom: 50px;
+        background-color:#5b5b5b;
+        width: 250px;
+        height: auto;
+        border-radius: 8px;
+        border: 2px solid rgba(105, 105, 105, 0.6);
+        font-size: 4vmin;
+    }
+}
 #bb{
   display: block;
 }
 #czy pr{
     display: inline;
-    font-size: 8vmin;
+    font-size: 7vmin;
 }
 #czyy{
-    border:4px black solid;
     border-radius:5px;
     position:absolute;
     z-index: 999;
-    left: 47%;
+    left: 45%;
+    padding: 10px;
 }
 #m1{
     margin-left:40%;
 }
+
+#gogo{
+  font-size: 6vmin; 
+  background-color: transparent; 
+  border-radius: 8px; 
+  border: 2px solid rgba(105,105,105,0.6);
+  padding:10px;
+  color:#4f4f4f;
+}
+#gogo a{color:#4f4f4f; }
+#gogo a:hover{color: #fff;}
 @media (max-width: 768px) {
     #m1{
         margin-left: 30%;
+    }
+}
+#ok{
+    margin-top: 5px;
+}
+@media (max-width: 768px) {
+    #gogo{
+       position: absolute;
+       left: 185px;
+       top:-30px;
     }
 }
 </style>
@@ -286,17 +331,6 @@
          <li><a href="美食all.html"><img id="navi2" src="images/美食.png"></a></li>
          <li><a href="會員all.html"><img id="navi3" src="images/會員1.png"></a></li>
          <li><a href="關於我.html"><img id="navi4" src="images/about1.png"></a></li>
-      </ul>
-    </div>
-    <div id="phone-navi">
-      <ul>
-    <li><a href="index.html" id="phone-navi1">首頁</a></li>
-    <li><a href="景點all.html" id="phone-navi2">景點</a></li>
-    <li><a href="美食all.html" id="phone-navi2">美食</a></li>
-    <li><a href="會員all.html" id="phone-navi2">會員專區</a></li>
-    <li><a href="關於我.html" id="phone-navi2">關於我</a></li>
-    <li><a href="會員登入.html" id="phone-navi2">登入</a></li>
-    <li><a href="" id="phone-navi2">登出</a></li>
       </ul>
     </div>
 </div>
@@ -327,8 +361,6 @@
     <a href="美食all.html" id="ph4">美食</a>
     <a href="會員all.html" id="ph4">會員專區</a>
     <a href="關於我.html" id="ph4">關於我</a>
-    <a href="會員登入.html" id="ph4">登入</a>
-    <a href="" id="ph4">登出</a>
 
 </th>
 </tr>
@@ -338,9 +370,9 @@
 </header>
  
 <div id="log">
-  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登入</span></button>
-  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登出</span></button>
-  <div id="user" style="text-align: center;padding-top:58px;color:#4f4f4f;"></div>
+  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登入</span></button>
+  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登出</span></button>
+  <div id="user" style="padding-top:58px;color:#4f4f4f;"></div>
 </div>
 
 <div id="netmenu">
@@ -379,18 +411,18 @@
     <a href="美食.html?&11">台南</a>
     <a href="美食.html?&12">高雄</a>  
     <a href="美食.html?&13">屏東</a>  
-    <a href="美食.html?&15">澎湖</a>   
+    <a href="美食.html?&19">澎湖</a>   
     </div>
      <p class="menu_head">東部</p>
     <div class="menu_body">
-    <a href="美食.html?&20">花蓮</a>
+    <a href="美食.html?&15">花蓮</a>
     <a href="美食.html?&14">台東</a>  
     </div>
      <p class="menu_head">離島</p>
     <div class="menu_body">
-    <a href="美食.html?&18">金門</a>
-    <a href="美食.html?&17">綠島</a>
-    <a href="美食.html?&19">蘭嶼</a>   
+    <a href="美食.html?&17">金門</a>
+    <a href="美食.html?&16">綠島</a>
+    <a href="美食.html?&18">蘭嶼</a> 
     </div>
   </div>      <!--Code for menu ends here-->
 </div>
@@ -433,18 +465,18 @@
     <a href="美食.html?&11">台南</a>
     <a href="美食.html?&12">高雄</a>  
     <a href="美食.html?&13">屏東</a>  
-    <a href="美食.html?&15">澎湖</a>   
+    <a href="美食.html?&19">澎湖</a>   
     </div>
      <p class="menu_head">東部</p>
     <div class="menu_body">
-    <a href="美食.html?&20">花蓮</a>
+    <a href="美食.html?&15">花蓮</a>
     <a href="美食.html?&14">台東</a>  
     </div>
      <p class="menu_head">離島</p>
     <div class="menu_body">
-    <a href="美食.html?&18">金門</a>
-    <a href="美食.html?&17">綠島</a>
-    <a href="美食.html?&19">蘭嶼</a> 
+    <a href="美食.html?&17">金門</a>
+    <a href="美食.html?&16">綠島</a>
+    <a href="美食.html?&18">蘭嶼</a> 
     </div>
 
   </div>      <!--Code for menu ends here-->
@@ -467,14 +499,14 @@
         <div id="content" class="container">
             <h3 class="title"> 
                 <center id="all_title" style="margin-bottom: 10px;">|#</center>
-                <center>
-                    <div id="czyy">
+                <div id="czyy">
                     <div id ="czy">
-                            <pr>★</pr><pr>★</pr><pr>★</pr><pr>★</pr><pr>★</pr>
-                        </div>
-                    <input class="button" id="ok" value="評分">
+                    <pr>★</pr><pr>★</pr><pr>★</pr><pr>★</pr><pr>★</pr>
+                     <input class="button" id="ok" value="評分">
+                     <a href="#gogogo" id="gogo">↓留言板↓</a>
                     </div>
-                </center>
+                   
+                    </div>
                 <a id="m1" href="" target="_blank"><img src="images/map.png" style="max-width: 50px;"></a>
             </h3>
             <div class="row" style="padding-left:15%;padding-top: 50px;">
@@ -596,7 +628,7 @@
             </div>
            
 
-<div class="mm">
+<div class="mm" id="gogogo">
 <p><center>留言區</center></p>
         <center>       
          <input type="text" id="message" class="draw" placeholder="請輸入留言...">
@@ -612,12 +644,11 @@
     </div>
 </div>
 
-<center> 
     <div id="show" class="col-md-6">
         </div> 
     </div>
     
-</center>
+
 
 
 
@@ -657,16 +688,18 @@
     }
 
     $(document).ready(function(){
-    var scoreRef = firebase.database().ref("Score");//firebase位址    
+    let get = location.search.split("&");
+    var scoreRef = firebase.database().ref("ig/-LPgUYnN4rI6hkpDU7SW/美食/" + get[1] + "/1/" + get[2]+"/star/");//firebase位址    
     $('#ok').on('click',function(){
+    scoreRef.once("value",(function(snapshot){
+    var bbb = snapshot.numChildren()+1;
     var updates = {};
-    updates["Score/score"] = score;
+    updates["ig/-LPgUYnN4rI6hkpDU7SW/美食/" + get[1] + "/1/" + get[2]+"/star/"+bbb] = score;
     firebase.database().ref().update(updates);
-    })
+    }))
     
-    
     })
- 
+    })
 </script>
 
 <script type="text/javascript">

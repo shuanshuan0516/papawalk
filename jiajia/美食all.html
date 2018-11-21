@@ -59,7 +59,7 @@
   var b=0;
   var c=0;
   for(var i = 0;i<40;i++){
-    var db = firebase.database().ref("ig/-LMpPW-oQoTQYtDaO2_O/美食/0/1/"+i+"/1/0");
+    var db = firebase.database().ref("ig/-LPgUYnN4rI6hkpDU7SW/美食/0/1/"+i+"/1/0");
   db.on('value',function(snapshot){
     var test = snapshot.val();
     a++;
@@ -161,6 +161,13 @@
      z-index: -1;
 }
 
+.c1,.c2,.c3,.c4,.c5,.c6,.c7,.c8,.c9,.c10,.c11{
+  position:absolute; 
+  z-index:2; 
+  left:10px; 
+  top:10px;
+  color:#4f4f4f;
+}
 #pp{
   display:block;
   margin:auto;
@@ -174,6 +181,34 @@
   color:#4f4f4f;
 }
 
+#pp img{
+  background-size: cover;
+     height:220px;
+     width:250px;
+     display:block;
+     margin:auto;
+     padding-top: 20px;
+     position: relative;
+     z-index: -1;  
+}
+#pp a{
+  color:#4f4f4f;
+}
+#pp a:hover{
+  color:#4f4f4f;
+}
+.picture{
+  font-size: 4vmin;
+}
+#ppp{
+  font-size: 8vmin;margin-bottom: 20px;
+  color:#4f4f4f;
+}
+@media (max-width: 768px) {
+  #ppp{
+    padding-top: 20px;
+  }
+}
 
 
 </style>
@@ -192,17 +227,6 @@
          <li><a href="美食all.html"><img id="navi2" src="images/美食.png"></a></li>
          <li><a href="會員all.html"><img id="navi3" src="images/會員1.png"></a></li>
          <li><a href="關於我.html"><img id="navi4" src="images/about1.png"></a></li>
-      </ul>
-    </div>
-    <div id="phone-navi">
-      <ul>
-    <li><a href="index.html" id="phone-navi1">首頁</a></li>
-    <li><a href="景點all.html" id="phone-navi2">景點</a></li>
-    <li><a href="美食all.html" id="phone-navi2">美食</a></li>
-    <li><a href="會員all.html" id="phone-navi2">會員專區</a></li>
-    <li><a href="關於我.html" id="phone-navi2">關於我</a></li>
-    <li><a href="會員登入.html" id="phone-navi2">登入</a></li>
-    <li><a href="" id="phone-navi2">登出</a></li>
       </ul>
     </div>
 </div>
@@ -233,8 +257,6 @@
     <a href="美食all.html" id="ph4">美食</a>
     <a href="會員all.html" id="ph4">會員專區</a>
     <a href="關於我.html" id="ph4">關於我</a>
-    <a href="會員登入.html" id="ph4">登入</a>
-    <a href="" id="ph4">登出</a>
 
 </th>
 </tr>
@@ -244,9 +266,9 @@
 </header>
  
 <div id="log">
-  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登入</span></button>
-  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登出</span></button>
-  <div id="user" style="text-align: center;padding-top:58px;color:#4f4f4f;"></div>
+  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登入</span></button>
+  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登出</span></button>
+  <div id="user" style="padding-top:58px;color:#4f4f4f;"></div>
 </div>
 
 <div id="netmenu">
@@ -285,18 +307,18 @@
     <a href="美食.html?&11">台南</a>
     <a href="美食.html?&12">高雄</a>  
     <a href="美食.html?&13">屏東</a>  
-    <a href="美食.html?&15">澎湖</a>   
+    <a href="美食.html?&19">澎湖</a>   
     </div>
      <p class="menu_head">東部</p>
     <div class="menu_body">
-    <a href="美食.html?&20">花蓮</a>
+    <a href="美食.html?&15">花蓮</a>
     <a href="美食.html?&14">台東</a>  
     </div>
      <p class="menu_head">離島</p>
     <div class="menu_body">
-    <a href="美食.html?&18">金門</a>
-    <a href="美食.html?&17">綠島</a>
-    <a href="美食.html?&19">蘭嶼</a>     
+    <a href="美食.html?&17">金門</a>
+    <a href="美食.html?&16">綠島</a>
+    <a href="美食.html?&18">蘭嶼</a>    
     </div>
   </div>      <!--Code for menu ends here-->
 </div>
@@ -339,18 +361,18 @@
     <a href="美食.html?&11">台南</a>
     <a href="美食.html?&12">高雄</a>  
     <a href="美食.html?&13">屏東</a>  
-    <a href="美食.html?&15">澎湖</a>   
+    <a href="美食.html?&19">澎湖</a>   
     </div>
      <p class="menu_head">東部</p>
     <div class="menu_body">
-    <a href="美食.html?&20">花蓮</a>
+    <a href="美食.html?&15">花蓮</a>
     <a href="美食.html?&14">台東</a>  
     </div>
      <p class="menu_head">離島</p>
     <div class="menu_body">
-    <a href="美食.html?&18">金門</a>
-    <a href="美食.html?&17">綠島</a>
-    <a href="美食.html?&19">蘭嶼</a> 
+    <a href="美食.html?&17">金門</a>
+    <a href="美食.html?&16">綠島</a>
+    <a href="美食.html?&18">蘭嶼</a> 
     </div>
 
   </div>      <!--Code for menu ends here-->
@@ -370,90 +392,96 @@
 
 
 <!--相簿><!-->
-<div id="picture" >
-<div id="pp" style="margin-top: 170px;">北部
+<center id="ppp" style="margin-top: 170px;">✨熱門美食排行榜✨</center>
+<div id="pp" >北部
+  <div class="picture">
  <section class="regular slider">
-       <a href="景點all.html"><div id="p1" ></div></a>
-       <div id="p2"></div>
-       <div id="p3"></div>
-       <div id="p4"></div>
-       <div id="p5"></div>
-       <div id="p6"></div>
-       <div id="p7"></div>
-       <div id="p8"></div>
-       <div id="p9"></div>
-       <div id="p10"></div>
-       <div id="p11"></div> 
+       <div><a href="大師兄銷魂麵舖.html"><img src="instagram/大師兄銷魂麵舖.jpg">#大師兄銷魂麵舖</a></div>
+       <div><a href="鮮魚專門居酒屋.html"><img src="instagram/鮮魚專門居酒屋.jpg">#鮮魚專門居酒屋</a></div>
+       <div><a href="初米咖啡.html"><img src="instagram/初米咖啡.jpg">#初米咖啡</a></div>
+       <div><a href="就是要吃早餐.html"><img src="instagram/就是要吃早餐.jpg">#就是要吃早餐</a></div>
+       <div><a href="福氣屋.html"><img src="instagram/福氣屋.jpg">#福氣屋</a></div>
+       <div><a href="綠角咖啡.html"><img src="instagram/綠角咖啡.jpg">#綠角咖啡</a></div>
+       <div><a href="正好鮮肉小籠包.html"><img src="instagram/正好鮮肉小籠包.jpg">#正好鮮肉小籠包</a></div>
+       <div><a href="農人餐桌.html"><img src="instagram/農人餐桌.jpg">#農人餐桌</a></div>
+       <div><a href="黑 犬 Black Doggy.html"><img src="instagram/黑 犬 Black Doggy.jpg">#黑 犬 Black Doggy</a></div>
+       <div><a href="Thaï.J-ATT.html"><img src="instagram/Thaï.J-ATT.jpg">#Thaï.J-ATT</a></div>
   </section>
+</div>
 </div>
 
 <div>
 <div id="pp">中部
+  <div class="picture">
  <section class="regular slider">
-       <div id="p1"></div>
-       <div id="p2"></div>
-       <div id="p3"></div>
-       <div id="p4"></div>
-       <div id="p5"></div>
-       <div id="p6"></div>
-       <div id="p7"></div>
-       <div id="p8"></div>
-       <div id="p9"></div>
-       <div id="p10"></div>
-       <div id="p11"></div>
+       <div><a href="Daily Life. 煩惱什麼. PASTA.html"><img src="instagram/Daily Life. 煩惱什麼. PASTA.jpg">#Daily Life. 煩惱什麼. PASTA</a></div>
+       <div><a href="N.N. Thai Thai.html"><img src="instagram/N.N. Thai Thai.jpg">#N.N. Thai Thai</a></div>
+       <div><a href="江技舊記.html"><img src="instagram/江技舊記.jpg">#江技舊記</a></div>
+       <div><a href="米香哥蝦仁飯.html"><img src="instagram/米香哥蝦仁飯.jpg">#米香哥蝦仁飯</a></div>
+       <div><a href="幸福小館.html"><img src="instagram/幸福小館.jpg">#幸福小館</a></div>
+       <div><a href="旺來豆花.html"><img src="instagram/旺來豆花.jpg">#旺來豆花</a></div>
+       <div><a href="桂花心語.html"><img src="instagram/桂花心語.jpg">#桂花心語</a></div>
+       <div><a href="肆盒院.html"><img src="instagram/肆盒院.jpg">#肆盒院</a></div>
+       <div><a href="激の串燒居酒屋.html"><img src="instagram/激の串燒居酒屋.jpg">#激の串燒居酒屋</a></div>
+       <div><a href="贊成綠豆沙～古早的好味道.html"><img src="instagram/贊成綠豆沙～古早的好味道.jpg">#贊成綠豆沙～古早的好味道</a></div>
+       
   </section>
+</div>
   </div>
   
 <div> 
 <div id="pp">南部
+  <div class="picture">
  <section class="regular slider">
-       <div id="p1"></div>
-       <div id="p2"></div>
-       <div id="p3"></div>
-       <div id="p4"></div>
-       <div id="p5"></div>
-       <div id="p6"></div>
-       <div id="p7"></div>
-       <div id="p8"></div>
-       <div id="p9"></div>
-       <div id="p10"></div>
-       <div id="p11"></div>
+       <div><a href="Hoko Ice霜淇淋.html"><img src="instagram/Hoko Ice霜淇淋.jpg">#Hoko Ice霜淇淋</a></div>
+       <div><a href="Moin Coffee Stand.html"><img src="instagram/Moin Coffee Stand.jpg">#Moin Coffee Stand</a></div>
+       <div><a href="Two's 早 • 午食.html"><img src="instagram/Two's 早 • 午食.jpg">#Two's 早 • 午食</a></div>
+       <div><a href="王子神谷.html"><img src="instagram/王子神谷.jpg">#王子神谷</a></div>
+       <div><a href="北回水晶餃.html"><img src="instagram/北回水晶餃.jpg">#北回水晶餃</a></div>
+       <div><a href="休閒食客.html"><img src="instagram/休閒食客.jpg">#休閒食客</a></div>
+       <div><a href="竹亭燒肉.html"><img src="instagram/竹亭燒肉.jpg">#竹亭燒肉</a></div>
+       <div><a href="尋早早餐.html"><img src="instagram/尋早早餐.jpg">#尋早早餐</a></div>
+       <div><a href="鍋道樂精緻鍋物.html"><img src="instagram/鍋道樂精緻鍋物.jpg">#鍋道樂精緻鍋物</a></div>
+       <div><a href="麵家二眷.html"><img src="instagram/麵家二眷.jpg">#麵家二眷</a></div>       
   </section>
   </div>
+</div>
 
 <div>
 <div id="pp">東部
+  <div class="picture">
  <section class="regular slider">
-       <div id="p1"></div>
-       <div id="p2"></div>
-       <div id="p3"></div>
-       <div id="p4"></div>
-       <div id="p5"></div>
-       <div id="p6"></div>
-       <div id="p7"></div>
-       <div id="p8"></div>
-       <div id="p9"></div>
-       <div id="p10"></div>
-       <div id="p11"></div>
+       <div><a href="一旬野鍋13路.html"><img src="instagram/一旬野鍋13路.jpg"># 一旬野鍋13路</a></div>
+       <div><a href="林家臭豆腐.html"><img src="instagram/林家臭豆腐.jpg">#林家臭豆腐</a></div>
+       <div><a href="花惹蜜 Follow Milk.html"><img src="instagram/花惹蜜 Follow Milk.jpg">#花惹蜜 Follow Milk</a></div>
+       <div><a href="阿霞吃莉姆姆.html"><img src="instagram/阿霞吃莉姆姆.jpg"># 阿霞吃莉姆姆</a></div>
+       <div><a href="海風南洋餐室.html"><img src="instagram/海風南洋餐室.jpg"># 海風南洋餐室</a></div>
+       <div><a href="菇菇早午餐.html"><img src="instagram/菇菇早午餐.jpg">#菇菇早午餐</a></div>
+       <div><a href="黑潮拉麵.html"><img src="instagram/黑潮拉麵.jpg">#黑潮拉麵</a></div>
+       <div><a href="楊家手工麵.html"><img src="instagram/楊家手工麵.jpg">#楊家手工麵</a></div>
+       <div><a href="萬家鄉餃子館.html"><img src="instagram/萬家鄉餃子館.jpg">#萬家鄉餃子館</a></div>
+       <div><a href="藍蜻蜓速食店.html"><img src="instagram/藍蜻蜓速食店.jpg">#藍蜻蜓速食店</a></div>
   </section>
   </div>
+</div>
 
 <div>
 <div id="pp">離島
+  <div class="picture">
  <section class="regular slider">
-       <div id="p1"></div>
-       <div id="p2"></div>
-       <div id="p3"></div>
-       <div id="p4"></div>
-       <div id="p5"></div>
-       <div id="p6"></div>
-       <div id="p7"></div>
-       <div id="p8"></div>
-       <div id="p9"></div>
-       <div id="p10"></div>
-       <div id="p11"></div>
+       <div><a href="小徑-蛋香蛋狗炒泡麵.html"><img src="instagram/小徑-蛋香蛋狗炒泡麵.jpg">#小徑-蛋香蛋狗炒泡麵</a></div>
+       <div><a href="眉毛哥の牢飯.html"><img src="instagram/眉毛哥の牢飯.jpg"># 眉毛哥の牢飯</a></div>
+       <div><a href="島民冰狗店.html"><img src="instagram/島民冰狗店.jpg"># 島民冰狗店</a></div>
+       <div><a href="得瓦拉 Terwara.html"><img src="instagram/得瓦拉 Terwara.jpg"># 得瓦拉 Terwara</a></div>
+       <div><a href="黑丸嫩仙草.html"><img src="instagram/黑丸嫩仙草.jpg"># 黑丸嫩仙草</a></div>
+       <div><a href="綠島更生豆花.html"><img src="instagram/綠島更生豆花.jpg"># 綠島更生豆花</a></div>
+       <div><a href="綠島派吃所 冰的啦.html"><img src="instagram/綠島派吃所 冰的啦.jpg">#綠島派吃所 冰的啦</a></div>
+       <div><a href="蔡師傅手工麵線.html"><img src="instagram/蔡師傅手工麵線.jpg"># 蔡師傅手工麵線</a></div>
+       <div><a href="蘭天白嶼Fun鬆玩-阿東飛魚刈包.html"><img src="instagram/蘭天白嶼Fun鬆玩-阿東飛魚刈包.jpg">#蘭天白嶼Fun鬆玩-阿東飛魚刈包</a></div>
+       <div><a href="蘭嶼旅人•Roverhtml"><img src="instagram/蘭嶼旅人•Rover.jpg"># 蘭嶼旅人•Rover</a></div>
   </section>
   </div>
+</div>
 
 
 

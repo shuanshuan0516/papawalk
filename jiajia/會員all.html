@@ -52,7 +52,21 @@
                 document.querySelector("#logout").style.visibility = "hidden";
             }
         }
+
+        function dic(){
+          let name2 = document.cookie.split("user=")[1].split(";")[0];
+          if(name2==="Kelly Huang"){
+            document.getElementById("who").href = "我的行程1.html";
+          } 
+          else if(name2 === "顏嘉慧"){
+            document.getElementById("who").href = "我的行程2.html";
+          }
+          else{
+            document.getElementById("who").href = "我的行程.html";
+          }
+        }
         login_init();
+        dic();
 
         var token;
         // The signed-in user info.
@@ -71,6 +85,7 @@
                     document.cookie = "uid="+user.uid;
                     document.cookie = "login=1";
                     login_init();
+                    dic();
                     // ...
                 }).catch(function (error) {
                     // Handle Errors here.
@@ -91,6 +106,7 @@
                     document.cookie = "user= ";
                     document.cookie = "uid= ";
                     login_init();
+                    dic();
                     // Sign-out successful.
                 }).catch(function(error) {
                     // An error happened.
@@ -153,8 +169,6 @@ body {
     <li><a href="美食all.html" id="phone-navi2">美食</a></li>
     <li><a href="會員all.html" id="phone-navi2">會員專區</a></li>
     <li><a href="關於我.html" id="phone-navi2">關於我</a></li>
-    <li><a href="會員登入.html" id="phone-navi2">登入</a></li>
-    <li><a href="" id="phone-navi2">登出</a></li>
       </ul>
     </div>
 </div>
@@ -175,10 +189,10 @@ body {
 </div>
 
 <div id="log">
-  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登入</span></button>
-  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登出</span></button>
-  <div id="user" style="text-align: center;padding-top:58px;color:#4f4f4f;"></div>
-</div> 
+  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登入</span></button>
+  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登出</span></button>
+  <div id="user" style="padding-top:58px;color:#4f4f4f;"></div>
+</div>
 
 
 <div class="row">
@@ -197,7 +211,7 @@ body {
 </div>
 
 <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-  <a href="我的行程.html"><img src="images/1-1.png" style="width:auto;max-height:310px;"/>
+  <a id="who" href=" " onclick="dic()"><img src="images/1-1.png" style="width:auto;max-height:310px;"/>
 </div>
 </div>
 
