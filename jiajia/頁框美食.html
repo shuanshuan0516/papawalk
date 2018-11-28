@@ -29,6 +29,9 @@
 <link rel="stylesheet" type="text/css" href="css/header.css">
 <link rel="stylesheet" href="css/向上.css">
 <link rel="stylesheet" href="css/登入.css"> 
+<script type="text/javascript" src="js/拖曳2.js"></script>
+<script src="js/拖曳1.js"></script>
+<link href="css/拖曳.css" rel="stylesheet" type="text/css" />
 
 <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
 <script>
@@ -47,7 +50,7 @@
         };
         firebase.initializeApp(config);
         let user = document.cookie.split("user=")[1].split(";")[0];
-        let db = firebase.database().ref("member/" + user + "/景點");
+        let db = firebase.database().ref("member/" + user + "/美食");
         db.once('value', function (snapshot) {
             let count = 0;
             snapshot.forEach(function (childSnapshot1) {
@@ -55,7 +58,7 @@
                 childSnapshot1.forEach(function (childSnapshot2) {
                     let t2 = childSnapshot2.key.split("&")[1];
 
-                    let vdb = firebase.database().ref("ig/-LSQCd5Nk_r1iv2ZlcZ6/景點/" + t1 + "/1/" + t2 + "/");
+                    let vdb = firebase.database().ref("ig/-LPgUYnN4rI6hkpDU7SW/美食/" + t1 + "/1/" + t2 + "/");
                     vdb.once('value', function (snapshot) {
                         count++;
                         document.querySelector("#n" + count).innerText = "#"+snapshot.child("/0").val();
@@ -78,6 +81,7 @@
         });
 
         function login_init() {
+            dic();
             let name = document.cookie.split("user=")[1].split(";")[0];
             let login = document.cookie.split("login=")[1].split(";")[0];
             if (login === "1") {
@@ -91,7 +95,21 @@
             }
         }
 
+          function dic(){
+          let name2 = document.cookie.split("user=")[1].split(";")[0];
+          if(name2==="Kelly Huang"){
+            document.getElementById("who").href = "我的行程1.html";
+          } 
+          if(name2==="顏嘉慧"){
+            document.getElementById("who").href = "我的行程2.html";
+          }
+          //else{
+            //document.getElementById("who").href = "我的行程.html";
+          //}
+        }
+
         login_init();
+        
 
         var token;
         // The signed-in user info.
@@ -110,6 +128,7 @@
                     document.cookie = "uid=" + user.uid;
                     document.cookie = "login=1";
                     login_init();
+                    dic();
                     // ...
                 }).catch(function (error) {
                     // Handle Errors here.
@@ -130,6 +149,7 @@
                     document.cookie = "user= ";
                     document.cookie = "uid= ";
                     login_init();
+                    dic();
                     // Sign-out successful.
                 }).catch(function (error) {
                     // An error happened.
@@ -141,98 +161,156 @@
 
         //登入
     </script>
+    <script type="text/javascript">
+      function yes(){
+          var str;
+          if(str=prompt("請為這趟行程命名"))
+          {
+            let name = document.cookie.split("user=")[1].split(";")[0];
+            let ref = firebase.database().ref("member/" + name + "/行程/");
+              ref.once("value", (function (snapshot) {
+              var gg = snapshot.numChildren()+1;
+              let updates = {};
+              updates["member/" + name + "/行程/" + gg ] = str;
+              alert("確定命名為："+ str);
+              alert("你已成功儲存此次行程");
+              firebase.database().ref().update(updates);
+
+          }))
+          }
+          else
+          {
+          alert("你已取消此次命名");
+          } 
+      }
+    </script>
 <style type="text/css">
 body {
   font-family: SentyZHAO;
 }
 
-#love1{
-  margin-left:5px;
-  margin-top:90px;
-  box-shadow:5px 5px 12px #ED9292;
-  width:130px;
-  height: 500px;
-  text-align:center;
-  color: black;
-  position: fixed;
-}
-@media (max-width: 768px) {
-    #love1{
-      display: none;
-    }
 
-}
-    #p1, #p2, #p3, #p4, #p5, #p6, #p7, #p8, #p9, #p10,#p10 img{
-        background-size: cover;
-        height: 250px;
-        width: 250px;
-        display: block;
-        margin: auto;
-        padding-top: 20px;}
-
-#content {
-        margin-top: 0px;
-        position:absolute;
-        z-index: -1;
-        margin-top: 120px;
-    }
-.row .item{   
-  border:4px black dashed;   
-  margin: 10px;   
-  padding: 10px;
-  height: auto;   
-  max-width: 300px;   
-  border-radius:10px; 
-  font-size: 5vmin;
-} 
-#rowp{
-  font-size: 8vmin;
-  color:#4f4f4f;
-  font-weight: bold;
-}
 @media (max-width: 768px) { 
-    #rowp{
-    text-align:center;
-    }
-}
-.but1{
-  font-size: 6vmin; 
+    .but1{
+  margin-top: 0px;
+  font-size: 4vmin; 
   background-color: transparent; 
   border-radius: 8px; 
   border: 2px solid rgba(105,105,105,0.6);
   margin:10px;
-  margin-top:-80px;
-  margin-left:850px;
   color:#4f4f4f;
 }
 .but1 a{color:#4f4f4f; }
 .but1 a:hover{color: #fff;}
+}
 
-.but2{
-  font-size: 6vmin; 
+
+  
+@media (max-width: 768px) {
+    #love2{
+      margin-top: 0px;
+  box-shadow:5px 5px 12px #ED9292;
+  width:380px;
+  height: 530px;
+  text-align:center;
+  color: black;
+  position: fixed;
+  overflow-x:hidden; 
+  overflow-y:visible;
+}
+}
+
+@media (max-width: 768px) {
+    #l1 {
+      border:4px black solid;
+      border-radius:5px;
+      width:210px;
+      height:50px;
+      background-color:#eee;
+      font-size:6vmin;
+      text-align:center;
+      margin-top:10px;
+      padding:3px;
+      margin-bottom: 20px;
+    }
+    #p1,#p2,#p3,#p4,#p5,#p6,#p7,#p8,#p9,#p10{
+     border:2px black dashed;  
+     background-size: cover;
+     border-radius:10px;
+     margin: 5px;   
+     height:95px;
+     width:90px;
+     display:inline-block;
+     margin-bottom:20px;
+     position: relative;
+     z-index: -1;
+}
+#p1 img,#p2 img,#p3 img,#p4 img,#p5 img,#p6 img,#p7 img,#p8 img,#p9 img,#p10 img{
+  background-size: cover;
+  height: 70px;
+  width:80px;
+  padding: -5px;
+}
+}
+
+@media (max-width: 768px) {
+    #n1,#n2,#n3,#n4,#n5,#n6,#n7,#n8,#n9,#n10{
+margin-bottom: 10px;
+}
+#p11{
+  padding-top: 90px;
+}
+.but1{
+  font-size: 20px; 
   background-color: transparent; 
   border-radius: 8px; 
   border: 2px solid rgba(105,105,105,0.6);
   margin:10px;
-  margin-top:-80px;
-  margin-left:300px;
-  color:#4f4f4f;
 }
-.but2 a{color:#4f4f4f; }
-.but2 a:hover{color: #fff;}
 
-.but3{
-  font-size: 6vmin; 
-  background-color: transparent; 
-  border-radius: 8px; 
-  border: 2px solid rgba(105,105,105,0.6);
-  margin:10px;
-  margin-top:-80px;
-  margin-left:100px;
-  color:#4f4f4f;
+.sourceItem img{
+  height: 120px;
+  width: 140px;
+  }
 }
-.but3 a{color:#4f4f4f; }
-.but3 a:hover{color: #fff;}
+
+
+@media (max-width: 768px) {
+    .sourceItem {
+  background-size: cover;
+  border:4px black dashed;   
+  margin: 10px;   
+  padding: 1px;
+  height: 130px;   
+  max-width: 200px;   
+  border-radius:10px;  
+  }
+}
+
+@media (max-width: 768px) {
+    #ul_Source3{
+      margin-top: 10px;
+      width: 350px;
+    height: auto;
+    position: absolute;
+    z-index: -1;
+
+    }
+}
+
+
+
+@media (max-width: 768px) {
+    #love31{
+  margin-right: 100px;
+  height: 100px;
+  width: 850px;
+  background-color: #fff;
+  position: fixed;
+  text-align: center;
+}
+}
+
 @media (max-width: 768px) { 
     .but1{
       font-size: 6vmin; 
@@ -264,140 +342,43 @@ body {
   margin-left:10px;
   color:#4f4f4f;
     }
+  #rowp{
+  margin-top:10px;
+  font-size: 8vmin;
+  color:#4f4f4f;
+  font-weight: bold;
 }
-
-
-@media (max-width: 768px) {
-    #log {
-        position: fixed;
-    left: 330px;
-    top: 45px;
-    width: 50px;
-    height: 25px;
-    z-index: 5;
-    background:#ED9292;
-    font-size: large;
-    text-align: left;
-    border-right: none;
-    font-size:4vmin;
-    }
-    #user{
-        margin-top: -50px;
-        margin-right: 70px;
-        text-align: right;
-    }
-    .button{
-        background-color:#ED9292; 
-        border-radius: 8px; 
-        border: 2px solid rgba(105,105,105,0.6);
-        font-size: 4vmin;
-        width: 70px;
-        margin-top:0px;
-        margin-right: 50px;
-   }
 }
 </style>
 <body onload="login_init()">
 
 <div class="container">
-        <header>
-<!--往下滑的標題><!-->
-<div id="fixed_header">
-    <div id="navi">
-      <ul style="margin-right: 130px;">
-         <li><a href="index.html"><img id="navi1" src="images/趴.png"></li>
-         <li><a href="景點all.html"><img id="navi2" src="images/景點.png"></a></li>
-         <li><a href="美食all.html"><img id="navi2" src="images/美食.png"></a></li>
-         <li><a href="會員all.html"><img id="navi3" src="images/會員1.png"></a></li>
-         <li><a href="關於我.html"><img id="navi4" src="images/about1.png"></a></li>
-      </ul>
-    </div>
-    <div id="phone-navi">
-      <ul>
-    <li><a href="index.html" id="phone-navi1">首頁</a></li>
-    <li><a href="景點all.html" id="phone-navi2">景點</a></li>
-    <li><a href="美食all.html" id="phone-navi2">美食</a></li>
-    <li><a href="會員all.html" id="phone-navi2">會員專區</a></li>
-    <li><a href="關於我.html" id="phone-navi2">關於我</a></li>
-      </ul>
-    </div>
-</div>
-<div id="log">
-  <button id="login" class="button" onclick="check(1)" style="vertical-align:middle;position:absolute;z-index:4;right:20px;"><span>登入</span></button>
-  <button id="logout" class="button" onclick="check(2)" style="vertical-align:middle;position:absolute;z-index:3;right:20px;"><span>登出</span></button>
-  <div id="user" style="padding-top:58px;color:#4f4f4f;"></div>
-</div>
-
-<!--下拉式選單
-<div id="love1">
- 
-</div>-->
-
-
-<div id="content">
-  <center>
-    <p id="rowp">景點收藏</p>
+<div id="love2">
+<center>
+    <p id="rowp">美食收藏</p>
   </center>
   <div id="but11">
-  <button class="but1"><a href="行程規劃.html">進入行程規劃</button>
-  <button class="but2"><a href="我的收藏美食.html">美食收藏</button>
-  <button class="but3"><a href="我的收藏.html">景點收藏</button>  
+  <button class="but2"><a href="頁框美食.html">美食收藏</button>
+  <button class="but3"><a href="c.html">景點收藏</button>  
   </div>
-  <div class="row" style="padding-left:15%">
 
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p1"></a>
-                    <div id="n1"></div>
-                    
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p2"></a>
-                    <div id="n2"></div>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p3"></a>
-                    <div id="n3"></div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p4"></a>
-                    <div id="n4"></div>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p5"></a>
-                    <div id="n5"></div>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p6"></a>
-                    <div id="n6"></div>
-
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p7"></a>
-                    <div id="n7"></div>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p8"></a>
-                    <div id="n8"></div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p9"></a>
-                    <div id="n9"></div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p10"><img src="IMG_3109.JPG"></a>
-                    <div id="n10">桃園銘傳大學</div>
-                </div>
-              </div>
+<div id="ul_Source3" class="sortgroup3" style="background:#f2e6e6; ">
+  <div id="p1" class="sourceItem sourceItem3"><div id="n1"></div></div>
+  <div id="p2" class="sourceItem sourceItem3"><div id="n2"></div></div>
+  <div id="p3" class="sourceItem sourceItem3"><div id="n3"></div></div>
+  <div id="p4" class="sourceItem sourceItem3"><div id="n4"></div></div>
+  <div id="p5" class="sourceItem sourceItem3"><div id="n5"></div></div>
+  <div id="p6" class="sourceItem sourceItem3"><div id="n6"></div></div>
+  <div id="p7" class="sourceItem sourceItem3"><div id="n7"></div></div>
+  <div id="p8" class="sourceItem sourceItem3"><div id="n8"></div></div>
+  <div id="p9" class="sourceItem sourceItem3"><div id="n9"></div></div>
+<button class="but1">拖曳至行程</button>
+</div>
 </div>
 
     </div>
 
-<script src="http://www.jq22.com/jquery/2.1.1/jquery.min.js"></script>
+
 <script>
   $('.nav-toggle').click(function () {
       $('body').toggleClass('nav-open');
@@ -428,17 +409,28 @@ $(document).ready(function()
 });
 </script>
 
-<script src="js/向上.js"></script>
+
 <script>
-    $(document).ready(function() {
-        $('body').materialScrollTop({
-            revealElement: 'header',
-            revealPosition: 'bottom',
-            onScrollEnd: function() {
-            console.log('Scrolling End');
-            }
+ 
+        $(".sourceItem3").draggable({
+            helper: "clone",
+            connectToSortable: ".sortgroup3"
         });
-    });
-</script>  
+
+
+        $("#ul_Target3").sortable(
+        {
+            receive: function (e, ui) { isOut = false; },
+            over: function (e, ui) { isOut = false; },
+            out: function (e, ui) { isOut = true; },
+
+            beforeStop: function (e, ui) {
+                if (isOut) {
+                    $(ui.item).remove();
+                }
+            }
+        }).disableSelection();
+ 
+   </script>
 </body>
 </html>

@@ -32,6 +32,7 @@
 <script type="text/javascript" src="js/拖曳2.js"></script>
 <script src="js/拖曳1.js"></script>
 <link href="css/拖曳.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/手機拖曳11.js"></script>
 
 <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
 <script>
@@ -58,18 +59,20 @@
                 childSnapshot1.forEach(function (childSnapshot2) {
                     let t2 = childSnapshot2.key.split("&")[1];
 
-                    let vdb = firebase.database().ref("ig/-LSQCd5Nk_r1iv2ZlcZ6/景點/" + t1 + "/1/" + t2 + "/");
+                    let vdb = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/" + t1 + "/1/" + t2 + "/");
                     vdb.once('value', function (snapshot) {
                         count++;
                         document.querySelector("#n" + count).innerText = "#"+snapshot.child("/0").val();
                         document.querySelector("#p" + count).style.backgroundImage = "url(" + snapshot.child("1/0").val() + ")";
                       })
+
                         let count2=0;
                         let vdb2 = firebase.database().ref("ig/-LPgUYnN4rI6hkpDU7SW/美食/" + t1 + "/1/" + t2 + "/");
                         vdb2.once('value', function (snapshot) {
                         count2++;
                         document.querySelector("#nn" + count).innerText = "#"+snapshot.child("/0").val();
                         document.querySelector("#pp" + count).style.backgroundImage = "url(" + snapshot.child("1/0").val() + ")";
+
 
                     })
                 })
@@ -88,6 +91,7 @@
         });
 
         function login_init() {
+            dic();
             let name = document.cookie.split("user=")[1].split(";")[0];
             let login = document.cookie.split("login=")[1].split(";")[0];
             if (login === "1") {
@@ -101,7 +105,21 @@
             }
         }
 
+          function dic(){
+          let name2 = document.cookie.split("user=")[1].split(";")[0];
+          if(name2==="Kelly Huang"){
+            document.getElementById("who").href = "我的行程1.html";
+          } 
+          if(name2==="顏嘉慧"){
+            document.getElementById("who").href = "我的行程2.html";
+          }
+          //else{
+            //document.getElementById("who").href = "我的行程.html";
+          //}
+        }
+
         login_init();
+        
 
         var token;
         // The signed-in user info.
@@ -120,6 +138,7 @@
                     document.cookie = "uid=" + user.uid;
                     document.cookie = "login=1";
                     login_init();
+                    dic();
                     // ...
                 }).catch(function (error) {
                     // Handle Errors here.
@@ -140,6 +159,7 @@
                     document.cookie = "user= ";
                     document.cookie = "uid= ";
                     login_init();
+                    dic();
                     // Sign-out successful.
                 }).catch(function (error) {
                     // An error happened.
@@ -158,11 +178,10 @@
           {
             let name = document.cookie.split("user=")[1].split(";")[0];
             let ref = firebase.database().ref("member/" + name + "/行程/");
-            let save = document.getElementById("save");
-            var play = save.innerHTML;
               ref.once("value", (function (snapshot) {
+              var gg = snapshot.numChildren()+1;
               let updates = {};
-              updates["member/" + name + "/行程/" + str] = play;
+              updates["member/" + name + "/行程/" + gg ] = str;
               alert("確定命名為："+ str);
               alert("你已成功儲存此次行程");
               firebase.database().ref().update(updates);
@@ -587,7 +606,6 @@ font-size: 3vmin;
     margin-top: 40px;
   }
 }
-
 </style>
 <body onload="login_init()">
 
@@ -622,102 +640,10 @@ font-size: 3vmin;
   <div id="user" style="padding-top:58px;color:#4f4f4f;"></div>
 </div>
 
-<!--
-<div id="love1">
-  <div class="menu_list" id="secondpane" style="padding-top: 20px">
-    <p class="menu_head">北部</p>
-    <div class="menu_body">
-    <a href="景點.html?&0">基隆</a> 
-    <a href="景點.html?&1">台北</a>
-    <a href="景點.html?&2">新北</a>
-    <a href="景點.html?&3">桃園</a> 
-    <a href="景點.html?&4">新竹</a>
-    <a href="景點.html?&16">宜蘭</a>  
-    </div>
-    <p class="menu_head">中部</p>
-    <div class="menu_body">
-    <a href="景點.html?&5">苗栗</a>
-    <a href="景點.html?&6">台中</a>
-    <a href="景點.html?&7">彰化</a> 
-    <a href="景點.html?&8">南投</a>
-    <a href="景點.html?&9">雲林</a>  
-    </div>
-    <p class="menu_head">南部</p>
-    <div class="menu_body">
-    <a href="景點.html?&10">嘉義</a>
-    <a href="景點.html?&11">台南</a>
-    <a href="景點.html?&12">高雄</a>  
-    <a href="景點.html?&13">屏東</a>  
-    <a href="景點.html?&15">澎湖</a>   
-    </div>
-     <p class="menu_head">東部</p>
-    <div class="menu_body">
-    <a href="景點.html?&20">花蓮</a>
-    <a href="景點.html?&14">台東</a>  
-    </div>
-     <p class="menu_head">離島</p>
-    <div class="menu_body">
-    <a href="景點.html?&18">金門</a>
-    <a href="景點.html?&17">綠島</a>
-    <a href="景點.html?&19">蘭嶼</a>    
-    </div>
-
-  </div>     
-</div>
-
-<div id="phonemenu">
-<nav class="nav">
-<ul>
-  <div class="menu_list" id="secondpane"> 
-    <p class="menu_head">北部</p>
-    <div class="menu_body">
-    <a href="景點.html?&0">基隆</a> 
-    <a href="景點.html?&1">台北</a>
-    <a href="景點.html?&2">新北</a>
-    <a href="景點.html?&3">桃園</a> 
-    <a href="景點.html?&4">新竹</a>
-    <a href="景點.html?&16">宜蘭</a>  
-    </div>
-    <p class="menu_head">中部</p>
-    <div class="menu_body">
-    <a href="景點.html?&5">苗栗</a>
-    <a href="景點.html?&6">台中</a>
-    <a href="景點.html?&7">彰化</a> 
-    <a href="景點.html?&8">南投</a>
-    <a href="景點.html?&9">雲林</a>  
-    </div>
-    <p class="menu_head">南部</p>
-    <div class="menu_body">
-    <a href="景點.html?&10">嘉義</a>
-    <a href="景點.html?&11">台南</a>
-    <a href="景點.html?&12">高雄</a>  
-    <a href="景點.html?&13">屏東</a>  
-    <a href="景點.html?&15">澎湖</a>   
-    </div>
-     <p class="menu_head">東部</p>
-    <div class="menu_body">
-    <a href="景點.html?&20">花蓮</a>
-    <a href="景點.html?&14">台東</a>  
-    </div>
-     <p class="menu_head">離島</p>
-    <div class="menu_body">
-    <a href="景點.html?&18">金門</a>
-    <a href="景點.html?&17">綠島</a>
-    <a href="景點.html?&19">蘭嶼</a>    
-    </div>
-
-  </div>    
-</ul>
-</nav>
-<div class="nav-toggle">
-<div class="icon"></div>
-</div>
-</div>
--->
 
 <div class="love3">
   <div id="love31">
-  <center style="font-size: 8vmin;padding-top: 10px;color: #4f4f4f;">
+  <center style="font-size:8vmin;padding-top:10px;color: #4f4f4f;">
     行程規劃
   <picture>
   <source srcset="images/垃圾桶1.png" id="laji" media="(max-width: 500px)">
@@ -725,13 +651,11 @@ font-size: 3vmin;
   <img src="images/垃圾桶.png"  style="max-width:90px;height:auto">
   </picture>
   <button class="but1" id="laji1">拖至垃圾桶</button>
-  <button class="but1"><a id = "who" href="我的行程.html" onclick="dic()">進入我的行程></a></button>
+  <button class="but1"><a id ="who" href=" " onclick="dic()">進入我的行程></a></button>
   </center>
   </div>
-  <div style="margin-top: 120px;margin-bottom: 0px;color: #4f4f4f;">拖曳行程至此</div>
-  <div id="save">
+  <div id="play">拖曳行程至此</div>
   <div id="ul_Target3" class="sortgroup3">
-  </div>
   </div>
   <ul id=sure>
 <button class="but1" onclick="yes()">確認行程</button>
@@ -741,7 +665,7 @@ font-size: 3vmin;
 
 <div id="love2">
 <center><div id="l1">景點收藏</div></center>
-<button class="but1"><a href="try.html">拖曳至行程</a></button>
+<button class="but1">拖曳至行程</button>
 <div id="ul_Source3" class="sortgroup3" style="background:#f2e6e6; ">
   <div id="p1" class="sourceItem sourceItem3"><div id="n1"></div></div>
   <div id="p2" class="sourceItem sourceItem3"><div id="n2"></div></div>
@@ -751,7 +675,7 @@ font-size: 3vmin;
   <div id="p6" class="sourceItem sourceItem3"><div id="n6"></div></div>
   <div id="p7" class="sourceItem sourceItem3"><div id="n7"></div></div>
   <div id="p8" class="sourceItem sourceItem3"><div id="n8"></div></div>
-  <div id="p9" class="sourceItem sourceItem3"><div id="n9"><img src="IMG_3109.JPG"></div>桃園銘傳大學</div>
+  <div id="p9" class="sourceItem sourceItem3"><div id="n9"></div></div>
 </div>
 <div style="margin-top:400px;">
 <center><div id="l1">美食收藏</div></center>
@@ -769,6 +693,7 @@ font-size: 3vmin;
 </div>
 </div>
 
+        
 <button id="img1" onclick="img1()" style="margin-top: 130px;color:#4f4f4f;padding-bottom:2px;"><img src="instagram/Kano園區.jpg" style="background-size: cover;height: 70px;width:80px;">Kano園區</button>
 
 <button id="img2" onclick="img2()" style="top: 100px;color:#4f4f4f;padding-bottom:2px;"><img src="instagram/大師兄銷魂麵舖.jpg" style="background-size: cover;height: 70px;width:80px;">大師兄銷魂麵舖</button>
@@ -855,5 +780,43 @@ $(document).ready(function()
         }).disableSelection();
  
    </script>
+<script type="text/javascript" language="javascript">
+   //在页面加载完之后加载jquery
+   $().ready(function(e) {
+       //拖拽复制体
+       $('td[id^="draggable"]').draggable({
+       helper:"clone",
+       cursor: "move"
+     });
+
+    //释放后
+     $('td[id^="target"]').droppable({
+      drop:function(event,ui){
+        $(this).children().remove();
+        var source = ui.draggable.clone();
+        $('<img/>', {
+          src: 'btn_delete.png',
+          style:'display:none',
+          click: function() {
+            source.remove();
+          }
+        }).appendTo(source);
+
+      
+        source.mouseenter(function () { 
+          $(this).find("img").show();
+        }); 
+
+        source.mouseleave(function () {
+          $(this).find("img").hide();
+        }); 
+
+        $(this).append(source);
+
+      }
+    });
+     });
+</script>
+
 </body>
 </html>

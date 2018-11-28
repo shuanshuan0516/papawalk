@@ -47,7 +47,7 @@
         };
         firebase.initializeApp(config);
         let user = document.cookie.split("user=")[1].split(";")[0];
-        let db = firebase.database().ref("member/" + user + "/景點");
+        let db = firebase.database().ref("member/" + user + "/美食");
         db.once('value', function (snapshot) {
             let count = 0;
             snapshot.forEach(function (childSnapshot1) {
@@ -55,7 +55,7 @@
                 childSnapshot1.forEach(function (childSnapshot2) {
                     let t2 = childSnapshot2.key.split("&")[1];
 
-                    let vdb = firebase.database().ref("ig/-LSQCd5Nk_r1iv2ZlcZ6/景點/" + t1 + "/1/" + t2 + "/");
+                    let vdb = firebase.database().ref("ig/-LPgUYnN4rI6hkpDU7SW/美食/" + t1 + "/1/" + t2 + "/");
                     vdb.once('value', function (snapshot) {
                         count++;
                         document.querySelector("#n" + count).innerText = "#"+snapshot.child("/0").val();
@@ -162,7 +162,7 @@ body {
     }
 
 }
-    #p1, #p2, #p3, #p4, #p5, #p6, #p7, #p8, #p9, #p10,#p10 img{
+    #p1, #p2, #p3, #p4, #p5, #p6, #p7, #p8, #p9, #p10{
         background-size: cover;
         height: 250px;
         width: 250px;
@@ -336,7 +336,7 @@ body {
 
 <div id="content">
   <center>
-    <p id="rowp">景點收藏</p>
+    <p id="rowp">美食收藏</p>
   </center>
   <div id="but11">
   <button class="but1"><a href="行程規劃.html">進入行程規劃</button>
@@ -389,8 +389,8 @@ body {
                     <div id="n9"></div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 text-center item">
-                    <a id="p10"><img src="IMG_3109.JPG"></a>
-                    <div id="n10">桃園銘傳大學</div>
+                    <a id="p10"></a>
+                    <div id="n10"></div>
                 </div>
               </div>
 </div>

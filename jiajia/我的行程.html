@@ -40,7 +40,7 @@
   };
   firebase.initializeApp(config);
 
-  var pre = document.getElementById('object');
+  /*var pre = document.getElementById('object');
   var a = 0;
   for(var i = 0;i<10;i++){
     var db = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/0/1/"+i+"/1/0");
@@ -51,20 +51,32 @@
     image.style.backgroundImage = "url("+test+")";
  });
   }
-  ;
+  ;*/
 
-  var name = document.cookie.split("user=")[1].split(";")[0];
-  var b=0;
-  for (let i = 1; i < 20; i++){
-  var db3 = firebase.database().ref("member/" + name + "/行程/");
+  var bigname = document.cookie.split("user=")[1].split(";")[0];
+  //var b=0;
+ //for (let c = 0; c < 100; c++){
+  var db3 = firebase.database().ref("member/"+bigname+"/行程/");
             db3.on('value',function(snapshot){
-                snapshot.forEach(function(cs){ 
-                b++;                 
-                var text1 = document.getElementById("y"+b);
-                text1.innerText += "#" + cs.val() +"\n";
-              })
-              })
-            }
+                //snapshot.forEach(function(cs){ 
+                //b++;
+              var key = Object.keys(snapshot.val())[0];
+                //let sitename = snapshot.val();
+
+
+              //let div = document.createElement('div'); // 新增元l素
+              let text1 = document.getElementById("a"); // 获取id为a的元素
+              //div.innerT = "<button>apple</button>";
+              text1.innerText += "#" + key +"\n";
+              //div.id = "love31";
+              //text1.parentNode.insertBefore(div, text1); // 在这个元素前面增加上去
+              
+              document.getElementById("tai").href = "我的行程go.html?&"+key;
+  })
+
+               
+             //})
+              //}
 </script>
 <script type="text/javascript">
     //登入
@@ -76,11 +88,11 @@
         });
 
         function login_init(){
-            let name = document.cookie.split("user=")[1].split(";")[0];
+            let name2 = document.cookie.split("user=")[1].split(";")[0];
             let login= document.cookie.split("login=")[1].split(";")[0];
             if(login==="1")
             {
-                document.getElementById("user").innerText = name;
+                document.getElementById("user").innerText = name2;
                 document.querySelector("#login").style.visibility = "hidden";
                 document.querySelector("#logout").style.visibility = "visible";
             }else{
@@ -137,6 +149,8 @@
 
         }
         //登入
+
+
 </script>
 <style type="text/css">
 body {
@@ -171,7 +185,7 @@ body {
 #p1,#p4,#p5,#p6,#tai{
   background-size: cover;
         height: 150px;
-        width: 150px;
+        width: 250px;
         display: block;
         margin: auto;
         padding-top: 20px;
@@ -213,7 +227,7 @@ body {
   border-radius:10px;
 }
 }
-#p111,#p222,#p333,#p444{
+#p111,#p222,#p333,#p444,#y1,#y2,#y3,#a{
 margin-left:200px;
 margin-top:-90px;
 font-size: 5vmin;
@@ -303,15 +317,21 @@ font-size: 5vmin;
 
 
 
+
 <div class="love3">
   <p style="font-size: 8vmin;padding-top: 20px;">我的行程</p>
+<div id="love31" ><a id="tai" href=" " style="background-image: url(我的行程.jpg)"></a>
+    <p id="a"></p>
+  </div>
+  </div>
 
-</div>
+      
 
 
 
 
-</div>
+
+
 
 
 

@@ -121,7 +121,7 @@
         //地圖
         let get = location.search.split("&");
 
-        var db = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/" + get[1] + "/1/" + get[2]);
+        var db = firebase.database().ref("ig/-LSQCd5Nk_r1iv2ZlcZ6/景點/" + get[1] + "/1/" + get[2]);
         db.once('value', function (snapshot) {
             let t2_title = snapshot.child("0").val();
             document.getElementById("all_title").innerText = "#" + t2_title;
@@ -141,7 +141,7 @@
         });
         //地圖
         //留言
-        var db2 = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/" + get[1] + "/1/" + get[2]+"/comment");
+        var db2 = firebase.database().ref("ig/-LSQCd5Nk_r1iv2ZlcZ6/景點/" + get[1] + "/1/" + get[2]+"/comment");
             db2.on('value',function(snapshot){
                 snapshot.forEach(function(cs){
                     var text = document.getElementById("show");
@@ -155,13 +155,13 @@
 
         function putdata(){
             var message = $('#message').val();            
-            var ref = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/" + get[1] + "/1/" + get[2]+"/comment");
+            var ref = firebase.database().ref("ig/-LSQCd5Nk_r1iv2ZlcZ6/景點/" + get[1] + "/1/" + get[2]+"/comment");
                 ref.once("value", (function (snapshot) {
                     var buffer = snapshot.child(message).val();
                     var a = snapshot.numChildren()+1;
                     if (buffer == null) {
                         let updates = {};
-                        updates["ig/-LMpQ6bSy1fXHUHcLTZk/景點/" + get[1] + "/1/" + get[2]+"/comment/"+a ] = message;
+                        updates["ig/-LSQCd5Nk_r1iv2ZlcZ6/景點/" + get[1] + "/1/" + get[2]+"/comment/"+a ] = message;
                         alert("留言成功");
                         firebase.database().ref().update(updates);
 
@@ -179,7 +179,7 @@
         };
 
         function show_message(){
-            var db3 = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/" + get[1] + "/1/" + get[2]+"/comment");
+            var db3 = firebase.database().ref("ig/-LSQCd5Nk_r1iv2ZlcZ6/景點/" + get[1] + "/1/" + get[2]+"/comment");
             db3.on('value',function(snapshot){
                 snapshot.forEach(function(cs){
                 var text1 = document.getElementById("show");
@@ -689,12 +689,12 @@
 
     $(document).ready(function(){
     let get = location.search.split("&");
-    var scoreRef = firebase.database().ref("ig/-LMpQ6bSy1fXHUHcLTZk/景點/" + get[1] + "/1/" + get[2]+"/star");//firebase位址    
+    var scoreRef = firebase.database().ref("ig/-LSQCd5Nk_r1iv2ZlcZ6/景點/" + get[1] + "/1/" + get[2]+"/star");//firebase位址    
     $('#ok').on('click',function(){
     scoreRef.once("value",(function(snapshot){
     var bbb = snapshot.numChildren()+1;
     var updates = {};
-    updates["ig/-LMpQ6bSy1fXHUHcLTZk/景點/" + get[1] + "/1/" + get[2]+"/star"+bbb] = score;
+    updates["ig/-LSQCd5Nk_r1iv2ZlcZ6/景點/" + get[1] + "/1/" + get[2]+"/star"+bbb] = score;
     firebase.database().ref().update(updates);
     }))
     
